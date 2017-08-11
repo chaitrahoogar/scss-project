@@ -7,7 +7,9 @@ import {appRouterModule} from './app.routes';
 import { RegisterComponent } from './register/register.component';
 import { ComponentRepositoryComponent } from './component-repository/component-repository.component';
 import { LogInComponent } from './login/login.component';
-import { PasswordresetComponent } from './passwordreset/passwordreset.component'
+import { PasswordresetComponent } from './passwordreset/passwordreset.component';
+import { ManagerComponent } from './manager/manager.component';
+import { LeadComponent } from './lead/lead.component'
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { PasswordresetComponent } from './passwordreset/passwordreset.component'
     RegisterComponent,
     ComponentRepositoryComponent,
     LogInComponent,
-    PasswordresetComponent
+    PasswordresetComponent,
+    ManagerComponent,
+    LeadComponent
 
   ],
   imports: [

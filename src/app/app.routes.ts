@@ -5,6 +5,8 @@ import {RegisterComponent} from "./register/register.component";
 import {ComponentRepositoryComponent} from "./component-repository/component-repository.component";
 import {LogInComponent} from "./login/login.component";
 import {PasswordresetComponent} from "./passwordreset/passwordreset.component";
+import {ManagerComponent} from "./manager/manager.component";
+import {LeadComponent} from "./lead/lead.component";
 
 // Route config let's you map routes to components
 const routes: Routes = [
@@ -28,7 +30,14 @@ const routes: Routes = [
   },
   {
     path: 'pwdreset',component: PasswordresetComponent,
-  }
+  },
+  {
+    path: 'manager',component: ManagerComponent,
+  },
+  {
+    path: 'lead',component: LeadComponent,
+  },
+
    
 ];
 
