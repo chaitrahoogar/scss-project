@@ -1,0 +1,216 @@
+<div class="container-fluid">
+    <div class="row"> 
+         <div class="col-md-6">
+              <h5>INPUT TEXT</h5>
+              <div>
+                <form ng-form="#f">
+                  <div class="value">    
+                     <input type="text" [ngClass]="{'red-border-class':!email.valid && !email.pristine}" class="inputText" id="email" required name="email" [(ngModel)] = "model.email" #email="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!email.valid && !email.pristine }">Your email address</span>
+                   <div [hidden]="email.valid || email.pristine" class="reqAlert">
+                         email is required
+                   </div>
+                    </div>
+               <div>
+                  <h3>Search box</h3>
+                  <span class="text-input-wrapper"> <input class="search" placeholder="Search..."  name="searchValue" [(ngModel)]="searchValue" required><span class="Clear" (click)="clearSearch()" title="Clear"><img src="/assets/images/error.svg"></span></span>
+               </div>
+     
+                <div>
+                  <h3>Text Area</h3>
+                  <textarea class="textArea" placeholder="placeholder"></textarea>
+               </div>
+
+                <div>
+                  <h3>Tags</h3>
+                     
+                      <button class="tagDefault">Tag label
+                          <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
+                          <img class="fatime" src="/assets/images/delete.svg">
+                      </button> 
+
+                      <br>
+                      <br>
+                      <button class="tagDefault tagicon">
+                         <span> <img src="/assets/images/puzzle.png"></span>
+                          Tag label
+                          <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
+                          <img class="fatime" src="/assets/images/delete.svg">
+                      </button>
+                      <br>
+                      <br>
+                      <button class="tagDefault tagicon">
+                         <span> <img src="/assets/images/user1.svg"></span>
+                          Tag label
+                          <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
+                          <img class="fatime" src="/assets/images/delete.svg">
+                      </button>
+                       <br>
+                      <br>
+                      <button class="tagDefault tagTruncated">
+                         <span> <img src="/assets/images/puzzle.png"></span>
+                          This tag label is ...
+                          <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
+                          <img class="fatime" src="/assets/images/delete.svg">
+                      </button>
+
+                      <br>
+                      <br>
+                      <div class="tagContainer"> 
+                        <button class="tagDefault">Tag label
+                            <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
+                            <img class="fatime" src="/assets/images/delete.svg">
+                        </button> 
+                        <button class="tagDefault">Tag label
+                            <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
+                             <img class="fatime" src="/assets/images/delete.svg">
+                        </button>
+                        <button class="tagDefault">Tag label
+                            <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
+                            <img class="fatime" src="/assets/images/delete.svg">
+                        </button>
+                      </div>
+                  </div>
+ 
+                 </form>
+                
+              </div>
+
+              <div>
+                    <h3>Avatar</h3>
+                    <div class="row">
+                      <div class="col-md-2">
+                        <div class="xSmall">
+                            AM
+                        </div>
+                      </div>  
+                      <div class="col-md-2">
+                        <div class="small">
+                            AM
+                        </div>
+                      </div>
+                      <div class="col-md-2">    
+                        <div class="medium">
+                            AM
+                        </div>
+                      </div> 
+                      <div class="col-md-2"> 
+                        <div class="large">
+                            AM
+                        </div>
+                      </div>  
+                    </div>  
+              </div>
+         </div>
+         <div class="col-md-6">
+            <h5>Buttons</h5>
+             <input type="button" class="buttonLarge" value="Button Large">
+              <input type="button" class="buttonLarge" value="Button Large" [disabled]='true'>
+             <br>
+               <br>
+             <input type="button" class="buttonMedium" value="Button Medium">
+             <input type="button" class="buttonMedium" value="Button Medium" [disabled]='true'>
+             <br>
+               <br>
+            <input type="button" class="brandblue" value="Button Brand">
+            <input type="button" class="brandblue" value="Button Brand" [disabled]='true'>
+            
+            <br>
+            <br>
+            <input type="button" class="naturalButtonLarge" value="Natural Large">
+             <br>
+            <br>
+            <input type="button" class="naturalButtonMedium" value="Natural Medium">
+             <br>
+            <br>
+            <input type="button" class="naturalButtonsmall" value="Natural small">
+            <br>
+            <br>
+            <button type="button" class="naturalButtonLarge">
+              <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="24px" height="24px">
+                  <g>
+                    <g>
+                      <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
+                      <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
+                    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+                  </g>
+                  </svg>
+               </span> 
+              <span class="iconBtnText">Icon Button</span> 
+            </button>
+            <br>
+            <br>
+            <button type="button" class="naturalButtonMedium">
+              
+              <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
+                <g>
+                  <g>
+                    <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
+                    <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
+                  </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+                </g>
+                </svg>
+              </span> 
+               <span class="iconBtnText">Icon Button</span>  
+            </button>
+            <br>
+            <br>
+             <button type="button" class="naturalButtonsmall">
+              <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
+                <g>
+                  <g>
+                    <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
+                    <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
+                  </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+                </g>
+                </svg></span>
+               <span class="iconBtnText">Icon Button</span> 
+            </button>
+            <br>
+            <br>
+             <div class="linkWithAChevron">
+                   <span>Link with a chevron</span>
+                   <span><img src="/assets/images/next1.svg"></span>
+             </div>
+
+            <form>
+              <h3> Radio Button</h3>
+                <input type="radio" id="test1" name="radio-group" checked>
+                <label for="test1">Apple</label>
+                <br>
+                <input type="radio" id="test2" name="radio-group">
+                <label for="test2">Peach</label>
+                <br>
+                <input type="radio" id="test3" name="radio-group">
+                <label for="test3">Orange</label>
+                <br>
+
+                 <h3> checkbox Button</h3>
+                <input type="checkbox" id="checkbox1" name="radio-group">
+                <label for="checkbox1">Peach</label>
+                <br>
+               
+                <input type="checkbox" id="checkbox2" name="radio-group">
+                <label for="checkbox2">Orange</label>
+              
+            </form>
+            <!--<input type="button" class="buttonDestructive" value="Button Destructive">
+
+            <input type="button" class="buttonNeutral" value="Button-Neutral">
+
+            <span class="buttonBase">Button-Base</span>
+
+            <div class="followClass">
+              <button class="followBtn" (click)="follow()">
+                <i class="fa fa-check" [ngClass]="{'displayHide':isplus}" aria-hidden="true"></i>
+                <i class="fa fa-plus" [ngClass]="{'displayHide':ischecked}" aria-hidden="true"></i>
+                   <span class="text">{{ isplus ? 'Follow' : 'Follwing'}}</span>
+              </button>
+            </div>  -->
+
+          
+         </div>
+      
+    </div>
+</div>
+

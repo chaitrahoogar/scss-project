@@ -1,0 +1,33 @@
+@import 'src/assets/scss/color.scss';
+
+.forgotPwd
+{
+    margin-top:15px;
+}
+
+.textfontColor
+{
+   font-size:24px;   
+}
+
+.datefontColor
+{
+    font-size:24px;
+    color:$blue-green;
+}
+
+.datetextwidth
+{
+    margin: 99px auto;
+    width: 52%;
+}
+
+.loginborderleft
+{
+    border-left:1px solid #e1e1e1;
+}
+
+.loginpadding
+{
+    padding:18px;
+}

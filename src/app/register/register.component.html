@@ -1,0 +1,59 @@
+<div class="container">
+<div>
+  <p class="groomeHead groomeHeadLeft">
+  Groome
+</p>
+<a  routerLink="/login"><input type="button" class="naturalButtonsmall loginButton" value="Login"></a>
+</div>
+<div class="loginForm">
+<form class="form-horizontal" (ngSubmit)="submitRegister()" #f="ngForm">
+            <p class="registertext"> Create Your Profile </p>
+          <div class="value">    
+                     <input type="text" [ngClass]="{'red-border-class':!name.valid && !name.pristine}" class="inputText" id="name" required name="name" [(ngModel)] = "register.name" #name="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!name.valid && !name.pristine }">First Name</span>
+                   <div [hidden]="name.valid || name.pristine" class="reqAlert">
+                        first name is required
+                   </div>
+                    </div>
+
+                   <div class="value">    
+                     <input type="text" [ngClass]="{'red-border-class':!lname.valid && !lname.pristine}" class="inputText" id="lname" required name="lname" [(ngModel)] = "register.lname" #lname="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!lname.valid && !lname.pristine }">Last Name</span>
+                   <div [hidden]="lname.valid || lname.pristine" class="reqAlert">
+                         last name is required
+                   </div>
+                    </div>  
+ 
+                  <div class="value">    
+                     <input type="text" [ngClass]="{'red-border-class':!password.valid && !password.pristine}" class="inputText" id="password" required name="password" [(ngModel)] = "register.password" #password="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!password.valid && !password.pristine }">Password</span>
+                   <div [hidden]="password.valid || password.pristine" class="reqAlert">
+                         password is required
+                   </div>
+                    </div> 
+
+                    <div class="value">    
+                     <input type="password" [ngClass]="{'red-border-class':!confirm.valid && !confirm.pristine}" class="inputText" id="confirm" required name="confirm" [(ngModel)] = "register.confirm" #confirm="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!confirm.valid && !confirm.pristine }">confirm password</span>
+                   <div [hidden]="confirm.valid || confirm.pristine" class="reqAlert">
+                         confirm password is required
+                   </div>
+                    </div>
+						
+
+
+						<div class=" ">
+						<!-- <a  routerLink="/login">	<button type="submit" class="btn btn-primary btn-lg btn-block login-button" [disabled]="!f.valid">Register</button></a> -->
+            <input type="button" class="buttonLarge regbuttonLarge" value="Take me to groome">
+          </div>
+          
+						<!--<div class="login-register">
+				            <a href="index.php">Login</a>
+				         </div>-->
+
+                 <!-- <span>Already register ?? <a  routerLink="/login">Login here</a></span> -->
+					</form>
+
+ </div>    
+<img src="/assets/images/register.svg"/>
+</div>    

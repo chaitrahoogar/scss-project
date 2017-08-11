@@ -1,0 +1,46 @@
+<div class="container">
+<p class="groomeHead groomeHeadLeft">
+  Groome
+</p>
+<div class="row">
+  <div class="col-md-7">
+    <div class="datetextwidth">
+    <p class="textfontColor">
+      Good Morning,
+      </p>
+    <p class="datefontColor">
+      Let the sane be insane, Today!
+    </p>
+    </div>
+  </div>
+   <div class="col-md-5 loginborderleft">
+     <div class="loginpadding">
+     <p class="textfontColor">
+       Login
+       </p>
+      <div class="value">    
+                     <input type="text" [ngClass]="{'red-border-class':!name.valid && !name.pristine}" class="inputText" id="name" required name="name" [(ngModel)] = "login.name" #name="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!name.valid && !name.pristine }">Your name</span>
+                   <div [hidden]="name.valid || name.pristine" class="reqAlert">
+                         name is required
+                   </div>
+                    </div>
+
+                     <div class="value">    
+                     <input type="text" [ngClass]="{'red-border-class':!password.valid && !password.pristine}" class="inputText" id="password" required name="password" [(ngModel)] = "login.password" #password="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!password.valid && !password.pristine }">Password</span>
+                   <div [hidden]="password.valid || password.pristine" class="reqAlert">
+                         password is required
+                   </div>
+                    </div> 
+                  <input type="button" class="buttonLarge regbuttonLarge" value="Login">
+<div class="forgotPwd">
+      <a  routerLink="/pwdreset">Did you forgot password ?</a>
+</div>
+</div>
+  </div>
+</div>
+<img src="/assets/images/page-1.svg"/>
+</div>
+  
+

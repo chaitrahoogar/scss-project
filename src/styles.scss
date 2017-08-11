@@ -1,0 +1,564 @@
+/* You can add global styles to this file, and also import other style files */
+/*.mainColor{
+    background-color: #DCDCDC;
+}*/
+
+
+
+@import './assets/scss/color.scss';
+@font-face 
+  { font-family: "OpensansRegular"; 
+  src: url("./assets/fonts/OpenSans-Regular.ttf");
+}
+@font-face 
+  { font-family: "OpensansBold"; 
+  src: url("./assets/fonts/OpenSans-Bold.ttf");
+}
+@font-face 
+  { font-family: "OpensansSemibold"; 
+  src: url("./assets/fonts/OpenSans-Semibold.ttf");
+}
+@font-face 
+  { font-family: "OpensansLight"; 
+  src: url("./assets/fonts/OpenSans-Light.ttf");
+}
+
+// Button component scss starts
+.brandblue {
+  width: 128px;
+  height: 32px;
+  border-radius: 4px;
+  background-color: $blue-green;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: $white-two;
+  border: none;
+  outline: none;
+}
+.buttonLarge {
+  width: 224px;
+  height: 48px;
+  border-radius: 4px;
+  background-color: $blue-green;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  color: $white-two;
+  border: none;
+  outline: none;
+}
+
+.regbuttonLarge {
+  width: 256px;
+  height: 48px;
+  border-radius: 4px;
+  background-color: $blue-green;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  color: $white-two;
+  border: none;
+  outline: none;
+}
+.buttonMedium{
+  width: 192px;
+  height: 40px;
+  border-radius: 4px;
+  background-color: $blue-green;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: $white-two;
+  border: none;
+  outline: none;
+}
+.brandblue .buttonLarge  .buttonMedium input[type=button]:hover ,input[type=button]:active,input[type=button]:focus{
+    box-shadow: none;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+button[disabled], html input[disabled] {
+    cursor: default;
+    background: #f2f2f2;
+    pointer-events: none;
+    color: #757575;
+}
+
+.brandblue:hover,.buttonLarge:hover,.buttonMedium:hover{
+    background-color:$green;
+}
+
+.naturalButtonLarge{
+    width: 224px;
+    height: 48px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: $blue-green;
+    border: solid 1px $white-three;
+    background-color: $white-two;
+    outline: none;
+}
+
+.naturalButtonMedium{
+    width: 192px;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    color: $blue-green;
+    border: solid 1px $white-three;
+    background-color: $white-two;
+    outline: none;
+}
+.naturalButtonsmall{
+    width: 128px;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    color: $blue-green;
+    border: solid 1px $white-three;
+    background-color: $white-two;
+    outline: none;
+}
+.naturalButtonLarge .naturalButtonMedium .naturalButtonsmall input[type=button]:hover ,input[type=button]:active,input[type=button]:focus{
+    box-shadow: none;
+    text-align: center;
+}
+
+.naturalButtonLarge:hover,.naturalButtonMedium:hover,.naturalButtonsmall:hover{
+  background-color: $blue-green;
+  color:$white-two;
+  fill:$white-two;
+}
+
+.iconBtnText{
+  margin-left:15px;
+}
+
+.linkWithAChevron {
+  width: 149px;
+  height: 17px;
+  cursor: pointer;
+  color: #00a890;
+  font-size: 14px;
+}
+#Capa_1 {
+    vertical-align: middle;
+}
+
+.naturalButtonLarge:hover svg path,.naturalButtonMedium:hover svg path,.naturalButtonsmall:hover svg path{
+  fill:#fff;
+}
+/*Button Component scss Ends*/
+
+// ------------------------------------------------------------------------------------------
+
+// Radio button scss starts
+
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+// nput[type="radio"] + label{
+//      border:1px solid green;
+// }
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #d8dde6;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background:$blue-green;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+[type="radio"]:hover + label:before {
+    border:1px solid $blue-green;
+}
+
+[type="radio"]:not(:checked) + label:before:hover{
+  border:1px solid grey;
+}
+
+
+// Radio button scss ends 
+// ------------------------------------------------------------------------------------------
+
+// checkbox scss starts
+
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 1.95em;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #e1e1e1;
+  background: #fff;
+  border-radius: 2px;
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '✔';
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  font-size: 1.3em;
+  line-height: 0.8;
+  color: #09ad7e;
+  transition: all .2s;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+     /* disabled checkbox */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+[type="checkbox"]:disabled:checked + label:after {
+  color: #999;
+}
+[type="checkbox"]:disabled + label {
+  color: #aaa;
+}
+    /* accessibility */
+
+
+   /* hover style just for information */
+label:hover:before {
+  border: 2px solid #00a890!important;
+}
+
+input[type="checkbox"] + label:hover{
+   color:#00a890;
+}
+
+
+//checkbox scss ends 
+// ------------------------------------------------------------------------------------------
+
+// Input text scss starts
+
+input:focus ~ .floating-label,
+input:not(:focus):valid ~ .floating-label{
+    top: 4px;
+    bottom: 10px;
+    left: 22px;
+    font-size: 11px;
+    opacity: 1;
+    color: #00a890;
+}
+input:focus ~ .red-class.floating-label,
+input:not(:focus):valid ~ .red-class.floating-label{
+  color: red !important;
+}
+
+.inputText {
+  font-size: 14px;
+  border: solid 1px #e0e0e0;
+  width: 256px;
+  height: 48px;
+  border-radius: 4px;
+  background-color: $white-two;
+  font-family: OpensansRegular;
+  font-weight: 600;
+  text-align: left;
+  box-shadow: none;
+  padding-left: 22px;
+  outline: none;
+  
+}
+
+.floating-label {
+    position: absolute;
+    pointer-events: none;
+    left: 19px;
+    top: 15px;
+    transition: 0.2s ease all;
+}
+
+.reqAlert{
+    color: red;
+    padding-left: 15px;
+    padding-top: 6px;
+
+}
+  .groomeHead{
+   font-size: 48px;
+   font-weight: bold;
+   color: $blue-green;
+}
+  
+.red-border-class{
+    border:1px solid red !important;
+}
+.inputText:focus {
+    border: solid 1px #00a890;
+}
+.value{
+   position: relative;
+   margin-bottom: 15px;
+}
+// Input text scss Ends
+// ------------------------------------------------------------------------------------------
+
+
+// search design starts
+.search-box:not(:valid) ~ .close-icon {
+	display: none;
+}
+
+.search:not(:valid) ~ .Clear{
+    display: none;
+}
+.search {
+  padding:10px;
+  padding-left:30px;
+  width: 584px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: $white-two;
+  border: solid 1px #f3f3f3;
+  outline: none;
+}
+input.search {
+    background-repeat: no-repeat;
+    background-position-y: 10px;
+    background-image: url(/assets/images/search-magnifier-interface-symbol.svg);
+    background-position-x: 10px;
+}
+
+.text-input-wrapper span {
+  cursor:pointer;
+  color:blue;
+  font-weight:bold;
+  margin-left: -20px;
+}
+
+//search design ends
+
+
+//textArea scss starts
+
+.textArea{
+  width: 271px;
+  height: 60px;
+  border-radius: 4px;
+  background-color: $white-two;
+  border: solid 1px #f3f3f3;
+  padding-top: 14px;
+  padding-left: 14px;
+  outline: none;
+}
+
+//textarea scss ends
+
+//tag scss starts
+.tagDefault{
+  width: 97px;
+  height: 24px;
+  border-radius: 2px;
+  background-color: $white-two;
+  border: solid 1px #f3f3f3;
+  font-family: OpenSans;
+  font-size: 12px;
+  text-align: left;
+  color: #00a890;
+  outline: none;
+  font-family: OpensansRegular;
+}
+.tagDefault:hover{
+  background-color: #f3f3f3;
+}
+
+.fatime{
+  float: right;
+  margin-top: 2px;
+}
+
+.tagicon{
+   width: 128px;
+}
+.tagTruncated{
+  width: 182px;
+}
+.tagIconSpan{
+  width: 20px;
+  height: 18px;
+  border-radius: 2px;
+  background-color: #8fd1c4;
+}
+.tagContainer{
+  width: 323px;
+  height: 32px;
+  border-radius: 2px;
+  background-color: $white-two;
+  border: solid 1px #f3f3f3;
+  padding-top: 3px;
+  padding-left: 4px;
+}
+//tag scss starts
+
+
+//avatar scss starts
+.xSmall{
+  width: 24px;
+  height: 24px;
+  border-radius: 100px;
+  background-color: #909090;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 10px;
+  color: $white-two;
+  font-family: OpensansRegular;
+}
+.small{
+ width: 36px;
+  height: 36px;
+  border-radius: 100px;
+  background-color: #ff4e4b;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 12px;
+  color: $white-two;
+  font-family: OpensansRegular;
+}
+.medium{
+  width: 48px;
+  height: 48px;
+  border-radius: 100px;
+  background-color: #f0c500;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 16px;
+  color: $white-two;
+  font-family: OpensansRegular;
+}
+.large{
+  width: 80px;
+  height: 80px;
+  border-radius: 100px;
+  background-color: #a4dbdb;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 24px;
+  color: $white-two;
+  font-family: OpensansRegular;
+}
+//avatar scss ends
+
+// old css starts
+
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    color: #fff;
+    background-color:$marine-blue;
+}
+.bkgd {
+  width: 24px;
+  height: 24px;
+  border-radius: 100px;
+  background-color: #909090;
+}
+.AM {
+  width: 21px;
+  height: 18px;
+  /*font-family: OpenSans;*/
+  font-size: 12px;
+  font-weight: 600;
+  text-align: left;
+  color: $white-two;
+}
+
+
+
+.first{
+   border:1px solid red;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 3px 0 #8fd1c4;
+   border: solid 1px #8fd1c4;
+}
+
+.second{
+     border: 1px solid #ccc;
+}
+
+// old css ends
+
+
