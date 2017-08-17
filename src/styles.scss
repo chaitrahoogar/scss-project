@@ -411,14 +411,15 @@ input.search {
 //textArea scss starts
 
 .textArea{
-  width: 271px;
-  height: 60px;
+  width: 628px;
+  height: 127px;
   border-radius: 4px;
   background-color: $white-two;
   border: solid 1px #f3f3f3;
   padding-top: 14px;
   padding-left: 14px;
   outline: none;
+  margin-left: 20px;
 }
 
 //textarea scss ends

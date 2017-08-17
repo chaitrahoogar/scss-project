@@ -10,3 +10,37 @@
     font-size:24px;
     color:$marine-blue;
 }
+
+.changeimagewitdth
+{
+   width:480px;
+   margin: 0 auto;
+}
+
+.changeimgheight
+{
+    height:376px;
+}
+
+.popup-dialog {
+    width: 700px;
+    margin: 30px auto;
+}
+
+.Add-title-here {
+  width: 226px;
+  height: 44px;
+  font-family: OpenSans;
+  font-size: 36px;
+  line-height: 1.22;
+  text-align: left;
+  color: #757575;
+}
+
+.input-field {
+  width: 628px;
+  height: 127px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  background-color: var(--white-two);
+}
