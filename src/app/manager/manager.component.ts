@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manager.component.scss']
 })
 export class ManagerComponent implements OnInit {
-
+  value="";
   constructor() { }
 
   ngOnInit() {
+    var currentUser = localStorage.getItem('Role');
+    this.value=currentUser;
   }
 
 }
