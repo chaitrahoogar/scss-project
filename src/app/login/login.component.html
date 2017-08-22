@@ -18,6 +18,7 @@
      <p class="textfontColor">
        Login
        </p>
+       <form (ngSubmit)="submit()">
       <div class="value">    
                      <input type="text" [ngClass]="{'red-border-class':!name.valid && !name.pristine}" class="inputText" id="name" required name="name" [(ngModel)] = "login.name" #name="ngModel"/>
                   <span class="floating-label" [ngClass]="{'red-class':!name.valid && !name.pristine }">Your name</span>
@@ -27,16 +28,17 @@
                     </div>
 
                      <div class="value">    
-                     <input type="text" [ngClass]="{'red-border-class':!password.valid && !password.pristine}" class="inputText" id="password" required name="password" [(ngModel)] = "login.password" #password="ngModel"/>
+                     <input type="password" [ngClass]="{'red-border-class':!password.valid && !password.pristine}" class="inputText" id="password" required name="password" [(ngModel)] = "login.password" #password="ngModel"/>
                   <span class="floating-label" [ngClass]="{'red-class':!password.valid && !password.pristine }">Password</span>
                    <div [hidden]="password.valid || password.pristine" class="reqAlert">
                          password is required
                    </div>
                     </div> 
-                  <input type="button" class="buttonLarge regbuttonLarge" value="Login">
+                  <input type="submit" class="buttonLarge regbuttonLarge" value="Login">
 <div class="forgotPwd">
       <a  routerLink="/pwdreset">Did you forgot password ?</a>
 </div>
+     </form>
 </div>
   </div>
 </div>

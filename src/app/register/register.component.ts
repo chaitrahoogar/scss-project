@@ -1,18 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  register={};
+  // register={};
+   register: any = {};
   token;
   submitRegister(){
+       
+      if(this.register.name==undefined || this.register.lname==undefined || this.register.password==undefined || this.register.confirm==undefined){
+   
+     this.router.navigateByUrl('/register');
+    
       console.log(this.register);
+     }
+     else{
+     this.router.navigateByUrl('/login');
+     }
   }
   
-    constructor() { }
+    constructor(private router: Router) { 
+    }
 
   ngOnInit() {
    
