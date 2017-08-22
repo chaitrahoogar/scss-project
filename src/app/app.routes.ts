@@ -7,6 +7,7 @@ import {LogInComponent} from "./login/login.component";
 import {PasswordresetComponent} from "./passwordreset/passwordreset.component";
 import {ManagerComponent} from "./manager/manager.component";
 import {LeadComponent} from "./lead/lead.component";
+import {WorkbenchComponent} from "./workbench/workbench.component";
 
 // Route config let's you map routes to components
 const routes: Routes = [
@@ -36,6 +37,9 @@ const routes: Routes = [
   },
   {
     path: 'lead',component: LeadComponent,
+  },
+  {
+    path: 'workbench',component: WorkbenchComponent,
   },
 
    

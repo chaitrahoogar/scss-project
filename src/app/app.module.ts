@@ -12,6 +12,7 @@ import { ManagerComponent } from './manager/manager.component';
 import { LeadComponent } from './lead/lead.component';
 import { EqualValidator } from './register/equal-validator.directive';
 import { HttpModule } from '@angular/http';
+import { WorkbenchComponent } from './workbench/workbench.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { HttpModule } from '@angular/http';
     PasswordresetComponent,
     ManagerComponent,
     LeadComponent,
-    EqualValidator
+    EqualValidator,
+    WorkbenchComponent
   ],
   imports: [
     BrowserModule,

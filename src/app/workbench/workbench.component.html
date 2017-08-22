@@ -1,0 +1,456 @@
+<div class="main_container">
+<nav class="navbar navbar-default">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Groome</a>
+      </div>
+        <div class="collapse navbar-collapse " >
+            <ul class="nav navbar-nav navbar-left headerMargin collapse navbar-collapse">
+              <li><input class="search" placeholder="Search your lead here"  name="searchValue" [(ngModel)]="searchValue" required><span class="Clear" (click)="clearSearch()" title="Clear"><img src="/assets/images/error.svg"></span></li>
+              <li class="active workbench"><a  href="#" class="work">Workbench</a></li>
+              <li><a >Events</a></li>
+              <li><a >Clients</a></li>
+              <li><a >Dashbords</a></li>
+              <li class="dropdown-notification"> <a> <i class="fa fa-bell-o"></i></a>
+                <div class="layer1">
+                    <p>2</p>
+                     </div>
+                     <li class="profile">
+                    <p>AM</p>
+                     </li>
+
+              </ul>
+          </div>
+  </nav>
+</div>
+
+<div class="row main_container container-fluid">
+  <div class="col-lg-12 ">
+      <span class="lead">Leads</span>
+      <span id="tab" class="btn-group cardtabs">
+        <a class="btn btn-large  active allUser" >All</a>
+        <a class="btn btn-large assigned" >Assigned to me</a>
+        <a class="btn btn-large assigned " >Subscribed</a>
+       
+      </span>
+
+  </div>
+</div>
+
+  <div class="row main_container1">
+    <div class="container-fluid">
+
+       <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="project1 project-default" type="button">
+          <div>
+          <img class="addlead" src="/assets/images/addlead.png"/></div>
+             <button type="button" class="btn btn-success addlead1">Add Lead</button>       
+        </div>
+      </div>
+
+
+
+        <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+          <header class="header1">
+            <div class="xSmall">
+                       <p class="layer">2</p>
+                        </div>
+            <span class="status">Act1023</span>
+              <div class="status1"><p class="status2">Active</p></div>
+                </header>
+                  <div class="project-content">
+                    <p class="content"> Product design for dell enterprise Solution</p>
+                   <span> <img class="signuser" src="/assets/images/images.png"></span>
+                  </div>
+                    <div class="footer1">
+                      <div class="row footer2">
+                        <div class="col-lg-4  col-md-4 col-sm-4">
+                          <p class="Assigned">Assigned by</p>
+                              <img class="profileIcon" src="/assets/images/gk.png">
+                        </div>
+                          <div class="col-lg-4  col-md-4 col-sm-4">
+                            <p class="client">Client</p>
+                              <img  class="profileIcon1" src="/assets/images/dell.png">
+                          </div>
+                            <div class="col-lg-4  col-md-4 col-sm-4">
+                              <p class="Enggagement">Next Enggagement</p>
+                              <p class="date">27,Feb</p>
+                            </div>
+                      </div>
+                    </div>
+        </div>
+      </div>
+            
+           <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+          <header class="header1">
+            <div class="xSmall">
+                       <p class="layer">    2</p>
+                        </div>
+            <span class="status">Act1023</span>
+              <div class="status1"><p class="status2">Active</p></div>
+                </header>
+                  <div class="project-content">
+                    <p class="content"> Product design for dell enterprise Solution</p>
+                  </div>
+                      <div class="footer1">
+                        <span class="jackpot"></span>
+                      <div class="row footer2">
+                        <div class="col-lg-4  col-md-4 col-sm-4">
+                          <p class="Assigned">Assigned by</p>
+                              <img class="profileIcon" src="/assets/images/gk.png">
+                        </div>
+                          <div class="col-lg-4  col-md-4 col-sm-4">
+                            <p class="client">Client</p>
+                              <img  class="profileIcon2" src="/assets/images/download.png">
+                          </div>
+                            <div class="col-lg-4  col-md-4 col-sm-4 ">
+                              <p class="Enggagement">Next Enggagement</p>
+                              <p class="date">27,Feb</p>
+                            </div>
+                      </div>
+                    </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+          <header class="header1">
+            <span class="status">Act1023</span>
+              <div class="status1"><p class="status2">Active</p></div>
+                </header>
+                  <div class="project-content">
+                    <p class="content"> Product design for dell enterprise Solution</p>
+                  </div>
+                      <div class="footer1">
+                          <span class="highValue"></span>
+                      <div class="row footer2">
+                        <div class="col-lg-4  col-md-4 col-sm-4">
+                          <p class="Assigned">Assigned by</p>
+                              <img class="profileIcon" src="/assets/images/gk.png">
+                        </div>
+                        <div class="col-lg-4  col-md-4 col-sm-4">
+                            <p class="client">Client</p>
+                              <img  class="profileIcon2" src="/assets/images/download.png">
+                          </div>
+                            <div class="col-lg-4  col-md-4 col-sm-4">
+                              <p class="Enggagement">Next Enggagement</p>
+                              <p class="date">27,Feb</p>
+                            </div>
+                      </div>
+                    </div>
+        </div>
+      </div>
+     <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+          <header class="header1">
+            <span class="status">Act1023</span>
+              <div class="status1"><p class="status2">Active</p></div>
+                </header>
+                  <div class="project-content">
+                    <p class="content"> Product design for dell enterprise Solution</p>
+                  </div>
+                     <div class="footer1">
+                        <span class="lowValue"></span>
+                      <div class="row footer2">
+                        <div class="col-lg-4  col-md-4 col-sm-4">
+                          <p class="Assigned">Assigned by</p>
+                              <img class="profileIcon" src="/assets/images/gk.png">
+                        </div>
+                        <div class="col-lg-4  col-md-4 col-sm-4">
+                            <p class="client">Client</p>
+                              <img  class="profileIcon2" src="/assets/images/download.png">
+                          </div>
+                            <div class="col-lg-4  col-md-4 col-sm-4">
+                              <p class="Enggagement">Next Enggagement</p>
+                              <p class="date">27,Feb</p>
+                            </div>
+                      </div>
+                    </div>
+        </div>
+      </div>
+ <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+          <header class="header1">
+            <span class="status">Act1023</span>
+              <div class="status1"><p class="status2">Active</p></div>
+                </header>
+                  <div class="project-content">
+                    <p class="content"> Product design for dell enterprise Solution</p>
+                  </div>
+                      <div class="footer1">
+                          <span class="jackpot"></span>
+                      <div class="row footer2">
+                        <div class="col-lg-4  col-md-4 col-sm-4">
+                          <p class="Assigned">Assigned by</p>
+                              <img class="profileIcon" src="/assets/images/gk.png">
+                        </div>
+                        <div class="col-lg-4  col-md-4 col-sm-4">
+                            <p class="client">Client</p>
+                              <img   class="profileIcon2" src="/assets/images/download.png">
+                          </div>
+                            <div class="col-lg-4  col-md-4 col-sm-4">
+                              <p class="Enggagement">Next Enggagement</p>
+                              <p class="date">27,Feb</p>
+                            </div>
+                      </div>
+                    </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+          <header class="header1">
+             
+            <span class="status">Act1023</span>
+              <div class="status1"><p class="status2">Active</p></div>
+                </header>
+                  <div class="project-content">
+                    <p class="content"> Product design for dell enterprise Solution</p>
+                    <span> <img class="signuser" src="/assets/images/images.png"></span>
+                  </div>
+                     <div class="footer1">
+                        <span class="highValue"></span>
+                      <div class="row footer2">
+                        <div class="col-lg-4  col-md-4 col-sm-4">
+                          <p class="Assigned">Assigned by</p>
+                              <img  class="profileIcon" src="/assets/images/gk.png">
+                        </div>
+                        <div class="col-lg-4  col-md-4 col-sm-4">
+                            <p class="client">Client</p>
+                              <img  class="profileIcon2" src="/assets/images/download.png">
+                          </div>
+                            <div class="col-lg-4  col-md-4 col-sm-4">
+                              <p class="Enggagement">Next Enggagement</p>
+                              <p class="date">27,Feb</p>
+                            </div>
+                      </div>
+                    </div>
+        </div>
+      </div>
+
+       <div class="col-lg-3 col-md-3 col-sm-3" >
+        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+          <header class="header1">
+            <span class="status">Act1023</span>
+              <div class="status1"><p class="status2">Active</p></div>
+                </header>
+                  <div class="project-content">
+                    <p class="content"> Product design for dell enterprise Solution</p>
+                  </div>
+                     <div class="footer1">
+                        <span class="highValue"></span>
+                      <div class="row footer2">
+                        <div class="col-lg-4  col-md-4 col-sm-4">
+                          <p class="Assigned">Assigned by</p>
+                              <img class="profileIcon" src="/assets/images/gk.png">
+                        </div>
+                        <div class="col-lg-4  col-md-4 col-sm-4">
+                            <p class="client">Client</p>
+                              <img  class="profileIcon2" src="/assets/images/download.png">
+                          </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                              <p class="Enggagement">Next Enggagement</p>
+                              <p class="date">27,Feb</p>
+                            </div>
+                      </div>
+                    </div>
+        </div>
+      </div>
+            </div>
+       </div>
+
+<!--popup -->
+<div class="modal fade" id="exampleModal"  role="dialog" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+         <span class="status">Act1023</span>
+         <span>  <img  class="profileIcon1" src="/assets/images/dell.png"></span>
+          <span>Dell India
+         
+          </span>
+        
+           <span class="invite">AM</span>
+            <span class="invite1">SG</span>
+             <span class="invite2">SH</span> 
+             
+              <button type="button" class="btn btn-success">Invite people</button>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+              </button>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 col-md-8 col-sm-8 content1">
+                  <span id="tab" class="btn-group cardtabs" style="margin-top:10px;">  
+                    <a class="btn btn-large  active conversations naturalButtonMedium" ><span class="glyphicon glyphicon-envelope envalpicon"></span>Conversations</a>
+                    <a class="btn btn-large requirements naturalButtonMedium" >Requirements</a>
+                  </span>
+                  <div class="panel-body">
+                      <ul class="chat">
+                          <li class="left clearfix"><span class="chat-img pull-left">
+                              <span class="invite1">SG</span>
+
+                          </span>
+                              <div class="chat-body clearfix">
+                                  <div class="header">
+                                      
+                                  </div>
+                                  <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                      dolor, quis ullamcorper ligula sodales.
+                                  </p>
+                              </div>
+                          </li>
+                          <li class="right clearfix"><span class="chat-img pull-right">
+                              <span class="invite">AM</span>
+                          </span>
+                              <div class="chat-body clearfix">
+                                  
+                                  <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                      dolor, quis ullamcorper ligula sodales.
+                                  </p>
+                              </div>
+                          </li>
+                          <li class="left clearfix"><span class="chat-img pull-left">
+                              <span class="invite2">SH</span> 
+                          </span>
+                              <div class="chat-body clearfix">
+                                  <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                      dolor, quis ullamcorper ligula sodales.
+                                  </p>
+                              </div>
+                          </li>
+                          <li class="right clearfix"><span class="chat-img pull-right">
+                              <span class="invite2">SH</span> 
+                          </span>
+                              <div class="chat-body clearfix">
+                                  
+                                  <p>
+                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                      dolor, quis ullamcorper ligula sodales.
+                                  </p>
+                              </div>
+                          </li>
+                      </ul>
+                  </div>
+          </div> 
+
+           <div class="col-lg-4 col-md-4 col-sm-4 content2"> 
+              <div class="project-content">
+                  <p class="content"> Product design for dell enterprise Solution.</p>
+                 <span> <img class="signuserpopup" src="/assets/images/images.png"></span>
+                </div> 
+                <div class="col-lg-6  col-md-6 col-sm-6">
+                    <p class="Assigned">Assigned by</p>
+                        <img class="profileIcon" src="/assets/images/gk.png">
+                  </div>
+                    <div class="col-lg-6  col-md-6 col-sm-6">
+                      <p class="client">Business Stream</p>
+                      <div class="collapse navbar-collapse js-navbar-collapse">
+                         <p href="#" class="dropdown-toggle stream" data-toggle="dropdown">Staffing <span class="glyphicon glyphicon-chevron-down "></span></p> 
+                              <ul class="dropdown-menu mega-dropdown-menu row">
+                                <li class="list-group-item">Industryt 1 </li>
+                                <li class="list-group-item">Industry 2</li>        
+                                <li class="list-group-item">Industry 3</li>
+                              </ul>
+                        </div>                       
+                    </div>
+
+
+               <!-- <div class="col-lg-6">
+            <h5>Assigned By</h5>
+             <span class="small">AM</span>
+               </div>
+                <div class="col-lg-6">
+                  <h5>Business Stream</h5>
+                   
+                      <select class="selectpicker">
+                        <optgroup label="Picnic">
+                          <option>Mustard</option>
+                          <option>Ketchup</option>
+                          <option>Relish</option>
+                        </optgroup>
+                        <optgroup label="Camping">
+                          <option>Tent</option>
+                          <option>Flashlight</option>
+                          <option>Toilet Paper</option>
+                        </optgroup>
+                      </select>
+               </div> -->
+                    
+                  <div class="row ">
+                    <div class="col-lg-12 col-md-12 col-sm-12 side1">
+                          <div class="btn-pref btn-group btn-group-justified btn-group-lg activity" role="group" >
+                        <span class="btn-group" role="group">
+                          <div class="feel">Feel</div>
+                          <select class="drop">
+                            <option>Mustard</option>
+                            <option class="special" >Ketchup</option>
+                            <option style="background: #5cb85c; color: #fff;">Relish</option>
+                          </select>
+                        </span>
+                        <span class="btn-group activity" role="group" >
+                          <div  class="feel">Status</div>
+                         <p>Active</p>
+                        </span>
+                        <span class="btn-group activity" role="group">
+                          <div class="feel">Revenue</div>
+                          <div class="collapse navbar-collapse js-navbar-collapse">
+                              <p href="#" class="dropdown-toggle" data-toggle="dropdown">Staffing <span class="glyphicon glyphicon-chevron-down pull-right"></span></p> 
+                                   <ul class="dropdown-menu mega-dropdown-menu row">
+     
+                                     <li class="list-group-item">Industryt 1 </li>
+                                     <li class="list-group-item">Industry 2</li>        
+                                     <li class="list-group-item">Industry 3</li>
+                                  
+                                   </ul>
+           
+                             </div>
+                        </span>
+                    </div>
+                    </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
+                    <h5>Client Contact</h5>
+                     <button class="tagDefault tagicon">
+                         <span> <img src="/assets/images/user1.svg"></span>
+                          Tag label
+                   
+                          <img class="fatime" src="/assets/images/delete.svg">
+                      </button>
+                         <button class="tagDefault tagicon" style="margin-left:17px">
+                         <span> <img src="/assets/images/user1.svg"></span>
+                          Tag label
+                         
+                          <img class="fatime" src="/assets/images/delete.svg">
+                      </button>
+                         <button class="tagDefault tagicon" style="margin-top:10px">
+                         <span> <img src="/assets/images/user1.svg"></span>
+                          Tag label
+                         
+                          <img class="fatime" src="/assets/images/delete.svg">
+                      </button>
+                  </div>
+                     <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
+                      <h5>Tag</h5>
+                        <button class="tagDefault">Tag label
+                          
+                            <img class="fatime" src="/assets/images/delete.svg">
+                        </button> 
+                        <button class="tagDefault" style="margin-left:17px">Tag label
+                          
+                             <img class="fatime" src="/assets/images/delete.svg">
+                        </button>
+                  </div>
+                      <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
+                        <h5>Requirement Details</h5>
+                      </div>
+
+                 </div>  
+          </div> 
+        </div>
+      </div>
+  </div>
+</div>  
+
+
