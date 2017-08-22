@@ -1,8 +1,20 @@
 @import 'src/assets/scss/color.scss';
 
-.textfontColor
-{
-   font-size:36px; 
-   color:$marine-blue;  
-
+.textfontColor{
+  font-size:36px; 
+  color:$marine-blue;  
+}
+.joinAsRole{
+  width: 856px;
+  height: 142px;
+  border-radius: 10px;
+  margin: 160px auto;
+  background-color: $white;
+  font-size: 36px;
+  font-weight: 500;
+  padding-top: 18px;
+  padding-left: 35px;
+}
+.join{
+   margin-left: 145px;
 }

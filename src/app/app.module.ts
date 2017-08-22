@@ -9,10 +9,12 @@ import { ComponentRepositoryComponent } from './component-repository/component-r
 import { LogInComponent } from './login/login.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
 import { ManagerComponent } from './manager/manager.component';
-import { LeadComponent } from './lead/lead.component'
+import { LeadComponent } from './lead/lead.component';
+import { EqualValidator } from './register/equal-validator.directive';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
-  declarations: [
+    declarations: [
     AppComponent,
     HomeComponent,
     RegisterComponent,
@@ -20,13 +22,14 @@ import { LeadComponent } from './lead/lead.component'
     LogInComponent,
     PasswordresetComponent,
     ManagerComponent,
-    LeadComponent
-
+    LeadComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,
     appRouterModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
