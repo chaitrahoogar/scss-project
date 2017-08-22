@@ -7,22 +7,29 @@ import {appRouterModule} from './app.routes';
 import { RegisterComponent } from './register/register.component';
 import { ComponentRepositoryComponent } from './component-repository/component-repository.component';
 import { LogInComponent } from './login/login.component';
-import { PasswordresetComponent } from './passwordreset/passwordreset.component'
+import { PasswordresetComponent } from './passwordreset/passwordreset.component';
+import { ManagerComponent } from './manager/manager.component';
+import { LeadComponent } from './lead/lead.component';
+import { EqualValidator } from './register/equal-validator.directive';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
-  declarations: [
+    declarations: [
     AppComponent,
     HomeComponent,
     RegisterComponent,
     ComponentRepositoryComponent,
     LogInComponent,
-    PasswordresetComponent
-
+    PasswordresetComponent,
+    ManagerComponent,
+    LeadComponent,
+    EqualValidator
   ],
   imports: [
     BrowserModule,
     appRouterModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]

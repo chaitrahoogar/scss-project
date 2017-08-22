@@ -76,8 +76,6 @@
 .brandblue .buttonLarge  .buttonMedium input[type=button]:hover ,input[type=button]:active,input[type=button]:focus{
     box-shadow: none;
     text-align: center;
-    padding: 0px;
-    margin: 0px;
 }
 button[disabled], html input[disabled] {
     cursor: default;
@@ -116,7 +114,7 @@ button[disabled], html input[disabled] {
     outline: none;
 }
 .naturalButtonsmall{
-    width: 128px;
+    width: 150px;
     height: 32px;
     border-radius: 4px;
     font-size: 12px;
@@ -139,7 +137,7 @@ button[disabled], html input[disabled] {
 }
 
 .iconBtnText{
-  margin-left:15px;
+  margin-left:10px;
 }
 
 .linkWithAChevron {
@@ -411,14 +409,15 @@ input.search {
 //textArea scss starts
 
 .textArea{
-  width: 271px;
-  height: 60px;
+  width: 628px;
+  height: 127px;
   border-radius: 4px;
   background-color: $white-two;
   border: solid 1px #f3f3f3;
   padding-top: 14px;
   padding-left: 14px;
   outline: none;
+  margin-left: 20px;
 }
 
 //textarea scss ends
@@ -430,12 +429,13 @@ input.search {
   border-radius: 2px;
   background-color: $white-two;
   border: solid 1px #f3f3f3;
-  font-family: OpenSans;
   font-size: 12px;
   text-align: left;
   color: #00a890;
   outline: none;
   font-family: OpensansRegular;
+  margin-left:34px;
+  margin-bottom:50px;
 }
 .tagDefault:hover{
   background-color: #f3f3f3;
@@ -483,18 +483,7 @@ input.search {
   color: $white-two;
   font-family: OpensansRegular;
 }
-.small{
- width: 36px;
-  height: 36px;
-  border-radius: 100px;
-  background-color: #ff4e4b;
-  text-align: center;
-  display: table-cell;
-  vertical-align: middle;
-  font-size: 12px;
-  color: $white-two;
-  font-family: OpensansRegular;
-}
+
 .medium{
   width: 48px;
   height: 48px;

@@ -1,15 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+<<<<<<< HEAD
+=======
+import { AppService} from './login.service'
+>>>>>>> 6f5ff6c87901f97a0d84af98f4da90da762fc39f
 
 @Component({
   selector: 'app-log-in',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers:[AppService]
 })
 export class LogInComponent implements OnInit {
-   login={};
+   login: any ={};
    token="";
+   message="";
+   disableValue=true;
+   disablename=false;
+   disableemail=false;
+   resempdata=[];
      submit(){
+<<<<<<< HEAD
         console.log(this.login);
         // this.router.navigateByUrl('/register');
         // this.token="anushya";
@@ -18,8 +29,72 @@ export class LogInComponent implements OnInit {
         this.token = currentUser.token; // your token
      }
   constructor(private router: Router) { }
+=======
+
+      // if(this.login.UEmail==undefined ||this.login.UPassword==undefined || this.login.UEmail=="" ||this.login.UPassword=="")
+      //     {
+      //       this.router.navigateByUrl('/login');
+      //        this.disableValue=false;
+      //        if(this.login.UEmail==undefined ||this.login.UEmail==""){
+      //        this.disablename=true;
+      //       }
+      //       else{
+      //         this.disablename=false;
+      //       }
+      //        if(this.login.UPassword==undefined ||this.login.UPassword==""){
+      //        this.disableemail=true;
+      //       }
+      //       else{
+      //         this.disableemail=false;
+      //       }
+      //     }
+      //     else{
+      //       this.router.navigateByUrl('/lead');
+            
+      //     }
+           this._appservice.serviceMethod(this.login).subscribe((response) => { 
+               this.resempdata=response;
+               if(response.status=="fail"){
+                    this.router.navigateByUrl('/login');
+               }
+               else if(response.status=="success"){
+                      this.router.navigateByUrl('/lead');
+               }
+              
+       });
+     }
+     addGears(){
+       this.disablename=false;
+     }
+     addGears1(){
+       this.disableemail=false;
+     }
+
+     //time stamp
+
+  
+
+	
+  constructor(private router:Router,private _appservice:AppService) { }
+>>>>>>> 6f5ff6c87901f97a0d84af98f4da90da762fc39f
 
   ngOnInit() {
+  var thehours = new Date().getHours();
+	var themessage;
+	var morning = ('Good morning');
+	var afternoon = ('Good afternoon');
+	var evening = ('Good evening');
+
+	if (thehours >= 0 && thehours < 12) {
+		themessage = morning; 
+
+	} else if (thehours >= 12 && thehours < 17) {
+		themessage = afternoon;
+
+	} else if (thehours >= 17 && thehours < 24) {
+		themessage = evening;
+	}
+   this.message=themessage;
     localStorage.setItem('currentUser', JSON.stringify({ token: this.token }));
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser.token; // your token

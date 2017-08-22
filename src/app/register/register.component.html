@@ -9,38 +9,46 @@
 <form (ngSubmit)="submitRegister()" class="form-horizontal" #f="ngForm">
             <p class="registertext"> Create Your Profile </p>
           <div class="value">    
-                     <input type="text" [ngClass]="{'red-border-class':!name.valid && !name.pristine}" class="inputText" id="name" required name="name" [(ngModel)] = "register.name" #name="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!name.valid && !name.pristine }">First Name</span>
-                   <div [hidden]="name.valid || name.pristine" class="reqAlert">
+                     <input type="text" [ngClass]="{'red-border-class':!name.valid && !name.pristine ||disablefname}" class="inputText" (keydown)="reqfirstName()" id="name" required name="name" [(ngModel)] = "register.name" #name="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!name.valid && !name.pristine ||disablefname}">First Name</span>
+                   <div [hidden]="name.valid || name.pristine && disableValue" class="reqAlert">
                         first name is required
                    </div>
                     </div>
 
                    <div class="value">    
-                     <input type="text" [ngClass]="{'red-border-class':!lname.valid && !lname.pristine}" class="inputText" id="lname" required name="lname" [(ngModel)] = "register.lname" #lname="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!lname.valid && !lname.pristine }">Last Name</span>
-                   <div [hidden]="lname.valid || lname.pristine" class="reqAlert">
+                     <input type="text" [ngClass]="{'red-border-class':!lname.valid && !lname.pristine ||disablelname}" class="inputText" (keydown)="reqlName()" id="lname" required name="lname" [(ngModel)] = "register.lname" #lname="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!lname.valid && !lname.pristine ||disablelname}">Last Name</span>
+                   <div [hidden]="lname.valid || lname.pristine && disableValue" class="reqAlert">
                          last name is required
                    </div>
                     </div>  
  
                   <div class="value">    
+<<<<<<< HEAD
                      <input type="password" [ngClass]="{'red-border-class':!password.valid && !password.pristine}" class="inputText" id="password" required name="password" [(ngModel)] = "register.password" #password="ngModel"/>
                   <span class="floating-label" [ngClass]="{'red-class':!password.valid && !password.pristine }">Password</span>
                    <div [hidden]="password.valid || password.pristine" class="reqAlert">
                          password is required
+=======
+                     <input type="password" [ngClass]="{'red-border-class':!password.valid && !password.pristine ||disablepassword}" class="inputText" (keyup)="reqpassword()" id="password" required name="password" [(ngModel)] = "register.password" #password="ngModel" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!password.valid && !password.pristine ||disablepassword}">Password</span>
+                   <div [hidden]="password.valid || password.pristine && disableValue" class="reqAlert">
+                         <div [hidden]="!password.hasError('required')">password is required</div>
+                         <!--<div [hidden]="!password.hasError('pattern')">Passwords must contain at least six characters, including uppercase, lowercase letters and special charecter.</div>-->
+>>>>>>> 6f5ff6c87901f97a0d84af98f4da90da762fc39f
                    </div>
                     </div> 
 
-                    <div class="value">    
-                     <input type="password" [ngClass]="{'red-border-class':!confirm.valid && !confirm.pristine}" class="inputText" id="confirm" required name="confirm" [(ngModel)] = "register.confirm" #confirm="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!confirm.valid && !confirm.pristine }">confirm password</span>
-                   <div [hidden]="confirm.valid || confirm.pristine" class="reqAlert">
-                         confirm password is required
+                    <div class="value">  
+                     <input type="password" [ngClass]="{'red-border-class':!confirm.valid && !confirm.pristine ||disableconfirmpsw}" validateEqual="password" class="inputText" (keyup)="reqconfirm()" id="confirm" required name="confirm" [(ngModel)] = "register.confirm" #confirm="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!confirm.valid && !confirm.pristine ||disableconfirmpsw}">confirm password</span>
+                   <div [hidden]="confirm.valid || confirm.pristine && disableValue" class="reqAlert">
+                        <!--<div [hidden]="!confirm.hasError('required')">password required</div>-->
+                        <div [hidden]="confirm.hasError('validateEqual')">password not match</div>
                    </div>
                     </div>
-						
-
+   
 
 						<div class=" ">
 						<!-- <a  routerLink="/login">	<button type="submit" class="btn btn-primary btn-lg btn-block login-button" [disabled]="!f.valid">Register</button></a> -->
