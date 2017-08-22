@@ -18,6 +18,7 @@
      <p class="textfontColor">
        Login
        </p>
+
 <form (ngSubmit)="submit(login)">
       <div class="value">    
                      <input type="text" [ngClass]="{'red-border-class':!UEmail.valid  && !UEmail.pristine || disablename}" (keydown)="addGears()" class="inputText" id="UEmail" required name="UEmail" [(ngModel)] = "login.UEmail" #UEmail="ngModel"/>

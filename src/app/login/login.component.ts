@@ -17,9 +17,7 @@ export class LogInComponent implements OnInit {
    disableemail=false;
    resempdata=[];
      submit(){
-      
-        
-              
+
       // if(this.login.UEmail==undefined ||this.login.UPassword==undefined || this.login.UEmail=="" ||this.login.UPassword=="")
       //     {
       //       this.router.navigateByUrl('/login');

@@ -6,7 +6,7 @@
 <a  routerLink="/login"><input type="button" class="naturalButtonsmall loginButton" value="Login"></a>
 </div>
 <div class="loginForm">
-<form class="form-horizontal" (ngSubmit)="submitRegister()" #f="ngForm">
+<form (ngSubmit)="submitRegister()" class="form-horizontal" #f="ngForm">
             <p class="registertext"> Create Your Profile </p>
           <div class="value">    
                      <input type="text" [ngClass]="{'red-border-class':!name.valid && !name.pristine ||disablefname}" class="inputText" (keydown)="reqfirstName()" id="name" required name="name" [(ngModel)] = "register.name" #name="ngModel"/>
