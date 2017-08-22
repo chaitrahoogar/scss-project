@@ -27,16 +27,35 @@
     margin: 30px auto;
 }
 
+.client-dialog {
+    width: 800px;
+    margin: 30px auto;
+}
+.contact-dialog
+{
+  width: 700px;
+  margin: 30px auto;
+}
+
 .Add-title-here {
-  width: 226px;
+  width: 93%;
   height: 44px;
-  font-family: OpenSans;
+//font-family: OpenSans;
   font-size: 36px;
   line-height: 1.22;
   text-align: left;
   color: #757575;
+  background-color: transparent;
+  border: 0px solid;
+  margin-left: 21px;
+  margin-bottom: 18px;
+  outline: none;
 }
 
+.input:focus::-webkit-input-placeholder {
+        color:transparent;
+
+}
 .input-field {
   width: 628px;
   height: 127px;
@@ -44,3 +63,162 @@
   background-color: #ffffff;
   background-color: var(--white-two);
 }
+
+.Create-Lead {
+  width: 300px;
+  height: 22px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  color: #4a4a4a;
+  color: var(--charcoal-grey);
+  margin-top:5px;
+}
+
+.Checkbox-Left{
+  width: 24px;
+  height: 24px;
+  border-radius: 100px;
+  background-color: #909090;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 10px;
+  color: $white-two;
+  font-family: OpensansRegular;
+  margin: 60px auto;
+}
+
+.small{
+ width: 36px;
+  height: 36px;
+  border-radius: 100px;
+  background-color: $light-orange;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 12px;
+  color: $white-two;
+  font-family: OpensansRegular;
+}
+
+.sg{
+  width: 36px;
+  height: 36px;
+  border-radius: 100px;
+  background-color: $marine-blue;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 12px;
+  color: $white-two;
+  font-family: OpensansRegular;
+}
+
+.users{
+  width: 36px;
+  height: 36px;
+  border-radius: 100px;
+  background-color: $light-green;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 12px;
+  color: $white-two;
+  font-family: OpensansRegular;
+}
+
+.margin-left
+{
+    margin-left: 21px;
+    margin-top: 2%;
+}
+
+.margin-top
+{
+    margin-top: -15%;
+}
+
+.naturalButton{
+    width: 168px;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    color: $blue-green;
+    border: solid 1px $white-three;
+    background-color: $white-two;
+    outline: none;
+    margin-top: -15%;
+}
+
+.Add-Client {
+  height: 19px;
+//   font-family: OpenSans;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: #757575;
+  margin-top: 20px;
+  margin-left: 34px;
+}
+
+.addbutton {
+  width: 70px;
+  height: 32px;
+  border-radius: 4px;
+  background-color: $blue-green;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: $white-two;
+  border: none;
+  outline: none;
+  margin-left:34px;
+}
+
+.clientInputText {
+  font-size: 14px;
+  border: solid 1px #e0e0e0;
+  width: 350px;
+  height: 48px;
+  border-radius: 4px;
+  background-color: $white-two;
+  font-family: OpensansRegular;
+  font-weight: 600;
+  text-align: left;
+  box-shadow: none;
+  padding-left: 22px;
+  outline: none;
+}
+
+.tag-margin
+{
+  margin-left:2px;
+}
+
+.client-margin
+{
+  margin-left:16px;
+}
+
+.invite-btn
+{
+margin-top: 1px;
+margin-left: 30px;
+}
+
+.AM-Lead
+{
+  padding-left: 180px;
+}
+
+.close
+{
+  margin-top:3px;
+}
+
+
+
+
