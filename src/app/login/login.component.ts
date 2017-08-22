@@ -17,7 +17,7 @@ export class LogInComponent implements OnInit {
    disableemail=false;
    resempdata=[];
      submit(){
-                 
+
       // if(this.login.UEmail==undefined ||this.login.UPassword==undefined || this.login.UEmail=="" ||this.login.UPassword=="")
       //     {
       //       this.router.navigateByUrl('/login');
@@ -49,7 +49,6 @@ export class LogInComponent implements OnInit {
                }
               
        });
->>>>>>> 2587eec0bf20975649be52d996710886348f27ef
      }
      addGears(){
        this.disablename=false;
