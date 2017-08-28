@@ -25,6 +25,15 @@ import 'rxjs/add/operator/toPromise';
         });
            return this._http.post(this._url+'getUserLeads',this.value,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
+       leadViewMethod(leadId){
+           let leadReqdata={
+            "LeadID":leadId
+            } 
+        let contentHeader = new Headers({
+        "Content-Type": "application/json"
+        });
+           return this._http.post(this._url+'getLeadDetails',leadReqdata,{ headers: contentHeader }).map((response:Response) =>response.json());
+       }
       
        
  }

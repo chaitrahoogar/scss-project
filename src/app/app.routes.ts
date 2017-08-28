@@ -9,6 +9,7 @@ import {ManagerComponent} from "./manager/manager.component";
 import {LeadComponent} from "./lead/lead.component";
 import {WorkbenchComponent} from "./workbench/workbench.component";
 import {UpdatepasswordComponent} from "./updatepassword/updatepassword.component";
+import { MessagePageComponent } from './message-page/message-page.component';
 
 // Route config let's you map routes to components
 const routes: Routes = [
@@ -45,6 +46,9 @@ const routes: Routes = [
   {
     path: 'updatepassword',component: UpdatepasswordComponent,
   },
+  {
+    path: 'resetMessage',component: MessagePageComponent,
+  }
 
    
 ];

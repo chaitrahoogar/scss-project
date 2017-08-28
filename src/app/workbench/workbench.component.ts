@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class WorkbenchComponent implements OnInit {
   resempdata=[];
+   viewleaddata=[];
   lead:any={};
   shornameinlead="";
   constructor(private _leadService:leadService,private router:Router) { }
@@ -19,9 +20,17 @@ export class WorkbenchComponent implements OnInit {
            console.log(this.resempdata);   
        });
 }
- logout(){
+logout(){
          this.router.navigateByUrl('/login');
-       }
+}
+viewLead(leadId){
+  console.log(leadId);
+      this._leadService.leadViewMethod(leadId).subscribe((response) => { 
+               this.viewleaddata=response.lead;
+               
+           console.log(this.viewleaddata);   
+       });
+}
   ngOnInit() {
     this.getlead();
     this.shornameinlead=localStorage.getItem('shortname');

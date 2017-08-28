@@ -38,12 +38,12 @@
                   <span class="floating-label" [ngClass]="{'red-class':!UPassword.valid && !UPassword.pristine ||disablepassword}">Password</span>
                    <div [hidden]="UPassword.valid || UPassword.pristine && disableValue" class="reqAlert">
                          <div [hidden]="!UPassword.hasError('required')">password is required</div>
-                         <!--<div [hidden]="!password.hasError('pattern')">Passwords must contain at least six characters, including uppercase, lowercase letters and special charecter.</div>-->
+                         <div [hidden]="!UPassword.hasError('pattern')">Passwords must contain at least six characters, including uppercase, lowercase letters and special charecter.</div>
                    </div>
                     </div> 
 
                     <div class="value">  
-                     <input type="password" [ngClass]="{'red-border-class':!confirm.valid && !confirm.pristine ||disableconfirmpsw}" validateEqual="password" class="inputText registerinputText" (keyup)="reqconfirm()" id="confirm" required name="confirm" [(ngModel)] = "resetpassword.confirm" #confirm="ngModel"/>
+                     <input type="password" [ngClass]="{'red-border-class':!confirm.valid && !confirm.pristine ||disableconfirmpsw}" validateEqual="UPassword" class="inputText registerinputText" (keyup)="reqconfirm()" id="confirm" required name="confirm" [(ngModel)] = "resetpassword.confirm" #confirm="ngModel"/>
                   <span class="floating-label" [ngClass]="{'red-class':!confirm.valid && !confirm.pristine ||disableconfirmpsw}">confirm password</span>
                    <div [hidden]="confirm.valid || confirm.pristine && disableValue" class="reqAlert">
                         <!--<div [hidden]="!confirm.hasError('required')">password required</div>-->

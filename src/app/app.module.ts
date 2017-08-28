@@ -14,6 +14,7 @@ import { EqualValidator } from './equal-validator.directive';
 import { HttpModule } from '@angular/http';
 import { WorkbenchComponent } from './workbench/workbench.component';
 import { UpdatepasswordComponent } from './updatepassword/updatepassword.component';
+import { MessagePageComponent } from './message-page/message-page.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { UpdatepasswordComponent } from './updatepassword/updatepassword.compone
     LeadComponent,
     EqualValidator,
     WorkbenchComponent,
-    UpdatepasswordComponent
+    UpdatepasswordComponent,
+    MessagePageComponent
   ],
   imports: [
     BrowserModule,

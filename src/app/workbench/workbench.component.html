@@ -289,7 +289,7 @@
       </div>
     </div>
 
-  <div *ngIf="this.resempdata.length>0">
+  <div *ngIf="this.resempdata.length!=0">
 <!--<div>-->
 <div class="row main_container container-fluid">
   <div class="col-lg-12 ">
@@ -349,7 +349,7 @@
         </div>
       </div>-->
             
-           <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.user; trackBy: index;'>
+           <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.user; trackBy: index;' (click)="viewLead(value.LeadID)">
         <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
           <header class="header1">
             <div class="xSmall">
@@ -374,7 +374,7 @@
                           </div>
                             <div class="col-lg-4  col-md-4 col-sm-4 ">
                               <p class="Enggagement">Next Enggagement</p>
-                              <p class="date">{{value.NextEngagementDate |date}}</p>
+                              <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
                             </div>
                       </div>
                     </div>
@@ -390,7 +390,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-         <span class="status">Act1023</span>
+         <span class="status">{{this.viewleaddata.LeadID}}</span>
          <span>  <img  class="profileIcon1" src="/assets/images/dell.png"></span>
           <span>Dell India
          
