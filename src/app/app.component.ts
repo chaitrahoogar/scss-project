@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.token = currentUser.token; // your token
+    // var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    // this.token = currentUser.token; // your token
   }
 }

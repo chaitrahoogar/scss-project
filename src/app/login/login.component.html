@@ -20,8 +20,13 @@
        </p>
 
 <form (ngSubmit)="submit(login)">
+       <!--<div *ngIf="edited==true" class="alert alert-danger alert-dismissable">
+            Error :(
+             <span class="close" data-dismiss="alert">&times;</span>
+        </div>-->
+       
       <div class="value">    
-                     <input type="text" [ngClass]="{'red-border-class':!UEmail.valid  && !UEmail.pristine || disablename}" (keydown)="addGears()" class="inputText" id="UEmail" required name="UEmail" [(ngModel)] = "login.UEmail" #UEmail="ngModel"/>
+                     <input type="text" [ngClass]="{'red-border-class':!UEmail.valid  && !UEmail.pristine || disablename}" (keydown)="addGears()" class="inputText logininputText" id="UEmail" required name="UEmail" [(ngModel)] = "login.UEmail" #UEmail="ngModel"/>
                   <span class="floating-label" [ngClass]="{'red-class':!UEmail.valid  && !UEmail.pristine || disablename}">Your name</span>
                    <div [hidden]="UEmail.valid || UEmail.pristine && disableValue" class="reqAlert">
                          name is required
@@ -31,15 +36,15 @@
                     </div>
 
                      <div class="value">    
-                     <input type="password" [ngClass]="{'red-border-class':!UPassword.valid && !UPassword.pristine ||disableemail}" required (keydown)="addGears1()" class="inputText" id="UPassword" required name="UPassword" [(ngModel)] = "login.UPassword" #UPassword="ngModel" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/>
+                     <input type="password" [ngClass]="{'red-border-class':!UPassword.valid && !UPassword.pristine ||disableemail}" required (keydown)="addGears1()" class="inputText logininputText" id="UPassword" required name="UPassword" [(ngModel)] = "login.UPassword" #UPassword="ngModel"/>
                   <span class="floating-label" [ngClass]="{'red-class':!UPassword.valid && !UPassword.pristine || disableemail}">Password</span>
                    <div [hidden]="UPassword.valid || UPassword.pristine && disableValue" class="reqAlert">
                          <div [hidden]="!UPassword.hasError('required')">password is required</div>
-                         <div [hidden]="!UPassword.hasError('pattern')">Passwords must contain at least six characters, including uppercase, lowercase letters and special charecter.</div>
+                         <!--<div [hidden]="!UPassword.hasError('pattern')">Passwords must contain at least six characters, including uppercase, lowercase letters and special charecter.</div>-->
                    </div>
                    <div [hidden]=""></div>
                     </div> 
-           <input type="submit" class="buttonLarge regbuttonLarge" value="Login">
+           <input type="submit" class="buttonLarge regbuttonLarge regbtn" value="Login">
 <div class="forgotPwd">
       <a  routerLink="/pwdreset">Did you forgot password ?</a>
 </div>

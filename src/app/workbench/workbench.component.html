@@ -14,15 +14,283 @@
                 <div class="layer1">
                     <p>2</p>
                      </div>
-                     <li class="profile">
-                    <p>AM</p>
+                     <li class="profile" (click)="logout()">
+                    <p>{{this.shornameinlead}}</p>
                      </li>
 
               </ul>
           </div>
   </nav>
 </div>
+<div class="" *ngIf="this.resempdata.length==0">
+  <div class="buttonclass">
+<p class="textfontcolor">
+  Looks like you have not create Lead. <br>
+  Click add to create your first Lead.
+</p>
+ <input type="button" class="buttonMedium" value="Add Lead" data-toggle="modal" data-target="#myModal">
+  </div>
+<div class="changeimagewitdth">
+<img src="/assets/images/lead.svg" class="changeimgheight"/>
 
+</div> 
+</div>
+
+
+ <div class="modal" id="myModal" role="dialog" tabindex="-1" data-focus-on="input:first">
+    <div class="popup-dialog">
+    
+     <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <div class="row">
+          <div class="col-md-3">
+          <h4 class="modal-title Create-Lead ">Create Lead</h4>
+          </div>
+                      <div class="col-md-5">
+                      <span class="AM-Lead">  
+                      <span class="col-sd-2">
+                        <div class="small">
+                            AM
+                        </div>
+                      </span>
+                        <span class="col-sd-2">
+                        <div class="sg">
+                            SG
+                        </div>
+                        </span>
+                        <span class="col-sd-2">  
+                        <div class="users">
+                            +5
+                        </div>
+                          </span>
+                      </span>
+                      </div>
+             <div class="col-md-3">       
+           <input type="button" class="brandblue invite-btn" value="Invite People">   
+          </div> 
+        </div>          
+        </div>
+        <div class="modal-body">
+        
+    <div>
+          <input type="text" placeholder="Add title here" class="Add-title-here input">
+    </div>
+          <!-- <p class="Add-title-here">Add title here</p> -->
+          <div>
+                  <textarea class="textArea" placeholder="Add your conversation here"></textarea>
+               </div>
+         <button type="button" class="naturalButtonsmall margin-left">
+              <span><svg xmlns="/assets/images/revert-hand-drawn-arrows.svg" xmlns:xlink="/assets/images/revert-hand-drawn-arrows.svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
+                <g>
+                  <g>
+                   
+		<path d="M27.399,161.809c90.2,0.173,220.021,4.161,310.195,2.44c-9.714,9.8-19.316,19.718-28.624,29.924    c-24.552,26.921,15.386,67.088,40.045,40.048c27.248-29.876,56.441-57.795,86.371-84.952c14.122-12.809,9.968-29.765-1.051-39.628    c-1.899-2.798-4.352-5.408-7.511-7.68c-27.822-20.005-54.491-41.396-80.644-63.539c-27.685-23.45-67.953,16.412-40.045,40.05    c11.629,9.849,23.41,19.504,35.287,29.036c-91.454,1.909-222.56-2.158-314.029-2.333C-9.129,105.101-9.124,161.738,27.399,161.809    z" fill="#00a890"/>
+		<path d="M416.994,275.083c-91.475,0.178-222.578,4.24-314.032,2.336c11.878-9.531,23.661-19.189,35.287-29.036    c27.909-23.643-12.365-63.502-40.045-40.05c-26.144,22.14-52.818,43.533-80.644,63.535c-3.156,2.271-5.616,4.881-7.508,7.679    c-11.019,9.866-15.173,26.821-1.051,39.628c29.935,27.162,59.123,55.081,86.369,84.955c24.659,27.04,64.597-13.127,40.045-40.045    c-9.308-10.217-18.913-20.124-28.629-29.93c90.18,1.722,220.003-2.265,310.203-2.438    C453.516,331.652,453.521,275.012,416.994,275.083z" fill="#00a890"/>
+                  </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+                </g>
+                </svg></span>
+               <span class="iconBtnText">Request Owner</span> 
+            </button>   
+     <button type="button" class="naturalButtonsmall margin-top">
+              <span><svg xmlns="/assets/images/revert-hand-drawn-arrows.svg" xmlns:xlink="/assets/images/revert-hand-drawn-arrows.svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
+                <g>
+                  <g>
+                   
+		<path d="M27.399,161.809c90.2,0.173,220.021,4.161,310.195,2.44c-9.714,9.8-19.316,19.718-28.624,29.924    c-24.552,26.921,15.386,67.088,40.045,40.048c27.248-29.876,56.441-57.795,86.371-84.952c14.122-12.809,9.968-29.765-1.051-39.628    c-1.899-2.798-4.352-5.408-7.511-7.68c-27.822-20.005-54.491-41.396-80.644-63.539c-27.685-23.45-67.953,16.412-40.045,40.05    c11.629,9.849,23.41,19.504,35.287,29.036c-91.454,1.909-222.56-2.158-314.029-2.333C-9.129,105.101-9.124,161.738,27.399,161.809    z" fill="#00a890"/>
+		<path d="M416.994,275.083c-91.475,0.178-222.578,4.24-314.032,2.336c11.878-9.531,23.661-19.189,35.287-29.036    c27.909-23.643-12.365-63.502-40.045-40.05c-26.144,22.14-52.818,43.533-80.644,63.535c-3.156,2.271-5.616,4.881-7.508,7.679    c-11.019,9.866-15.173,26.821-1.051,39.628c29.935,27.162,59.123,55.081,86.369,84.955c24.659,27.04,64.597-13.127,40.045-40.045    c-9.308-10.217-18.913-20.124-28.629-29.93c90.18,1.722,220.003-2.265,310.203-2.438    C453.516,331.652,453.521,275.012,416.994,275.083z" fill="#00a890"/>
+                  </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+                </g>
+                </svg></span>
+               <span class="iconBtnText">Engagement</span> 
+            </button>     
+    <button type="button" class="naturalButton">
+              <span><svg xmlns="/assets/images/revert-hand-drawn-arrows.svg" xmlns:xlink="/assets/images/revert-hand-drawn-arrows.svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
+                <g>
+                  <g>
+                   
+		<path d="M27.399,161.809c90.2,0.173,220.021,4.161,310.195,2.44c-9.714,9.8-19.316,19.718-28.624,29.924    c-24.552,26.921,15.386,67.088,40.045,40.048c27.248-29.876,56.441-57.795,86.371-84.952c14.122-12.809,9.968-29.765-1.051-39.628    c-1.899-2.798-4.352-5.408-7.511-7.68c-27.822-20.005-54.491-41.396-80.644-63.539c-27.685-23.45-67.953,16.412-40.045,40.05    c11.629,9.849,23.41,19.504,35.287,29.036c-91.454,1.909-222.56-2.158-314.029-2.333C-9.129,105.101-9.124,161.738,27.399,161.809    z" fill="#00a890"/>
+		<path d="M416.994,275.083c-91.475,0.178-222.578,4.24-314.032,2.336c11.878-9.531,23.661-19.189,35.287-29.036    c27.909-23.643-12.365-63.502-40.045-40.05c-26.144,22.14-52.818,43.533-80.644,63.535c-3.156,2.271-5.616,4.881-7.508,7.679    c-11.019,9.866-15.173,26.821-1.051,39.628c29.935,27.162,59.123,55.081,86.369,84.955c24.659,27.04,64.597-13.127,40.045-40.045    c-9.308-10.217-18.913-20.124-28.629-29.93c90.18,1.722,220.003-2.265,310.203-2.438    C453.516,331.652,453.521,275.012,416.994,275.083z" fill="#00a890"/>
+                  </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+                </g>
+                </svg></span>
+               <span class="iconBtnText">Conversation Type</span> 
+            </button>     
+     <button type="button" class="naturalButtonsmall margin-top">
+              <span><svg xmlns="/assets/images/revert-hand-drawn-arrows.svg" xmlns:xlink="/assets/images/revert-hand-drawn-arrows.svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
+                <g>
+                  <g>
+                   
+		<path d="M27.399,161.809c90.2,0.173,220.021,4.161,310.195,2.44c-9.714,9.8-19.316,19.718-28.624,29.924    c-24.552,26.921,15.386,67.088,40.045,40.048c27.248-29.876,56.441-57.795,86.371-84.952c14.122-12.809,9.968-29.765-1.051-39.628    c-1.899-2.798-4.352-5.408-7.511-7.68c-27.822-20.005-54.491-41.396-80.644-63.539c-27.685-23.45-67.953,16.412-40.045,40.05    c11.629,9.849,23.41,19.504,35.287,29.036c-91.454,1.909-222.56-2.158-314.029-2.333C-9.129,105.101-9.124,161.738,27.399,161.809    z" fill="#00a890"/>
+		<path d="M416.994,275.083c-91.475,0.178-222.578,4.24-314.032,2.336c11.878-9.531,23.661-19.189,35.287-29.036    c27.909-23.643-12.365-63.502-40.045-40.05c-26.144,22.14-52.818,43.533-80.644,63.535c-3.156,2.271-5.616,4.881-7.508,7.679    c-11.019,9.866-15.173,26.821-1.051,39.628c29.935,27.162,59.123,55.081,86.369,84.955c24.659,27.04,64.597-13.127,40.045-40.045    c-9.308-10.217-18.913-20.124-28.629-29.93c90.18,1.722,220.003-2.265,310.203-2.438    C453.516,331.652,453.521,275.012,416.994,275.083z" fill="#00a890"/>
+                  </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+                </g>
+                </svg></span>
+               <span class="iconBtnText">Attach Files</span> 
+            </button>        
+              <div>
+                 <p class="Add-Client">Add Client</p>
+              </div>
+              <input type="button" class="addbutton" value="Add" data-toggle="modal" data-target="#addClientModal">  
+      <div>
+     <p class="Add-Client">Client Contact</p>
+      </div>  
+      <input type="button" class="addbutton" value="Add" data-toggle="modal" data-target="#clientContactModal">
+      <div>
+     <p class="Add-Client">Tags</p>
+      </div>
+    <div>
+     <button class="tagDefault tag">Tag label
+                          <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
+                          <img class="fatime" src="/assets/images/delete.svg">
+                      </button> 
+    <button class="tagDefault tag">Tag label
+                          <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
+                          <img class="fatime" src="/assets/images/delete.svg">
+                      </button> 
+    <button class="tagDefault tag">Tag label
+                          <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
+                          <img class="fatime" src="/assets/images/delete.svg">
+                      </button>       
+    </div>                                  
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="buttonMedium" value="create">
+        </div>
+        
+      </div>  
+   </div>
+    
+  </div>
+  
+     <div class="modal" id="addClientModal" role="dialog" tabindex="-1" data-focus-on="input:first">
+    <div class="client-dialog">
+    
+     <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Add Client</h4>
+        </div>
+        <div class="modal-body">
+          <p class="client-margin">Client Details</p>
+          <div class="container-fluid">
+          <div class="row"> 
+             <div class="col-md-12">
+               <div class="value"> 
+                     <input type="text" [ngClass]="{'red-border-class':!uname.valid && !uname.pristine}" class="inputText" id="uname" required name="uname" [(ngModel)] = "lead.uname" #uname="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!uname.valid && !uname.pristine }">Name</span>
+                   <div [hidden]="uname.valid || uname.pristine" class="reqAlert">
+                         name is required
+                   </div>
+               </div>
+                        </div> 
+                </div>
+                <div class="row"> 
+               <div class="col-md-5">     
+                 <div class="value">      
+                     <input type="text" [ngClass]="{'red-border-class':!Building.valid && !Building.pristine}" class="inputText" id="Building" required name="Building" [(ngModel)] = "lead.Building" #Building="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!Building.valid && !Building.pristine }">Building name</span>
+                   <div [hidden]="Building.valid || Building.pristine" class="reqAlert">
+                         Building name is required
+                   </div>  
+                 </div>
+               </div>
+                               
+                <div class="col-md-7">  
+                  <div class="value">         
+                     <input type="text" [ngClass]="{'red-border-class':!Street.valid && !Street.pristine}" class="inputText" id="Street" required name="Street" [(ngModel)] = "lead.Street" #Street="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!Street.valid && !Street.pristine }">Street Cross</span>
+                   <div [hidden]="Street.valid || Street.pristine" class="reqAlert">
+                         Street Cross is required
+                   </div>   
+                  </div>                 
+                  </div>
+                </div>
+                  <div class="row"> 
+                  <div class="col-md-5">     
+                    <div class="value">      
+                     <input type="text" [ngClass]="{'red-border-class':!Area.valid && !Area.pristine}" class="inputText" id="Area" required name="Area" [(ngModel)] = "lead.Area" #Area="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!Area.valid && !Area.pristine }">Area</span>
+                   <div [hidden]="Area.valid || Area.pristine" class="reqAlert">
+                         Area is required
+                   </div>   
+                    </div>                 
+                  </div>
+                  <div class="col-md-7"> 
+                    <div class="value">          
+                     <input type="text" [ngClass]="{'red-border-class':!city.valid && !city.pristine}" class="inputText" id="city" required name="city" [(ngModel)] = "lead.city" #city="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!city.valid && !city.pristine }">City</span>
+                   <div [hidden]="city.valid || city.pristine" class="reqAlert">
+                         City is required
+                   </div>   
+                    </div>                 
+                  </div>
+                  </div>
+                <div class="row"> 
+                  <div class="col-md-5">   
+                    <div class="value">        
+                     <input type="text" [ngClass]="{'red-border-class':!state.valid && !state.pristine}" class="inputText" id="state" required name="state" [(ngModel)] = "lead.state" #state="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!state.valid && !state.pristine }">State</span>
+                   <div [hidden]="state.valid || state.pristine" class="reqAlert">
+                         state is required
+                   </div>  
+                    </div>                  
+                  </div>
+                  <div class="col-md-7"> 
+                    <div class="value">          
+                     <input type="text" [ngClass]="{'red-border-class':!country.valid && !country.pristine}" class="inputText" id="country" required name="country" [(ngModel)] = "lead.country" #country="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!country.valid && !country.pristine }">Country</span>
+                   <div [hidden]="country.valid || country.pristine" class="reqAlert">
+                         country is required
+                   </div>  
+                    </div>                  
+                  </div>
+                </div>
+                <div class="row"> 
+                   <div class="col-md-6">  
+                     <div class="value">         
+                     <input type="text" [ngClass]="{'red-border-class':!mailid.valid && !mailid.pristine}" class="clientInputText" id="mailid" required name="mailid" [(ngModel)] = "lead.mailid" #mailid="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!mailid.valid && !mailid.pristine }">Email Id</span>
+                   <div [hidden]="mailid.valid || mailid.pristine" class="reqAlert">
+                         Email Id is required
+                   </div> 
+                     </div>                   
+                  </div>
+                  <div class="col-md-6">   
+                    <div class="value">        
+                     <input type="text" [ngClass]="{'red-border-class':!phone.valid && !phone.pristine}" class="inputText" id="phone" required name="phone" [(ngModel)] = "lead.phone" #phone="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!phone.valid && !phone.pristine }">Phone Numbers</span>
+                   <div [hidden]="phone.valid || phone.pristine" class="reqAlert">
+                         Phone Number is required
+                   </div>  
+                    </div>                  
+                  </div>
+                </div>
+                <div class="row"> 
+                  <div class="col-md-12">
+                    <div class="value"> 
+                     <input type="text" [ngClass]="{'red-border-class':!web.valid && !web.pristine}" class="clientInputText" id="web" required name="web" [(ngModel)] = "lead.web" #web="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!web.valid && !web.pristine }">Website:https//</span>
+                   <div [hidden]="web.valid || web.pristine" class="reqAlert">
+                         Website url is required
+                   </div>
+                    </div>
+                        </div> 
+                </div>
+                
+          </div>
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="brandblue" value="Create Client">
+        </div>
+      </div>
+      </div>
+    </div>
+
+  <div *ngIf="this.resempdata.length>0">
+<!--<div>-->
 <div class="row main_container container-fluid">
   <div class="col-lg-12 ">
       <span class="lead">Leads</span>
@@ -43,23 +311,23 @@
         <div class="project1 project-default" type="button">
           <div>
           <img class="addlead" src="/assets/images/addlead.png"/></div>
-             <button type="button" class="btn btn-success addlead1">Add Lead</button>       
+             <button type="button" class="btn btn-success addlead1" data-toggle="modal" data-target="#myModal">Add Lead</button>       
         </div>
       </div>
 
 
-
+<!--
         <div class="col-lg-3 col-md-3 col-sm-3" type="button">
         <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
           <header class="header1">
             <div class="xSmall">
                        <p class="layer">2</p>
                         </div>
-            <span class="status">Act1023</span>
-              <div class="status1"><p class="status2">Active</p></div>
+            <span class="status">123</span>
+              <div class="status1"><p class="status2">active</p></div>
                 </header>
                   <div class="project-content">
-                    <p class="content"> Product design for dell enterprise Solution</p>
+                    <p class="content">Title</p>
                    <span> <img class="signuser" src="/assets/images/images.png"></span>
                   </div>
                     <div class="footer1">
@@ -79,19 +347,19 @@
                       </div>
                     </div>
         </div>
-      </div>
+      </div>-->
             
-           <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+           <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.user; trackBy: index;'>
         <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
           <header class="header1">
             <div class="xSmall">
                        <p class="layer">    2</p>
                         </div>
-            <span class="status">Act1023</span>
-              <div class="status1"><p class="status2">Active</p></div>
+            <span class="status">{{value.LeadID}}</span>
+              <div class="status1"><p class="status2">{{value.Status}}</p></div>
                 </header>
                   <div class="project-content">
-                    <p class="content"> Product design for dell enterprise Solution</p>
+                    <p class="content"> {{value.Title}}</p>
                   </div>
                       <div class="footer1">
                         <span class="jackpot"></span>
@@ -106,155 +374,14 @@
                           </div>
                             <div class="col-lg-4  col-md-4 col-sm-4 ">
                               <p class="Enggagement">Next Enggagement</p>
-                              <p class="date">27,Feb</p>
+                              <p class="date">{{value.NextEngagementDate |date}}</p>
                             </div>
                       </div>
                     </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-          <header class="header1">
-            <span class="status">Act1023</span>
-              <div class="status1"><p class="status2">Active</p></div>
-                </header>
-                  <div class="project-content">
-                    <p class="content"> Product design for dell enterprise Solution</p>
-                  </div>
-                      <div class="footer1">
-                          <span class="highValue"></span>
-                      <div class="row footer2">
-                        <div class="col-lg-4  col-md-4 col-sm-4">
-                          <p class="Assigned">Assigned by</p>
-                              <img class="profileIcon" src="/assets/images/gk.png">
-                        </div>
-                        <div class="col-lg-4  col-md-4 col-sm-4">
-                            <p class="client">Client</p>
-                              <img  class="profileIcon2" src="/assets/images/download.png">
-                          </div>
-                            <div class="col-lg-4  col-md-4 col-sm-4">
-                              <p class="Enggagement">Next Enggagement</p>
-                              <p class="date">27,Feb</p>
-                            </div>
-                      </div>
-                    </div>
-        </div>
-      </div>
-     <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-          <header class="header1">
-            <span class="status">Act1023</span>
-              <div class="status1"><p class="status2">Active</p></div>
-                </header>
-                  <div class="project-content">
-                    <p class="content"> Product design for dell enterprise Solution</p>
-                  </div>
-                     <div class="footer1">
-                        <span class="lowValue"></span>
-                      <div class="row footer2">
-                        <div class="col-lg-4  col-md-4 col-sm-4">
-                          <p class="Assigned">Assigned by</p>
-                              <img class="profileIcon" src="/assets/images/gk.png">
-                        </div>
-                        <div class="col-lg-4  col-md-4 col-sm-4">
-                            <p class="client">Client</p>
-                              <img  class="profileIcon2" src="/assets/images/download.png">
-                          </div>
-                            <div class="col-lg-4  col-md-4 col-sm-4">
-                              <p class="Enggagement">Next Enggagement</p>
-                              <p class="date">27,Feb</p>
-                            </div>
-                      </div>
-                    </div>
-        </div>
-      </div>
- <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-          <header class="header1">
-            <span class="status">Act1023</span>
-              <div class="status1"><p class="status2">Active</p></div>
-                </header>
-                  <div class="project-content">
-                    <p class="content"> Product design for dell enterprise Solution</p>
-                  </div>
-                      <div class="footer1">
-                          <span class="jackpot"></span>
-                      <div class="row footer2">
-                        <div class="col-lg-4  col-md-4 col-sm-4">
-                          <p class="Assigned">Assigned by</p>
-                              <img class="profileIcon" src="/assets/images/gk.png">
-                        </div>
-                        <div class="col-lg-4  col-md-4 col-sm-4">
-                            <p class="client">Client</p>
-                              <img   class="profileIcon2" src="/assets/images/download.png">
-                          </div>
-                            <div class="col-lg-4  col-md-4 col-sm-4">
-                              <p class="Enggagement">Next Enggagement</p>
-                              <p class="date">27,Feb</p>
-                            </div>
-                      </div>
-                    </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-          <header class="header1">
-             
-            <span class="status">Act1023</span>
-              <div class="status1"><p class="status2">Active</p></div>
-                </header>
-                  <div class="project-content">
-                    <p class="content"> Product design for dell enterprise Solution</p>
-                    <span> <img class="signuser" src="/assets/images/images.png"></span>
-                  </div>
-                     <div class="footer1">
-                        <span class="highValue"></span>
-                      <div class="row footer2">
-                        <div class="col-lg-4  col-md-4 col-sm-4">
-                          <p class="Assigned">Assigned by</p>
-                              <img  class="profileIcon" src="/assets/images/gk.png">
-                        </div>
-                        <div class="col-lg-4  col-md-4 col-sm-4">
-                            <p class="client">Client</p>
-                              <img  class="profileIcon2" src="/assets/images/download.png">
-                          </div>
-                            <div class="col-lg-4  col-md-4 col-sm-4">
-                              <p class="Enggagement">Next Enggagement</p>
-                              <p class="date">27,Feb</p>
-                            </div>
-                      </div>
-                    </div>
-        </div>
-      </div>
-
-       <div class="col-lg-3 col-md-3 col-sm-3" >
-        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-          <header class="header1">
-            <span class="status">Act1023</span>
-              <div class="status1"><p class="status2">Active</p></div>
-                </header>
-                  <div class="project-content">
-                    <p class="content"> Product design for dell enterprise Solution</p>
-                  </div>
-                     <div class="footer1">
-                        <span class="highValue"></span>
-                      <div class="row footer2">
-                        <div class="col-lg-4  col-md-4 col-sm-4">
-                          <p class="Assigned">Assigned by</p>
-                              <img class="profileIcon" src="/assets/images/gk.png">
-                        </div>
-                        <div class="col-lg-4  col-md-4 col-sm-4">
-                            <p class="client">Client</p>
-                              <img  class="profileIcon2" src="/assets/images/download.png">
-                          </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                              <p class="Enggagement">Next Enggagement</p>
-                              <p class="date">27,Feb</p>
-                            </div>
-                      </div>
-                    </div>
-        </div>
-      </div>
+      
+       
             </div>
        </div>
 
@@ -452,5 +579,7 @@
       </div>
   </div>
 </div>  
+
+</div>
 
 

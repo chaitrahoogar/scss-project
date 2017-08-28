@@ -10,19 +10,20 @@ import { RegisterService} from './register.service'
   providers:[RegisterService]
 })
 export class RegisterComponent implements OnInit {
-  register:any ={};
+  register:any ={
+      "UEmail":localStorage.getItem('mail'),
+      "Role" : localStorage.getItem('Role')
+  };
   token;
   resempdata=[];
- data={
-    "UEmail":localStorage.getItem('mail'),
-    "UPassword":"hell2e13",
-    "CustomerId" : 123,
-    "CustName" : "dell",
-    "UserID" : localStorage.getItem('UserId'),
-    "UFirstName" : "john",
-    "ULastName" : "cena",
-    "Role" : localStorage.getItem('Role')
- }
+//  data={
+//     "UEmail":localStorage.getItem('mail'),
+//     "UPassword":"hell2e13",
+//     "UserID" : localStorage.getItem('UserId'),
+//     "UFirstName" : "john",
+//     "ULastName" : "cena",
+//     "Role" : localStorage.getItem('Role')
+//  }
 
   disableValue=true;
   disablefname=false;
@@ -30,43 +31,58 @@ export class RegisterComponent implements OnInit {
    disablepassword=false;
    disableconfirmpsw=false;
    passwordNotMatch=false;
+   resetpassword={};
+   errorMessage="";
   submitRegister(){
-       this._registerService.registerService(this.data).subscribe((response) => { 
+      console.log(this.register);
+       this._registerService.registerService(this.register).subscribe((response) => { 
                this.resempdata=response;
+                localStorage.setItem('shortname',response.ShortName);
                console.log(this.resempdata);
-               if(this.register.name==undefined || this.register.lname==undefined || this.register.password==undefined || this.register.confirm==undefined ||this.register.name=="" || this.register.lname=="" || this.register.password=="" || this.register.confirm==""){
-     this.disableValue=false;
-     this.router.navigateByUrl('/register');
-     if(this.register.name==undefined || this.register.name==""){
-         this.disablefname=true;
-     }
-     else{
-          this.disablefname=false;
-     }
-      if(this.register.lname==undefined || this.register.lname==""){
-         this.disablelname=true;
-     }
-     else{
-          this.disablelname=false;
-     }
-      if(this.register.password==undefined || this.register.password==""){
-         this.disablepassword=true;
-     }
-     else{
-          this.disablepassword=false;
-     }
-      if(this.register.confirm==undefined || this.register.confirm==""){
-         this.disableconfirmpsw=true;
-     }
-     else{
-          this.disableconfirmpsw=false;
-     }
-     }
-     else{
-       this.disableValue=true;
-     this.router.navigateByUrl('/lead');
-    }
-     });
+               if(response.status=="fail"){
+                    this.router.navigateByUrl('/register');
+               }
+               else if(response.status=="success"){
+                      this.router.navigateByUrl('/manager');
+               }
+            },
+           e=>{this.errorMessage = e;
+        
+         alert(e.message)
+        });
+    //            if(this.register.name==undefined || this.register.lname==undefined || this.register.password==undefined || this.register.confirm==undefined ||this.register.name=="" || this.register.lname=="" || this.register.password=="" || this.register.confirm==""){
+    //  this.disableValue=false;
+    //  this.router.navigateByUrl('/register');
+    //  if(this.register.name==undefined || this.register.name==""){
+    //      this.disablefname=true;
+    //  }
+    //  else{
+    //       this.disablefname=false;
+    //  }
+    //   if(this.register.lname==undefined || this.register.lname==""){
+    //      this.disablelname=true;
+    //  }
+    //  else{
+    //       this.disablelname=false;
+    //  }
+    //   if(this.register.password==undefined || this.register.password==""){
+    //      this.disablepassword=true;
+    //  }
+    //  else{
+    //       this.disablepassword=false;
+    //  }
+    //   if(this.register.confirm==undefined || this.register.confirm==""){
+    //      this.disableconfirmpsw=true;
+    //  }
+    //  else{
+    //       this.disableconfirmpsw=false;
+    //  }
+    //  }
+    //  else{
+    //    this.disableValue=true;
+    //  this.router.navigateByUrl('/lead');
+    // }
+   
       
     
   }
@@ -98,10 +114,9 @@ reqconfirm(){
     }
 
   ngOnInit() {
-   console.log(this.data);
+   console.log(this.register);
     var currentUser = localStorage.getItem('mail');
     var currentUser = localStorage.getItem('Role');
-    var currentUser = localStorage.getItem('UserId');
 
     
   }

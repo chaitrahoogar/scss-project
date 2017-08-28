@@ -16,6 +16,7 @@ export class LogInComponent implements OnInit {
    disablename=false;
    disableemail=false;
    resempdata=[];
+   errorMessage = "";
      submit(){
 
       // if(this.login.UEmail==undefined ||this.login.UPassword==undefined || this.login.UEmail=="" ||this.login.UPassword=="")
@@ -41,14 +42,20 @@ export class LogInComponent implements OnInit {
       //     }
            this._appservice.serviceMethod(this.login).subscribe((response) => { 
                this.resempdata=response;
+              localStorage.setItem('shortname',response.ShortName);
                if(response.status=="fail"){
                     this.router.navigateByUrl('/login');
                }
                else if(response.status=="success"){
-                      this.router.navigateByUrl('/lead');
+                      this.router.navigateByUrl('/workbench');
+                      console.log(response);
                }
               
-       });
+       },
+       e=>{this.errorMessage = e;
+        
+         alert(e.message)
+        });
      }
      addGears(){
        this.disablename=false;

@@ -10,9 +10,10 @@ import { LogInComponent } from './login/login.component';
 import { PasswordresetComponent } from './passwordreset/passwordreset.component';
 import { ManagerComponent } from './manager/manager.component';
 import { LeadComponent } from './lead/lead.component';
-import { EqualValidator } from './register/equal-validator.directive';
+import { EqualValidator } from './equal-validator.directive';
 import { HttpModule } from '@angular/http';
 import { WorkbenchComponent } from './workbench/workbench.component';
+import { UpdatepasswordComponent } from './updatepassword/updatepassword.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { WorkbenchComponent } from './workbench/workbench.component';
     ManagerComponent,
     LeadComponent,
     EqualValidator,
-    WorkbenchComponent
+    WorkbenchComponent,
+    UpdatepasswordComponent
   ],
   imports: [
     BrowserModule,

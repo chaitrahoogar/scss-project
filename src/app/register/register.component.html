@@ -1,40 +1,49 @@
 <div class="container">
-<div>
+<div class="nav">
   <p class="groomeHead groomeHeadLeft">
   Groome
 </p>
 <a  routerLink="/login"><input type="button" class="naturalButtonsmall loginButton" value="Login"></a>
 </div>
-<div class="loginForm">
-<form (ngSubmit)="submitRegister()" class="form-horizontal" #f="ngForm">
+
+   
+
+
+<div class="row createmargin">
+
+  <div class="col-sm-6 col-md-6 col-lg-6">
+          <img class="registerImage" src="/assets/images/register.svg"/>
+  </div>
+  <div class="col-sm-6 col-md-6 col-lg-6 border-left">
+        <form (ngSubmit)="submitRegister()" class="form-horizontal formmarginLeft" #f="ngForm">
             <p class="registertext"> Create Your Profile </p>
           <div class="value">    
-                     <input type="text" [ngClass]="{'red-border-class':!name.valid && !name.pristine ||disablefname}" class="inputText" (keydown)="reqfirstName()" id="name" required name="name" [(ngModel)] = "register.name" #name="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!name.valid && !name.pristine ||disablefname}">First Name</span>
-                   <div [hidden]="name.valid || name.pristine && disableValue" class="reqAlert">
+                     <input type="text" [ngClass]="{'red-border-class':!UFirstName.valid && !UFirstName.pristine ||disablefname}" class="inputText registerinputText" (keydown)="reqfirstName()" id="UFirstName" required name="UFirstName" [(ngModel)] = "register.UFirstName" #UFirstName="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!UFirstName.valid && !UFirstName.pristine ||disablefname}">First Name</span>
+                   <div [hidden]="UFirstName.valid || UFirstName.pristine && disableValue" class="reqAlert">
                         first name is required
                    </div>
                     </div>
 
                    <div class="value">    
-                     <input type="text" [ngClass]="{'red-border-class':!lname.valid && !lname.pristine ||disablelname}" class="inputText" (keydown)="reqlName()" id="lname" required name="lname" [(ngModel)] = "register.lname" #lname="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!lname.valid && !lname.pristine ||disablelname}">Last Name</span>
-                   <div [hidden]="lname.valid || lname.pristine && disableValue" class="reqAlert">
+                     <input type="text" [ngClass]="{'red-border-class':!ULastName.valid && !ULastName.pristine ||disablelname}" class="inputText registerinputText" (keydown)="reqlName()" id="ULastName" required name="ULastName" [(ngModel)] = "register.ULastName" #ULastName="ngModel"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!ULastName.valid && !ULastName.pristine ||disablelname}">Last Name</span>
+                   <div [hidden]="ULastName.valid || ULastName.pristine && disableValue" class="reqAlert">
                          last name is required
                    </div>
                     </div>  
  
                   <div class="value">    
-                     <input type="password" [ngClass]="{'red-border-class':!password.valid && !password.pristine ||disablepassword}" class="inputText" (keyup)="reqpassword()" id="password" required name="password" [(ngModel)] = "register.password" #password="ngModel" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!password.valid && !password.pristine ||disablepassword}">Password</span>
-                   <div [hidden]="password.valid || password.pristine && disableValue" class="reqAlert">
-                         <div [hidden]="!password.hasError('required')">password is required</div>
+                     <input type="password" [ngClass]="{'red-border-class':!UPassword.valid && !UPassword.pristine ||disablepassword}" class="inputText registerinputText" (keyup)="reqpassword()" id="UPassword" required name="UPassword" [(ngModel)] = "register.UPassword" #UPassword="ngModel" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/>
+                  <span class="floating-label" [ngClass]="{'red-class':!UPassword.valid && !UPassword.pristine ||disablepassword}">Password</span>
+                   <div [hidden]="UPassword.valid || UPassword.pristine && disableValue" class="reqAlert">
+                         <div [hidden]="!UPassword.hasError('required')">password is required</div>
                          <!--<div [hidden]="!password.hasError('pattern')">Passwords must contain at least six characters, including uppercase, lowercase letters and special charecter.</div>-->
                    </div>
                     </div> 
 
                     <div class="value">  
-                     <input type="password" [ngClass]="{'red-border-class':!confirm.valid && !confirm.pristine ||disableconfirmpsw}" validateEqual="password" class="inputText" (keyup)="reqconfirm()" id="confirm" required name="confirm" [(ngModel)] = "register.confirm" #confirm="ngModel"/>
+                     <input type="password" [ngClass]="{'red-border-class':!confirm.valid && !confirm.pristine ||disableconfirmpsw}" validateEqual="password" class="inputText registerinputText" (keyup)="reqconfirm()" id="confirm" required name="confirm" [(ngModel)] = "resetpassword.confirm" #confirm="ngModel"/>
                   <span class="floating-label" [ngClass]="{'red-class':!confirm.valid && !confirm.pristine ||disableconfirmpsw}">confirm password</span>
                    <div [hidden]="confirm.valid || confirm.pristine && disableValue" class="reqAlert">
                         <!--<div [hidden]="!confirm.hasError('required')">password required</div>-->
@@ -45,7 +54,7 @@
 
 						<div class=" ">
 						<!-- <a  routerLink="/login">	<button type="submit" class="btn btn-primary btn-lg btn-block login-button" [disabled]="!f.valid">Register</button></a> -->
-            <input type="submit" class="buttonLarge regbuttonLarge" value="Take me to groome">
+            <input type="submit" class="buttonLarge regbuttonLarge regbtn" value="Take me to groome">
           </div>
           
 						<!--<div class="login-register">
@@ -55,8 +64,7 @@
                  <!-- <span>Already register ?? <a  routerLink="/login">Login here</a></span> -->
 					</form>
 
- </div>  
-<div>
-   <img class="registerImage" src="/assets/images/register.svg"/>
+  </div>
+ 
 </div>
-</div>    
+</div> 

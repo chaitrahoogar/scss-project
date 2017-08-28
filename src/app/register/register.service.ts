@@ -8,7 +8,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
  export class RegisterService{
-     private _url:string='http://172.16.0.42:8080/';
+     private _url:string='http://172.16.0.30:8080/';
      constructor(private _http:Http){
 
      }
@@ -16,8 +16,12 @@ import 'rxjs/add/operator/toPromise';
         let contentHeader = new Headers({
         "Content-Type": "application/json"
         });
-           return this._http.put(this._url+'users/createProfile', JSON.stringify(login),{ headers: contentHeader }).map((response:Response) =>response.json());
+           return this._http.put(this._url+'users/createProfile', JSON.stringify(login),{ headers: contentHeader }).map((response:Response) =>response.json()).catch(handleError);;
        }
        
  }
-
+ function handleError(error:any){
+    //  debugger;
+    let errorMessage = error.json();
+    return Observable.throw(errorMessage);
+ }

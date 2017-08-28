@@ -4,31 +4,27 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 
- export class AppService{
-     private _url:string='http://172.16.0.30:8080/';
+ export class leadService{
+     private _url:string='http://172.16.0.38:8000/';
      constructor(private _http:Http){
 
      }
-       serviceMethod(login){
-           console.log(login);
+     value={
+    "_id":"599c2ad872e2104737339190"
+}
+
+       leadMethod(){
         let contentHeader = new Headers({
         "Content-Type": "application/json"
         });
-           return this._http.post(this._url+'users/Login', JSON.stringify(login),{ headers: contentHeader }).map((response:Response) =>response.json()).catch(handleError);
+           return this._http.post(this._url+'getUserLeads',this.value,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
+      
        
-       
- }
-
-
- function handleError(error:any){
-    //  debugger;
-    let errorMessage = error.json();
-    return Observable.throw(errorMessage);
  }
