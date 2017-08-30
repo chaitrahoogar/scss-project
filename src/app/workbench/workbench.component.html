@@ -25,9 +25,15 @@
 <div class="" *ngIf="this.resempdata.length==0">
   <div class="buttonclass">
 <p class="textfontcolor">
+
   Looks like you have not create Lead. <br>
   Click add to create your first Lead.
 </p>
+
+
+
+
+
  <input type="button" class="buttonMedium" value="Add Lead" data-toggle="modal" data-target="#myModal">
   </div>
 <div class="changeimagewitdth">
@@ -291,23 +297,24 @@
 
   <div *ngIf="this.resempdata.length!=0">
 <!--<div>-->
-<div class="row main_container container-fluid">
-  <div class="col-lg-12 ">
-      <span class="lead">Leads</span>
-      <span id="tab" class="btn-group cardtabs">
-        <a class="btn btn-large  active allUser" >All</a>
-        <a class="btn btn-large assigned" >Assigned to me</a>
-        <a class="btn btn-large assigned " >Subscribed</a>
-       
-      </span>
-
+<div class="row main_container container-fluid tabs">
+   
+      <span class="leadText">Lead</span>
+      <span  class="workbenchTab">
+      <ul class="nav nav-pills tablist ">
+          <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#menu1">All</a></li>
+          <li><a class= "btn btn-large assigned" data-toggle="pill" href="#menu2">Assigned to me</a></li>
+          <li><a  class="btn btn-large subscribed" data-toggle="pill" href="#menu3">Subscribed</a></li>
+         
+        </ul></span>
+   
   </div>
-</div>
+ 
+        <div class="container maincontainer">
+          <div class="tab-content"> 
+            <div id="menu1" class="tab-pane fade in active">
 
-  <div class="row main_container1">
-    <div class="container-fluid">
-
-       <div class="col-lg-3 col-md-3 col-sm-3">
+       <div class="col-lg-3 col-md-3 col-sm-3" >
         <div class="project1 project-default" type="button">
           <div>
           <img class="addlead" src="/assets/images/addlead.png"/></div>
@@ -315,77 +322,138 @@
         </div>
       </div>
 
-
-<!--
-        <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-          <header class="header1">
-            <div class="xSmall">
-                       <p class="layer">2</p>
-                        </div>
-            <span class="status">123</span>
-              <div class="status1"><p class="status2">active</p></div>
-                </header>
-                  <div class="project-content">
-                    <p class="content">Title</p>
-                   <span> <img class="signuser" src="/assets/images/images.png"></span>
-                  </div>
-                    <div class="footer1">
-                      <div class="row footer2">
-                        <div class="col-lg-4  col-md-4 col-sm-4">
-                          <p class="Assigned">Assigned by</p>
-                              <img class="profileIcon" src="/assets/images/gk.png">
-                        </div>
-                          <div class="col-lg-4  col-md-4 col-sm-4">
-                            <p class="client">Client</p>
-                              <img  class="profileIcon1" src="/assets/images/dell.png">
-                          </div>
-                            <div class="col-lg-4  col-md-4 col-sm-4">
-                              <p class="Enggagement">Next Enggagement</p>
-                              <p class="date">27,Feb</p>
-                            </div>
-                      </div>
-                    </div>
-        </div>
-      </div>-->
-            
-           <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.user; trackBy: index;' (click)="viewLead(value.LeadID)">
-        <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-          <header class="header1">
-            <div class="xSmall">
-                       <p class="layer">    2</p>
-                        </div>
-            <span class="status">{{value.LeadID}}</span>
-              <div class="status1"><p class="status2">{{value.Status}}</p></div>
-                </header>
-                  <div class="project-content">
-                    <p class="content"> {{value.Title}}</p>
-                  </div>
-                      <div class="footer1">
-                        <span class="jackpot"></span>
-                      <div class="row footer2">
-                        <div class="col-lg-4  col-md-4 col-sm-4">
-                          <p class="Assigned">Assigned by</p>
-                              <img class="profileIcon" src="/assets/images/gk.png">
-                        </div>
-                          <div class="col-lg-4  col-md-4 col-sm-4">
-                            <p class="client">Client</p>
-                              <img  class="profileIcon2" src="/assets/images/download.png">
-                          </div>
-                            <div class="col-lg-4  col-md-4 col-sm-4 ">
-                              <p class="Enggagement">Next Enggagement</p>
-                              <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
-                            </div>
-                      </div>
-                    </div>
-        </div>
-      </div>
-      
+              
        
-            </div>
-       </div>
 
-<!--popup -->
+        
+
+ 
+
+        
+
+          <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.user; trackBy: index;' (click)="viewLead(value.LeadID)">
+            <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+              <header class="header1">
+                <div class="xSmall">
+                           <p class="layer">2</p>
+                            </div>
+                <span class="status">{{value.LeadID}}</span>
+                  <div class="status1"><p class="status2">{{value.Status}}</p></div>
+                    </header>
+                      <div class="project-content">
+                        <p class="content"> {{value.Title}}</p>
+                       <span> <img class="signuser" src="/assets/images/images.png"></span>
+                      </div>
+                        <div class="footer1">
+                          <div class="row footer2">
+                            <div class="col-lg-4  col-md-4 col-sm-4">
+                              <p class="Assigned">Assigned by</p>
+                                  <img class="profileIcon" src="/assets/images/gk.png">
+                            </div>
+                              <div class="col-lg-4  col-md-4 col-sm-4">
+                                <p class="client">Client</p>
+                                  <img  class="profileIcon1" src="/assets/images/dell.png">
+                              </div>
+                                <div class="col-lg-4  col-md-4 col-sm-4">
+                                  <p class="Enggagement">Next Enggagement</p>
+                                  <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                                </div>
+                          </div>
+                        </div>
+            </div>
+          </div> 
+
+          
+
+            </div>
+            <div id="menu2" class="tab-pane fade">
+                <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+                    <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                      <header class="header1">
+                        <div class="xSmall">
+                                   <p class="layer">2</p>
+                                    </div>
+                        <span class="status">{{this.viewleaddata.LeadID}}</span>
+                          <div class="status1"><p class="status2">Active</p></div>
+                            </header>
+                              <div class="project-content">
+                                <p class="content"> Product design for dell enterprise Solution</p>
+                               <span> <img class="signuser" src="/assets/images/images.png"></span>
+                              </div>
+                                <div class="footer1">
+                                  <div class="row footer2">
+                                    <div class="col-lg-4  col-md-4 col-sm-4">
+                                      <p class="Assigned">Assigned by</p>
+                                          <img class="profileIcon" src="/assets/images/gk.png">
+                                    </div>
+                                      <div class="col-lg-4  col-md-4 col-sm-4">
+                                        <p class="client">Client</p>
+                                          <img  class="profileIcon1" src="/assets/images/dell.png">
+                                      </div>
+                                        <div class="col-lg-4  col-md-4 col-sm-4">
+                                          <p class="Enggagement">Next Enggagement</p>
+                                          <p class="date">27,Feb</p>
+                                        </div>
+                                  </div>
+                                </div>
+                    </div>
+                  </div> 
+
+               
+
+                
+
+
+
+                          
+
+                            
+            </div>
+            <div id="menu3" class="tab-pane fade">
+                <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+                    <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                      <header class="header1">
+                        <div class="xSmall">
+                                   <p class="layer">2</p>
+                                    </div>
+                        <span class="status">Act1023</span>
+                          <div class="status1"><p class="status2">Active</p></div>
+                            </header>
+                              <div class="project-content">
+                                <p class="content"> Product design for dell enterprise Solution</p>
+                               <span> <img class="signuser" src="/assets/images/images.png"></span>
+                              </div>
+                                <div class="footer1">
+                                  <div class="row footer2">
+                                    <div class="col-lg-4  col-md-4 col-sm-4">
+                                      <p class="Assigned">Assigned by</p>
+                                          <img class="profileIcon" src="/assets/images/gk.png">
+                                    </div>
+                                      <div class="col-lg-4  col-md-4 col-sm-4">
+                                        <p class="client">Client</p>
+                                          <img  class="profileIcon1" src="/assets/images/dell.png">
+                                      </div>
+                                        <div class="col-lg-4  col-md-4 col-sm-4">
+                                          <p class="Enggagement">Next Enggagement</p>
+                                          <p class="date">27,Feb</p>
+                                        </div>
+                                  </div>
+                                </div>
+                    </div>
+                  </div> 
+ 
+
+                            
+            </div>
+          </div>
+        </div>
+
+        
+
+</div>
+
+<!--pop up strats-->
+
 <div class="modal fade" id="exampleModal"  role="dialog" >
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -407,61 +475,92 @@
         </div>
         <div class="row">
           <div class="col-lg-8 col-md-8 col-sm-8 content1">
-                  <span id="tab" class="btn-group cardtabs" style="margin-top:10px;">  
-                    <a class="btn btn-large  active conversations naturalButtonMedium" ><span class="glyphicon glyphicon-envelope envalpicon"></span>Conversations</a>
-                    <a class="btn btn-large requirements naturalButtonMedium" >Requirements</a>
-                  </span>
-                  <div class="panel-body">
-                      <ul class="chat">
-                          <li class="left clearfix"><span class="chat-img pull-left">
-                              <span class="invite1">SG</span>
-
-                          </span>
-                              <div class="chat-body clearfix">
-                                  <div class="header">
+                
+                  <ul class="nav nav-pills chatheader">
+                    <li class="active naturalButtonMedium"><a data-toggle="pill" href="#home1">Conversion</a></li>
+                    <li class="naturalButtonMedium"><a data-toggle="pill" href="#menu03">Requirement</a></li>
+                   
+                  </ul>
+                  
+                  <div class="tab-content">
+                    <div id="home1" class="tab-pane fade in active">
+                        <ul class="chat">
+                            <li class="left clearfix"><span class="chat-img pull-left">
+                                <span class="invite1">SG</span>
+  
+                            </span>
+                                <div class="chat-body">
+                                    <div class="header">
+                                        
+                                    </div>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                        dolor, quis ullamcorper ligula sodales.
+                                    </p>
+                                </div>
+                              </li>
+                              <li class="right clearfix"><span class="chat-img pull-right">
+                                  <span class="invite2">SH</span> 
+                              </span>
+                                  <div class="chat-body clearfix">
                                       
+                                      <p>
+                                          Lorem ipsum dolor sit amet. Curabitur bibendum ornare
+                                         
+                                      </p>
                                   </div>
-                                  <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                      dolor, quis ullamcorper ligula sodales.
-                                  </p>
-                              </div>
-                          </li>
-                          <li class="right clearfix"><span class="chat-img pull-right">
-                              <span class="invite">AM</span>
-                          </span>
-                              <div class="chat-body clearfix">
-                                  
-                                  <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                      dolor, quis ullamcorper ligula sodales.
-                                  </p>
-                              </div>
-                          </li>
-                          <li class="left clearfix"><span class="chat-img pull-left">
-                              <span class="invite2">SH</span> 
-                          </span>
-                              <div class="chat-body clearfix">
-                                  <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                      dolor, quis ullamcorper ligula sodales.
-                                  </p>
-                              </div>
-                          </li>
-                          <li class="right clearfix"><span class="chat-img pull-right">
-                              <span class="invite2">SH</span> 
-                          </span>
-                              <div class="chat-body clearfix">
-                                  
-                                  <p>
-                                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                      dolor, quis ullamcorper ligula sodales.
-                                  </p>
-                              </div>
-                          </li>
-                      </ul>
+                              </li>
+                            <li class="left clearfix"><span class="chat-img pull-left">
+                                <span class="invite2">SH</span> 
+                            </span>
+                                <div class="chat-body clearfix">
+                                    <p>
+                                   consectetur adipiscing elit. Curabitur bibendum ornare
+                                        
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="right clearfix"><span class="chat-img pull-right">
+                                <span class="invite2">SH</span> 
+                            </span>
+                                <div class="chat-body clearfix">
+                                    
+                                    <p>
+                                        Lorem ipsum dolor sit amet. Curabitur bibendum ornare
+                                       
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                     
+                    </div>
+                    
+                    
+                <div id="menu03" class="tab-pane fade">                     
+                    <span class="tittle">Requirements title ?</span>
+                    <br>
+                   
+                      <div class="div1">
+                        <h4>Position</h4>
+                        <input type="text" class="text1" name="validate-optional"  placeholder="input text">
+                      </div>
+                      <div class="div2">
+                        <h4>Estimate time</h4>
+                        <input type="text" class="text1" name="validate-optional"  placeholder="input text">
+                      </div>
+                      <div class="div3">
+                          <h4>Skill</h4>
+                          <input type="text" class="text1" name="validate-optional"  placeholder="input text">
+                        </div>
+                        <div class="div4">
+                            <h4>Budget</h4>
+                            <input type="text" class="text1" name="validate-optional"  placeholder="input text">
+                          </div>
+                    </div>
                   </div>
-          </div> 
+
+          </div>
+
 
            <div class="col-lg-4 col-md-4 col-sm-4 content2"> 
               <div class="project-content">
@@ -474,67 +573,53 @@
                   </div>
                     <div class="col-lg-6  col-md-6 col-sm-6">
                       <p class="client">Business Stream</p>
-                      <div class="collapse navbar-collapse js-navbar-collapse">
-                         <p href="#" class="dropdown-toggle stream" data-toggle="dropdown">Staffing <span class="glyphicon glyphicon-chevron-down "></span></p> 
-                              <ul class="dropdown-menu mega-dropdown-menu row">
-                                <li class="list-group-item">Industryt 1 </li>
-                                <li class="list-group-item">Industry 2</li>        
-                                <li class="list-group-item">Industry 3</li>
-                              </ul>
-                        </div>                       
-                    </div>
-
-
-               <!-- <div class="col-lg-6">
-            <h5>Assigned By</h5>
-             <span class="small">AM</span>
-               </div>
-                <div class="col-lg-6">
-                  <h5>Business Stream</h5>
-                   
-                      <select class="selectpicker">
-                        <optgroup label="Picnic">
-                          <option>Mustard</option>
-                          <option>Ketchup</option>
-                          <option>Relish</option>
-                        </optgroup>
-                        <optgroup label="Camping">
-                          <option>Tent</option>
-                          <option>Flashlight</option>
-                          <option>Toilet Paper</option>
-                        </optgroup>
-                      </select>
-               </div> -->
                     
-                  <div class="row ">
+
+                    <select class="form-control businessStream"> 
+                        <option class="disabled" value="-1" >Business</option>
+                        <option  selected="selected" value="0" style="border-bottom: 1px solid red;">SOW</option>
+                        <option value="1">Staffing</option>
+                        <option value="2">Little Barhma</option>
+                    </select><span class="glyphicon glyphicon-chevron-down down1 "></span>
+                                       
+                    </div>
+                    
+                  <div class="row main_container">
                     <div class="col-lg-12 col-md-12 col-sm-12 side1">
                           <div class="btn-pref btn-group btn-group-justified btn-group-lg activity" role="group" >
-                        <span class="btn-group" role="group">
+                       
+                        <span class="btn-group activity" role="group">
                           <div class="feel">Feel</div>
-                          <select class="drop">
-                            <option>Mustard</option>
-                            <option class="special" >Ketchup</option>
-                            <option style="background: #5cb85c; color: #fff;">Relish</option>
+                            <select class="form-control businessStream">
+                              <option class="disabled" value="-1" >Feel</option>
+                              <option selected="selected" value="0">Warm</option>
+                              <option value="1">Hot</option>
+                              <option value="2">Cold </option>
                           </select>
                         </span>
-                        <span class="btn-group activity" role="group" >
-                          <div  class="feel">Status</div>
-                         <p>Active</p>
-                        </span>
                         <span class="btn-group activity" role="group">
-                          <div class="feel">Revenue</div>
-                          <div class="collapse navbar-collapse js-navbar-collapse">
-                              <p href="#" class="dropdown-toggle" data-toggle="dropdown">Staffing <span class="glyphicon glyphicon-chevron-down pull-right"></span></p> 
-                                   <ul class="dropdown-menu mega-dropdown-menu row">
-     
-                                     <li class="list-group-item">Industryt 1 </li>
-                                     <li class="list-group-item">Industry 2</li>        
-                                     <li class="list-group-item">Industry 3</li>
-                                  
-                                   </ul>
-           
-                             </div>
-                        </span>
+                            <div class="feel">Status</div>
+                    
+                            <select class="form-control businessStream"> 
+                              <option class="disabled" value="-1" >status</option>
+                              <option selected="selected" value="0">Active</option>
+                              <option value="1">Dormant</option>
+                              <option value="2">Freeze</option>
+                              <option value="2">Rejected</option>
+                              <option value="2">Dropped</option>
+                          </select><span class="glyphicon glyphicon-chevron-down down2 "></span>
+                          </span>
+                          <span class="btn-group activity" role="group">
+                              <div class="feel">Revenue</div>
+                      
+                    <select class="form-control businessStream"> 
+                      <option class="disabled" value="-1" >Business</option>
+                      <option selected="selected" value="0">Jackpot</option>
+                      <option value="1">High value</option>
+                      <option value="2">Low value</option>
+                  </select><span class="glyphicon glyphicon-chevron-down down2 "></span>
+                            </span>
+                          
                     </div>
                     </div>
                   <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
@@ -579,6 +664,216 @@
       </div>
   </div>
 </div>  
+
+<!--pop up ends-->
+
+<!--for manger tab-->
+
+
+<div>
+<!--<div>-->
+<div class="row main_container container-fluid tabs">
+   
+      <span class="leadText">Lead</span>
+      <span  class="workbenchTab">
+      <ul class="nav nav-pills managertablist ">
+          <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#All">All</a></li>
+          <li><a class= "btn btn-large assigned" data-toggle="pill" href="#Approved">Approved</a></li>
+          <li><a class= "btn btn-large assigned" data-toggle="pill" href="#Pending">Pending</a></li>
+          <li><a  class="btn btn-large subscribed" data-toggle="pill" href="#Subscribed">Subscribed</a></li>
+         
+        </ul></span>
+   
+  </div>
+ 
+        <div class="container maincontainer">
+          <div class="tab-content"> 
+            <div id="All" class="tab-pane fade in active">
+
+       <div class="col-lg-3 col-md-3 col-sm-3" >
+        <div class="project1 project-default" type="button">
+          <div>
+          <img class="addlead" src="/assets/images/addlead.png"/></div>
+             <button type="button" class="btn btn-success addlead1" data-toggle="modal" data-target="#myModal">Add Lead</button>       
+        </div>
+      </div>
+
+              
+       
+
+        
+
+ 
+
+        
+
+          <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.user; trackBy: index;' (click)="viewLead(value.LeadID)">
+            <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+              <header class="header1">
+                <div class="xSmall">
+                           <p class="layer">2</p>
+                            </div>
+                <span class="status">{{value.LeadID}}</span>
+                  <div class="status1"><p class="status2">{{value.Status}}</p></div>
+                    </header>
+                      <div class="project-content">
+                        <p class="content"> {{value.Title}}</p>
+                       <span> <img class="signuser" src="/assets/images/images.png"></span>
+                      </div>
+                        <div class="footer1">
+                          <div class="row footer2">
+                            <div class="col-lg-4  col-md-4 col-sm-4">
+                              <p class="Assigned">Assigned by</p>
+                                  <img class="profileIcon" src="/assets/images/gk.png">
+                            </div>
+                              <div class="col-lg-4  col-md-4 col-sm-4">
+                                <p class="client">Client</p>
+                                  <img  class="profileIcon1" src="/assets/images/dell.png">
+                              </div>
+                                <div class="col-lg-4  col-md-4 col-sm-4">
+                                  <p class="Enggagement">Next Enggagement</p>
+                                  <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                                </div>
+                          </div>
+                        </div>
+            </div>
+          </div> 
+
+          
+
+            </div>
+            <div id="Approved" class="tab-pane fade">
+                <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+                    <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                      <header class="header1">
+                        <div class="xSmall">
+                                   <p class="layer">2</p>
+                                    </div>
+                        <span class="status">{{this.viewleaddata.LeadID}}</span>
+                          <div class="status1"><p class="status2">Active</p></div>
+                            </header>
+                              <div class="project-content">
+                                <p class="content"> Product design for dell enterprise Solution</p>
+                               <span> <img class="signuser" src="/assets/images/images.png"></span>
+                              </div>
+                                <div class="footer1">
+                                  <div class="row footer2">
+                                    <div class="col-lg-4  col-md-4 col-sm-4">
+                                      <p class="Assigned">Assigned by</p>
+                                          <img class="profileIcon" src="/assets/images/gk.png">
+                                    </div>
+                                      <div class="col-lg-4  col-md-4 col-sm-4">
+                                        <p class="client">Client</p>
+                                          <img  class="profileIcon1" src="/assets/images/dell.png">
+                                      </div>
+                                        <div class="col-lg-4  col-md-4 col-sm-4">
+                                          <p class="Enggagement">Next Enggagement</p>
+                                          <p class="date">27,Feb</p>
+                                        </div>
+                                  </div>
+                                </div>
+                    </div>
+                  </div> 
+
+               
+
+                
+
+
+
+                          
+
+                            
+            </div>
+            <div id="Pending" class="tab-pane fade">
+              
+                <div class="col-lg-3 col-md-3 col-sm-3" type="button" (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()">
+
+                    <div class="project project-default">
+                      <!--overlay starts-->
+                      <div class="overlay" *ngIf="this.overlayToggle">
+                        <div class="modelBtns">
+                          <button  class="modelBtn" data-toggle="modal" data-target="#exampleModal">View</button>
+                          <button class="modelBtn assignTo">AssignTo</button>
+                          <input type="button" class="brandblue assignTo" value="Button Brand">
+                        </div>
+                      </div>
+                       <!--overlay ends-->
+                      <header class="header1">
+                        <div class="xSmall">
+                                   <p class="layer">2</p>
+                                    </div>
+                        <span class="status">Act1023</span>
+                          <div class="status1"><p class="status2">Active</p></div>
+                            </header>
+                              <div class="project-content">
+                                <p class="content"> Product design for dell enterprise Solution</p>
+                               <span> <img class="signuser" src="/assets/images/images.png"></span>
+                              </div>
+                                <div class="footer1">
+                                  <div class="row footer2">
+                                    <div class="col-lg-4  col-md-4 col-sm-4">
+                                      <p class="Assigned">Assigned by</p>
+                                          <img class="profileIcon" src="/assets/images/gk.png">
+                                    </div>
+                                      <div class="col-lg-4  col-md-4 col-sm-4">
+                                        <p class="client">Client</p>
+                                          <img  class="profileIcon1" src="/assets/images/dell.png">
+                                      </div>
+                                        <div class="col-lg-4  col-md-4 col-sm-4">
+                                          <p class="Enggagement">Next Enggagement</p>
+                                          <p class="date">27,Feb</p>
+                                        </div>
+                                  </div>
+                                </div>
+                    </div>
+                  </div> 
+ 
+
+                            
+            </div>
+
+             <div id="Subscribed" class="tab-pane fade">
+                <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+                    <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                      <header class="header1">
+                        <div class="xSmall">
+                                   <p class="layer">2</p>
+                                    </div>
+                        <span class="status">Act1023</span>
+                          <div class="status1"><p class="status2">Active</p></div>
+                            </header>
+                              <div class="project-content">
+                                <p class="content"> Product design for dell enterprise Solution</p>
+                               <span> <img class="signuser" src="/assets/images/images.png"></span>
+                              </div>
+                                <div class="footer1">
+                                  <div class="row footer2">
+                                    <div class="col-lg-4  col-md-4 col-sm-4">
+                                      <p class="Assigned">Assigned by</p>
+                                          <img class="profileIcon" src="/assets/images/gk.png">
+                                    </div>
+                                      <div class="col-lg-4  col-md-4 col-sm-4">
+                                        <p class="client">Client</p>
+                                          <img  class="profileIcon1" src="/assets/images/dell.png">
+                                      </div>
+                                        <div class="col-lg-4  col-md-4 col-sm-4">
+                                          <p class="Enggagement">Next Enggagement</p>
+                                          <p class="date">27,Feb</p>
+                                        </div>
+                                  </div>
+                                </div>
+                    </div>
+                  </div> 
+ 
+
+                            
+            </div>
+          </div>
+        </div>
+
+        <!--popup -->
+
 
 </div>
 

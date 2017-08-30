@@ -12,6 +12,8 @@ import { Observable } from 'rxjs/Rx';
 export class LeadComponent implements OnInit {
  lead:any={};
 files = [];
+attfileTest="Attach file";
+filesToUpload=[];
   constructor(private _http:Http) { }
    token="";
      submit(){
@@ -44,8 +46,8 @@ files = [];
     // }
 //}
 
-fileChange(fileInput: any) {
-    let  FileList= <Array<File>>fileInput.target.files;
+upload() {
+    let  FileList= <Array<File>>this.filesToUpload;
     const formData: any = new FormData();
     const files: Array<File> = FileList;
     console.log(files);
@@ -55,6 +57,7 @@ fileChange(fileInput: any) {
         this.files.push(files[i]['name']);
     }
     console.log(this.files);
+    this.attfileTest=this.files.length+" files attached"
     console.log('form data variable :   '+ formData.toString());
     // formData.append("uploads[]", files[0], files[0]['name']);
 
@@ -65,8 +68,13 @@ fileChange(fileInput: any) {
 
 
   ngOnInit() {
+    this.attfileTest="Attach file";
   }
-
+fileChange(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+    //this.product.photo = fileInput.target.files[0]['name'];
+    
+}
 }
 
 
@@ -87,7 +95,3 @@ fileChange(fileInput: any) {
 //         .subscribe(files => console.log('files', files))
 // }
 
-// fileChangeEvent(fileInput: any) {
-//     this.filesToUpload = <Array<File>>fileInput.target.files;
-//     //this.product.photo = fileInput.target.files[0]['name'];
-// }

@@ -11,6 +11,8 @@ export class WorkbenchComponent implements OnInit {
   resempdata=[];
    viewleaddata=[];
   lead:any={};
+  overlayToggle=false;
+  
   shornameinlead="";
   constructor(private _leadService:leadService,private router:Router) { }
    getlead(){
@@ -31,6 +33,15 @@ viewLead(leadId){
            console.log(this.viewleaddata);   
        });
 }
+
+mouseEnter(){
+   this.overlayToggle=true;
+}
+
+mouseLeave(){
+   this.overlayToggle=false;
+}
+
   ngOnInit() {
     this.getlead();
     this.shornameinlead=localStorage.getItem('shortname');

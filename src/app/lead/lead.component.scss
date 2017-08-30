@@ -226,3 +226,54 @@ margin-left: 30px;
 }
 
 
+// upload file css
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+
+//schedule meeting component
+.locationinput{
+  border: none;
+  border-bottom: 1px solid #268a77;
+  outline: none;
+  box-shadow: none;
+  width: 118px;
+  padding-top: 10px;
+}
+
+
+.marginBottm{
+    margin-bottom:25px;
+}
+
+// .popover.bottom{
+//   max-width: 400px !important;
+// }
+.selectTime{
+   border: none;
+    background: #fff;
+    border-bottom: 1px solid #268a77;
+    outline: none;
+    width: 118px;
+    margin-left: 4px;
+    padding-bottom: 1.5px;
+}
+
+.scheduleBtn{
+   margin-top:21px;
+}

@@ -11,7 +11,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
  export class AppService{
-     private _url:string='http://172.16.0.30:8080/';
+     private _url:string='http://139.59.43.188:8081/';
      constructor(private _http:Http){
 
      }

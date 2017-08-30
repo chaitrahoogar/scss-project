@@ -15,7 +15,10 @@ import { HttpModule } from '@angular/http';
 import { WorkbenchComponent } from './workbench/workbench.component';
 import { UpdatepasswordComponent } from './updatepassword/updatepassword.component';
 import { MessagePageComponent } from './message-page/message-page.component';
-
+import { FilterPipe } from './component-repository/component-repository.component';
+import { DatepickerModule } from 'angular2-material-datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PopoverModule } from 'ng2-popover';
 @NgModule({
     declarations: [
     AppComponent,
@@ -29,13 +32,17 @@ import { MessagePageComponent } from './message-page/message-page.component';
     EqualValidator,
     WorkbenchComponent,
     UpdatepasswordComponent,
-    MessagePageComponent
+    MessagePageComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     appRouterModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    DatepickerModule,
+    BrowserAnimationsModule,
+    PopoverModule
   ],
   providers: [],
   bootstrap: [AppComponent]
