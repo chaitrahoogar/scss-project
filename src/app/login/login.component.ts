@@ -43,6 +43,7 @@ export class LogInComponent implements OnInit {
            this._appservice.serviceMethod(this.login).subscribe((response) => { 
                this.resempdata=response;
               localStorage.setItem('shortname',response.ShortName);
+              // localStorage.setItem('Role',response.ShortName);
                if(response.status=="fail"){
                     this.router.navigateByUrl('/login');
                }

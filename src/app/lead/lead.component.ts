@@ -14,6 +14,9 @@ export class LeadComponent implements OnInit {
 files = [];
 attfileTest="Attach file";
 filesToUpload=[];
+formData: any = new FormData();
+FileList=[];
+files1=[];
   constructor(private _http:Http) { }
    token="";
      submit(){
@@ -47,21 +50,10 @@ filesToUpload=[];
 //}
 
 upload() {
-    let  FileList= <Array<File>>this.filesToUpload;
-    const formData: any = new FormData();
-    const files: Array<File> = FileList;
-    console.log(files);
-
-    for(let i =0; i < files.length; i++){
-        formData.append(files[i]['name'],files[i]);
-        this.files.push(files[i]['name']);
-    }
-    console.log(this.files);
-    this.attfileTest=this.files.length+" files attached"
-    console.log('form data variable :   '+ formData.toString());
+    
     // formData.append("uploads[]", files[0], files[0]['name']);
 
-        this._http.post('http://localhost:3003/upload', formData)
+        this._http.post('http://localhost:3003/upload', this.formData)
         .map(files => files.json())
         .subscribe(files => console.log('files', files))
 }
@@ -73,7 +65,29 @@ upload() {
 fileChange(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files;
     //this.product.photo = fileInput.target.files[0]['name'];
+    this.FileList= <Array<File>>this.filesToUpload;
     
+     this.files1= this.FileList;
+    console.log(this.files1);
+
+    for(let i =0; i < this.files1.length; i++){
+        this.formData.append(this.files1[i]['name'],this.files1[i]);
+        this.files.push(this.files1[i]['name']);
+    }
+    console.log(this.files);
+    this.attfileTest=this.files.length+" files attached"
+    // console.log('form data variable :   '+ this.formData.toString());
+    
+}
+deleteFile(filename){
+console.log(filename);
+  for(var i = 0; i < this.FileList.length; i++) {
+     if (this.FileList[i]['name'] == filename) {
+       
+      } 
+  //  delete this.FileList[i][filename];
+}
+console.log(this.FileList);
 }
 }
 

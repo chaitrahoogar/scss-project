@@ -95,7 +95,7 @@
 </div>
 <div>
     <ul>
-        <li *ngFor='let filename of this.files'>{{filename}}</li>
+        <li *ngFor='let filename of this.files' (click)="deleteFile(filename)">{{filename}}</li>
     </ul>
 </div>
 

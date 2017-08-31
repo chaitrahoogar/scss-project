@@ -454,13 +454,13 @@
 
 <!--pop up strats-->
 
-<div class="modal fade" id="exampleModal"  role="dialog" >
+<div class="modal" id="exampleModal"  role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
          <span class="status">{{this.viewleaddata.LeadID}}</span>
          <span>  <img  class="profileIcon1" src="/assets/images/dell.png"></span>
-          <span>Dell India
+          <span>{{this.viewleaddata.ClientName}}
          
           </span>
         
@@ -477,8 +477,11 @@
           <div class="col-lg-8 col-md-8 col-sm-8 content1">
                 
                   <ul class="nav nav-pills chatheader">
-                    <li class="active naturalButtonMedium"><a data-toggle="pill" href="#home1">Conversion</a></li>
-                    <li class="naturalButtonMedium"><a data-toggle="pill" href="#menu03">Requirement</a></li>
+                      <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#home1">Conversion</a></li>
+                    
+                      <li><a  class="btn btn-large subscribed" data-toggle="pill" href="#menu03">Requirement</a></li>
+                    
+                   
                    
                   </ul>
                   
@@ -520,139 +523,300 @@
                                     </p>
                                 </div>
                             </li>
-                            <li class="right clearfix"><span class="chat-img pull-right">
+                         
+                             <li class="right clearfix"><span class="chat-img pull-right">
                                 <span class="invite2">SH</span> 
                             </span>
-                                <div class="chat-body clearfix">
-                                    
-                                    <p>
-                                        Lorem ipsum dolor sit amet. Curabitur bibendum ornare
-                                       
-                                    </p>
+                                <div class="meetingShedule">
+                                
+                                  <div class="maindiv">
+                                    <div class="firstdiv">
+                                        <div class="date1">
+                                            14
+                                          </div>
+                                          <div class="month-time">
+                                          <div class="month">
+                                             August 2017
+                                            </div>
+                                            <div class="time">
+                                               12 AM
+                                               </div>
+                                          </div>
+                                    </div>
+                                     <div class="seconddiv">
+                                        <div class="company">
+                                           DEll EMC
+                                           </div>
+                                           <div class="place">
+                                             Kormanglla
+                                              </div>
+                                        
+                                      </div>
+                                  </div>
+                                 
+                                  <div class="maindiv2" >
+                                      <div class="div11">
+                                        <div class="shedule">
+                                          Reshedule
+                                        </div>
+                                      </div>
+                                      <div class="div22">
+                                          <div class="cancel">
+                                            cancel
+                                          </div>
+                                        </div>
+                                     
+                                      </div>
                                 </div>
                             </li>
                         </ul>
-                     
-                    </div>
-                    
-                    
-                <div id="menu03" class="tab-pane fade">                     
-                    <span class="tittle">Requirements title ?</span>
-                    <br>
-                   
-                      <div class="div1">
-                        <h4>Position</h4>
-                        <input type="text" class="text1" name="validate-optional"  placeholder="input text">
-                      </div>
-                      <div class="div2">
-                        <h4>Estimate time</h4>
-                        <input type="text" class="text1" name="validate-optional"  placeholder="input text">
-                      </div>
-                      <div class="div3">
-                          <h4>Skill</h4>
-                          <input type="text" class="text1" name="validate-optional"  placeholder="input text">
-                        </div>
-                        <div class="div4">
-                            <h4>Budget</h4>
-                            <input type="text" class="text1" name="validate-optional"  placeholder="input text">
+                        <div class="dropdown conversation_type">
+                            <div  data-toggle="dropdown" class="select">{{reqCOnversation}} 
+                              <span   class="glyphicon glyphicon-chevron-up  "></span>
+                            </div>
+                           
+                                <ul class="dropdown-menu  ">
+                                    <li class="disabled" ><a style="cursor: default;">Conversation Type</a></li>
+                                    <li class="divide" (click)="changeConversation('Telephonic')">Telephonic</li>
+                                    <li class="divide"   (click)="changeConversation('Face to Face')">Face to Face </li>
+                                    <li class="divide"   (click)="changeConversation('Email')"> Email</li>
+                                    
+                                  
+                                </ul>
+                          </div> 
+                          <div class="sendicon">
+                              <span class="glyphicon glyphicon-send"></span> 
                           </div>
+                            <div class="send_message">
+                                <textarea id="btn-input" type="text" class="sendText" placeholder="Write a message..."></textarea>
+                        </div>
+                        <span class="glyphicon glyphicon-paperclip" style="float:right"></span>
+                        <span class="glyphicon glyphicon-calendar"  style="float:right;margin-right:15px"></span>
                     </div>
-                  </div>
 
+
+
+
+                                       
+                <div id="menu03" class="tab-pane fade">
+
+                    <div class="panel-group"  id="accordion" role="tablist" aria-multiselectable="true" style="padding-left:35px;">
+                        
+                                <div class="panel ">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                               <span>DEVOPS</span>
+                                               <span style="float:right; margin-right:20px;">REQ00112</span>
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapseOne" class="panel-collapse collapse accordianmargin" role="tabpanel" aria-labelledby="headingOne">
+
+                                        <div class="row">
+                                            <div class="col-md-6" >
+                                              <h5 class="positiontext">position</h5>
+                                                <div class="value1"> 
+                                                    <input type="text" [ngClass]="{'red-border1-class':!name.valid && !name.pristine}" class="inputText1" placeholder="input text" id="name" required name="name" [(ngModel)] = "model.name" #name="ngModel"/>
+                                                       <div [hidden]="name.valid || name.pristine" class="reqAlert1">
+                                                        input required
+                                                      </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h5 class="timetext">Estimate time</h5>
+                                                <div class="value2">  
+                                                    <input type="text1" [ngClass]="{'red-border1-class':!text1.valid && !text1.pristine}"  placeholder="input text" class="inputText1" id="text1" required name="text1" [(ngModel)] = "model.text1" #text1="ngModel"/>
+                                                     <div [hidden]="text1.valid || text1.pristine" class="reqAlert1">
+                                                        input required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6" >
+                                                    <h5 class="positiontext">Skill</h5>
+                                                      <div class="value1"> 
+                                                          <input type="text" [ngClass]="{'red-border1-class':!text2.valid && !text2.pristine}"  placeholder="input text" class="inputText1" id="text2" required name="text2" [(ngModel)] = "model.text2" #text2="ngModel"/>
+                                                            <div [hidden]="text2.valid || text2.pristine" class="reqAlert1">
+                                                               input required
+                                                            </div>  
+                                                      </div>
+                                                  </div>
+                             
+                                                  <div class="col-md-6" >
+                                                      <h5 class="timetext">Budget</h5>
+                                                        <div class="value2"> 
+                                                          <input type="text" [ngClass]="{'red-border1-class':!text3.valid && !text3.pristine}" placeholder="input text" class="inputText1" id="text3" required name="text3" [(ngModel)] = "model.text3" #text3="ngModel"/>
+                                                              <div [hidden]="text3.valid || text3.pristine" class="reqAlert1">
+                                                               input required
+                                                             </div>  
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                    </div>
+                                </div>
+                     
+                            </div><!-- panel-group -->
+                            
+                            
+                        
+      <form> 
+                    <input type="text" class="tittle" placeholder="Requirements title ?"/>
+            <div class="mainText">
+                    <div class="row">
+                    <div class="col-md-6" >
+                      <h5 class="positiontext">position</h5>
+                        <div class="value1"> 
+                            <input type="text" [ngClass]="{'red-border1-class':!name.valid && !name.pristine}" class="inputText1" placeholder="input text" id="name" required name="name" [(ngModel)] = "model.name" #name="ngModel"/>
+                               <div [hidden]="name.valid || name.pristine" class="reqAlert1">
+                                input required
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="timetext">Estimate time</h5>
+                        <div class="value2">  
+                            <input type="text1" [ngClass]="{'red-border1-class':!text1.valid && !text1.pristine}"  placeholder="input text" class="inputText1" id="text1" required name="text1" [(ngModel)] = "model.text1" #text1="ngModel"/>
+                             <div [hidden]="text1.valid || text1.pristine" class="reqAlert1">
+                                input required
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6" >
+                        <h5 class="positiontext">Skill</h5>
+                          <div class="value1"> 
+                              <input type="text" [ngClass]="{'red-border1-class':!text2.valid && !text2.pristine}"  placeholder="input text" class="inputText1" id="text2" required name="text2" [(ngModel)] = "model.text2" #text2="ngModel"/>
+                                <div [hidden]="text2.valid || text2.pristine" class="reqAlert1">
+                                   input required
+                                </div>  
+                          </div>
+                      </div>
+ 
+                      <div class="col-md-6" >
+                          <h5 class="timetext">Budget</h5>
+                            <div class="value2"> 
+                              <input type="text" [ngClass]="{'red-border1-class':!text3.valid && !text3.pristine}" placeholder="input text" class="inputText1" id="text3" required name="text3" [(ngModel)] = "model.text3" #text3="ngModel"/>
+                                  <div [hidden]="text3.valid || text3.pristine" class="reqAlert1">
+                                   input required
+                                 </div>  
+                            </div>
+                        </div>
+                    </div>
+            </div>
+                            <button type="button" value=" Send" class="btn btn-success publish" type="submit"  id="submit">Publish</button>
+           </form>         
+                    </div> 
+                  </div>
           </div>
 
 
            <div class="col-lg-4 col-md-4 col-sm-4 content2"> 
               <div class="project-content">
-                  <p class="content"> Product design for dell enterprise Solution.</p>
+                  <p class="productDesign">{{this.viewleaddata.Title}}</p>
                  <span> <img class="signuserpopup" src="/assets/images/images.png"></span>
                 </div> 
                 <div class="col-lg-6  col-md-6 col-sm-6">
-                    <p class="Assigned">Assigned by</p>
+                    <p class="AssignedBy">Assigned by</p>
                         <img class="profileIcon" src="/assets/images/gk.png">
                   </div>
-                    <div class="col-lg-6  col-md-6 col-sm-6">
-                      <p class="client">Business Stream</p>
-                    
+              <div class="col-lg-6  col-md-6 col-sm-6">
+                  <p class="businessStream">Business Stream</p>
 
-                    <select class="form-control businessStream"> 
-                        <option class="disabled" value="-1" >Business</option>
-                        <option  selected="selected" value="0" style="border-bottom: 1px solid red;">SOW</option>
-                        <option value="1">Staffing</option>
-                        <option value="2">Little Barhma</option>
-                    </select><span class="glyphicon glyphicon-chevron-down down1 "></span>
+                    <div class="dropdown business">
+                  <div class="business1" data-toggle="dropdown">{{this.viewleaddata.BusinessUnit}}
+                        <span   class="glyphicon glyphicon-chevron-down  "></span>
+                      </div>
+                          <ul class="dropdown-menu business_drop ">
+                              <li class="disabled" ><a style="cursor: default;">Business</a></li>
+                              <li class="divide"  (click)="changeBusiness('SOW')">SOW</li>
+                              <li class="divide"  (click)="changeBusiness('Staffing')">Staffing</li>
+                            <li class="divide1"  (click)="changeBusiness('Little Bharmha')">Little Bharmha</li>
+                          </ul>
+                    </div> 
+                   
                                        
-                    </div>
+              </div>
                     
-                  <div class="row main_container">
+                  <div class="row ">
                     <div class="col-lg-12 col-md-12 col-sm-12 side1">
                           <div class="btn-pref btn-group btn-group-justified btn-group-lg activity" role="group" >
                        
                         <span class="btn-group activity" role="group">
                           <div class="feel">Feel</div>
-                            <select class="form-control businessStream">
-                              <option class="disabled" value="-1" >Feel</option>
-                              <option selected="selected" value="0">Warm</option>
-                              <option value="1">Hot</option>
-                              <option value="2">Cold </option>
-                          </select>
+                          <div class="dropdown">
+                              <div  data-toggle="dropdown" style="cursor:pointer" [ngClass]="{'hot': reqFeel=='Hot', 'warm': reqFeel=='Warm', 'cold': reqFeel=='Cold'}">{{this.viewleaddata.LeadFeel}}
+                                
+                              </div>
+                                  <ul class="dropdown-menu business_drop ">
+                                      <li class="disabled" ><a style="cursor: default;">Status</a></li>
+                                      <li class="divide "(click)="changeFeel('Hot')"> <div class="hot"><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Hot</span></div> </li>
+                                      <li class="divide " (click)="changeFeel('Warm')"><div class="warm"><span class="glyphicon glyphicon-adjust feelicon "></span><span class="feeltext" >Warm</span></div></li>       
+                                    <li class="divide1 "(click)="changeFeel('Cold')"><div class="cold" ><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Cold</span></div></li>
+                                  </ul>
+                            </div> 
                         </span>
                         <span class="btn-group activity" role="group">
                             <div class="feel">Status</div>
+                            <div class="dropdown">
+                                <div  data-toggle="dropdown"  style="cursor:pointer">{{this.viewleaddata.LeadCurrentStatus}} 
+                                  <span   class="glyphicon glyphicon-chevron-down  "></span>
+                                </div>
+                                    <ul class="dropdown-menu business_drop ">
+                                        <li class="disabled" ><a style="cursor: default;">Status</a></li>
+                                        <li class="divide" (click)="changeStatus('Active')">Active</li>
+                                        <li class="divide"   (click)="changeStatus('Dormant')">Dormant </li>
+                                        <li class="divide"  (click)="changeStatus('Freeze')">Freeze </li>
+                                        <li class="divide"  (click)="changeStatus('Rejected')">Rejected </li>
+                                        <li class="divide1"  (click)="changeStatus('Dropped')">Dropped </li>
+                                      
+                                    </ul>
+                              </div> 
                     
-                            <select class="form-control businessStream"> 
-                              <option class="disabled" value="-1" >status</option>
-                              <option selected="selected" value="0">Active</option>
-                              <option value="1">Dormant</option>
-                              <option value="2">Freeze</option>
-                              <option value="2">Rejected</option>
-                              <option value="2">Dropped</option>
-                          </select><span class="glyphicon glyphicon-chevron-down down2 "></span>
-                          </span>
+                          
+                        </span>
                           <span class="btn-group activity" role="group">
                               <div class="feel">Revenue</div>
-                      
-                    <select class="form-control businessStream"> 
-                      <option class="disabled" value="-1" >Business</option>
-                      <option selected="selected" value="0">Jackpot</option>
-                      <option value="1">High value</option>
-                      <option value="2">Low value</option>
-                  </select><span class="glyphicon glyphicon-chevron-down down2 "></span>
+                              <div class="dropdown">
+                                  <div  data-toggle="dropdown"  style="cursor:pointer">{{this.viewleaddata.LeadRevenue}}
+                                    <span   class="glyphicon glyphicon-chevron-down  "></span>
+                                  </div>
+                                      <ul class="dropdown-menu business_drop ">
+                                          <li class="disabled" ><a style="cursor: default;">Status</a></li>
+                                          <li class="divide" (click)="changeRevenue('JP')">Jackpot</li>
+                                          <li class="divide" (click)="changeRevenue('HV')">High value </li>
+                                        <li class="divide1"(click)="changeRevenue('LV')">Low Value </li>
+                                         
+                                        
+                                      </ul>
+                                </div>     
+                  
                             </span>
                           
                     </div>
                     </div>
                   <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
                     <h5>Client Contact</h5>
-                     <button class="tagDefault tagicon">
-                         <span> <img src="/assets/images/user1.svg"></span>
-                          Tag label
-                   
-                          <img class="fatime" src="/assets/images/delete.svg">
-                      </button>
-                         <button class="tagDefault tagicon" style="margin-left:17px">
-                         <span> <img src="/assets/images/user1.svg"></span>
-                          Tag label
-                         
-                          <img class="fatime" src="/assets/images/delete.svg">
-                      </button>
-                         <button class="tagDefault tagicon" style="margin-top:10px">
-                         <span> <img src="/assets/images/user1.svg"></span>
-                          Tag label
-                         
-                          <img class="fatime" src="/assets/images/delete.svg">
-                      </button>
-                  </div>
-                     <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
-                      <h5>Tag</h5>
-                        <button class="tagDefault">Tag label
-                          
-                            <img class="fatime" src="/assets/images/delete.svg">
-                        </button> 
-                        <button class="tagDefault" style="margin-left:17px">Tag label
+                     <button class="tagDefault" style="margin-left:17px" *ngFor="let clientcontanct of this.viewleaddata.ClientContact">{{clientcontanct.ContactName}}
                           
                              <img class="fatime" src="/assets/images/delete.svg">
                         </button>
+                     
+                        
+                  </div>
+                     <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
+                      <h5>Tag</h5>
+                        <button class="tagDefault tagicon" *ngFor="let tag of this.viewleaddata.Tags">
+                         <span> <img src="/assets/images/user1.svg"></span>
+                          {{tag.TagName}}
+                   
+                          <img class="fatime" src="/assets/images/delete.svg">
+                      </button> 
+                       
                   </div>
                       <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
                         <h5>Requirement Details</h5>
