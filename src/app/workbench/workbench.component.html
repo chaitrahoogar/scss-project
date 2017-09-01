@@ -295,7 +295,7 @@
       </div>
     </div>
 
-  <div *ngIf="this.resempdata.length!=0">
+  <div *ngIf="this.resempdata.length!=0 && this.role==Sales_Rep">
 <!--<div>-->
 <div class="row main_container container-fluid tabs">
    
@@ -663,15 +663,15 @@
                             
                             
                         
-      <form> 
+      <form (ngSubmit)="requirement(this.viewleaddata.LeadID)" #f="ngForm" novalidate> 
                     <input type="text" class="tittle" placeholder="Requirements title ?"/>
             <div class="mainText">
                     <div class="row">
                     <div class="col-md-6" >
                       <h5 class="positiontext">position</h5>
                         <div class="value1"> 
-                            <input type="text" [ngClass]="{'red-border1-class':!name.valid && !name.pristine}" class="inputText1" placeholder="input text" id="name" required name="name" [(ngModel)] = "model.name" #name="ngModel"/>
-                               <div [hidden]="name.valid || name.pristine" class="reqAlert1">
+                            <input type="text" [ngClass]="{'red-border1-class':!Positions.valid && !Positions.pristine}" class="inputText1" placeholder="input text" id="Positions" required name="Positions" [(ngModel)] = "model.Positions" #Positions="ngModel"/>
+                               <div [hidden]="Positions.valid || Positions.pristine" class="reqAlert1">
                                 input required
                               </div>
                         </div>
@@ -679,8 +679,8 @@
                     <div class="col-md-6">
                         <h5 class="timetext">Estimate time</h5>
                         <div class="value2">  
-                            <input type="text1" [ngClass]="{'red-border1-class':!text1.valid && !text1.pristine}"  placeholder="input text" class="inputText1" id="text1" required name="text1" [(ngModel)] = "model.text1" #text1="ngModel"/>
-                             <div [hidden]="text1.valid || text1.pristine" class="reqAlert1">
+                            <input type="text" [ngClass]="{'red-border1-class':!EstimateTime.valid && !EstimateTime.pristine}"  placeholder="input text" class="inputText1" id="EstimateTime" required name="EstimateTime" [(ngModel)] = "model.EstimateTime" #EstimateTime="ngModel"/>
+                             <div [hidden]="EstimateTime.valid || EstimateTime.pristine" class="reqAlert1">
                                 input required
                             </div>
                         </div>
@@ -708,7 +708,7 @@
                         </div>
                     </div>
             </div>
-                            <button type="button" value=" Send" class="btn btn-success publish" type="submit"  id="submit">Publish</button>
+                            <button type="submit" value=" Send" class="btn btn-success publish" type="submit"  id="submit">Publish</button>
            </form>         
                     </div> 
                   </div>
@@ -834,7 +834,7 @@
 <!--for manger tab-->
 
 
-<div>
+<div *ngIf="this.resempdata.length!=0 && this.role==Manager">
 <!--<div>-->
 <div class="row main_container container-fluid tabs">
    

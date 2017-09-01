@@ -12,10 +12,12 @@ export class WorkbenchComponent implements OnInit {
    viewleaddata=[];
   lead:any={};
   overlayToggle=false;
- 
+ skills=[];
   shornameinlead="";
    model={};
   show=false;
+  role="";
+  token="";
 tags={};
   //code
    searchValue:string = '';
@@ -59,6 +61,7 @@ tags={};
 }
 logout(){
          this.router.navigateByUrl('/login');
+        //  localStorage.removeItem('Role');
 }
 viewLead(leadId){
   console.log(leadId);
@@ -70,6 +73,9 @@ viewLead(leadId){
           // console.log(response.lead.Tags)
           // this.tags=response.lead.Tags;
        });
+}
+requirement(id){
+    console.log(this.model);
 }
 
 mouseEnter(){
@@ -83,6 +89,9 @@ mouseLeave(){
   ngOnInit() {
     this.getlead();
     this.shornameinlead=localStorage.getItem('shortname');
+    this.role=localStorage.getItem('Role');
+    this.token=localStorage.getItem('token');
+  //  console.log(this.token);
   }
 
 }
