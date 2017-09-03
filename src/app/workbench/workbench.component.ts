@@ -9,16 +9,21 @@ import { Router } from '@angular/router';
 })
 export class WorkbenchComponent implements OnInit {
   resempdata=[];
-   viewleaddata=[];
+  viewleaddata=[];
   lead:any={};
   overlayToggle=false;
- skills=[];
+  skills=[];
   shornameinlead="";
-   model={};
+  model={};
   show=false;
   role="";
   token="";
-tags={};
+  SkillsRequired="";
+  position="";
+  Budget="";
+  Estimatetime="";
+  title=""
+  tags={};
   //code
    searchValue:string = '';
   reqStatus='Active';
@@ -69,13 +74,26 @@ viewLead(leadId){
                this.viewleaddata=response.lead;
                
            console.log(this.viewleaddata);
-          //  this.reqStatus= response.lead.
-          // console.log(response.lead.Tags)
-          // this.tags=response.lead.Tags;
        });
 }
 requirement(id){
-    console.log(this.model);
+    // console.log(this.model);
+   let value= {
+    "_id":id,
+    "ReqDetails":{
+                 "Title": this.title,
+                "Positions": this.position,
+                "EstimateTime":this.Estimatetime,
+                "Budget": this.position,
+                "SkillsRequired": [
+                    this.SkillsRequired
+                ]
+            }
+    }
+ this._leadService.requirementService(id).subscribe((response) => { 
+               console.log(response)
+               
+       });
 }
 
 mouseEnter(){
@@ -84,6 +102,30 @@ mouseEnter(){
 
 mouseLeave(){
    this.overlayToggle=false;
+}
+
+schedule(Scheduledate,ScheduleTime,ScheduleLocation){
+  var data=new Date(Scheduledate);
+  
+  var day = data.getDate();
+  var monthIndex = data.getMonth();
+  var year = data.getFullYear();
+  monthIndex=monthIndex+1;
+   console.log(year+"/"+monthIndex+"/"+day);
+   
+    var scheduleData= {
+    "_id": "59aa7733758a804138f2718d",
+    "Meeting": {
+       "MeetingVenue": ScheduleLocation,
+        "ScheduleDate": data,
+        "ScheduleTime":ScheduleTime,
+        }
+   }
+  // console.log(scheduleData);
+  this._leadService.ScheduleMeetingService(scheduleData).subscribe((response) => { 
+               console.log(response)
+               
+       });
 }
 
   ngOnInit() {

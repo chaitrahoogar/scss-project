@@ -50,13 +50,10 @@ files1=[];
 //}
 
 upload() {
-    
-    // formData.append("uploads[]", files[0], files[0]['name']);
+  console.log(this.files1.length);
         for(let i =0; i < this.files1.length; i++){
-        this.formData.append(this.files1[i]['name'],this.files1[i]);
-      
+          this.formData.append(this.files1[i]['name'],this.files1[i]);
         }
-    
         this._http.post('http://localhost:3003/upload', this.formData)
         .map(files => files.json())
         .subscribe(files => console.log('files', files))
@@ -75,48 +72,35 @@ upload() {
   }
 fileChange(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files;
-    //this.product.photo = fileInput.target.files[0]['name'];
     this.FileList= <Array<File>>this.filesToUpload;
-    
-     this.files1= Array.from(this.FileList);
-     //let fileArray = Array.from(this.FileList);
+    // this.files1= Array.from(this.FileList);
+    for(let i =0; i < this.FileList.length; i++){
+        this.files1.push(this.FileList[i]);
+    }
+     this.files=[];
     console.log(this.files1);
-for(let i =0; i < this.files1.length; i++){
-        //this.formData.append(this.files1[i]['name'],this.files1[i]);
-        this.files.push(this.files1[i]['name']);
-        }
-    
-    console.log(this.FileList);
+    for(let i =0; i < this.files1.length; i++){
+         this.files.push(this.files1[i]['name']);
+    }
     this.attfileTest=this.files1.length+" files attached"
-    // console.log('form data variable :   '+ this.formData.toString());
-    
 }
+
 deleteFile(filename){
 console.log(filename);
-//  let nameof=[this.FileList]
-//  console.log();
-   
   for(var i = 0; i < this.files1.length; i++) {
-   
      if (this.files1[i]['name'] == filename) {
          this.files1.splice(i, 1);
-    console.log(this.files1);
-      
-      
       } 
       console.log(this.files1.length);
-   
-    
-  //  delete this.FileList[i][filename];
 }
 this.files=[];
 for(let i =0; i < this.files1.length; i++){
-        //this.formData.append(this.files1[i]['name'],this.files1[i]);
         this.files.push(this.files1[i]['name']);
       }
       this.attfileTest=this.files1.length+" files attached"
     console.log(this.files1);
-} arr = [{id:84}, {id:92}, {id:123}, {id:2353}]
+} 
+arr = [{id:84}, {id:92}, {id:123}, {id:2353}]
 
 }
 

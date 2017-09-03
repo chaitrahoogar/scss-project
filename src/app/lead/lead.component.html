@@ -44,6 +44,15 @@
                 placement="bottom"
                 [animation]="true" 
                 [closeOnClickOutside]="true" >
+ <div class="row" *ngFor='let filename of this.files'>
+                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                         <p>{{filename}}</p>
+                     </div>
+                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" (click)="deleteFile(filename)">
+                       <p><img src="/assets/images/rubbish-bin.png"></p>
+                     </div>
+                </div>
+               
     <div class="fileUpload btn naturalButtonsmall">
       <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
                 <g>
@@ -54,10 +63,10 @@
                 </g>
                 </svg></span>
                <span class="iconBtnText">{{this.attfileTest}}</span> 
-    <input class="upload" id="uploadBtn" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx" multiple>
+    <input class="upload" id="uploadBtn" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.png,.svg" multiple>
     
 </div>
-<div><button (click)="upload()">upload</button></div>
+<!--<div><button (click)="upload()">upload</button></div>-->
 </popover-content>
 
 
@@ -71,7 +80,7 @@
                   </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
                 </g>
                 </svg></span>
-               <span class="iconBtnText">Attach file</span> 
+               <span class="iconBtnText">{{this.attfileTest}}</span> 
             </button>
 <!--Attach file ends-->
  <!--<input type="button" class="buttonMedium" value="Add Lead" data-toggle="modal" data-target="#myModal">
@@ -80,7 +89,7 @@
 <img src="/assets/images/lead.svg" class="changeimgheight"/>
 </div>-->
 
-
+<!--
 <div class="fileUpload btn naturalButtonsmall">
       <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
                 <g>
@@ -92,12 +101,12 @@
                 </svg></span>
                <span class="iconBtnText">{{this.attfileTest}}</span> 
     <input class="upload" id="uploadBtn" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx" multiple>
-</div>
-<div>
+</div>-->
+<!--<div>
     <ul>
         <li *ngFor='let filename of this.files' (click)="deleteFile(filename)">{{filename}}</li>
     </ul>
-</div>
+</div>-->
 
 <div class="modal" id="myModal" role="dialog" tabindex="-1" data-focus-on="input:first">
     <div class="popup-dialog">

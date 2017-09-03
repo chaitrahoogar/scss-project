@@ -590,8 +590,38 @@
                             <div class="send_message">
                                 <textarea id="btn-input" type="text" class="sendText" placeholder="Write a message..."></textarea>
                         </div>
-                        <span class="glyphicon glyphicon-paperclip" style="float:right"></span>
-                        <span class="glyphicon glyphicon-calendar"  style="float:right;margin-right:15px"></span>
+                        <div class="calender">
+                          <span class="glyphicon glyphicon-paperclip" style="margin-right:10px"></span>
+                          <span  style="margin-right:15px;cursor:pointer"><div class="glyphicon glyphicon-calendar calenderSchedule" [popover]="myPopover"></div></span>
+                        </div>
+                        <popover-content #myPopover 
+                                placement="top"
+                                [animation]="true" 
+                                [closeOnClickOutside]="true" >
+                <div class="marginBottm">               
+                    <input type=text placeholder="location" class="locationinput" [(ngModel)] = "ScheduleLocation">  
+                    <select class="selectTime" [(ngModel)] = "ScheduleTime">
+                          <option>12:00AM</option>
+                          <option>12:30AM</option>
+                          <option>1:00AM</option>
+                          <option>1:30AM</option>
+                          <option>2:00AM</option>
+                          <option>2:30AM</option>
+                          <option>12:00AM</option>
+                          <option>12:30AM</option>
+                          <option>1:00AM</option>
+                          <option>1:30AM</option>
+                          <option>2:00AM</option>
+                          <option>2:30AM</option>
+                          <!--<option>2</option>
+                          <option>2</option>
+                          <option>2</option>
+                          <option>2</option>-->
+                    </select>  
+                </div>           
+                    <material-datepicker [(date)]="yourModelDate"></material-datepicker>
+                    <input type="button" class="brandblue scheduleBtn" value="Schedule" (click)="schedule(yourModelDate,ScheduleTime,ScheduleLocation)">
+                </popover-content>
                     </div>
 
 
@@ -663,14 +693,14 @@
                             
                             
                         
-      <form (ngSubmit)="requirement(this.viewleaddata.LeadID)" #f="ngForm" novalidate> 
-                    <input type="text" class="tittle" placeholder="Requirements title ?"/>
+      <form (ngSubmit)="requirement(this.viewleaddata._id)" #f="ngForm" novalidate> 
+                    <input type="text" class="tittle" placeholder="Requirements title ?" id="title" required name="title" [(ngModel)] = "this.title"/>
             <div class="mainText">
                     <div class="row">
                     <div class="col-md-6" >
                       <h5 class="positiontext">position</h5>
                         <div class="value1"> 
-                            <input type="text" [ngClass]="{'red-border1-class':!Positions.valid && !Positions.pristine}" class="inputText1" placeholder="input text" id="Positions" required name="Positions" [(ngModel)] = "model.Positions" #Positions="ngModel"/>
+                            <input type="text" [ngClass]="{'red-border1-class':!Positions.valid && !Positions.pristine}" class="inputText1" placeholder="input text" id="Positions" required name="position" [(ngModel)] = "this.position" #Positions="ngModel"/>
                                <div [hidden]="Positions.valid || Positions.pristine" class="reqAlert1">
                                 input required
                               </div>
@@ -679,7 +709,7 @@
                     <div class="col-md-6">
                         <h5 class="timetext">Estimate time</h5>
                         <div class="value2">  
-                            <input type="text" [ngClass]="{'red-border1-class':!EstimateTime.valid && !EstimateTime.pristine}"  placeholder="input text" class="inputText1" id="EstimateTime" required name="EstimateTime" [(ngModel)] = "model.EstimateTime" #EstimateTime="ngModel"/>
+                            <input type="text" [ngClass]="{'red-border1-class':!EstimateTime.valid && !EstimateTime.pristine}"  placeholder="input text" class="inputText1" id="Estimatetime" required name="Estimatetime" [(ngModel)] = "this.Estimatetime" #EstimateTime="ngModel"/>
                              <div [hidden]="EstimateTime.valid || EstimateTime.pristine" class="reqAlert1">
                                 input required
                             </div>
@@ -690,7 +720,7 @@
                     <div class="col-md-6" >
                         <h5 class="positiontext">Skill</h5>
                           <div class="value1"> 
-                              <input type="text" [ngClass]="{'red-border1-class':!text2.valid && !text2.pristine}"  placeholder="input text" class="inputText1" id="text2" required name="text2" [(ngModel)] = "model.text2" #text2="ngModel"/>
+                              <input type="text" [ngClass]="{'red-border1-class':!text2.valid && !text2.pristine}"  placeholder="input text" class="inputText1" id="text2" required name="SkillsRequired" [(ngModel)] = "this.SkillsRequired" #text2="ngModel"/>
                                 <div [hidden]="text2.valid || text2.pristine" class="reqAlert1">
                                    input required
                                 </div>  
@@ -700,7 +730,7 @@
                       <div class="col-md-6" >
                           <h5 class="timetext">Budget</h5>
                             <div class="value2"> 
-                              <input type="text" [ngClass]="{'red-border1-class':!text3.valid && !text3.pristine}" placeholder="input text" class="inputText1" id="text3" required name="text3" [(ngModel)] = "model.text3" #text3="ngModel"/>
+                              <input type="text" [ngClass]="{'red-border1-class':!text3.valid && !text3.pristine}" placeholder="input text" class="inputText1" id="text3" required name="Budget" [(ngModel)] = "this.Budget" #text3="ngModel"/>
                                   <div [hidden]="text3.valid || text3.pristine" class="reqAlert1">
                                    input required
                                  </div>  
@@ -801,7 +831,7 @@
                     </div>
                   <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
                     <h5>Client Contact</h5>
-                     <button class="tagDefault" style="margin-left:17px" *ngFor="let clientcontanct of this.viewleaddata.ClientContact">{{clientcontanct.ContactName}}
+                     <button ngif="this.viewleaddata.ClientContact!=0" class="tagDefault" style="margin-left:17px" *ngFor="let clientcontanct of this.viewleaddata.ClientContact">{{clientcontanct.ContactName}}
                           
                              <img class="fatime" src="/assets/images/delete.svg">
                         </button>
@@ -810,7 +840,7 @@
                   </div>
                      <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
                       <h5>Tag</h5>
-                        <button class="tagDefault tagicon" *ngFor="let tag of this.viewleaddata.Tags">
+                        <button ngif="this.viewleaddata.Tags!=0" class="tagDefault tagicon" *ngFor="let tag of this.viewleaddata.Tags">
                          <span> <img src="/assets/images/user1.svg"></span>
                           {{tag.TagName}}
                    
@@ -834,7 +864,7 @@
 <!--for manger tab-->
 
 
-<div *ngIf="this.resempdata.length!=0 && this.role==Manager">
+<div>
 <!--<div>-->
 <div class="row main_container container-fluid tabs">
    

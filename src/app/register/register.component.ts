@@ -38,6 +38,8 @@ export class RegisterComponent implements OnInit {
        this._registerService.registerService(this.register).subscribe((response) => { 
                this.resempdata=response;
                 localStorage.setItem('shortname',response.ShortName);
+                localStorage.removeItem('token');
+                localStorage.setItem('token',response.token);
                console.log(this.resempdata);
                if(response.status=="fail"){
                     this.router.navigateByUrl('/register');
