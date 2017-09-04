@@ -1,4 +1,9 @@
 @import 'src/assets/scss/color.scss';
+
+@font-face 
+{ font-family: "HelveticaNeue"; 
+src: url("/assets/fonts/HelveticaNeueLt.ttf");
+}
 .loginForm{
     width:294px;
     margin: 100px auto;  
@@ -15,6 +20,8 @@
 
 .registertext{
     font-size:24px;
+    color: #002954;                //add
+    font-family: HelveticaNeue;
 }
 
 .registerImage{
@@ -33,4 +40,7 @@
 
 .registerinputText,.regbtn{
    width: 370px;
+}                                                 
+.buttonLarge:hover, .buttonMedium:hover {                      //add new
+     background-color:  #14a98d;
 }

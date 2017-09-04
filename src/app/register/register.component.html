@@ -16,8 +16,13 @@
   </div>
   <div class="col-sm-6 col-md-6 col-lg-6 border-left">
         <form (ngSubmit)="f.form.valid && submitRegister()" class="form-horizontal formmarginLeft" #f="ngForm" novalidate>
+            
             <p class="registertext"> Create Your Profile </p>
-          <div class="value">    
+            <div *ngIf="this.edited==true" class="alert alert-danger alert-dismissable alertdata">
+                {{this.errormessage}}
+                <span class="close" data-dismiss="alert">&times;</span>
+            </div>
+             <div class="value">    
                      <input type="text" [ngClass]="{'red-border-class':!UFirstName.valid && f.submitted}" class="inputText registerinputText" (keydown)="reqfirstName()" id="UFirstName" required name="UFirstName" [(ngModel)] = "register.UFirstName" #UFirstName="ngModel"/>
                   <span class="floating-label" [ngClass]="{'red-class':!UFirstName.valid && f.submitted}">First Name</span>
                    <div  *ngIf="!UFirstName.valid && f.submitted" class="reqAlert">

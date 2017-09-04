@@ -19,6 +19,8 @@ import { FilterPipe } from './component-repository/component-repository.componen
 import { DatepickerModule } from 'angular2-material-datepicker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PopoverModule } from 'ng2-popover';
+import {SearchPeopleComponent} from './component-repository/searchPeople/search-people.component';
+import {SearchComponent} from './component-repository/search/search.component';
 @NgModule({
     declarations: [
     AppComponent,
@@ -33,7 +35,9 @@ import { PopoverModule } from 'ng2-popover';
     WorkbenchComponent,
     UpdatepasswordComponent,
     MessagePageComponent,
-    FilterPipe
+    FilterPipe,
+    SearchPeopleComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -1,13 +1,20 @@
 @import 'src/assets/scss/color.scss';
+@font-face 
+{ font-family: "OpensansRegular"; 
+src: url("/assets/fonts/OpenSans-Regular.ttf");
+}
 .buttonclass{
-    width:400px;
+    width:420px;
     margin: 60px auto; 
     text-align: center; 
 }
-
+.homeImage{            //new class
+    width: 80%;
+}
 .hometext
 {
      font-size:24px;
      color:$blue-green;
+     font-family: OpensansRegular; //add
     
 }

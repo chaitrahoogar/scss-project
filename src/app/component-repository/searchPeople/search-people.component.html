@@ -1,0 +1,26 @@
+<span class="dropdown">
+        <button class="btn btn-default naturalButtonMedium dropdown-toggle" type="button" data-toggle="dropdown">
+            <!-- {{this.invitePeople}} -->
+            Invite People
+        <!-- <span class="caret"></span> -->
+      </button>
+        <ul class="dropdown-menu" style="width:200px">
+          <li> <groome-search  (searchChange)="searchChange($event)"></groome-search>      </li>
+          <li *ngFor="let people of displayList" (click)="putValue(people.mail)"><a >{{people.mail}}</a></li>
+        </ul>
+       
+      </span>
+
+
+
+
+      
+
+
+
+
+
+
+
+
+      

@@ -15,15 +15,15 @@
   </div>
    <div class="col-md-5 loginborderleft">
      <div class="loginpadding">
-     <p class="textfontColor">
+     <p class="textfontColor1">
        Login
        </p>
 
 <form (ngSubmit)="f.form.valid && submit(login)" #f="ngForm" novalidate>
-       <!--<div *ngIf="edited==true" class="alert alert-danger alert-dismissable">
-            Error :(
+       <div *ngIf="this.edited==true" class="alert alert-danger alert-dismissable alertdata">
+            {{this.errormessage}}
              <span class="close" data-dismiss="alert">&times;</span>
-        </div>-->
+        </div>
        
       <div class="value form-group">    
                      <input type="text" [ngClass]="{'red-border-class':!UEmail.valid  && f.submitted }" (keydown)="addGears()" class="inputText logininputText" id="UEmail" required name="UEmail" [(ngModel)] = "login.UEmail" #UEmail="ngModel"/>
@@ -45,7 +45,7 @@
                     </div> 
            <input type="submit" class="buttonLarge regbuttonLarge regbtn" value="Login">
 <div class="forgotPwd">
-      <a  routerLink="/pwdreset">Did you forgot password ?</a>
+      <a class="forgot" routerLink="/pwdreset">Did you forgot password ?</a>
 </div>
 </form>
 </div>

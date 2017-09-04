@@ -22,6 +22,7 @@
           </div>
   </nav>
 </div>
+<!-- <div>anushya</div> -->
 <div class="" *ngIf="this.resempdata.length==0">
   <div class="buttonclass">
 <p class="textfontcolor">
@@ -295,7 +296,7 @@
       </div>
     </div>
 
-  <div *ngIf="this.resempdata.length!=0 && this.role==Sales_Rep">
+  <div *ngIf="this.role=='Sales_Rep'">
 <!--<div>-->
 <div class="row main_container container-fluid tabs">
    
@@ -320,18 +321,9 @@
           <img class="addlead" src="/assets/images/addlead.png"/></div>
              <button type="button" class="btn btn-success addlead1" data-toggle="modal" data-target="#myModal">Add Lead</button>       
         </div>
-      </div>
+      </div> 
 
-              
-       
-
-        
-
- 
-
-        
-
-          <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.user; trackBy: index;' (click)="viewLead(value.LeadID)">
+          <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
             <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
               <header class="header1">
                 <div class="xSmall">
@@ -362,9 +354,6 @@
                         </div>
             </div>
           </div> 
-
-          
-
             </div>
             <div id="menu2" class="tab-pane fade">
                 <div class="col-lg-3 col-md-3 col-sm-3" type="button">
@@ -398,16 +387,7 @@
                                 </div>
                     </div>
                   </div> 
-
-               
-
                 
-
-
-
-                          
-
-                            
             </div>
             <div id="menu3" class="tab-pane fade">
                 <div class="col-lg-3 col-md-3 col-sm-3" type="button">
@@ -440,10 +420,7 @@
                                   </div>
                                 </div>
                     </div>
-                  </div> 
- 
-
-                            
+                  </div>             
             </div>
           </div>
         </div>
@@ -464,14 +441,22 @@
          
           </span>
         
-           <span class="invite">AM</span>
-            <span class="invite1">SG</span>
-             <span class="invite2">SH</span> 
-             
-              <button type="button" class="btn btn-success">Invite people</button>
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                 <span aria-hidden="true">&times;</span>
-              </button>
+          <span style="float:right">
+              <span class="invite" *ngFor="let subdata of this.subscibe|slice:0:2">GK</span>
+              <span class="invite" *ngIf="this.subscibe.length>2">{{this.subscibe.length-2}}</span>
+                 <span class="dropdown"> 
+                    <button class="btn btn-default naturalButtonMedium dropdown-toggle" type="button" data-toggle="dropdown">
+                        Invite People
+                  </button>
+                    <ul class="dropdown-menu" style="width:200px">
+                      <li> <groome-search  (searchChange)="peopleSearch($event)"></groome-search>      </li>
+                      <li *ngFor="let userValue of this.userList" (click)="invitesearch(userValue.UFirstName,userValue,this.viewleaddata._id)"><a >{{userValue.UFirstName}}</a></li>
+                    </ul>
+                  </span>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                 </button>
+               </span>
         </div>
         <div class="row">
           <div class="col-lg-8 col-md-8 col-sm-8 content1">
@@ -622,75 +607,109 @@
                     <material-datepicker [(date)]="yourModelDate"></material-datepicker>
                     <input type="button" class="brandblue scheduleBtn" value="Schedule" (click)="schedule(yourModelDate,ScheduleTime,ScheduleLocation)">
                 </popover-content>
-                    </div>
-
-
-
-
-                                       
+                    </div>             
                 <div id="menu03" class="tab-pane fade">
 
-                    <div class="panel-group"  id="accordion" role="tablist" aria-multiselectable="true" style="padding-left:35px;">
-                        
-                                <div class="panel ">
-                                    <div class="panel-heading" role="tab" id="headingOne">
-                                        <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                <i class="more-less glyphicon glyphicon-plus"></i>
-                                               <span>DEVOPS</span>
-                                               <span style="float:right; margin-right:20px;">REQ00112</span>
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse accordianmargin" role="tabpanel" aria-labelledby="headingOne">
-
-                                        <div class="row">
-                                            <div class="col-md-6" >
-                                              <h5 class="positiontext">position</h5>
-                                                <div class="value1"> 
-                                                    <input type="text" [ngClass]="{'red-border1-class':!name.valid && !name.pristine}" class="inputText1" placeholder="input text" id="name" required name="name" [(ngModel)] = "model.name" #name="ngModel"/>
-                                                       <div [hidden]="name.valid || name.pristine" class="reqAlert1">
-                                                        input required
-                                                      </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <h5 class="timetext">Estimate time</h5>
-                                                <div class="value2">  
-                                                    <input type="text1" [ngClass]="{'red-border1-class':!text1.valid && !text1.pristine}"  placeholder="input text" class="inputText1" id="text1" required name="text1" [(ngModel)] = "model.text1" #text1="ngModel"/>
-                                                     <div [hidden]="text1.valid || text1.pristine" class="reqAlert1">
-                                                        input required
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6" >
-                                                    <h5 class="positiontext">Skill</h5>
-                                                      <div class="value1"> 
-                                                          <input type="text" [ngClass]="{'red-border1-class':!text2.valid && !text2.pristine}"  placeholder="input text" class="inputText1" id="text2" required name="text2" [(ngModel)] = "model.text2" #text2="ngModel"/>
-                                                            <div [hidden]="text2.valid || text2.pristine" class="reqAlert1">
-                                                               input required
-                                                            </div>  
-                                                      </div>
-                                                  </div>
-                             
-                                                  <div class="col-md-6" >
-                                                      <h5 class="timetext">Budget</h5>
-                                                        <div class="value2"> 
-                                                          <input type="text" [ngClass]="{'red-border1-class':!text3.valid && !text3.pristine}" placeholder="input text" class="inputText1" id="text3" required name="text3" [(ngModel)] = "model.text3" #text3="ngModel"/>
-                                                              <div [hidden]="text3.valid || text3.pristine" class="reqAlert1">
-                                                               input required
-                                                             </div>  
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                    </div>
-                                </div>
-                     
-                            </div><!-- panel-group -->
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                          <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                          
+                                <a aria-controls="collapseOne" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapseOne" role="button" class="collapsed">
+                                    <span class="devops">DEVOPS</span>
+                                    <span class="requirementid">REQ00111</span>
+                                </a>    
+                  
+                          </h4>
+                          </div>
+                          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
+                            <div class="panel-body">
                             
+                                <div class="row">
+                                    <div class="col-md-6" >
+                                      <h5 class="positiontext">Position</h5>
+                                        <div class="value1"> 
+                                            <input type="text" class="inputText1" placeholder="input text" id="name" required name="name"/>
+                                               
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="timetext">Estimate time(in days)</h5>
+                                        <div class="value2">  
+                                            <input type="text1"   placeholder="input text" class="inputText1" id="text1" required name="text1" />
+                                          
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6" >
+                                            <h5 class="positiontext">Skill</h5>
+                                              <div class="value1"> 
+                                                  <input type="text"   placeholder="input text" class="inputText1" id="text2" required name="text2"/>
+                                                  
+                                              </div>
+                                          </div>
+                     
+                                          <div class="col-md-6" >
+                                              <h5 class="timetext">Budget</h5>
+                                                <div class="value2"> 
+                                                  <input type="text"  placeholder="input text" class="inputText1" id="text3" required name="text3" [(ngModel)] = "model.text3" #text3="ngModel"/>
+                                                     
+                                                </div>
+                                            </div>
+                                        </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="panel panel-default">
+                          <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsed">
+                                <span class="devops">DEVOPS</span>
+                                <span class="requirementid">REQ00112</span>
+                            </a>
+                          </h4>
+                          </div>
+                          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6" >
+                                      <h5 class="positiontext">Position</h5>
+                                        <div class="value1"> 
+                                            <input type="text" class="inputText1" placeholder="input text" id="name" required name="name"/>
+                                               
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="timetext">Estimate time(in days)</h5>
+                                        <div class="value2">  
+                                            <input type="text1"   placeholder="input text" class="inputText1" id="text1" required name="text1" />
+                                          
+                                        </div>
+                                    </div>
+                                    </div>
+                
+                                <div class="row">
+                                    <div class="col-md-6" >
+                                        <h5 class="positiontext">Skill</h5>
+                                          <div class="value1"> 
+                                              <input type="text"   placeholder="input text" class="inputText1" id="text2" required name="text2"/>
+                                              
+                                          </div>
+                                      </div>
+                 
+                                      <div class="col-md-6" >
+                                          <h5 class="timetext">Budget</h5>
+                                            <div class="value2"> 
+                                              <input type="text"  placeholder="input text" class="inputText1" id="text3" required name="text3" [(ngModel)] = "model.text3" #text3="ngModel"/>
+                                                 
+                                            </div>
+                                        </div>
+                                    </div>	
+                            </div>
+                          </div>
+                        </div>
+                      </div>  
                             
                         
       <form (ngSubmit)="requirement(this.viewleaddata._id)" #f="ngForm" novalidate> 
@@ -750,13 +769,31 @@
                   <p class="productDesign">{{this.viewleaddata.Title}}</p>
                  <span> <img class="signuserpopup" src="/assets/images/images.png"></span>
                 </div> 
-                <div class="col-lg-6  col-md-6 col-sm-6">
-                    <p class="AssignedBy">Assigned by</p>
-                        <img class="profileIcon" src="/assets/images/gk.png">
-                  </div>
+           <!-- sales Repo -->
+           <div *ngIf="this.role=='Sales_Rep'">
+            <div class="col-lg-6  col-md-6 col-sm-6">
+             <p class="AssignedBy">Assigned by</p>
+                 <img class="profileIcon" src="/assets/images/gk.png">
+           </div>
+         </div>
+         <!-- Manager -->
+           <div *ngIf="this.role=='Manager'">
+           <div class="col-lg-6  col-md-6 col-sm-6">
+             <p class="AssignedBy">Assigned to</p>
+             <span href="#" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="true">
+               <span class="hidden-xs profile">{{this.dumyValue}} </span>
+             <span   class="glyphicon glyphicon-chevron-down  groomlist1 "></span>
+           </span>
+             <ul class="dropdown-menu">
+                 <li class="groomlist"> <groome-search  (searchChange)="searchAssignTO($event)" ></groome-search> </li>
+                 <li class="groomlist" *ngFor="let assignvalue of this.SalesRepList" (click)="Assignto(assignvalue.ShortName,assignvalue,this.viewleaddata._id)"><a >{{assignvalue.UFirstName}}</a></li>
+             </ul>
+           </div>
+           </div>
+
+<!-- 
               <div class="col-lg-6  col-md-6 col-sm-6">
                   <p class="businessStream">Business Stream</p>
-
                     <div class="dropdown business">
                   <div class="business1" data-toggle="dropdown">{{this.viewleaddata.BusinessUnit}}
                         <span   class="glyphicon glyphicon-chevron-down  "></span>
@@ -767,108 +804,154 @@
                               <li class="divide"  (click)="changeBusiness('Staffing')">Staffing</li>
                             <li class="divide1"  (click)="changeBusiness('Little Bharmha')">Little Bharmha</li>
                           </ul>
-                    </div> 
-                   
-                                       
-              </div>
+                    </div>                     
+              </div> -->
                     
+               <!-- Manager Business Stream -->
+               <div *ngIf=" this.role=='Manager'">
+                <div class="col-lg-6  col-md-6 col-sm-6">
+                  <p class="businessStream">Business Stream</p>
+
+                    <div class="dropdown business">
+                  <div class="business1" data-toggle="dropdown">{{reqBusiness }}
+                        <span   class="glyphicon glyphicon-chevron-down  "></span>
+                      </div>
+                          <ul class="dropdown-menu business_drop ">
+                              <li class="disabled" ><a style="cursor: default;">Business</a></li>
+                              <li class="divide"  (click)="changeBusiness('SOW')">SOW</li>
+                              <li class="divide"  (click)="changeBusiness('Staffing')">Staffing</li>
+                            <li class="divide1"  (click)="changeBusiness('Little Brahma')">Little Brahma</li>
+                          </ul>
+                    </div>                      
+                </div>
+              </div>
+   <!--SalesRepo   Business Stream-->
+                  <div *ngIf="this.role=='Sales_Rep'">
+                     <div class="col-lg-6  col-md-6 col-sm-6">
+                      <p class="businessStream">Business Stream</p>
+                       <div class="dropdown business">
+                         <div class="business1" data-toggle="dropdown">{{reqBusiness}}</div>    
+                      </div>                      
+                  </div>
+               </div>
+
+
+
                   <div class="row ">
                     <div class="col-lg-12 col-md-12 col-sm-12 side1">
                           <div class="btn-pref btn-group btn-group-justified btn-group-lg activity" role="group" >
                        
-                        <span class="btn-group activity" role="group">
+                        <span class="btn-group " role="group" style="padding:10px">
                           <div class="feel">Feel</div>
                           <div class="dropdown">
-                              <div  data-toggle="dropdown" style="cursor:pointer" [ngClass]="{'hot': reqFeel=='Hot', 'warm': reqFeel=='Warm', 'cold': reqFeel=='Cold'}">{{this.viewleaddata.LeadFeel}}
+                              <div  data-toggle="dropdown" style="cursor:pointer" [ngClass]="{'hot': reqFeel=='Hot', 'warm': reqFeel=='Warm', 'cold': reqFeel=='Cold'}">{{reqFeel}}
                                 
                               </div>
                                   <ul class="dropdown-menu business_drop ">
                                       <li class="disabled" ><a style="cursor: default;">Status</a></li>
-                                      <li class="divide "(click)="changeFeel('Hot')"> <div class="hot"><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Hot</span></div> </li>
-                                      <li class="divide " (click)="changeFeel('Warm')"><div class="warm"><span class="glyphicon glyphicon-adjust feelicon "></span><span class="feeltext" >Warm</span></div></li>       
-                                    <li class="divide1 "(click)="changeFeel('Cold')"><div class="cold" ><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Cold</span></div></li>
+                                      <li class="divide "(click)="changeFeel('Hot',this.viewleaddata._id)"> <div class="hot"><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Hot</span></div> </li>
+                                      <li class="divide " (click)="changeFeel('Warm',this.viewleaddata._id)"><div class="warm"><span class="glyphicon glyphicon-adjust feelicon "></span><span class="feeltext" >Warm</span></div></li>       
+                                    <li class="divide1 "(click)="changeFeel('Cold',this.viewleaddata._id)"><div class="cold" ><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Cold</span></div></li>
                                   </ul>
                             </div> 
                         </span>
                         <span class="btn-group activity" role="group">
                             <div class="feel">Status</div>
-                            <div class="dropdown">
-                                <div  data-toggle="dropdown"  style="cursor:pointer">{{this.viewleaddata.LeadCurrentStatus}} 
-                                  <span   class="glyphicon glyphicon-chevron-down  "></span>
-                                </div>
-                                    <ul class="dropdown-menu business_drop ">
-                                        <li class="disabled" ><a style="cursor: default;">Status</a></li>
-                                        <li class="divide" (click)="changeStatus('Active')">Active</li>
-                                        <li class="divide"   (click)="changeStatus('Dormant')">Dormant </li>
-                                        <li class="divide"  (click)="changeStatus('Freeze')">Freeze </li>
-                                        <li class="divide"  (click)="changeStatus('Rejected')">Rejected </li>
-                                        <li class="divide1"  (click)="changeStatus('Dropped')">Dropped </li>
-                                      
-                                    </ul>
-                              </div> 
+                      
+                                <!-- Manager Status  -->     
+                <div *ngIf=" this.role=='Manager'">
+                  <div class="dropdown">
+                    <div  data-toggle="dropdown"  style="cursor:pointer">{{this.reqStatus}} 
+                      <span class="glyphicon glyphicon-chevron-down  "></span>
+                     </div>
+                        <ul class="dropdown-menu business_drop ">
+                            <li class="disabled" ><a style="cursor: default;">Status</a></li>
+                            <li class="divide" (click)="changeStatus('Active',this.viewleaddata._id)">Active</li>
+                            <li class="divide"   (click)="changeStatus('Dormant',this.viewleaddata._id)">Dormant </li>
+                            <li class="divide"  (click)="changeStatus('Freeze',this.viewleaddata._id)">Freeze </li>
+                            <li class="divide"  (click)="changeStatus('Rejected',this.viewleaddata._id)">Rejected </li>
+                            <li class="divide1"  (click)="changeStatus('Dropped',this.viewleaddata._id)">Dropped </li>
+                        </ul>
+                  </div> 
+                </div>
+       <!-- Sales_Rep Status  -->           
+                  <div *ngIf=" this.role=='Sales_Rep'">
+                    <div class="dropdown">
+                      <div  data-toggle="dropdown"  style="cursor:pointer">{{reqStatus}}</div>
+                    </div>    
+                  </div>
                     
                           
                         </span>
                           <span class="btn-group activity" role="group">
                               <div class="feel">Revenue</div>
                               <div class="dropdown">
-                                  <div  data-toggle="dropdown"  style="cursor:pointer">{{this.viewleaddata.LeadRevenue}}
+                                  <div  data-toggle="dropdown"  style="cursor:pointer">{{reqRevenue}}
                                     <span   class="glyphicon glyphicon-chevron-down  "></span>
                                   </div>
                                       <ul class="dropdown-menu business_drop ">
                                           <li class="disabled" ><a style="cursor: default;">Status</a></li>
-                                          <li class="divide" (click)="changeRevenue('JP')">Jackpot</li>
-                                          <li class="divide" (click)="changeRevenue('HV')">High value </li>
-                                        <li class="divide1"(click)="changeRevenue('LV')">Low Value </li>
-                                         
-                                        
+                                          <li class="divide" (click)="changeRevenue('JP',this.viewleaddata._id)">Jackpot</li>
+                                          <li class="divide" (click)="changeRevenue('HV',this.viewleaddata._id)">High value </li>
+                                        <li class="divide1"(click)="changeRevenue('LV',this.viewleaddata._id)">Low Value </li>
                                       </ul>
                                 </div>     
-                  
                             </span>
-                          
                     </div>
                     </div>
                   <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
                     <h5>Client Contact</h5>
+                    <span class="dropdown"> 
+                    <button class="btn btn-default naturalButtonMedium dropdown-toggle" type="button" data-toggle="dropdown">
+                        Invite People
+                  </button>
+                    <ul class="dropdown-menu" style="width:200px">
+                      <li> <groome-search  (searchChange)="peopleSearch($event)"></groome-search>      </li>
+                      <li *ngFor="let userValue of this.userList" (click)="invitesearch(userValue.UFirstName,userValue,this.viewleaddata._id)"><a >{{userValue.UFirstName}}</a></li>
+                    </ul>
+                  </span>
                      <button ngif="this.viewleaddata.ClientContact!=0" class="tagDefault" style="margin-left:17px" *ngFor="let clientcontanct of this.viewleaddata.ClientContact">{{clientcontanct.ContactName}}
                           
-                             <img class="fatime" src="/assets/images/delete.svg">
+                             <img class="fatime" src="/assets/images/delete.svg" (click)="deleteclient(this.viewleaddata._id,clientcontanct._id)">
                         </button>
                      
                         
                   </div>
                      <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
                       <h5>Tag</h5>
+                      <form (ngSubmit)="addTagUpade(addtagtitle,this.viewleaddata._id)" autocomplete="off">
+                         <input type="text" placeholder="Add Tag" class="updateLeadAddTag" name="addtagtitle" [(ngModel)]="addtagtitle"></form>
+                      <!--<input type="text" placeholder="addTag" class="updateLeadAddTag">-->
                         <button ngif="this.viewleaddata.Tags!=0" class="tagDefault tagicon" *ngFor="let tag of this.viewleaddata.Tags">
-                         <span> <img src="/assets/images/user1.svg"></span>
+                        
                           {{tag.TagName}}
                    
-                          <img class="fatime" src="/assets/images/delete.svg">
+                          <img class="fatime" src="/assets/images/delete.svg" (click)="deletetag(this.viewleaddata._id,tag._id)">
                       </button> 
                        
                   </div>
                       <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
                         <h5>Requirement Details</h5>
-                      </div>
-
+                        <div class="devopsList" *ngFor="let reqDetail of this.reqDetail">
+                            <span class="devops1">{{reqDetail.Title}}</span>
+                            <span class="requirementid1">{{reqDetail.ReqCode}}</span>
+                       </div>
+                    </div>
                  </div>  
           </div> 
         </div>
       </div>
   </div>
 </div>  
-
 <!--pop up ends-->
 
 <!--for manger tab-->
-
-
 <div>
 <!--<div>-->
-<div class="row main_container container-fluid tabs">
-   
-      <span class="leadText">Lead</span>
+  <!-- Manager Role  tabs -->
+<div *ngIf="this.role=='Manager'">
+   <div class="row main_container container-fluid tabs">
+       <span class="leadText">Lead</span>
       <span  class="workbenchTab">
       <ul class="nav nav-pills managertablist ">
           <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#All">All</a></li>
@@ -892,16 +975,9 @@
         </div>
       </div>
 
-              
-       
 
-        
 
- 
-
-        
-
-          <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.user; trackBy: index;' (click)="viewLead(value.LeadID)">
+          <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
             <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
               <header class="header1">
                 <div class="xSmall">
@@ -932,8 +1008,6 @@
                         </div>
             </div>
           </div> 
-
-          
 
             </div>
             <div id="Approved" class="tab-pane fade">
@@ -968,16 +1042,7 @@
                                 </div>
                     </div>
                   </div> 
-
-               
-
-                
-
-
-
-                          
-
-                            
+             
             </div>
             <div id="Pending" class="tab-pane fade">
               
@@ -1067,8 +1132,7 @@
         </div>
 
         <!--popup -->
-
-
+</div>
 </div>
 
 

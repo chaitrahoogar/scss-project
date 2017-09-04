@@ -1,0 +1,27 @@
+@import '../../../assets/scss/color.scss';
+.search:not(:valid) ~ .Clear{
+    display: none;
+}
+.search {
+  padding:10px;
+  padding-left:30px;
+  width: 200px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: $white-two;
+  border: solid 1px #f3f3f3;
+  outline: none;
+}
+input.search {
+    background-repeat: no-repeat;
+    background-position-y: 10px;
+    background-image: url(/assets/images/search-magnifier-interface-symbol.svg);
+    background-position-x: 10px;
+}
+
+.text-input-wrapper span {
+  cursor:pointer;
+  color:blue;
+  font-weight:bold;
+  margin-left: -20px;
+}

@@ -320,7 +320,6 @@ input:focus ~ .red-class.floating-label,
 input:not(:focus):valid ~ .red-class.floating-label{
   color: red !important;
 }
-
 .inputText {
   font-size: 14px;
   border: solid 1px #e0e0e0;
@@ -328,7 +327,10 @@ input:not(:focus):valid ~ .red-class.floating-label{
   height: 48px;
   border-radius: 4px;
   background-color: $white-two;
-  font-family: OpensansRegular;
+  font-family: OpenSans-Semibold;                   //add new for text 
+  color: #757575;
+  padding-top: 15px;
+  font-size: 14px;
   font-weight: 600;
   text-align: left;
   box-shadow: none;
@@ -351,10 +353,11 @@ input:not(:focus):valid ~ .red-class.floating-label{
     padding-top: 6px;
 
 }
-  .groomeHead{
-   font-size: 48px;
-   font-weight: bold;
-   color: $blue-green;
+.groomeHead{
+  font-size: 48px;
+  font-weight: bold;
+  color: $blue-green;
+  font-family: HelveticaNeue-Bold;
 }
   
 .red-border-class{
@@ -557,4 +560,10 @@ input.search {
 .datepicker__input{
    border: none;
    border-bottom: solid 1px #8fd1c4;
+}
+
+//alert data
+
+.alertdata{
+   width:370px;
 }

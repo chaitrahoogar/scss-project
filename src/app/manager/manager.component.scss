@@ -1,8 +1,12 @@
 @import 'src/assets/scss/color.scss';
-
+@font-face 
+{ font-family: "HelveticaNeueMedium"; 
+src: url("/assets/fonts/HelveticaNeue Medium.ttf");
+}
 .textfontColor{
   font-size:36px; 
   color:$marine-blue;  
+  font-family: HelveticaNeueMedium;
 }
 .joinAsRole{
   width: 856px;
@@ -18,4 +22,11 @@
 }
 .join{
    margin-left: 145px;
+   color: #4a4a4a;
+   font-family: HelveticaNeueMedium;
+  }
+
+.arrow{
+  width: 30%;
+  height: 22%;
 }

@@ -16,6 +16,8 @@ export class RegisterComponent implements OnInit {
   };
   token;
   resempdata=[];
+  edited=false;
+  errormessage="";
 //  data={
 //     "UEmail":localStorage.getItem('mail'),
 //     "UPassword":"hell2e13",
@@ -38,8 +40,6 @@ export class RegisterComponent implements OnInit {
        this._registerService.registerService(this.register).subscribe((response) => { 
                this.resempdata=response;
                 localStorage.setItem('shortname',response.ShortName);
-                localStorage.removeItem('token');
-                localStorage.setItem('token',response.token);
                console.log(this.resempdata);
                if(response.status=="fail"){
                     this.router.navigateByUrl('/register');
@@ -47,10 +47,12 @@ export class RegisterComponent implements OnInit {
                else if(response.status=="success"){
                       this.router.navigateByUrl('/manager');
                }
+               this.edited=false;
             },
            e=>{this.errorMessage = e;
-        
-         alert(e.message)
+         this.edited=true;
+         this.errormessage=e.message;
+        //  alert(e.message)
         });
     //            if(this.register.name==undefined || this.register.lname==undefined || this.register.password==undefined || this.register.confirm==undefined ||this.register.name=="" || this.register.lname=="" || this.register.password=="" || this.register.confirm==""){
     //  this.disableValue=false;

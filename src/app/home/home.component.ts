@@ -13,12 +13,10 @@ private userId: string;
   constructor(private route:  ActivatedRoute) { }
 
   ngOnInit() {
-   
     this.route.queryParams.forEach((params: Params) => {
         this.Title = params['mail'];
         this.Link = params['role'];
         // console.log(AppSettings.API_ENDPOINT);
-
     });
 
     // console.log(this.route.snapshot.queryParams['mail'])
@@ -28,5 +26,4 @@ private userId: string;
     localStorage.setItem('mail', this.route.snapshot.queryParams['mail']);
     localStorage.setItem('Role', this.route.snapshot.queryParams['role']);
   }
-
 }

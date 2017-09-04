@@ -1,3 +1,15 @@
+
+@import 'src/assets/scss/color.scss';
+@font-face 
+{ font-family: "HelveticaNeueMedium"; 
+src: url("/assets/fonts/HelveticaNeue Medium.ttf");
+}
+@font-face 
+{ font-family: "HelveticaNeue"; 
+src: url("/assets/fonts/HelveticaNeueLt.ttf");
+}
+
+
 .loginButton
 {
     float:right;
@@ -8,13 +20,14 @@
 }
 
 .messageText{
-   width: 75%;
+   width: 71%;
    margin: 0 auto;
    font-size: 36px;
    line-height: 1.22;
    text-align: center;
    color: #4a4a4a;
-   margin-top:120px;
+   font-family: HelveticaNeue;
+   margin-top:60px;
 }
 .coffeeText,.coffeeImg{
    margin-top:20px;

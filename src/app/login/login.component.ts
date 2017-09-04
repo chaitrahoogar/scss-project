@@ -17,6 +17,8 @@ export class LogInComponent implements OnInit {
    disableemail=false;
    resempdata=[];
    errorMessage = "";
+   edited=false;
+   errormessage="";
      submit(){
 
       // if(this.login.UEmail==undefined ||this.login.UPassword==undefined || this.login.UEmail=="" ||this.login.UPassword=="")
@@ -38,14 +40,14 @@ export class LogInComponent implements OnInit {
       //     }
       //     else{
       //       this.router.navigateByUrl('/lead');
-            
+     // http://localhost:4200/home?mail=anshumanpanda@gmail.com&role=Sales_Rep
       //     }
            this._appservice.serviceMethod(this.login).subscribe((response) => { 
                this.resempdata=response;
               localStorage.setItem('shortname',response.ShortName);
-              
+
               localStorage.setItem('Role',response.Role);
-               localStorage.setItem('token',response.token);
+           
                if(response.status=="fail"){
                     this.router.navigateByUrl('/login');
                }
@@ -53,11 +55,12 @@ export class LogInComponent implements OnInit {
                       this.router.navigateByUrl('/workbench');
                       console.log(response);
                }
+               this.edited=false;
               
        },
        e=>{this.errorMessage = e;
-        
-         alert(e.message)
+         this.errormessage=e.message;
+         this.edited=true;
         });
      }
      addGears(){
@@ -69,11 +72,7 @@ export class LogInComponent implements OnInit {
 
      //time stamp
 
-  
-
-	
   constructor(private router:Router,private _appservice:AppService) { }
-
   ngOnInit() {
   var thehours = new Date().getHours();
 	var themessage;

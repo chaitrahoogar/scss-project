@@ -16,7 +16,10 @@ src: url("/assets/fonts/OpenSans-Semibold.ttf");
 { font-family: "OpensansLight"; 
 src: url("/assets/fonts/OpenSans-Light.ttf");
 }
-
+@font-face 
+{ font-family: "HelveticaNeue"; 
+src: url("/assets/fonts/HelveticaNeueLt.ttf");
+}
 
 .headerMargin{
   margin-top: 27px;
@@ -42,14 +45,7 @@ background-color: #f3f3f3;
   text-align: left;
   color: #00a890;
 }
-// .stream{
-// font-family:OpensansRegular;
-// font-size: 14px;
-// font-weight: 600;
-// line-height: 1.22;
-// text-align: left;
-// color: #002954;
-// }
+
 
 .navbar-default .navbar-nav>.active>a{
   background-color: #afdfdf;
@@ -260,6 +256,7 @@ margin-left: 17px;
 .profileIcon{
 width: 24px;
 height: 24px;
+margin-left: 30px;
 }
 .btn-success{
   background-color:#00a890;
@@ -373,10 +370,7 @@ text-align: left;
 color: #002954;
 
 }
-.invite{
-  
-  margin-left: 410px;
-  
+.invite{  
   border-radius: 50%;
   background-color: #ff4e4b;
   display: inline;
@@ -409,9 +403,7 @@ color: #002954;
   border-top: 1px solid #dccfcf;
   margin-top: 15px;
 }
-.date{
-margin-left: 33px;
-}
+
 .layer {
 width: 14px;
 height: 15px;
@@ -539,11 +531,11 @@ color: #002954;
     margin-right: 5px;
 }
 
-.panel-body
-{
+// .panel-body
+// {
    
-    height: 250px;
-}
+//     height: 250px;
+// }
 .chat-img{
   margin-top: 20px;
 }
@@ -720,6 +712,7 @@ display: flex;
 }
 .mainText{
   padding-left: 32px;
+  padding-top: 10px;
 }
 .reqAlert1{
   color: red;
@@ -879,41 +872,74 @@ left: 165px;
 
 // Accordion
 
-
-
-
-/*******************************
-* Does not work properly if "in" is added after "collapse".
-* Get free snippets on bootpen.com
-*******************************/
 .panel-group .panel {
   border-radius: 0;
   box-shadow: none;
+  margin-top:10px;
   border-color: #EEEEEE;
 }
 
-.panel-default > .panel-heading {
-  padding: 0;
-  border-radius: 0;
-  color: #212121;
-  background-color: #FAFAFA;
-  border-color: #EEEEEE;
+
+.panel-default>.panel-heading a:after {
+  content: "";
+  position: relative;
+  top: 10px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  float: right;
+  transition: transform .25s linear;
+  -webkit-transition: -webkit-transform .25s linear;
 }
 
-.panel-title {
-  font-size: 14px;
+.panel-default>.panel-heading a[aria-expanded="true"] {
+  background-color:#f3f3f3;
 }
+
+.panel-default>.panel-heading a[aria-expanded="true"]:after {
+  content: "\2212";
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.panel-default>.panel-heading a[aria-expanded="false"]:after {
+  content: "\002b";
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.panel-group {
+  margin-bottom: 20px;
+  padding-left: 32px;
+  // overflow-y: scroll;
+  // height: 200px;
+}
+.requirementid{
+
+font-family: OpenSansRegular;
+font-size:26px;
+line-height: 1.18;
+color: #00a890;
+padding-left: 155px;
+}
+.devops{
+font-family: OpenSansRegular;
+font-size: 26px;
+line-height: 1.18;
+color: #4a4a4a;
+}
+//accordian ends
+
 
 .panel-title > a {
   display: block;
-  padding: 15px;
   text-decoration: none;
 }
 
-.more-less {
-  float: right;
-  color: #212121;
-}
 // add lead
 
 .buttonclass{
@@ -926,6 +952,8 @@ left: 165px;
 {
   font-size:24px;
   color:$marine-blue;
+   font-family: HelveticaNeue;
+  
 }
 
 .changeimagewitdth
@@ -1134,6 +1162,7 @@ padding-left: 180px;
 .close
 {
 margin-top:3px;
+margin-left: 10px;
 }
 
 .tag
@@ -1191,12 +1220,18 @@ margin-bottom:50px;
 .modelBtn:focus{
    outline: none;
 }
-
+.groomlist{
+  padding-left: 10px;
+  width: 200px;
+}
+.groomlist1{
+padding-left: 15px;
+}
 
 //schedule meeting component
 .locationinput{
   border: none;
-  border-bottom: 1px solid #268a77;
+  border-bottom: 1px solid #268a77 ;
   outline: none;
   box-shadow: none;
   width: 150px;
@@ -1211,7 +1246,7 @@ margin-bottom:50px;
 .selectTime{
    border: none;
     background: #fff;
-    border-bottom: 1px solid #268a77;
+    border-bottom: 1px solid #268a77 ;
     outline: none;
     width: 150px;
     margin-left: 4px;
@@ -1224,4 +1259,37 @@ margin-bottom:50px;
 
 .calender{
     text-align: center;
+}
+
+// updatetag
+
+.updateLeadAddTag{
+    border: none;
+    background: #fff;
+    border-bottom: 1px solid #268a77;
+    outline: none;
+    width: 70px;
+    margin-left: 4px;
+    padding-bottom: 10px;
+}
+
+//req css
+.requirementid1{
+  float: right;
+  padding-right: 10px;
+  font-family: OpenSansRegular;
+  font-size: 16px;
+  color: #00a890 ;
+}
+.devopsList{
+  padding: 10px;
+  background-color: #ffffff ;
+  border: solid 1px #e1e1e1 ;
+}
+.devops1{
+  font-family: OpenSansRegular;
+  font-size: 16px;
+  font-weight: 600;
+  padding-left: 10px;
+  color: #4a4a4a ;
 }

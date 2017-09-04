@@ -13,6 +13,7 @@ import 'rxjs/add/operator/toPromise';
  export class leadService implements OnInit{
      private _url1:string='http://172.16.0.4:8082/';
        private _url:string='http://172.16.0.38:8000/';
+        private _url2:string='http://172.16.0.4:8081/';
      token="";
      constructor(private _http:Http){
 
@@ -23,36 +24,37 @@ import 'rxjs/add/operator/toPromise';
 }
        
        leadMethod(){
-        // let contentHeader = new Headers({
-        // "Content-Type": "application/json",
-        //  'token':localStorage.getItem('token')
-        // });
         let contentHeader = new Headers({
-          "Content-Type": "application/json",
+        "Content-Type": "application/json",
+         'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NTE3ODc1LCJleHAiOjE1MDQ2MDQyNzV9.PqHZK3pLv3WIWS1YPMsLZeQ5Vet7kXdaNiuOruDgSxA"
         });
+        // let contentHeader = new Headers({
+        //   "Content-Type": "application/json",
+        // });
         
     //    var value={
     //      "_id":"599c2ad872e2104737339190"
     //  }
         // contentHeader.append('token',localStorage.getItem('token'))
         // contentHeader.append("Content-Type", "application/json")
-           return this._http.post(this._url+'getUserLeads',this.value,{ headers: contentHeader }).map((response:Response) =>response.json());
+           return this._http.get(this._url1+'lead/getAllLeads',{ headers: contentHeader }).map((response:Response) =>response.json());
        }
        leadViewMethod(leadId){
            let leadReqdata={
             "LeadID":leadId
             } 
         let contentHeader = new Headers({
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+         'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NTE3ODc1LCJleHAiOjE1MDQ2MDQyNzV9.PqHZK3pLv3WIWS1YPMsLZeQ5Vet7kXdaNiuOruDgSxA"
         });
-           return this._http.post(this._url+'getLeadDetails',leadReqdata,{ headers: contentHeader }).map((response:Response) =>response.json());
+           return this._http.post(this._url1+'lead/getLeadDetails',leadReqdata,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
-       requirementService(leadId){
-         
+       requirementService(leadIdvalue){
         let contentHeader = new Headers({
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+         'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NTE3ODc1LCJleHAiOjE1MDQ2MDQyNzV9.PqHZK3pLv3WIWS1YPMsLZeQ5Vet7kXdaNiuOruDgSxA"
         });
-           return this._http.post(this._url+'lead/createReq',leadId,{ headers: contentHeader }).map((response:Response) =>response.json());
+           return this._http.post(this._url1+'lead/createReq',leadIdvalue,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
 
        /// ScheduleMeetingService  
@@ -65,6 +67,65 @@ import 'rxjs/add/operator/toPromise';
            return this._http.post(this._url1+'lead/scheduleMeeting',ScheduleDate,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
         /// ScheduleMeetingService Ends
+
+        //172.16.0.4:8082/lead/updateLeadTagCcRev
+          updateLeadTagCcRev(id){
+         
+        let contentHeader = new Headers({
+        "Content-Type": "application/json",
+         'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NTE3ODc1LCJleHAiOjE1MDQ2MDQyNzV9.PqHZK3pLv3WIWS1YPMsLZeQ5Vet7kXdaNiuOruDgSxA"
+        });
+           return this._http.put(this._url1+'lead/updateLeadTagCcRev',id,{ headers: contentHeader }).map((response:Response) =>response.json());
+       }
+        
+     //172.16.0.4 localhost:8080/lead/addLeadTagCcRev
+         addTagCcRev(id){
+         
+        let contentHeader = new Headers({
+        "Content-Type": "application/json",
+         'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NTE3ODc1LCJleHAiOjE1MDQ2MDQyNzV9.PqHZK3pLv3WIWS1YPMsLZeQ5Vet7kXdaNiuOruDgSxA"
+        });
+           return this._http.post(this._url1+'lead/addLeadTagCcRev',id,{ headers: contentHeader }).map((response:Response) =>response.json());
+       }
+
+       //get user data
+       getUserData(){
+         
+        let contentHeader = new Headers({
+        "Content-Type": "application/json",
+         'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NTE3ODc1LCJleHAiOjE1MDQ2MDQyNzV9.PqHZK3pLv3WIWS1YPMsLZeQ5Vet7kXdaNiuOruDgSxA"
+        });
+           return this._http.get(this._url2+'users/getUsers',{ headers: contentHeader }).map((response:Response) =>response.json());
+       }
+
+       //get sales rep
+       getSalesrep(){
+         
+        let contentHeader = new Headers({
+        "Content-Type": "application/json",
+         'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NTE3ODc1LCJleHAiOjE1MDQ2MDQyNzV9.PqHZK3pLv3WIWS1YPMsLZeQ5Vet7kXdaNiuOruDgSxA"
+        });
+           return this._http.get(this._url2+'users/getSalesRep',{ headers: contentHeader }).map((response:Response) =>response.json());
+       }
+
+       //user subscibed
+       userSubscibed(value){
+           let contentHeader = new Headers({
+        "Content-Type": "application/json",
+         'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NTE3ODc1LCJleHAiOjE1MDQ2MDQyNzV9.PqHZK3pLv3WIWS1YPMsLZeQ5Vet7kXdaNiuOruDgSxA"
+        });
+           return this._http.post(this._url1+'lead/addSubscribedUsers',value,{ headers: contentHeader }).map((response:Response) =>response.json());
+       }
+
+       //assigned to
+
+        assignto(value){
+           let contentHeader = new Headers({
+        "Content-Type": "application/json",
+         'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NTE3ODc1LCJleHAiOjE1MDQ2MDQyNzV9.PqHZK3pLv3WIWS1YPMsLZeQ5Vet7kXdaNiuOruDgSxA"
+        });
+           return this._http.put(this._url1+'lead/updateLeadSFA',value,{ headers: contentHeader }).map((response:Response) =>response.json());
+       }
 
         ngOnInit() {
             this.token=localStorage.getItem('token');
