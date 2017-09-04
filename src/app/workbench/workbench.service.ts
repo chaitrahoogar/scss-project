@@ -127,6 +127,18 @@ import 'rxjs/add/operator/toPromise';
            return this._http.put(this._url1+'lead/updateLeadSFA',value,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
 
+       getClientContacts(clientid){
+        let contentHeader = new Headers({
+        "Content-Type": "application/json",
+        "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NTE3ODc1LCJleHAiOjE1MDQ2MDQyNzV9.PqHZK3pLv3WIWS1YPMsLZeQ5Vet7kXdaNiuOruDgSxA"
+        });
+        
+        var idvalue={
+            "_id":clientid
+        }
+        return this._http.post(this._url1+'clients/getClientContact',idvalue,{ headers: contentHeader }).map(res =>res.json());
+        }
+
         ngOnInit() {
             this.token=localStorage.getItem('token');
         }
