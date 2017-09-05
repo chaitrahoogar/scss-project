@@ -1,1138 +1,1276 @@
 <div class="main_container">
-<nav class="navbar navbar-default">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Groome</a>
-      </div>
-        <div class="collapse navbar-collapse " >
-            <ul class="nav navbar-nav navbar-left headerMargin collapse navbar-collapse">
-              <li><input class="search" placeholder="Search your lead here"  name="searchValue" [(ngModel)]="searchValue" required><span class="Clear" (click)="clearSearch()" title="Clear"><img src="/assets/images/error.svg"></span></li>
-              <li class="active workbench"><a  href="#" class="work">Workbench</a></li>
-              <li><a >Events</a></li>
-              <li><a >Clients</a></li>
-              <li><a >Dashbords</a></li>
-              <li class="dropdown-notification"> <a> <i class="fa fa-bell-o"></i></a>
-                <div class="layer1">
-                    <p>2</p>
-                     </div>
-                     <li class="profile" (click)="logout()">
-                    <p>{{this.shornameinlead}}</p>
-                     </li>
-
-              </ul>
-          </div>
-  </nav>
-</div>
-<!-- <div>anushya</div> -->
-<div class="" *ngIf="this.resempdata.length==0">
-  <div class="buttonclass">
-<p class="textfontcolor">
-
-  Looks like you have not create Lead. <br>
-  Click add to create your first Lead.
-</p>
-
-
-
-
-
- <input type="button" class="buttonMedium" value="Add Lead" data-toggle="modal" data-target="#myModal">
+  <nav class="navbar navbar-default">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Groome</a>
+        </div>
+          <div class="collapse navbar-collapse " >
+              <ul class="nav navbar-nav navbar-left headerMargin collapse navbar-collapse">
+                <li><input class="search" placeholder="Search your lead here"  name="searchValue" [(ngModel)]="searchValue" required><span class="Clear" (click)="clearSearch()" title="Clear"><img src="/assets/images/error.svg"></span></li>
+                <li class="active workbench"><a  href="#" class="work">Workbench</a></li>
+                <li><a >Events</a></li>
+                <li><a >Clients</a></li>
+                <li><a >Dashbords</a></li>
+                <li class="dropdown-notification"> <a> <i class="fa fa-bell-o"></i></a>
+                  <div class="layer1">
+                      <p>2</p>
+                       </div>
+                       <li class="profile" (click)="logout()">
+                      <p>{{this.shornameinlead}}</p>
+                       </li>
+  
+                </ul>
+            </div>
+    </nav>
   </div>
-<div class="changeimagewitdth">
-<img src="/assets/images/lead.svg" class="changeimgheight"/>
-
-</div> 
-</div>
-
-
- <div class="modal" id="myModal" role="dialog" tabindex="-1" data-focus-on="input:first">
-    <div class="popup-dialog">
-    
-     <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <div class="row">
-          <div class="col-md-3">
-          <h4 class="modal-title Create-Lead ">Create Lead</h4>
-          </div>
-                      <div class="col-md-5">
-                      <span class="AM-Lead">  
-                      <span class="col-sd-2">
-                        <div class="small">
-                            AM
-                        </div>
-                      </span>
-                        <span class="col-sd-2">
-                        <div class="sg">
-                            SG
-                        </div>
-                        </span>
-                        <span class="col-sd-2">  
-                        <div class="users">
-                            +5
-                        </div>
-                          </span>
-                      </span>
-                      </div>
-             <div class="col-md-3">       
-           <input type="button" class="brandblue invite-btn" value="Invite People">   
-          </div> 
-        </div>          
-        </div>
-        <div class="modal-body">
-        
-    <div>
-          <input type="text" placeholder="Add title here" class="Add-title-here input">
+  <!-- <div>anushya</div> -->
+  <div class="" *ngIf="this.resempdata.length==0">
+    <div class="buttonclass">
+  <p class="textfontcolor">
+  
+    Looks like you have not create Lead. <br>
+    Click add to create your first Lead.
+  </p>
+  
+   <input type="button" class="buttonMedium" value="Add Lead" data-toggle="modal" data-target="#myModal">
     </div>
-          <!-- <p class="Add-title-here">Add title here</p> -->
-          <div>
-                  <textarea class="textArea" placeholder="Add your conversation here"></textarea>
-               </div>
-         <button type="button" class="naturalButtonsmall margin-left">
-              <span><svg xmlns="/assets/images/revert-hand-drawn-arrows.svg" xmlns:xlink="/assets/images/revert-hand-drawn-arrows.svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
-                <g>
-                  <g>
-                   
-		<path d="M27.399,161.809c90.2,0.173,220.021,4.161,310.195,2.44c-9.714,9.8-19.316,19.718-28.624,29.924    c-24.552,26.921,15.386,67.088,40.045,40.048c27.248-29.876,56.441-57.795,86.371-84.952c14.122-12.809,9.968-29.765-1.051-39.628    c-1.899-2.798-4.352-5.408-7.511-7.68c-27.822-20.005-54.491-41.396-80.644-63.539c-27.685-23.45-67.953,16.412-40.045,40.05    c11.629,9.849,23.41,19.504,35.287,29.036c-91.454,1.909-222.56-2.158-314.029-2.333C-9.129,105.101-9.124,161.738,27.399,161.809    z" fill="#00a890"/>
-		<path d="M416.994,275.083c-91.475,0.178-222.578,4.24-314.032,2.336c11.878-9.531,23.661-19.189,35.287-29.036    c27.909-23.643-12.365-63.502-40.045-40.05c-26.144,22.14-52.818,43.533-80.644,63.535c-3.156,2.271-5.616,4.881-7.508,7.679    c-11.019,9.866-15.173,26.821-1.051,39.628c29.935,27.162,59.123,55.081,86.369,84.955c24.659,27.04,64.597-13.127,40.045-40.045    c-9.308-10.217-18.913-20.124-28.629-29.93c90.18,1.722,220.003-2.265,310.203-2.438    C453.516,331.652,453.521,275.012,416.994,275.083z" fill="#00a890"/>
-                  </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
-                </g>
-                </svg></span>
-               <span class="iconBtnText">Request Owner</span> 
-            </button>   
-     <button type="button" class="naturalButtonsmall margin-top">
-              <span><svg xmlns="/assets/images/revert-hand-drawn-arrows.svg" xmlns:xlink="/assets/images/revert-hand-drawn-arrows.svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
-                <g>
-                  <g>
-                   
-		<path d="M27.399,161.809c90.2,0.173,220.021,4.161,310.195,2.44c-9.714,9.8-19.316,19.718-28.624,29.924    c-24.552,26.921,15.386,67.088,40.045,40.048c27.248-29.876,56.441-57.795,86.371-84.952c14.122-12.809,9.968-29.765-1.051-39.628    c-1.899-2.798-4.352-5.408-7.511-7.68c-27.822-20.005-54.491-41.396-80.644-63.539c-27.685-23.45-67.953,16.412-40.045,40.05    c11.629,9.849,23.41,19.504,35.287,29.036c-91.454,1.909-222.56-2.158-314.029-2.333C-9.129,105.101-9.124,161.738,27.399,161.809    z" fill="#00a890"/>
-		<path d="M416.994,275.083c-91.475,0.178-222.578,4.24-314.032,2.336c11.878-9.531,23.661-19.189,35.287-29.036    c27.909-23.643-12.365-63.502-40.045-40.05c-26.144,22.14-52.818,43.533-80.644,63.535c-3.156,2.271-5.616,4.881-7.508,7.679    c-11.019,9.866-15.173,26.821-1.051,39.628c29.935,27.162,59.123,55.081,86.369,84.955c24.659,27.04,64.597-13.127,40.045-40.045    c-9.308-10.217-18.913-20.124-28.629-29.93c90.18,1.722,220.003-2.265,310.203-2.438    C453.516,331.652,453.521,275.012,416.994,275.083z" fill="#00a890"/>
-                  </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
-                </g>
-                </svg></span>
-               <span class="iconBtnText">Engagement</span> 
-            </button>     
-    <button type="button" class="naturalButton">
-              <span><svg xmlns="/assets/images/revert-hand-drawn-arrows.svg" xmlns:xlink="/assets/images/revert-hand-drawn-arrows.svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
-                <g>
-                  <g>
-                   
-		<path d="M27.399,161.809c90.2,0.173,220.021,4.161,310.195,2.44c-9.714,9.8-19.316,19.718-28.624,29.924    c-24.552,26.921,15.386,67.088,40.045,40.048c27.248-29.876,56.441-57.795,86.371-84.952c14.122-12.809,9.968-29.765-1.051-39.628    c-1.899-2.798-4.352-5.408-7.511-7.68c-27.822-20.005-54.491-41.396-80.644-63.539c-27.685-23.45-67.953,16.412-40.045,40.05    c11.629,9.849,23.41,19.504,35.287,29.036c-91.454,1.909-222.56-2.158-314.029-2.333C-9.129,105.101-9.124,161.738,27.399,161.809    z" fill="#00a890"/>
-		<path d="M416.994,275.083c-91.475,0.178-222.578,4.24-314.032,2.336c11.878-9.531,23.661-19.189,35.287-29.036    c27.909-23.643-12.365-63.502-40.045-40.05c-26.144,22.14-52.818,43.533-80.644,63.535c-3.156,2.271-5.616,4.881-7.508,7.679    c-11.019,9.866-15.173,26.821-1.051,39.628c29.935,27.162,59.123,55.081,86.369,84.955c24.659,27.04,64.597-13.127,40.045-40.045    c-9.308-10.217-18.913-20.124-28.629-29.93c90.18,1.722,220.003-2.265,310.203-2.438    C453.516,331.652,453.521,275.012,416.994,275.083z" fill="#00a890"/>
-                  </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
-                </g>
-                </svg></span>
-               <span class="iconBtnText">Conversation Type</span> 
-            </button>     
-     <button type="button" class="naturalButtonsmall margin-top">
-              <span><svg xmlns="/assets/images/revert-hand-drawn-arrows.svg" xmlns:xlink="/assets/images/revert-hand-drawn-arrows.svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
-                <g>
-                  <g>
-                   
-		<path d="M27.399,161.809c90.2,0.173,220.021,4.161,310.195,2.44c-9.714,9.8-19.316,19.718-28.624,29.924    c-24.552,26.921,15.386,67.088,40.045,40.048c27.248-29.876,56.441-57.795,86.371-84.952c14.122-12.809,9.968-29.765-1.051-39.628    c-1.899-2.798-4.352-5.408-7.511-7.68c-27.822-20.005-54.491-41.396-80.644-63.539c-27.685-23.45-67.953,16.412-40.045,40.05    c11.629,9.849,23.41,19.504,35.287,29.036c-91.454,1.909-222.56-2.158-314.029-2.333C-9.129,105.101-9.124,161.738,27.399,161.809    z" fill="#00a890"/>
-		<path d="M416.994,275.083c-91.475,0.178-222.578,4.24-314.032,2.336c11.878-9.531,23.661-19.189,35.287-29.036    c27.909-23.643-12.365-63.502-40.045-40.05c-26.144,22.14-52.818,43.533-80.644,63.535c-3.156,2.271-5.616,4.881-7.508,7.679    c-11.019,9.866-15.173,26.821-1.051,39.628c29.935,27.162,59.123,55.081,86.369,84.955c24.659,27.04,64.597-13.127,40.045-40.045    c-9.308-10.217-18.913-20.124-28.629-29.93c90.18,1.722,220.003-2.265,310.203-2.438    C453.516,331.652,453.521,275.012,416.994,275.083z" fill="#00a890"/>
-                  </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
-                </g>
-                </svg></span>
-               <span class="iconBtnText">Attach Files</span> 
-            </button>        
-              <div>
-                 <p class="Add-Client">Add Client</p>
-              </div>
-              <input type="button" class="addbutton" value="Add" data-toggle="modal" data-target="#addClientModal">  
-      <div>
-     <p class="Add-Client">Client Contact</p>
-      </div>  
-      <input type="button" class="addbutton" value="Add" data-toggle="modal" data-target="#clientContactModal">
-      <div>
-     <p class="Add-Client">Tags</p>
-      </div>
-    <div>
-     <button class="tagDefault tag">Tag label
-                          <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
-                          <img class="fatime" src="/assets/images/delete.svg">
-                      </button> 
-    <button class="tagDefault tag">Tag label
-                          <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
-                          <img class="fatime" src="/assets/images/delete.svg">
-                      </button> 
-    <button class="tagDefault tag">Tag label
-                          <!--<i class="fa fa-times fatime" aria-hidden="true"></i>-->
-                          <img class="fatime" src="/assets/images/delete.svg">
-                      </button>       
-    </div>                                  
-        </div>
-        <div class="modal-footer">
-          <input type="submit" class="buttonMedium" value="create">
-        </div>
-        
-      </div>  
-   </div>
-    
+  <div class="changeimagewitdth">
+  <img src="/assets/images/lead.svg" class="changeimgheight"/>
+  
+  </div> 
   </div>
   
-     <div class="modal" id="addClientModal" role="dialog" tabindex="-1" data-focus-on="input:first">
-    <div class="client-dialog">
-    
-     <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Add Client</h4>
-        </div>
-        <div class="modal-body">
-          <p class="client-margin">Client Details</p>
-          <div class="container-fluid">
-          <div class="row"> 
-             <div class="col-md-12">
-               <div class="value"> 
-                     <input type="text" [ngClass]="{'red-border-class':!uname.valid && !uname.pristine}" class="inputText" id="uname" required name="uname" [(ngModel)] = "lead.uname" #uname="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!uname.valid && !uname.pristine }">Name</span>
-                   <div [hidden]="uname.valid || uname.pristine" class="reqAlert">
-                         name is required
-                   </div>
-               </div>
-                        </div> 
+  <div class="modal" id="myModal" role="dialog" tabindex="-1" data-focus-on="input:first">
+      <div class="popup-dialog">
+      
+       <!-- Modal content-->
+        <div class="modal-content">
+        <form (ngSubmit)="addLeads(addlead)">  
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div class="row">
+            <div class="col-md-2">
+            <h4 class="modal-title Create-Lead ">Create Lead</h4>
+            </div>
+            <div class="col-md-4">
+                <div class="small-color initialcolr" (click)="changecolor()" [ngClass]="{'active1':this.checked}">
+                    AM
                 </div>
-                <div class="row"> 
-               <div class="col-md-5">     
-                 <div class="value">      
-                     <input type="text" [ngClass]="{'red-border-class':!Building.valid && !Building.pristine}" class="inputText" id="Building" required name="Building" [(ngModel)] = "lead.Building" #Building="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!Building.valid && !Building.pristine }">Building name</span>
-                   <div [hidden]="Building.valid || Building.pristine" class="reqAlert">
-                         Building name is required
-                   </div>  
+            </div>
+                        <div class="col-md-3"> 
+                        <span class="col-sd-2" *ngFor="let name of this.namearray |slice:0:2">
+                          <div class="small-color">
+                            {{name.ShortName}}
+                          </div>
+                        </span>
+                          <span class="col-sd-3" *ngIf="this.namearray?.length > 2">  
+                          <div class="users">
+                              {{this.namearray.length-2}}
+                          </div>
+                        </span> 
+                        </div>
+                        <div class="col-md-2">     
+                        <span class="dropdown">
+                        <button class="btn btn-default naturalButtonMedium1 dropdown-toggle margin-left data-width" type="button" data-toggle="dropdown">{{this.peopleName}}
+                        </button>
+                        <ul class="dropdown-menu" style="width:255px">
+                        <li> <groome-search  (searchChange)="peopleSearch($event)"></groome-search> </li>
+                        <li *ngFor="let people of this.persondisplay" (click)="invitesearch(people.UFirstName,people)"><a >{{people.UFirstName}}</a></li>
+                        </ul>  
+                        </span> 
+            </div> 
+          </div>          
+          </div>
+          <div class="modal-body">
+      <div>
+            <input type="text" placeholder="Add title here" class="Add-title-here input" name="title" [(ngModel)]="title" autocomplete="off">
+      </div>
+            <div>
+                    <textarea class="textArea" placeholder="Add your conversation here" name="conversation" [(ngModel)]="conversation"></textarea>
                  </div>
-               </div>
-                               
-                <div class="col-md-7">  
-                  <div class="value">         
-                     <input type="text" [ngClass]="{'red-border-class':!Street.valid && !Street.pristine}" class="inputText" id="Street" required name="Street" [(ngModel)] = "lead.Street" #Street="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!Street.valid && !Street.pristine }">Street Cross</span>
-                   <div [hidden]="Street.valid || Street.pristine" class="reqAlert">
-                         Street Cross is required
-                   </div>   
-                  </div>                 
-                  </div>
-                </div>
-                  <div class="row"> 
-                  <div class="col-md-5">     
-                    <div class="value">      
-                     <input type="text" [ngClass]="{'red-border-class':!Area.valid && !Area.pristine}" class="inputText" id="Area" required name="Area" [(ngModel)] = "lead.Area" #Area="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!Area.valid && !Area.pristine }">Area</span>
-                   <div [hidden]="Area.valid || Area.pristine" class="reqAlert">
-                         Area is required
-                   </div>   
-                    </div>                 
-                  </div>
-                  <div class="col-md-7"> 
-                    <div class="value">          
-                     <input type="text" [ngClass]="{'red-border-class':!city.valid && !city.pristine}" class="inputText" id="city" required name="city" [(ngModel)] = "lead.city" #city="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!city.valid && !city.pristine }">City</span>
-                   <div [hidden]="city.valid || city.pristine" class="reqAlert">
-                         City is required
-                   </div>   
-                    </div>                 
-                  </div>
-                  </div>
-                <div class="row"> 
-                  <div class="col-md-5">   
-                    <div class="value">        
-                     <input type="text" [ngClass]="{'red-border-class':!state.valid && !state.pristine}" class="inputText" id="state" required name="state" [(ngModel)] = "lead.state" #state="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!state.valid && !state.pristine }">State</span>
-                   <div [hidden]="state.valid || state.pristine" class="reqAlert">
-                         state is required
+                 <div class="row">
+                  <div class="col-md-4">
+                    <div class="dropsown-margin">
+                      <span class="dropdown">
+                        <button class="btn btn-default naturalButtonMedium1 dropdown-toggle " type="button" data-toggle="dropdown">{{this.managerlist}}
+                        </button>
+                         <ul class="dropdown-menu" style="width:255px">
+                         <li> <groome-search  (searchChange)="ownersearch($event)"></groome-search> </li>
+                         <li *ngFor="let owner of this.ownerdisplay" (click)="managersearch(owner.UFirstName,owner)"><a >{{owner.UFirstName}}</a></li>
+                        </ul>  
+                         </span> 
+                         <!-- <span class="dropdown">
+                            <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.managerlist}}
+                            </button>
+                             <ul class="dropdown-menu" style="width:255px">
+                             <li> <groome-search  (searchChange)="salesrepsearch($event)"></groome-search> </li>
+                             <li *ngFor="let sales of this.salesdisplay" (click)="salessearch(sales.UserName,sales)"><a >{{sales.UserName}}</a></li>
+                             </ul>  
+                             </span>   -->
+                    </div> 
+                  </div> 
+                 <div class="col-md-3">  
+                 <div class="dropdown">
+                    <div class="naturalButtonsmall dropdown-padding btn-margin" data-toggle="dropdown"><span class="iconBtnText">{{this.reqBusiness}}</span>
+                        </div>
+                            <ul class="dropdown-menu business_drop margin ">
+                                <li class="disabled" ><a style="cursor: default;">Business</a></li>
+                                <li class="divide" *ngFor="let business of this.Business.BusinessStreams"  (click)="changeBusiness(business.option,business)">{{business.option}}</li>
+                            </ul>
+                      </div> 
+                 </div>
+                   <div class="col-md-2"> 
+                      <div class="dropdown">
+                          <div class="naturalButtonsmall dropdown-padding btn-margin" data-toggle="dropdown"><span class="iconBtnText">{{this.reqConversation}}</span>
+                              </div>
+                                  <ul class="dropdown-menu business_drop margin">
+                                      <li class="disabled" ><a style="cursor: default;">Conversation Type</a></li>
+                                       <li class="divide" *ngFor="let conversation of this.Business.ConversationType"  (click)="changeconversation(conversation.option,conversation)">{{conversation.option}}</li>
+                                  </ul>
+                            </div>  
                    </div>  
-                    </div>                  
-                  </div>
-                  <div class="col-md-7"> 
-                    <div class="value">          
-                     <input type="text" [ngClass]="{'red-border-class':!country.valid && !country.pristine}" class="inputText" id="country" required name="country" [(ngModel)] = "lead.country" #country="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!country.valid && !country.pristine }">Country</span>
-                   <div [hidden]="country.valid || country.pristine" class="reqAlert">
-                         country is required
-                   </div>  
-                    </div>                  
-                  </div>
+                  <div class="col-md-2"> 
+                       <!--Attach file starts-->
+  
+         <popover-content #attachFile 
+         placement="bottom"
+         [animation]="true" 
+         [closeOnClickOutside]="true" >
+         <div class="row" *ngFor='let filename of this.files'>
+              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                  <p>{{filename}}</p>
+              </div>
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" (click)="deleteFile(filename)">
+                <p><img src="/assets/images/rubbish-bin.png"></p>
+              </div>
+         </div>
+        
+  <div class="fileUpload btn naturalButtonsmall">
+  <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
+         <g>
+           <g>
+             <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
+             <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
+           </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+         </g>
+         </svg></span>
+        <span class="iconBtnText">{{this.attfileTest}}</span> 
+  <input class="upload" id="uploadBtn" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.png,.svg" multiple>
+  
+  </div>
+  <!--<div><button (click)="upload()">upload</button></div>-->
+  </popover-content>
+  
+  <button [popover]="attachFile" type="button" class="naturalButtonsmall">
+       <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
+         <g>
+           <g>
+             <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
+             <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
+           </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+         </g>
+         </svg></span>
+        <span class="iconBtnText">{{this.attfileTest}}</span> 
+     </button>
+                  </div> 
+                 </div>
+                <div>
+                   <p class="Add-Client">Add Client</p>
                 </div>
-                <div class="row"> 
-                   <div class="col-md-6">  
-                     <div class="value">         
-                     <input type="text" [ngClass]="{'red-border-class':!mailid.valid && !mailid.pristine}" class="clientInputText" id="mailid" required name="mailid" [(ngModel)] = "lead.mailid" #mailid="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!mailid.valid && !mailid.pristine }">Email Id</span>
-                   <div [hidden]="mailid.valid || mailid.pristine" class="reqAlert">
-                         Email Id is required
-                   </div> 
-                     </div>                   
-                  </div>
-                  <div class="col-md-6">   
-                    <div class="value">        
-                     <input type="text" [ngClass]="{'red-border-class':!phone.valid && !phone.pristine}" class="inputText" id="phone" required name="phone" [(ngModel)] = "lead.phone" #phone="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!phone.valid && !phone.pristine }">Phone Numbers</span>
-                   <div [hidden]="phone.valid || phone.pristine" class="reqAlert">
-                         Phone Number is required
-                   </div>  
-                    </div>                  
-                  </div>
-                </div>
-                <div class="row"> 
-                  <div class="col-md-12">
-                    <div class="value"> 
-                     <input type="text" [ngClass]="{'red-border-class':!web.valid && !web.pristine}" class="clientInputText" id="web" required name="web" [(ngModel)] = "lead.web" #web="ngModel"/>
-                  <span class="floating-label" [ngClass]="{'red-class':!web.valid && !web.pristine }">Website:https//</span>
-                   <div [hidden]="web.valid || web.pristine" class="reqAlert">
-                         Website url is required
-                   </div>
+                <div class="row">
+                  <div class="col-md-4">
+                      <div class="dropsown-margin">
+                       <span class="dropdown">
+                       <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.getClientList}}
+                       </button>
+                        <ul class="dropdown-menu" style="width:255px">
+                        <li> <groome-search  (searchChange)="searchChange($event)"></groome-search> </li>
+                        <li class="disabled" ><a style="cursor: default;">People</a></li>
+                        <li class="divide" *ngFor="let client of this.displayList" (click)="putValue(client.ClientName,client)"><a >{{client.ClientName}}</a></li>
+                        <li type="button" class="addbutton popup-button divide" value="Add" data-toggle="modal" data-target="#addClientModal"></li>
+                        </ul>  
+                        </span> 
+                      </div> 
+                      </div>
+                     </div>
+             
+        <div>
+       <p class="Add-Client">Client Contact</p>
+        </div>  
+        <div class="row">
+            <div class="col-md-3">
+                <div class="dropsown-margin">
+                  <span class="dropdown">
+                    <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.getContactList}}
+                    </button>
+                     <ul class="dropdown-menu" style="width:255px">
+                     <li> <groome-search  (searchChange)="clientContactSearch($event)"></groome-search> </li>
+                     <li class="disabled" ><a style="cursor: default;">People</a></li>
+                     <li class="divide" *ngFor="let contact of this.contactdisplay" (click)="contactsearch(contact.FirstName,contact)"><a >{{contact.FirstName}}</a></li>
+                     <li type="button" class="addbutton popup-button divide" value="Add" data-toggle="modal" data-target="#addClientContactModal"></li>
+                     </ul>  
+                     </span> 
                     </div>
-                        </div> 
-                </div>
-                
+                    </div>
+                    <div class="col-md-6">
+                    <button class="Add-Tag tag tagadd" type="button" *ngFor="let contactarray of this.tagcontactarray">{{contactarray.FirstName}}
+                    <img class="fatime" src="/assets/images/delete.svg">  
+                   </button>  
+                    </div>    
+        </div>
+        <div>
+       <p class="Add-Client">Tags</p>
+        </div>
+      <div class="row">  
+      <div class="col-md-3">
+      <form (ngSubmit)="addTag(tagtitle)" autocomplete="off">
+      <input type="text" placeholder="Add Tag" class="tag-title input" name="tagtitle" [(ngModel)]="tagtitle"></form>
+      </div>
+      <div class="col-md-8">
+      <button class="Add-Tag tag" type="button" *ngFor="let tag of this.tagarray">{{tag}}
+      <img class="fatime" src="/assets/images/delete.svg">  
+      </button> 
+       </div>  
+      </div>                                
+          </div>
+          <div class="modal-footer">
+            <input type="submit" class="buttonMedium" (click)="addLeads()" value="create">
+          </div>
+        </form>
+        </div>  
+     </div>
+      
+    </div>
+    
+
+    <div class="modal" id="addClientModal" role="dialog" tabindex="-1" data-focus-on="input:first">
+        <div class="client-dialog">
+        
+         <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">Add Client</h4>
+            </div>
+            <div class="modal-body">
+              <p class="client-margin">Client Details</p>
+              <div class="container-fluid">
+              <form (ngSubmit)="createClient(addclientdata)">  
+              <div class="row"> 
+                 <div class="col-md-5">
+                   <div class="value"> 
+                         <input type="text" [ngClass]="{'red-border-class':!ClientName.valid && !ClientName.pristine}" class="inputText text-width" id="ClientName" required name="ClientName" [(ngModel)] = "addclientdata.ClientName" #ClientName="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!ClientName.valid && !ClientName.pristine }">Client Name</span>
+                       <div [hidden]="ClientName.valid || ClientName.pristine" class="reqAlert">
+                             Name is required
+                       </div>
+                   </div>
+                            </div> 
+                    </div>  
+                    <div class="row"> 
+                       <div class="col-md-5">   
+                        <div class="value">        
+                         <input type="text" [ngClass]="{'red-border-class':!IndustryType.valid && !IndustryType.pristine}" class="inputText text-width" id="IndustryType" required name="IndustryType" [(ngModel)] = "addclientdata.IndustryType" #IndustryType="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!IndustryType.valid && !IndustryType.pristine }">Industry Type</span>
+                       <div [hidden]="IndustryType.valid || IndustryType.pristine" class="reqAlert">
+                             IndustryType is required
+                       </div>  
+                        </div>                  
+                      </div>
+    
+                       <div class="col-md-5">  
+                         <div class="value">         
+                         <input type="text" [ngClass]="{'red-border-class':!BusinessVertical.valid && !BusinessVertical.pristine}" class="inputText text-width" id="BusinessVertical" required name="BusinessVertical" [(ngModel)] = "addclientdata.BusinessVertical" #BusinessVertical="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!BusinessVertical.valid && !BusinessVertical.pristine }">Business Type</span>
+                       <div [hidden]="BusinessVertical.valid ||BusinessVertical.pristine" class="reqAlert">
+                             BusinessVertical is required
+                       </div> 
+                         </div>                   
+                      </div>
+                    </div>
+            <div class="modal-footer">
+              <input type="submit" class="brandblue" value="Create Client" ng-click="createClient()">
+            </div>
+              </form>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <input type="button" class="brandblue" value="Create Client">
-        </div>
-      </div>
-      </div>
-    </div>
 
-  <div *ngIf="this.role=='Sales_Rep'">
-<!--<div>-->
-<div class="row main_container container-fluid tabs">
-   
-      <span class="leadText">Lead</span>
-      <span  class="workbenchTab">
-      <ul class="nav nav-pills tablist ">
-          <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#menu1">All</a></li>
-          <li><a class= "btn btn-large assigned" data-toggle="pill" href="#menu2">Assigned to me</a></li>
-          <li><a  class="btn btn-large subscribed" data-toggle="pill" href="#menu3">Subscribed</a></li>
-         
-        </ul></span>
-   
-  </div>
- 
-        <div class="container maincontainer">
-          <div class="tab-content"> 
-            <div id="menu1" class="tab-pane fade in active">
-
-       <div class="col-lg-3 col-md-3 col-sm-3" >
-        <div class="project1 project-default" type="button">
-          <div>
-          <img class="addlead" src="/assets/images/addlead.png"/></div>
-             <button type="button" class="btn btn-success addlead1" data-toggle="modal" data-target="#myModal">Add Lead</button>       
-        </div>
-      </div> 
-
-          <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
-            <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-              <header class="header1">
-                <div class="xSmall">
-                           <p class="layer">2</p>
-                            </div>
-                <span class="status">{{value.LeadID}}</span>
-                  <div class="status1"><p class="status2">{{value.Status}}</p></div>
-                    </header>
-                      <div class="project-content">
-                        <p class="content"> {{value.Title}}</p>
-                       <span> <img class="signuser" src="/assets/images/images.png"></span>
+    <div class="modal" id="addClientContactModal" role="dialog" tabindex="-1" data-focus-on="input:first">
+        <div class="client-dialog">
+        
+         <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">Add Client Contact</h4>
+            </div>
+            <div class="modal-body">
+              <p class="client-margin">Personal Details</p>
+              <div class="container-fluid">
+              <form (ngSubmit)="createClientContact(addcontactdata)">    
+              <div class="row"> 
+                 <div class="col-md-5">
+                   <div class="value"> 
+                         <input type="text" [ngClass]="{'red-border-class':!FirstName.valid && !FirstName.pristine}" class="inputText text-width" id="FirstName" required name="FirstName" [(ngModel)] = "contactdetails.FirstName" #FirstName="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!FirstName.valid && !FirstName.pristine }">First Name</span>
+                       <div [hidden]="FirstName.valid || FirstName.pristine" class="reqAlert">
+                             First Name is required
+                       </div>
+                   </div>
+                            </div> 
+                    <div class="col-md-5">     
+                     <div class="value">      
+                         <input type="text" [ngClass]="{'red-border-class':!LastName.valid && !LastName.pristine}" class="inputText text-width" id="LastName" required name="LastName" [(ngModel)] = "contactdetails.LastName" #LastName="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!LastName.valid && !LastName.pristine }">Last Name</span>
+                       <div [hidden]="LastName.valid || LastName.pristine" class="reqAlert">
+                             Last Name is required
+                       </div>  
+                     </div>
+                    </div>
+              </div>
+                    <div class="row"> 
+                   <div class="col-md-5">     
+                     <div class="value">      
+                         <input type="text" [ngClass]="{'red-border-class':!Designation.valid && !Designation.pristine}" class="inputText text-width" id="Designation" required name="Designation" [(ngModel)] = "contactdetails.Designation" #Designation="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!Designation.valid && !Designation.pristine }">Designation</span>
+                       <div [hidden]="Designation.valid || Designation.pristine" class="reqAlert">
+                             Designation is required
+                       </div>  
+                     </div>
+                   </div>          
+                    <div class="col-md-5">   
+                        <div class="value">        
+                         <input type="text" [ngClass]="{'red-border-class':!Phone.valid && !Phone.pristine}" class="inputText text-width" id="Phone" required name="Phone" [(ngModel)] = "contactdetails.Phone" #Phone="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!Phone.valid && !Phone.pristine }">Phone Numbers</span>
+                       <div [hidden]="Phone.valid || Phone.pristine" class="reqAlert">
+                             Phone Number is required
+                       </div>  
+                        </div>                  
                       </div>
-                        <div class="footer1">
-                          <div class="row footer2">
-                            <div class="col-lg-4  col-md-4 col-sm-4">
-                              <p class="Assigned">Assigned by</p>
-                                  <img class="profileIcon" src="/assets/images/gk.png">
-                            </div>
+                    </div>
+                     <div class="row"> 
+                       <div class="col-md-5">  
+                         <div class="value">         
+                         <input type="text" [ngClass]="{'red-border-class':!Email.valid && !Email.pristine}" class="inputText text-width" id="Email" required name="Email" [(ngModel)] = "contactdetails.Email" #Email="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!Email.valid && !Email.pristine }">Email Id</span>
+                       <div [hidden]="Email.valid || Email.pristine" class="reqAlert">
+                             Email Id is required
+                       </div> 
+                         </div>                   
+                      </div>
+                     </div>
+                      <div class="row"> 
+                      <div class="col-md-5">     
+                        <div class="value">      
+                         <input type="text" [ngClass]="{'red-border-class':!OfficeAddress.valid && !OfficeAddress.pristine}" class="inputText text-width" id="OfficeAddress" required name="OfficeAddress" [(ngModel)] = "officeaddress.OfficeAddress" #OfficeAddress="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!OfficeAddress.valid && !OfficeAddress.pristine }">Office Address</span>
+                       <div [hidden]="OfficeAddress.valid || OfficeAddress.pristine" class="reqAlert">
+                             Office Address is required
+                       </div>   
+                        </div>                 
+                      </div>
+                          <div class="col-md-5">     
+                        <div class="value">      
+                         <input type="text" [ngClass]="{'red-border-class':!Country.valid && !Country.pristine}" class="inputText text-width" id="Country" required name="Country" [(ngModel)] = "officeaddress.Country" #Country="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!Country.valid && !Country.pristine }">Country</span>
+                       <div [hidden]="Country.valid || Country.pristine" class="reqAlert">
+                             Country is required
+                       </div>   
+                        </div>                 
+                      </div>
+                      </div>
+                    <div class="row"> 
+                      <div class="col-md-4">   
+                        <div class="value">        
+                         <input type="text" [ngClass]="{'red-border-class':!State.valid && !State.pristine}" class="inputText text-width" id="State" required name="State" [(ngModel)] = "officeaddress.State" #State="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!State.valid && !State.pristine }">State</span>
+                       <div [hidden]="State.valid || State.pristine" class="reqAlert">
+                             State is required
+                       </div>  
+                        </div>                  
+                      </div>
+                      <div class="col-md-4">  
+                      <div class="value">         
+                         <input type="text" [ngClass]="{'red-border-class':!Street.valid && !Street.pristine}" class="inputText text-width" id="Street" required name="Street" [(ngModel)] = "officeaddress.Street" #Street="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!Street.valid && !Street.pristine }">Street</span>
+                       <div [hidden]="Street.valid || Street.pristine" class="reqAlert">
+                             Street is required
+                       </div>   
+                      </div>                 
+                      </div>
+                      <div class="col-md-2"> 
+                        <div class="value Zip-width">          
+                         <input type="text" [ngClass]="{'red-border-class':!ZipCode.valid && !ZipCode.pristine}" class="inputText text-width" id="ZipCode" required name="ZipCode" [(ngModel)] = "officeaddress.ZipCode" #ZipCode="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!ZipCode.valid && !ZipCode.pristine }">ZipCode</span>
+                       <div [hidden]="ZipCode.valid || ZipCode.pristine" class="reqAlert">
+                             Zip Code is required
+                       </div>  
+                        </div>                  
+                      </div>
+                    </div>
+                      <!-- <p class="">Related Tags</p> 
+                    <div>      
+         <span class="text-input-wrapper">            
+         <input type="text" class="tagDefault Client-margin" placeholder="add tag">
+         <img class="fatime" src="/assets/images/delete.svg"></span>
+    
+         <span class="text-input-wrapper">
+        <input type="text" class="tagDefault" placeholder="add tag">
+         <img class="fatime" src="/assets/images/delete.svg">
+         </span>
+        <span class="text-input-wrapper"> 
+        <input type="text" class="tagDefault" placeholder="add tag" >
+        </span>                      
+              </div> -->
+            <div class="modal-footer">
+              <input type="submit" class="brandblue" value="Create Client" (click)="createClientContact()">
+            </div>
+              </form>
+              </div>
+          </div>
+          </div>
+        </div>
+        </div>
+  
+    <div *ngIf="this.role=='Sales_Rep'">
+  <!--<div>-->
+  <div class="row main_container container-fluid tabs">
+     
+        <span class="leadText">Lead</span>
+        <span  class="workbenchTab">
+        <ul class="nav nav-pills tablist ">
+            <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#menu1">All</a></li>
+            <li><a class= "btn btn-large assigned" data-toggle="pill" href="#menu2">Assigned to me</a></li>
+            <li><a  class="btn btn-large subscribed" data-toggle="pill" href="#menu3">Subscribed</a></li>
+           
+          </ul></span>
+     
+    </div>
+   
+          <div class="container maincontainer">
+            <div class="tab-content"> 
+              <div id="menu1" class="tab-pane fade in active">
+  
+         <div class="col-lg-3 col-md-3 col-sm-3" >
+          <div class="project1 project-default" type="button">
+            <div>
+            <img class="addlead" src="/assets/images/addlead.png"/></div>
+               <button type="button" class="btn btn-success addlead1" data-toggle="modal" data-target="#myModal">Add Lead</button>       
+          </div>
+        </div> 
+  
+            <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
+              <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                <header class="header1">
+                  <div class="xSmall">
+                             <p class="layer">2</p>
+                              </div>
+                  <span class="status">{{value.LeadID}}</span>
+                    <div class="status1"><p class="status2">{{value.Status}}</p></div>
+                      </header>
+                        <div class="project-content">
+                          <p class="content"> {{value.Title}}</p>
+                         <span> <img class="signuser" src="/assets/images/images.png"></span>
+                        </div>
+                          <div class="footer1">
+                            <div class="row footer2">
                               <div class="col-lg-4  col-md-4 col-sm-4">
-                                <p class="client">Client</p>
-                                  <img  class="profileIcon1" src="/assets/images/dell.png">
+                                <p class="Assigned">Assigned by</p>
+                                    <img class="profileIcon" src="/assets/images/gk.png">
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
-                                  <p class="Enggagement">Next Enggagement</p>
-                                  <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                                  <p class="client">Client</p>
+                                    <img  class="profileIcon1" src="/assets/images/dell.png">
                                 </div>
+                                  <div class="col-lg-4  col-md-4 col-sm-4">
+                                    <p class="Enggagement">Next Enggagement</p>
+                                    <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                                  </div>
+                            </div>
                           </div>
-                        </div>
-            </div>
-          </div> 
-            </div>
-            <div id="menu2" class="tab-pane fade">
-                <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-                    <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-                      <header class="header1">
-                        <div class="xSmall">
-                                   <p class="layer">2</p>
-                                    </div>
-                        <span class="status">{{this.viewleaddata.LeadID}}</span>
-                          <div class="status1"><p class="status2">Active</p></div>
-                            </header>
-                              <div class="project-content">
-                                <p class="content"> Product design for dell enterprise Solution</p>
-                               <span> <img class="signuser" src="/assets/images/images.png"></span>
-                              </div>
-                                <div class="footer1">
-                                  <div class="row footer2">
-                                    <div class="col-lg-4  col-md-4 col-sm-4">
-                                      <p class="Assigned">Assigned by</p>
-                                          <img class="profileIcon" src="/assets/images/gk.png">
-                                    </div>
+              </div>
+            </div> 
+              </div>
+              <div id="menu2" class="tab-pane fade">
+                  <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+                      <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                        <header class="header1">
+                          <div class="xSmall">
+                                     <p class="layer">2</p>
+                                      </div>
+                          <span class="status">{{this.viewleaddata.LeadID}}</span>
+                            <div class="status1"><p class="status2">Active</p></div>
+                              </header>
+                                <div class="project-content">
+                                  <p class="content"> Product design for dell enterprise Solution</p>
+                                 <span> <img class="signuser" src="/assets/images/images.png"></span>
+                                </div>
+                                  <div class="footer1">
+                                    <div class="row footer2">
                                       <div class="col-lg-4  col-md-4 col-sm-4">
-                                        <p class="client">Client</p>
-                                          <img  class="profileIcon1" src="/assets/images/dell.png">
+                                        <p class="Assigned">Assigned by</p>
+                                            <img class="profileIcon" src="/assets/images/gk.png">
                                       </div>
                                         <div class="col-lg-4  col-md-4 col-sm-4">
-                                          <p class="Enggagement">Next Enggagement</p>
-                                          <p class="date">27,Feb</p>
+                                          <p class="client">Client</p>
+                                            <img  class="profileIcon1" src="/assets/images/dell.png">
                                         </div>
+                                          <div class="col-lg-4  col-md-4 col-sm-4">
+                                            <p class="Enggagement">Next Enggagement</p>
+                                            <p class="date">27,Feb</p>
+                                          </div>
+                                    </div>
                                   </div>
+                      </div>
+                    </div> 
+                  
+              </div>
+              <div id="menu3" class="tab-pane fade">
+                  <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+                      <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                        <header class="header1">
+                          <div class="xSmall">
+                                     <p class="layer">2</p>
+                                      </div>
+                          <span class="status">Act1023</span>
+                            <div class="status1"><p class="status2">Active</p></div>
+                              </header>
+                                <div class="project-content">
+                                  <p class="content"> Product design for dell enterprise Solution</p>
+                                 <span> <img class="signuser" src="/assets/images/images.png"></span>
                                 </div>
-                    </div>
-                  </div> 
-                
-            </div>
-            <div id="menu3" class="tab-pane fade">
-                <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-                    <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-                      <header class="header1">
-                        <div class="xSmall">
-                                   <p class="layer">2</p>
-                                    </div>
-                        <span class="status">Act1023</span>
-                          <div class="status1"><p class="status2">Active</p></div>
-                            </header>
-                              <div class="project-content">
-                                <p class="content"> Product design for dell enterprise Solution</p>
-                               <span> <img class="signuser" src="/assets/images/images.png"></span>
-                              </div>
-                                <div class="footer1">
-                                  <div class="row footer2">
-                                    <div class="col-lg-4  col-md-4 col-sm-4">
-                                      <p class="Assigned">Assigned by</p>
-                                          <img class="profileIcon" src="/assets/images/gk.png">
-                                    </div>
+                                  <div class="footer1">
+                                    <div class="row footer2">
                                       <div class="col-lg-4  col-md-4 col-sm-4">
-                                        <p class="client">Client</p>
-                                          <img  class="profileIcon1" src="/assets/images/dell.png">
+                                        <p class="Assigned">Assigned by</p>
+                                            <img class="profileIcon" src="/assets/images/gk.png">
                                       </div>
                                         <div class="col-lg-4  col-md-4 col-sm-4">
-                                          <p class="Enggagement">Next Enggagement</p>
-                                          <p class="date">27,Feb</p>
+                                          <p class="client">Client</p>
+                                            <img  class="profileIcon1" src="/assets/images/dell.png">
                                         </div>
+                                          <div class="col-lg-4  col-md-4 col-sm-4">
+                                            <p class="Enggagement">Next Enggagement</p>
+                                            <p class="date">27,Feb</p>
+                                          </div>
+                                    </div>
                                   </div>
-                                </div>
-                    </div>
-                  </div>             
+                      </div>
+                    </div>             
+              </div>
             </div>
           </div>
-        </div>
-
-        
-
-</div>
-
-<!--pop up strats-->
-
-<div class="modal" id="exampleModal"  role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-         <span class="status">{{this.viewleaddata.LeadID}}</span>
-         <span>  <img  class="profileIcon1" src="/assets/images/dell.png"></span>
-          <span>{{this.viewleaddata.ClientName}}
-         
-          </span>
-        
-          <span style="float:right">
-              <span class="invite" *ngFor="let subdata of this.subscibe|slice:0:2">GK</span>
-              <span class="invite" *ngIf="this.subscibe.length>2">{{this.subscibe.length-2}}</span>
-                 <span class="dropdown"> 
-                    <button class="btn btn-default naturalButtonMedium dropdown-toggle" type="button" data-toggle="dropdown">
-                        Invite People
-                  </button>
-                    <ul class="dropdown-menu" style="width:200px">
-                      <li> <groome-search  (searchChange)="peopleSearch($event)"></groome-search>      </li>
-                      <li *ngFor="let userValue of this.userList" (click)="invitesearch(userValue.UFirstName,userValue,this.viewleaddata._id)"><a >{{userValue.UFirstName}}</a></li>
-                    </ul>
-                  </span>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                 </button>
-               </span>
-        </div>
-        <div class="row">
-          <div class="col-lg-8 col-md-8 col-sm-8 content1">
-                
-                  <ul class="nav nav-pills chatheader">
-                      <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#home1">Conversion</a></li>
-                    
-                      <li><a  class="btn btn-large subscribed" data-toggle="pill" href="#menu03">Requirement</a></li>
-                    
-                   
-                   
-                  </ul>
-                  
-                  <div class="tab-content">
-                    <div id="home1" class="tab-pane fade in active">
-                        <ul class="chat">
-                            <li class="left clearfix"><span class="chat-img pull-left">
-                                <span class="invite1">SG</span>
   
-                            </span>
-                                <div class="chat-body">
-                                    <div class="header">
+          
+  
+  </div>
+  
+  <!--pop up strats-->
+  
+  <div class="modal" id="exampleModal"  role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+           <span class="status">{{this.viewleaddata.LeadID}}</span>
+           <span>  <img  class="profileIcon1" src="/assets/images/dell.png"></span>
+            <span>{{this.viewleaddata.ClientName}}
+           
+            </span>
+          
+            <span style="float:right">
+                <span class="invite" *ngFor="let subdata of this.subscibe|slice:0:2">GK</span>
+                <span class="invite" *ngIf="this.subscibe.length>2">{{this.subscibe.length-2}}</span>
+                   <span class="dropdown"> 
+                      <button class="btn btn-default naturalButtonMedium dropdown-toggle" type="button" data-toggle="dropdown">
+                          Invite People
+                    </button>
+                      <ul class="dropdown-menu" style="width:200px">
+                        <li> <groome-search  (searchChange)="peopleSearchValue($event)"></groome-search>      </li>
+                        <li *ngFor="let userValue of this.userList" (click)="invitesearchData(userValue.UFirstName,userValue,this.viewleaddata._id)"><a >{{userValue.UFirstName}}</a></li>
+                      </ul>
+                    </span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                   </button>
+                 </span>
+          </div>
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 content1">
+                  
+                    <ul class="nav nav-pills chatheader">
+                        <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#home1">Conversion</a></li>
+                      
+                        <li><a  class="btn btn-large subscribed" data-toggle="pill" href="#menu03">Requirement</a></li>
+                      
+                     
+                     
+                    </ul>
+                    
+                    <div class="tab-content">
+                      <div id="home1" class="tab-pane fade in active">
+                          <ul class="chat">
+                              <li class="left clearfix"><span class="chat-img pull-left">
+                                  <span class="invite1">SG</span>
+    
+                              </span>
+                                  <div class="chat-body">
+                                      <div class="header">
+                                          
+                                      </div>
+                                      <p>
+                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                          dolor, quis ullamcorper ligula sodales.
+                                      </p>
+                                  </div>
+                                </li>
+                                <li class="right clearfix"><span class="chat-img pull-right">
+                                    <span class="invite2">SH</span> 
+                                </span>
+                                    <div class="chat-body clearfix">
                                         
+                                        <p>
+                                            Lorem ipsum dolor sit amet. Curabitur bibendum ornare
+                                           
+                                        </p>
                                     </div>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                        dolor, quis ullamcorper ligula sodales.
-                                    </p>
-                                </div>
-                              </li>
-                              <li class="right clearfix"><span class="chat-img pull-right">
+                                </li>
+                              <li class="left clearfix"><span class="chat-img pull-left">
                                   <span class="invite2">SH</span> 
                               </span>
                                   <div class="chat-body clearfix">
-                                      
                                       <p>
-                                          Lorem ipsum dolor sit amet. Curabitur bibendum ornare
-                                         
+                                     consectetur adipiscing elit. Curabitur bibendum ornare
+                                          
                                       </p>
                                   </div>
                               </li>
-                            <li class="left clearfix"><span class="chat-img pull-left">
-                                <span class="invite2">SH</span> 
-                            </span>
-                                <div class="chat-body clearfix">
-                                    <p>
-                                   consectetur adipiscing elit. Curabitur bibendum ornare
-                                        
-                                    </p>
-                                </div>
-                            </li>
-                         
-                             <li class="right clearfix"><span class="chat-img pull-right">
-                                <span class="invite2">SH</span> 
-                            </span>
-                                <div class="meetingShedule">
-                                
-                                  <div class="maindiv">
-                                    <div class="firstdiv">
-                                        <div class="date1">
-                                            14
-                                          </div>
-                                          <div class="month-time">
-                                          <div class="month">
-                                             August 2017
-                                            </div>
-                                            <div class="time">
-                                               12 AM
-                                               </div>
-                                          </div>
-                                    </div>
-                                     <div class="seconddiv">
-                                        <div class="company">
-                                           DEll EMC
-                                           </div>
-                                           <div class="place">
-                                             Kormanglla
-                                              </div>
-                                        
-                                      </div>
-                                  </div>
-                                 
-                                  <div class="maindiv2" >
-                                      <div class="div11">
-                                        <div class="shedule">
-                                          Reshedule
-                                        </div>
-                                      </div>
-                                      <div class="div22">
-                                          <div class="cancel">
-                                            cancel
-                                          </div>
-                                        </div>
-                                     
-                                      </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="dropdown conversation_type">
-                            <div  data-toggle="dropdown" class="select">{{reqCOnversation}} 
-                              <span   class="glyphicon glyphicon-chevron-up  "></span>
-                            </div>
                            
-                                <ul class="dropdown-menu  ">
-                                    <li class="disabled" ><a style="cursor: default;">Conversation Type</a></li>
-                                    <li class="divide" (click)="changeConversation('Telephonic')">Telephonic</li>
-                                    <li class="divide"   (click)="changeConversation('Face to Face')">Face to Face </li>
-                                    <li class="divide"   (click)="changeConversation('Email')"> Email</li>
-                                    
+                               <li class="right clearfix"><span class="chat-img pull-right">
+                                  <span class="invite2">SH</span> 
+                              </span>
+                                  <div class="meetingShedule">
                                   
-                                </ul>
-                          </div> 
-                          <div class="sendicon">
-                              <span class="glyphicon glyphicon-send"></span> 
-                          </div>
-                            <div class="send_message">
-                                <textarea id="btn-input" type="text" class="sendText" placeholder="Write a message..."></textarea>
-                        </div>
-                        <div class="calender">
-                          <span class="glyphicon glyphicon-paperclip" style="margin-right:10px"></span>
-                          <span  style="margin-right:15px;cursor:pointer"><div class="glyphicon glyphicon-calendar calenderSchedule" [popover]="myPopover"></div></span>
-                        </div>
-                        <popover-content #myPopover 
-                                placement="top"
-                                [animation]="true" 
-                                [closeOnClickOutside]="true" >
-                <div class="marginBottm">               
-                    <input type=text placeholder="location" class="locationinput" [(ngModel)] = "ScheduleLocation">  
-                    <select class="selectTime" [(ngModel)] = "ScheduleTime">
-                          <option>12:00AM</option>
-                          <option>12:30AM</option>
-                          <option>1:00AM</option>
-                          <option>1:30AM</option>
-                          <option>2:00AM</option>
-                          <option>2:30AM</option>
-                          <option>12:00AM</option>
-                          <option>12:30AM</option>
-                          <option>1:00AM</option>
-                          <option>1:30AM</option>
-                          <option>2:00AM</option>
-                          <option>2:30AM</option>
-                          <!--<option>2</option>
-                          <option>2</option>
-                          <option>2</option>
-                          <option>2</option>-->
-                    </select>  
-                </div>           
-                    <material-datepicker [(date)]="yourModelDate"></material-datepicker>
-                    <input type="button" class="brandblue scheduleBtn" value="Schedule" (click)="schedule(yourModelDate,ScheduleTime,ScheduleLocation)">
-                </popover-content>
-                    </div>             
-                <div id="menu03" class="tab-pane fade">
-
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default">
-                          <div class="panel-heading" role="tab" id="headingOne">
-                            <h4 class="panel-title">
-                          
-                                <a aria-controls="collapseOne" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapseOne" role="button" class="collapsed">
-                                    <span class="devops">DEVOPS</span>
-                                    <span class="requirementid">REQ00111</span>
-                                </a>    
-                  
-                          </h4>
-                          </div>
-                          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
-                            <div class="panel-body">
-                            
-                                <div class="row">
-                                    <div class="col-md-6" >
-                                      <h5 class="positiontext">Position</h5>
-                                        <div class="value1"> 
-                                            <input type="text" class="inputText1" placeholder="input text" id="name" required name="name"/>
-                                               
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h5 class="timetext">Estimate time(in days)</h5>
-                                        <div class="value2">  
-                                            <input type="text1"   placeholder="input text" class="inputText1" id="text1" required name="text1" />
-                                          
-                                        </div>
-                                    </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6" >
-                                            <h5 class="positiontext">Skill</h5>
-                                              <div class="value1"> 
-                                                  <input type="text"   placeholder="input text" class="inputText1" id="text2" required name="text2"/>
-                                                  
+                                    <div class="maindiv">
+                                      <div class="firstdiv">
+                                          <div class="date1">
+                                              14
+                                            </div>
+                                            <div class="month-time">
+                                            <div class="month">
+                                               August 2017
                                               </div>
-                                          </div>
-                     
-                                          <div class="col-md-6" >
-                                              <h5 class="timetext">Budget</h5>
-                                                <div class="value2"> 
-                                                  <input type="text"  placeholder="input text" class="inputText1" id="text3" required name="text3" [(ngModel)] = "model.text3" #text3="ngModel"/>
-                                                     
-                                                </div>
+                                              <div class="time">
+                                                 12 AM
+                                                 </div>
                                             </div>
-                                        </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="panel panel-default">
-                          <div class="panel-heading" role="tab" id="headingTwo">
-                            <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsed">
-                                <span class="devops">DEVOPS</span>
-                                <span class="requirementid">REQ00112</span>
-                            </a>
-                          </h4>
-                          </div>
-                          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-6" >
-                                      <h5 class="positiontext">Position</h5>
-                                        <div class="value1"> 
-                                            <input type="text" class="inputText1" placeholder="input text" id="name" required name="name"/>
-                                               
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <h5 class="timetext">Estimate time(in days)</h5>
-                                        <div class="value2">  
-                                            <input type="text1"   placeholder="input text" class="inputText1" id="text1" required name="text1" />
+                                      </div>
+                                       <div class="seconddiv">
+                                          <div class="company">
+                                             DEll EMC
+                                             </div>
+                                             <div class="place">
+                                               Kormanglla
+                                                </div>
                                           
                                         </div>
                                     </div>
-                                    </div>
-                
-                                <div class="row">
-                                    <div class="col-md-6" >
-                                        <h5 class="positiontext">Skill</h5>
-                                          <div class="value1"> 
-                                              <input type="text"   placeholder="input text" class="inputText1" id="text2" required name="text2"/>
-                                              
+                                   
+                                    <div class="maindiv2" >
+                                        <div class="div11">
+                                          <div class="shedule">
+                                            Reshedule
                                           </div>
-                                      </div>
-                 
-                                      <div class="col-md-6" >
-                                          <h5 class="timetext">Budget</h5>
-                                            <div class="value2"> 
-                                              <input type="text"  placeholder="input text" class="inputText1" id="text3" required name="text3" [(ngModel)] = "model.text3" #text3="ngModel"/>
-                                                 
-                                            </div>
                                         </div>
-                                    </div>	
-                            </div>
-                          </div>
-                        </div>
-                      </div>  
-                            
-                        
-      <form (ngSubmit)="requirement(this.viewleaddata._id)" #f="ngForm" novalidate> 
-                    <input type="text" class="tittle" placeholder="Requirements title ?" id="title" required name="title" [(ngModel)] = "this.title"/>
-            <div class="mainText">
-                    <div class="row">
-                    <div class="col-md-6" >
-                      <h5 class="positiontext">position</h5>
-                        <div class="value1"> 
-                            <input type="text" [ngClass]="{'red-border1-class':!Positions.valid && !Positions.pristine}" class="inputText1" placeholder="input text" id="Positions" required name="position" [(ngModel)] = "this.position" #Positions="ngModel"/>
-                               <div [hidden]="Positions.valid || Positions.pristine" class="reqAlert1">
-                                input required
-                              </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <h5 class="timetext">Estimate time</h5>
-                        <div class="value2">  
-                            <input type="text" [ngClass]="{'red-border1-class':!EstimateTime.valid && !EstimateTime.pristine}"  placeholder="input text" class="inputText1" id="Estimatetime" required name="Estimatetime" [(ngModel)] = "this.Estimatetime" #EstimateTime="ngModel"/>
-                             <div [hidden]="EstimateTime.valid || EstimateTime.pristine" class="reqAlert1">
-                                input required
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    <div class="row">
-                    <div class="col-md-6" >
-                        <h5 class="positiontext">Skill</h5>
-                          <div class="value1"> 
-                              <input type="text" [ngClass]="{'red-border1-class':!text2.valid && !text2.pristine}"  placeholder="input text" class="inputText1" id="text2" required name="SkillsRequired" [(ngModel)] = "this.SkillsRequired" #text2="ngModel"/>
-                                <div [hidden]="text2.valid || text2.pristine" class="reqAlert1">
-                                   input required
-                                </div>  
-                          </div>
-                      </div>
- 
-                      <div class="col-md-6" >
-                          <h5 class="timetext">Budget</h5>
-                            <div class="value2"> 
-                              <input type="text" [ngClass]="{'red-border1-class':!text3.valid && !text3.pristine}" placeholder="input text" class="inputText1" id="text3" required name="Budget" [(ngModel)] = "this.Budget" #text3="ngModel"/>
-                                  <div [hidden]="text3.valid || text3.pristine" class="reqAlert1">
-                                   input required
-                                 </div>  
-                            </div>
-                        </div>
-                    </div>
-            </div>
-                            <button type="submit" value=" Send" class="btn btn-success publish" type="submit"  id="submit">Publish</button>
-           </form>         
-                    </div> 
-                  </div>
-          </div>
-
-
-           <div class="col-lg-4 col-md-4 col-sm-4 content2"> 
-              <div class="project-content">
-                  <p class="productDesign">{{this.viewleaddata.Title}}</p>
-                 <span> <img class="signuserpopup" src="/assets/images/images.png"></span>
-                </div> 
-           <!-- sales Repo -->
-           <div *ngIf="this.role=='Sales_Rep'">
-            <div class="col-lg-6  col-md-6 col-sm-6">
-             <p class="AssignedBy">Assigned by</p>
-                 <img class="profileIcon" src="/assets/images/gk.png">
-           </div>
-         </div>
-         <!-- Manager -->
-           <div *ngIf="this.role=='Manager'">
-           <div class="col-lg-6  col-md-6 col-sm-6">
-             <p class="AssignedBy">Assigned to</p>
-             <span href="#" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="true">
-               <span class="hidden-xs profile">{{this.dumyValue}} </span>
-             <span   class="glyphicon glyphicon-chevron-down  groomlist1 "></span>
-           </span>
-             <ul class="dropdown-menu">
-                 <li class="groomlist"> <groome-search  (searchChange)="searchAssignTO($event)" ></groome-search> </li>
-                 <li class="groomlist" *ngFor="let assignvalue of this.SalesRepList" (click)="Assignto(assignvalue.ShortName,assignvalue,this.viewleaddata._id)"><a >{{assignvalue.UFirstName}}</a></li>
-             </ul>
-           </div>
-           </div>
-
-<!-- 
-              <div class="col-lg-6  col-md-6 col-sm-6">
-                  <p class="businessStream">Business Stream</p>
-                    <div class="dropdown business">
-                  <div class="business1" data-toggle="dropdown">{{this.viewleaddata.BusinessUnit}}
-                        <span   class="glyphicon glyphicon-chevron-down  "></span>
-                      </div>
-                          <ul class="dropdown-menu business_drop ">
-                              <li class="disabled" ><a style="cursor: default;">Business</a></li>
-                              <li class="divide"  (click)="changeBusiness('SOW')">SOW</li>
-                              <li class="divide"  (click)="changeBusiness('Staffing')">Staffing</li>
-                            <li class="divide1"  (click)="changeBusiness('Little Bharmha')">Little Bharmha</li>
+                                        <div class="div22">
+                                            <div class="cancel">
+                                              cancel
+                                            </div>
+                                          </div>
+                                       
+                                        </div>
+                                  </div>
+                              </li>
                           </ul>
-                    </div>                     
-              </div> -->
-                    
-               <!-- Manager Business Stream -->
-               <div *ngIf=" this.role=='Manager'">
-                <div class="col-lg-6  col-md-6 col-sm-6">
-                  <p class="businessStream">Business Stream</p>
-
-                    <div class="dropdown business">
-                  <div class="business1" data-toggle="dropdown">{{reqBusiness }}
-                        <span   class="glyphicon glyphicon-chevron-down  "></span>
-                      </div>
-                          <ul class="dropdown-menu business_drop ">
-                              <li class="disabled" ><a style="cursor: default;">Business</a></li>
-                              <li class="divide"  (click)="changeBusiness('SOW')">SOW</li>
-                              <li class="divide"  (click)="changeBusiness('Staffing')">Staffing</li>
-                            <li class="divide1"  (click)="changeBusiness('Little Brahma')">Little Brahma</li>
-                          </ul>
-                    </div>                      
-                </div>
-              </div>
-   <!--SalesRepo   Business Stream-->
-                  <div *ngIf="this.role=='Sales_Rep'">
-                     <div class="col-lg-6  col-md-6 col-sm-6">
-                      <p class="businessStream">Business Stream</p>
-                       <div class="dropdown business">
-                         <div class="business1" data-toggle="dropdown">{{reqBusiness}}</div>    
-                      </div>                      
-                  </div>
-               </div>
-
-
-
-                  <div class="row ">
-                    <div class="col-lg-12 col-md-12 col-sm-12 side1">
-                          <div class="btn-pref btn-group btn-group-justified btn-group-lg activity" role="group" >
-                       
-                        <span class="btn-group " role="group" style="padding:10px">
-                          <div class="feel">Feel</div>
-                          <div class="dropdown">
-                              <div  data-toggle="dropdown" style="cursor:pointer" [ngClass]="{'hot': reqFeel=='Hot', 'warm': reqFeel=='Warm', 'cold': reqFeel=='Cold'}">{{reqFeel}}
-                                
+                          <div class="dropdown conversation_type">
+                              <div  data-toggle="dropdown" class="select">{{reqCOnversation}} 
+                                <span   class="glyphicon glyphicon-chevron-up  "></span>
                               </div>
-                                  <ul class="dropdown-menu business_drop ">
-                                      <li class="disabled" ><a style="cursor: default;">Status</a></li>
-                                      <li class="divide "(click)="changeFeel('Hot',this.viewleaddata._id)"> <div class="hot"><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Hot</span></div> </li>
-                                      <li class="divide " (click)="changeFeel('Warm',this.viewleaddata._id)"><div class="warm"><span class="glyphicon glyphicon-adjust feelicon "></span><span class="feeltext" >Warm</span></div></li>       
-                                    <li class="divide1 "(click)="changeFeel('Cold',this.viewleaddata._id)"><div class="cold" ><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Cold</span></div></li>
+                             
+                                  <ul class="dropdown-menu  ">
+                                      <li class="disabled" ><a style="cursor: default;">Conversation Type</a></li>
+                                      <li class="divide" (click)="changeConversation('Telephonic')">Telephonic</li>
+                                      <li class="divide"   (click)="changeConversation('Face to Face')">Face to Face </li>
+                                      <li class="divide"   (click)="changeConversation('Email')"> Email</li>
+                                      
+                                    
                                   </ul>
                             </div> 
-                        </span>
-                        <span class="btn-group activity" role="group">
-                            <div class="feel">Status</div>
-                      
-                                <!-- Manager Status  -->     
-                <div *ngIf=" this.role=='Manager'">
-                  <div class="dropdown">
-                    <div  data-toggle="dropdown"  style="cursor:pointer">{{this.reqStatus}} 
-                      <span class="glyphicon glyphicon-chevron-down  "></span>
-                     </div>
-                        <ul class="dropdown-menu business_drop ">
-                            <li class="disabled" ><a style="cursor: default;">Status</a></li>
-                            <li class="divide" (click)="changeStatus('Active',this.viewleaddata._id)">Active</li>
-                            <li class="divide"   (click)="changeStatus('Dormant',this.viewleaddata._id)">Dormant </li>
-                            <li class="divide"  (click)="changeStatus('Freeze',this.viewleaddata._id)">Freeze </li>
-                            <li class="divide"  (click)="changeStatus('Rejected',this.viewleaddata._id)">Rejected </li>
-                            <li class="divide1"  (click)="changeStatus('Dropped',this.viewleaddata._id)">Dropped </li>
-                        </ul>
-                  </div> 
-                </div>
-       <!-- Sales_Rep Status  -->           
-                  <div *ngIf=" this.role=='Sales_Rep'">
-                    <div class="dropdown">
-                      <div  data-toggle="dropdown"  style="cursor:pointer">{{reqStatus}}</div>
-                    </div>    
-                  </div>
+                            <div class="sendicon">
+                                <span class="glyphicon glyphicon-send"></span> 
+                            </div>
+                              <div class="send_message">
+                                  <textarea id="btn-input" type="text" class="sendText" placeholder="Write a message..."></textarea>
+                          </div>
+                          <div class="calender">
+                            <span class="glyphicon glyphicon-paperclip" style="margin-right:10px"></span>
+                            <span  style="margin-right:15px;cursor:pointer"><div class="glyphicon glyphicon-calendar calenderSchedule" [popover]="myPopover"></div></span>
+                          </div>
+                          <popover-content #myPopover 
+                                  placement="top"
+                                  [animation]="true" 
+                                  [closeOnClickOutside]="true" >
+                  <div class="marginBottm">               
+                      <input type=text placeholder="location" class="locationinput" [(ngModel)] = "ScheduleLocation">  
+                      <select class="selectTime" [(ngModel)] = "ScheduleTime">
+                            <option>12:00AM</option>
+                            <option>12:30AM</option>
+                            <option>1:00AM</option>
+                            <option>1:30AM</option>
+                            <option>2:00AM</option>
+                            <option>2:30AM</option>
+                            <option>12:00AM</option>
+                            <option>12:30AM</option>
+                            <option>1:00AM</option>
+                            <option>1:30AM</option>
+                            <option>2:00AM</option>
+                            <option>2:30AM</option>
+                            <!--<option>2</option>
+                            <option>2</option>
+                            <option>2</option>
+                            <option>2</option>-->
+                      </select>  
+                  </div>           
+                      <material-datepicker [(date)]="yourModelDate"></material-datepicker>
+                      <input type="button" class="brandblue scheduleBtn" value="Schedule" (click)="schedule(yourModelDate,ScheduleTime,ScheduleLocation)">
+                  </popover-content>
+                      </div>             
+                  <div id="menu03" class="tab-pane fade">
+  
+                      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                          <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                              <h4 class="panel-title">
+                            
+                                  <a aria-controls="collapseOne" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapseOne" role="button" class="collapsed">
+                                      <span class="devops">DEVOPS</span>
+                                      <span class="requirementid">REQ00111</span>
+                                  </a>    
                     
-                          
-                        </span>
-                          <span class="btn-group activity" role="group">
-                              <div class="feel">Revenue</div>
-                              <div class="dropdown">
-                                  <div  data-toggle="dropdown"  style="cursor:pointer">{{reqRevenue}}
-                                    <span   class="glyphicon glyphicon-chevron-down  "></span>
-                                  </div>
-                                      <ul class="dropdown-menu business_drop ">
-                                          <li class="disabled" ><a style="cursor: default;">Status</a></li>
-                                          <li class="divide" (click)="changeRevenue('JP',this.viewleaddata._id)">Jackpot</li>
-                                          <li class="divide" (click)="changeRevenue('HV',this.viewleaddata._id)">High value </li>
-                                        <li class="divide1"(click)="changeRevenue('LV',this.viewleaddata._id)">Low Value </li>
-                                      </ul>
-                                </div>     
-                            </span>
-                    </div>
-                    </div>
-                  <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
-                    <h5>Client Contact</h5>
-                    <span class="dropdown"> 
-                    <button class="btn btn-default naturalButtonMedium dropdown-toggle" type="button" data-toggle="dropdown">
-                        Invite People
-                  </button>
-                    <ul class="dropdown-menu" style="width:200px">
-                      <li> <groome-search  (searchChange)="peopleSearch($event)"></groome-search>      </li>
-                      <li *ngFor="let userValue of this.userList" (click)="invitesearch(userValue.UFirstName,userValue,this.viewleaddata._id)"><a >{{userValue.UFirstName}}</a></li>
-                    </ul>
-                  </span>
-                     <button ngif="this.viewleaddata.ClientContact!=0" class="tagDefault" style="margin-left:17px" *ngFor="let clientcontanct of this.viewleaddata.ClientContact">{{clientcontanct.ContactName}}
-                          
-                             <img class="fatime" src="/assets/images/delete.svg" (click)="deleteclient(this.viewleaddata._id,clientcontanct._id)">
-                        </button>
-                     
-                        
-                  </div>
-                     <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
-                      <h5>Tag</h5>
-                      <form (ngSubmit)="addTagUpade(addtagtitle,this.viewleaddata._id)" autocomplete="off">
-                         <input type="text" placeholder="Add Tag" class="updateLeadAddTag" name="addtagtitle" [(ngModel)]="addtagtitle"></form>
-                      <!--<input type="text" placeholder="addTag" class="updateLeadAddTag">-->
-                        <button ngif="this.viewleaddata.Tags!=0" class="tagDefault tagicon" *ngFor="let tag of this.viewleaddata.Tags">
-                        
-                          {{tag.TagName}}
-                   
-                          <img class="fatime" src="/assets/images/delete.svg" (click)="deletetag(this.viewleaddata._id,tag._id)">
-                      </button> 
+                            </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
+                              <div class="panel-body">
+                              
+                                  <div class="row">
+                                      <div class="col-md-6" >
+                                        <h5 class="positiontext">Position</h5>
+                                          <div class="value1"> 
+                                              <input type="text" class="inputText1" placeholder="input text" id="name" required name="name"/>
+                                                 
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <h5 class="timetext">Estimate time(in days)</h5>
+                                          <div class="value2">  
+                                              <input type="text1"   placeholder="input text" class="inputText1" id="text1" required name="text1" />
+                                            
+                                          </div>
+                                      </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col-md-6" >
+                                              <h5 class="positiontext">Skill</h5>
+                                                <div class="value1"> 
+                                                    <input type="text"   placeholder="input text" class="inputText1" id="text2" required name="text2"/>
+                                                    
+                                                </div>
+                                            </div>
                        
-                  </div>
-                      <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
-                        <h5>Requirement Details</h5>
-                        <div class="devopsList" *ngFor="let reqDetail of this.reqDetail">
-                            <span class="devops1">{{reqDetail.Title}}</span>
-                            <span class="requirementid1">{{reqDetail.ReqCode}}</span>
-                       </div>
-                    </div>
-                 </div>  
-          </div> 
-        </div>
-      </div>
-  </div>
-</div>  
-<!--pop up ends-->
-
-<!--for manger tab-->
-<div>
-<!--<div>-->
-  <!-- Manager Role  tabs -->
-<div *ngIf="this.role=='Manager'">
-   <div class="row main_container container-fluid tabs">
-       <span class="leadText">Lead</span>
-      <span  class="workbenchTab">
-      <ul class="nav nav-pills managertablist ">
-          <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#All">All</a></li>
-          <li><a class= "btn btn-large assigned" data-toggle="pill" href="#Approved">Approved</a></li>
-          <li><a class= "btn btn-large assigned" data-toggle="pill" href="#Pending">Pending</a></li>
-          <li><a  class="btn btn-large subscribed" data-toggle="pill" href="#Subscribed">Subscribed</a></li>
-         
-        </ul></span>
-   
-  </div>
- 
-        <div class="container maincontainer">
-          <div class="tab-content"> 
-            <div id="All" class="tab-pane fade in active">
-
-       <div class="col-lg-3 col-md-3 col-sm-3" >
-        <div class="project1 project-default" type="button">
-          <div>
-          <img class="addlead" src="/assets/images/addlead.png"/></div>
-             <button type="button" class="btn btn-success addlead1" data-toggle="modal" data-target="#myModal">Add Lead</button>       
-        </div>
-      </div>
-
-
-
-          <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
-            <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-              <header class="header1">
-                <div class="xSmall">
-                           <p class="layer">2</p>
-                            </div>
-                <span class="status">{{value.LeadID}}</span>
-                  <div class="status1"><p class="status2">{{value.Status}}</p></div>
-                    </header>
-                      <div class="project-content">
-                        <p class="content"> {{value.Title}}</p>
-                       <span> <img class="signuser" src="/assets/images/images.png"></span>
-                      </div>
-                        <div class="footer1">
-                          <div class="row footer2">
-                            <div class="col-lg-4  col-md-4 col-sm-4">
-                              <p class="Assigned">Assigned by</p>
-                                  <img class="profileIcon" src="/assets/images/gk.png">
-                            </div>
-                              <div class="col-lg-4  col-md-4 col-sm-4">
-                                <p class="client">Client</p>
-                                  <img  class="profileIcon1" src="/assets/images/dell.png">
+                                            <div class="col-md-6" >
+                                                <h5 class="timetext">Budget</h5>
+                                                  <div class="value2"> 
+                                                    <input type="text"  placeholder="input text" class="inputText1" id="text3" required name="text3" [(ngModel)] = "model.text3" #text3="ngModel"/>
+                                                       
+                                                  </div>
+                                              </div>
+                                          </div>
                               </div>
-                                <div class="col-lg-4  col-md-4 col-sm-4">
-                                  <p class="Enggagement">Next Enggagement</p>
-                                  <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                            </div>
+                          </div>
+                          <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                              <h4 class="panel-title">
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsed">
+                                  <span class="devops">DEVOPS</span>
+                                  <span class="requirementid">REQ00112</span>
+                              </a>
+                            </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false">
+                              <div class="panel-body">
+                                  <div class="row">
+                                      <div class="col-md-6" >
+                                        <h5 class="positiontext">Position</h5>
+                                          <div class="value1"> 
+                                              <input type="text" class="inputText1" placeholder="input text" id="name" required name="name"/>
+                                                 
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6">
+                                          <h5 class="timetext">Estimate time(in days)</h5>
+                                          <div class="value2">  
+                                              <input type="text1"   placeholder="input text" class="inputText1" id="text1" required name="text1" />
+                                            
+                                          </div>
+                                      </div>
+                                      </div>
+                  
+                                  <div class="row">
+                                      <div class="col-md-6" >
+                                          <h5 class="positiontext">Skill</h5>
+                                            <div class="value1"> 
+                                                <input type="text"   placeholder="input text" class="inputText1" id="text2" required name="text2"/>
+                                                
+                                            </div>
+                                        </div>
+                   
+                                        <div class="col-md-6" >
+                                            <h5 class="timetext">Budget</h5>
+                                              <div class="value2"> 
+                                                <input type="text"  placeholder="input text" class="inputText1" id="text3" required name="text3" [(ngModel)] = "model.text3" #text3="ngModel"/>
+                                                   
+                                              </div>
+                                          </div>
+                                      </div>	
+                              </div>
+                            </div>
+                          </div>
+                        </div>  
+                              
+                          
+        <form (ngSubmit)="requirement(this.viewleaddata._id)" #f="ngForm" novalidate> 
+                      <input type="text" class="tittle" placeholder="Requirements title ?" id="title" required name="title" [(ngModel)] = "this.title"/>
+              <div class="mainText">
+                      <div class="row">
+                      <div class="col-md-6" >
+                        <h5 class="positiontext">position</h5>
+                          <div class="value1"> 
+                              <input type="text" [ngClass]="{'red-border1-class':!Positions.valid && !Positions.pristine}" class="inputText1" placeholder="input text" id="Positions" required name="position" [(ngModel)] = "this.position" #Positions="ngModel"/>
+                                 <div [hidden]="Positions.valid || Positions.pristine" class="reqAlert1">
+                                  input required
                                 </div>
                           </div>
-                        </div>
-            </div>
-          </div> 
-
-            </div>
-            <div id="Approved" class="tab-pane fade">
-                <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-                    <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-                      <header class="header1">
-                        <div class="xSmall">
-                                   <p class="layer">2</p>
-                                    </div>
-                        <span class="status">{{this.viewleaddata.LeadID}}</span>
-                          <div class="status1"><p class="status2">Active</p></div>
-                            </header>
-                              <div class="project-content">
-                                <p class="content"> Product design for dell enterprise Solution</p>
-                               <span> <img class="signuser" src="/assets/images/images.png"></span>
-                              </div>
-                                <div class="footer1">
-                                  <div class="row footer2">
-                                    <div class="col-lg-4  col-md-4 col-sm-4">
-                                      <p class="Assigned">Assigned by</p>
-                                          <img class="profileIcon" src="/assets/images/gk.png">
-                                    </div>
-                                      <div class="col-lg-4  col-md-4 col-sm-4">
-                                        <p class="client">Client</p>
-                                          <img  class="profileIcon1" src="/assets/images/dell.png">
-                                      </div>
-                                        <div class="col-lg-4  col-md-4 col-sm-4">
-                                          <p class="Enggagement">Next Enggagement</p>
-                                          <p class="date">27,Feb</p>
-                                        </div>
-                                  </div>
-                                </div>
-                    </div>
-                  </div> 
-             
-            </div>
-            <div id="Pending" class="tab-pane fade">
-              
-                <div class="col-lg-3 col-md-3 col-sm-3" type="button" (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()">
-
-                    <div class="project project-default">
-                      <!--overlay starts-->
-                      <div class="overlay" *ngIf="this.overlayToggle">
-                        <div class="modelBtns">
-                          <button  class="modelBtn" data-toggle="modal" data-target="#exampleModal">View</button>
-                          <button class="modelBtn assignTo">AssignTo</button>
-                          <input type="button" class="brandblue assignTo" value="Button Brand">
-                        </div>
                       </div>
-                       <!--overlay ends-->
-                      <header class="header1">
-                        <div class="xSmall">
-                                   <p class="layer">2</p>
-                                    </div>
-                        <span class="status">Act1023</span>
-                          <div class="status1"><p class="status2">Active</p></div>
-                            </header>
-                              <div class="project-content">
-                                <p class="content"> Product design for dell enterprise Solution</p>
-                               <span> <img class="signuser" src="/assets/images/images.png"></span>
+                      <div class="col-md-6">
+                          <h5 class="timetext">Estimate time</h5>
+                          <div class="value2">  
+                              <input type="text" [ngClass]="{'red-border1-class':!EstimateTime.valid && !EstimateTime.pristine}"  placeholder="input text" class="inputText1" id="Estimatetime" required name="Estimatetime" [(ngModel)] = "this.Estimatetime" #EstimateTime="ngModel"/>
+                               <div [hidden]="EstimateTime.valid || EstimateTime.pristine" class="reqAlert1">
+                                  input required
                               </div>
-                                <div class="footer1">
-                                  <div class="row footer2">
-                                    <div class="col-lg-4  col-md-4 col-sm-4">
-                                      <p class="Assigned">Assigned by</p>
-                                          <img class="profileIcon" src="/assets/images/gk.png">
-                                    </div>
-                                      <div class="col-lg-4  col-md-4 col-sm-4">
-                                        <p class="client">Client</p>
-                                          <img  class="profileIcon1" src="/assets/images/dell.png">
-                                      </div>
-                                        <div class="col-lg-4  col-md-4 col-sm-4">
-                                          <p class="Enggagement">Next Enggagement</p>
-                                          <p class="date">27,Feb</p>
-                                        </div>
-                                  </div>
-                                </div>
-                    </div>
-                  </div> 
- 
-
-                            
-            </div>
-
-             <div id="Subscribed" class="tab-pane fade">
-                <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-                    <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-                      <header class="header1">
-                        <div class="xSmall">
-                                   <p class="layer">2</p>
-                                    </div>
-                        <span class="status">Act1023</span>
-                          <div class="status1"><p class="status2">Active</p></div>
-                            </header>
-                              <div class="project-content">
-                                <p class="content"> Product design for dell enterprise Solution</p>
-                               <span> <img class="signuser" src="/assets/images/images.png"></span>
+                          </div>
+                      </div>
+                      </div>
+                      <div class="row">
+                      <div class="col-md-6" >
+                          <h5 class="positiontext">Skill</h5>
+                            <div class="value1"> 
+                                <input type="text" [ngClass]="{'red-border1-class':!text2.valid && !text2.pristine}"  placeholder="input text" class="inputText1" id="text2" required name="SkillsRequired" [(ngModel)] = "this.SkillsRequired" #text2="ngModel"/>
+                                  <div [hidden]="text2.valid || text2.pristine" class="reqAlert1">
+                                     input required
+                                  </div>  
+                            </div>
+                        </div>
+   
+                        <div class="col-md-6" >
+                            <h5 class="timetext">Budget</h5>
+                              <div class="value2"> 
+                                <input type="text" [ngClass]="{'red-border1-class':!text3.valid && !text3.pristine}" placeholder="input text" class="inputText1" id="text3" required name="Budget" [(ngModel)] = "this.Budget" #text3="ngModel"/>
+                                    <div [hidden]="text3.valid || text3.pristine" class="reqAlert1">
+                                     input required
+                                   </div>  
                               </div>
-                                <div class="footer1">
-                                  <div class="row footer2">
-                                    <div class="col-lg-4  col-md-4 col-sm-4">
-                                      <p class="Assigned">Assigned by</p>
-                                          <img class="profileIcon" src="/assets/images/gk.png">
-                                    </div>
-                                      <div class="col-lg-4  col-md-4 col-sm-4">
-                                        <p class="client">Client</p>
-                                          <img  class="profileIcon1" src="/assets/images/dell.png">
-                                      </div>
-                                        <div class="col-lg-4  col-md-4 col-sm-4">
-                                          <p class="Enggagement">Next Enggagement</p>
-                                          <p class="date">27,Feb</p>
-                                        </div>
-                                  </div>
-                                </div>
+                          </div>
+                      </div>
+              </div>
+                              <button type="submit" value=" Send" class="btn btn-success publish" type="submit"  id="submit">Publish</button>
+             </form>         
+                      </div> 
                     </div>
-                  </div> 
- 
-
-                            
             </div>
+  
+  
+             <div class="col-lg-4 col-md-4 col-sm-4 content2"> 
+                <div class="project-content">
+                    <p class="productDesign">{{this.viewleaddata.Title}}</p>
+                   <span> <img class="signuserpopup" src="/assets/images/images.png"></span>
+                  </div> 
+             <!-- sales Repo -->
+             <div *ngIf="this.role=='Sales_Rep'">
+              <div class="col-lg-6  col-md-6 col-sm-6">
+               <p class="AssignedBy">Assigned by</p>
+                   <img class="profileIcon" src="/assets/images/gk.png">
+             </div>
+           </div>
+           <!-- Manager -->
+             <div *ngIf="this.role=='Manager'">
+             <div class="col-lg-6  col-md-6 col-sm-6">
+               <p class="AssignedBy">Assigned to</p>
+               <span href="#" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="true">
+                 <span class="hidden-xs profile">{{this.AssignedShortName}} </span>
+               <span   class="glyphicon glyphicon-chevron-down  groomlist1 "></span>
+             </span>
+               <ul class="dropdown-menu">
+                   <li class="groomlist"> <groome-search  (searchChange)="searchAssignTO($event)" ></groome-search> </li>
+                   <li class="groomlist" *ngFor="let assignvalue of this.SalesRepList" (click)="Assignto(assignvalue.ShortName,assignvalue,this.viewleaddata._id)"><a >{{assignvalue.UFirstName}}</a></li>
+               </ul>
+             </div>
+             </div>
+  
+  <!-- 
+                <div class="col-lg-6  col-md-6 col-sm-6">
+                    <p class="businessStream">Business Stream</p>
+                      <div class="dropdown business">
+                    <div class="business1" data-toggle="dropdown">{{this.viewleaddata.BusinessUnit}}
+                          <span   class="glyphicon glyphicon-chevron-down  "></span>
+                        </div>
+                            <ul class="dropdown-menu business_drop ">
+                                <li class="disabled" ><a style="cursor: default;">Business</a></li>
+                                <li class="divide"  (click)="changeBusiness('SOW')">SOW</li>
+                                <li class="divide"  (click)="changeBusiness('Staffing')">Staffing</li>
+                              <li class="divide1"  (click)="changeBusiness('Little Bharmha')">Little Bharmha</li>
+                            </ul>
+                      </div>                     
+                </div> -->
+                      
+                 <!-- Manager Business Stream -->
+                 <div *ngIf=" this.role=='Manager'">
+                  <div class="col-lg-6  col-md-6 col-sm-6">
+                    <p class="businessStream">Business Stream</p>
+  
+                      <div class="dropdown business">
+                    <div class="business1" data-toggle="dropdown">{{reqBusinessdata }}
+                          <span   class="glyphicon glyphicon-chevron-down  "></span>
+                        </div>
+                            <ul class="dropdown-menu business_drop ">
+                                <li class="disabled" ><a style="cursor: default;">Business</a></li>
+                                <li class="divide"  (click)="changeBusinessdata('SOW')">SOW</li>
+                                <li class="divide"  (click)="changeBusinessdata('Staffing')">Staffing</li>
+                              <li class="divide1"  (click)="changeBusinessdata('Little Brahma')">Little Brahma</li>
+                            </ul>
+                      </div>                      
+                  </div>
+                </div>
+     <!--SalesRepo   Business Stream-->
+                    <div *ngIf="this.role=='Sales_Rep'">
+                       <div class="col-lg-6  col-md-6 col-sm-6">
+                        <p class="businessStream">Business Stream</p>
+                         <div class="dropdown business">
+                           <div class="business1" data-toggle="dropdown">{{reqBusinessdata}}</div>    
+                        </div>                      
+                    </div>
+                 </div>
+  
+  
+  
+                    <div class="row ">
+                      <div class="col-lg-12 col-md-12 col-sm-12 side1">
+                            <div class="btn-pref btn-group btn-group-justified btn-group-lg activity" role="group" >
+                         
+                          <span class="btn-group " role="group" style="padding:10px">
+                            <div class="feel">Feel</div>
+                            <div class="dropdown">
+                                <div  data-toggle="dropdown" style="cursor:pointer" [ngClass]="{'hot': reqFeel=='Hot', 'warm': reqFeel=='Warm', 'cold': reqFeel=='Cold'}">{{reqFeel}}
+                                  
+                                </div>
+                                    <ul class="dropdown-menu business_drop ">
+                                        <li class="disabled" ><a style="cursor: default;">Status</a></li>
+                                        <li class="divide "(click)="changeFeel('Hot',this.viewleaddata._id)"> <div class="hot"><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Hot</span></div> </li>
+                                        <li class="divide " (click)="changeFeel('Warm',this.viewleaddata._id)"><div class="warm"><span class="glyphicon glyphicon-adjust feelicon "></span><span class="feeltext" >Warm</span></div></li>       
+                                      <li class="divide1 "(click)="changeFeel('Cold',this.viewleaddata._id)"><div class="cold" ><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Cold</span></div></li>
+                                    </ul>
+                              </div> 
+                          </span>
+                          <span class="btn-group activity" role="group">
+                              <div class="feel">Status</div>
+                        
+                                  <!-- Manager Status  -->     
+                  <div *ngIf=" this.role=='Manager'">
+                    <div class="dropdown">
+                      <div  data-toggle="dropdown"  style="cursor:pointer">{{this.reqStatus}} 
+                        <span class="glyphicon glyphicon-chevron-down  "></span>
+                       </div>
+                          <ul class="dropdown-menu business_drop ">
+                              <li class="disabled" ><a style="cursor: default;">Status</a></li>
+                              <li class="divide" (click)="changeStatus('Active',this.viewleaddata._id)">Active</li>
+                              <li class="divide"   (click)="changeStatus('Dormant',this.viewleaddata._id)">Dormant </li>
+                              <li class="divide"  (click)="changeStatus('Freeze',this.viewleaddata._id)">Freeze </li>
+                              <li class="divide"  (click)="changeStatus('Rejected',this.viewleaddata._id)">Rejected </li>
+                              <li class="divide1"  (click)="changeStatus('Dropped',this.viewleaddata._id)">Dropped </li>
+                          </ul>
+                    </div> 
+                  </div>
+         <!-- Sales_Rep Status  -->           
+                    <div *ngIf=" this.role=='Sales_Rep'">
+                      <div class="dropdown">
+                        <div  data-toggle="dropdown"  style="cursor:pointer">{{reqStatus}}</div>
+                      </div>    
+                    </div>
+                      
+                            
+                          </span>
+                            <span class="btn-group activity" role="group">
+                                <div class="feel">Revenue</div>
+                                <div class="dropdown">
+                                    <div  data-toggle="dropdown"  style="cursor:pointer">{{reqRevenue}}
+                                      <span   class="glyphicon glyphicon-chevron-down  "></span>
+                                    </div>
+                                        <ul class="dropdown-menu business_drop ">
+                                            <li class="disabled" ><a style="cursor: default;">Status</a></li>
+                                            <li class="divide" (click)="changeRevenue('JP',this.viewleaddata._id)">Jackpot</li>
+                                            <li class="divide" (click)="changeRevenue('HV',this.viewleaddata._id)">High value </li>
+                                          <li class="divide1"(click)="changeRevenue('LV',this.viewleaddata._id)">Low Value </li>
+                                        </ul>
+                                  </div>     
+                              </span>
+                      </div>
+                      </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
+                      <h5>Client Contact</h5>
+                      <span class="dropdown"> 
+                      <button class="btn btn-default naturalButtonMedium dropdown-toggle" type="button" data-toggle="dropdown">
+                          Invite People
+                    </button>
+                      <ul class="dropdown-menu" style="width:200px">
+                        <li> <groome-search  (searchChange)="peopleSearchValue($event)"></groome-search>      </li>
+                        <li *ngFor="let userValue of this.userList" (click)="invitesearchData(userValue.UFirstName,userValue,this.viewleaddata._id)"><a >{{userValue.UFirstName}}</a></li>
+                      </ul>
+                    </span>
+                       <button ngif="this.viewleaddata.ClientContact!=0" class="tagDefault" style="margin-left:17px" *ngFor="let clientcontanct of this.viewleaddata.ClientContact">{{clientcontanct.ContactName}}
+                            
+                               <img class="fatime" src="/assets/images/delete.svg" (click)="deleteclient(this.viewleaddata._id,clientcontanct._id)">
+                          </button>
+                       
+                          
+                    </div>
+                       <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
+                        <h5>Tag</h5>
+                        <form (ngSubmit)="addTagUpade(addtagtitle,this.viewleaddata._id)" autocomplete="off">
+                           <input type="text" placeholder="Add Tag" class="updateLeadAddTag" name="addtagtitle" [(ngModel)]="addtagtitle"></form>
+                        <!--<input type="text" placeholder="addTag" class="updateLeadAddTag">-->
+                          <button ngif="this.viewleaddata.Tags!=0" class="tagDefault tagicon" *ngFor="let tag of this.viewleaddata.Tags">
+                          
+                            {{tag.TagName}}
+                     
+                            <img class="fatime" src="/assets/images/delete.svg" (click)="deletetag(this.viewleaddata._id,tag._id)">
+                        </button> 
+                         
+                    </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
+                          <h5>Requirement Details</h5>
+                          <div class="devopsList" *ngFor="let reqDetail of this.reqDetail">
+                              <span class="devops1">{{reqDetail.Title}}</span>
+                              <span class="requirementid1">{{reqDetail.ReqCode}}</span>
+                         </div>
+                      </div>
+                   </div>  
+            </div> 
           </div>
         </div>
-
-        <!--popup -->
-</div>
-</div>
-
-
+    </div>
+  </div>  
+  <!--pop up ends-->
+  
+  <!--for manger tab-->
+  <div>
+  <!--<div>-->
+    <!-- Manager Role  tabs -->
+  <div *ngIf="this.role=='Manager'">
+     <div class="row main_container container-fluid tabs">
+         <span class="leadText">Lead</span>
+        <span  class="workbenchTab">
+        <ul class="nav nav-pills managertablist ">
+            <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#All">All</a></li>
+            <li><a class= "btn btn-large assigned" data-toggle="pill" href="#Approved">Approved</a></li>
+            <li><a class= "btn btn-large assigned" data-toggle="pill" href="#Pending">Pending</a></li>
+            <li><a  class="btn btn-large subscribed" data-toggle="pill" href="#Subscribed">Subscribed</a></li>
+           
+          </ul></span>
+     
+    </div>
+   
+          <div class="container maincontainer">
+            <div class="tab-content"> 
+              <div id="All" class="tab-pane fade in active">
+  
+         <div class="col-lg-3 col-md-3 col-sm-3" >
+          <div class="project1 project-default" type="button">
+            <div>
+            <img class="addlead" src="/assets/images/addlead.png"/></div>
+               <button type="button" class="btn btn-success addlead1" data-toggle="modal" data-target="#myModal">Add Lead</button>       
+          </div>
+        </div>
+  
+  
+  
+            <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
+              <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                <header class="header1">
+                  <div class="xSmall">
+                             <p class="layer">2</p>
+                              </div>
+                  <span class="status">{{value.LeadID}}</span>
+                    <div class="status1"><p class="status2">{{value.Status}}</p></div>
+                      </header>
+                        <div class="project-content">
+                          <p class="content"> {{value.Title}}</p>
+                         <span> <img class="signuser" src="/assets/images/images.png"></span>
+                        </div>
+                          <div class="footer1">
+                            <div class="row footer2">
+                              <div class="col-lg-4  col-md-4 col-sm-4">
+                                <p class="Assigned">Assigned by</p>
+                                    <img class="profileIcon" src="/assets/images/gk.png">
+                              </div>
+                                <div class="col-lg-4  col-md-4 col-sm-4">
+                                  <p class="client">Client</p>
+                                    <img  class="profileIcon1" src="/assets/images/dell.png">
+                                </div>
+                                  <div class="col-lg-4  col-md-4 col-sm-4">
+                                    <p class="Enggagement">Next Enggagement</p>
+                                    <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                                  </div>
+                            </div>
+                          </div>
+              </div>
+            </div> 
+  
+              </div>
+              <div id="Approved" class="tab-pane fade">
+                  <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+                      <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                        <header class="header1">
+                          <div class="xSmall">
+                                     <p class="layer">2</p>
+                                      </div>
+                          <span class="status">{{this.viewleaddata.LeadID}}</span>
+                            <div class="status1"><p class="status2">Active</p></div>
+                              </header>
+                                <div class="project-content">
+                                  <p class="content"> Product design for dell enterprise Solution</p>
+                                 <span> <img class="signuser" src="/assets/images/images.png"></span>
+                                </div>
+                                  <div class="footer1">
+                                    <div class="row footer2">
+                                      <div class="col-lg-4  col-md-4 col-sm-4">
+                                        <p class="Assigned">Assigned by</p>
+                                            <img class="profileIcon" src="/assets/images/gk.png">
+                                      </div>
+                                        <div class="col-lg-4  col-md-4 col-sm-4">
+                                          <p class="client">Client</p>
+                                            <img  class="profileIcon1" src="/assets/images/dell.png">
+                                        </div>
+                                          <div class="col-lg-4  col-md-4 col-sm-4">
+                                            <p class="Enggagement">Next Enggagement</p>
+                                            <p class="date">27,Feb</p>
+                                          </div>
+                                    </div>
+                                  </div>
+                      </div>
+                    </div> 
+               
+              </div>
+              <div id="Pending" class="tab-pane fade">
+                
+                  <div class="col-lg-3 col-md-3 col-sm-3" type="button" (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()">
+  
+                      <div class="project project-default">
+                        <!--overlay starts-->
+                        <div class="overlay" *ngIf="this.overlayToggle">
+                          <div class="modelBtns">
+                            <button  class="modelBtn" data-toggle="modal" data-target="#exampleModal">View</button>
+                            <button class="modelBtn assignTo">AssignTo</button>
+                            <input type="button" class="brandblue assignTo" value="Button Brand">
+                          </div>
+                        </div>
+                         <!--overlay ends-->
+                        <header class="header1">
+                          <div class="xSmall">
+                                     <p class="layer">2</p>
+                                      </div>
+                          <span class="status">Act1023</span>
+                            <div class="status1"><p class="status2">Active</p></div>
+                              </header>
+                                <div class="project-content">
+                                  <p class="content"> Product design for dell enterprise Solution</p>
+                                 <span> <img class="signuser" src="/assets/images/images.png"></span>
+                                </div>
+                                  <div class="footer1">
+                                    <div class="row footer2">
+                                      <div class="col-lg-4  col-md-4 col-sm-4">
+                                        <p class="Assigned">Assigned by</p>
+                                            <img class="profileIcon" src="/assets/images/gk.png">
+                                      </div>
+                                        <div class="col-lg-4  col-md-4 col-sm-4">
+                                          <p class="client">Client</p>
+                                            <img  class="profileIcon1" src="/assets/images/dell.png">
+                                        </div>
+                                          <div class="col-lg-4  col-md-4 col-sm-4">
+                                            <p class="Enggagement">Next Enggagement</p>
+                                            <p class="date">27,Feb</p>
+                                          </div>
+                                    </div>
+                                  </div>
+                      </div>
+                    </div> 
+   
+  
+                              
+              </div>
+  
+               <div id="Subscribed" class="tab-pane fade">
+                  <div class="col-lg-3 col-md-3 col-sm-3" type="button">
+                      <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                        <header class="header1">
+                          <div class="xSmall">
+                                     <p class="layer">2</p>
+                                      </div>
+                          <span class="status">Act1023</span>
+                            <div class="status1"><p class="status2">Active</p></div>
+                              </header>
+                                <div class="project-content">
+                                  <p class="content"> Product design for dell enterprise Solution</p>
+                                 <span> <img class="signuser" src="/assets/images/images.png"></span>
+                                </div>
+                                  <div class="footer1">
+                                    <div class="row footer2">
+                                      <div class="col-lg-4  col-md-4 col-sm-4">
+                                        <p class="Assigned">Assigned by</p>
+                                            <img class="profileIcon" src="/assets/images/gk.png">
+                                      </div>
+                                        <div class="col-lg-4  col-md-4 col-sm-4">
+                                          <p class="client">Client</p>
+                                            <img  class="profileIcon1" src="/assets/images/dell.png">
+                                        </div>
+                                          <div class="col-lg-4  col-md-4 col-sm-4">
+                                            <p class="Enggagement">Next Enggagement</p>
+                                            <p class="date">27,Feb</p>
+                                          </div>
+                                    </div>
+                                  </div>
+                      </div>
+                    </div> 
+   
+  
+                              
+              </div>
+            </div>
+          </div>
+  
+          <!--popup -->
+  </div>
+  </div>
+  
+  

@@ -19,6 +19,7 @@ src: url("/assets/fonts/OpenSans-Light.ttf");
 @font-face 
 { font-family: "HelveticaNeue"; 
 src: url("/assets/fonts/HelveticaNeueLt.ttf");
+src: url("/assets/fonts/HelveticaNeueLt.ttf");
 }
 
 .headerMargin{
@@ -943,209 +944,205 @@ color: #4a4a4a;
 // add lead
 
 .buttonclass{
-  width:400px;
-  margin: 60px auto; 
-  text-align: center; 
+    width:400px;
+    margin: 60px auto; 
+    text-align: center; 
 }
 
 .textfontcolor
 {
-  font-size:24px;
-  color:$marine-blue;
-   font-family: HelveticaNeue;
-  
+    font-size:24px;
+    color:$marine-blue;
 }
 
 .changeimagewitdth
 {
- width:480px;
- margin: 0 auto;
+   width:480px;
+   margin: 0 auto;
 }
 
 .changeimgheight
 {
-  height:376px;
+    height:376px;
 }
 
 .popup-dialog {
+    width: 700px;
+    margin: 30px auto;
+}
+
+.client-dialog {
+    width: 800px;
+    margin: 30px auto;
+}
+.contact-dialog
+{
   width: 700px;
   margin: 30px auto;
 }
 
-.client-dialog {
-  width: 800px;
-  margin: 30px auto;
-}
-.contact-dialog
-{
-width: 700px;
-margin: 30px auto;
-}
-
 .Add-title-here {
-width: 93%;
-height: 44px;
-//font-family: OpenSans;
-font-size: 36px;
-line-height: 1.22;
-text-align: left;
-color: #757575;
-background-color: transparent;
-border: 0px solid;
-margin-left: 21px;
-margin-bottom: 18px;
-outline: none;
+  width: 93%;
+  height: 44px;
+  font-size: 36px;
+  line-height: 1.22;
+  text-align: left;
+  color: #757575;
+  background-color: transparent;
+  border: 0px solid;
+  margin-left: 21px;
+  margin-bottom: 18px;
+  outline: none;
 }
 
 .input:focus::-webkit-input-placeholder {
-      color:transparent;
+        color:transparent;
 
 }
 .input-field {
-width: 628px;
-height: 127px;
-border-radius: 4px;
-background-color: #ffffff;
-background-color: var(--white-two);
+  width: 628px;
+  height: 127px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  background-color: var(--white-two);
 }
 
 .Create-Lead {
-width: 300px;
-height: 22px;
-font-size: 18px;
-font-weight: bold;
-text-align: left;
-color: #4a4a4a;
-color: var(--charcoal-grey);
-margin-top:5px;
+  width: 300px;
+  height: 22px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  color: #4a4a4a;
+  color: var(--charcoal-grey);
+  margin-top:5px;
 }
 
 .Checkbox-Left{
-width: 24px;
-height: 24px;
-border-radius: 100px;
-background-color: #909090;
-text-align: center;
-display: table-cell;
-vertical-align: middle;
-font-size: 10px;
-color: $white-two;
-font-family: OpensansRegular;
-margin: 60px auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 100px;
+  background-color: #909090;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 10px;
+  color: $white-two;
+  font-family: OpensansRegular;
+  margin: 60px auto;
 }
 
-.small{
-width: 36px;
-height: 36px;
-border-radius: 100px;
-background-color: $light-orange;
-text-align: center;
-display: table-cell;
-vertical-align: middle;
-font-size: 12px;
-color: $white-two;
-font-family: OpensansRegular;
-}
-
-.sg{
-width: 36px;
-height: 36px;
-border-radius: 100px;
-background-color: $marine-blue;
-text-align: center;
-display: table-cell;
-vertical-align: middle;
-font-size: 12px;
-color: $white-two;
-font-family: OpensansRegular;
-}
-
-.users{
-width: 36px;
-height: 36px;
-border-radius: 100px;
-background-color: $light-green;
-text-align: center;
-display: table-cell;
-vertical-align: middle;
-font-size: 12px;
-color: $white-two;
-font-family: OpensansRegular;
-}
+.small-color{
+  width: 36px;
+  height: 36px;
+  border-radius: 100px;
+  background-color: $light-orange;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 12px;
+  color: $white-two;
+  font-family: OpensansRegular;
+ }
+ 
+ .sg{
+  width: 36px;
+  height: 36px;
+  border-radius: 100px;
+  background-color: $marine-blue;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 12px;
+  color: $white-two;
+  font-family: OpensansRegular;
+ }
+ 
+ .users{
+  width: 36px;
+  height: 36px;
+  border-radius: 100px;
+  background-color: $light-green;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 12px;
+  color: $white-two;
+  font-family: OpensansRegular;
+ }
 
 .margin-left
 {
-  margin-left: 21px;
-  margin-top: 2%;
+    margin-left: -1px;
+    margin-top: 2%;
 }
 
 .margin-top
 {
-  margin-top: -15%;
+    margin-top: -15%;
 }
 
 .naturalButton{
-  width: 168px;
-  height: 32px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 600;
-  text-align: center;
-  color: $blue-green;
-  border: solid 1px $white-three;
-  background-color: $white-two;
-  outline: none;
-  margin-top: -15%;
+    width: 168px;
+    height: 32px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    color: $blue-green;
+    border: solid 1px $white-three;
+    background-color: $white-two;
+    outline: none;
+    margin-top: -15%;
 }
 
 .Add-Client {
-height: 19px;
-//   font-family: OpenSans;
-font-size: 14px;
-font-weight: 600;
-text-align: left;
-color: #757575;
-margin-top: 20px;
-margin-left: 34px;
+  height: 19px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  color: #757575;
+  margin-top: 20px;
+  margin-left: 23px;
 }
 
 .addbutton {
-width: 70px;
-height: 32px;
-border-radius: 4px;
-background-color: $blue-green;
-font-size: 12px;
-font-weight: 600;
-text-align: center;
-color: $white-two;
-border: none;
-outline: none;
-margin-left:34px;
+  width: 70px;
+  height: 32px;
+  border-radius: 4px;
+  background-color: $blue-green;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  color: $white-two;
+  border: none;
+  outline: none;
+  margin-left:34px;
 }
 
 .clientInputText {
-font-size: 14px;
-border: solid 1px #e0e0e0;
-width: 350px;
-height: 48px;
-border-radius: 4px;
-background-color: $white-two;
-font-family: OpensansRegular;
-font-weight: 600;
-text-align: left;
-box-shadow: none;
-padding-left: 22px;
-outline: none;
+  font-size: 14px;
+  border: solid 1px #e0e0e0;
+  width: 350px;
+  height: 48px;
+  border-radius: 4px;
+  background-color: $white-two;
+  font-family: OpensansRegular;
+  font-weight: 600;
+  text-align: left;
+  box-shadow: none;
+  padding-left: 22px;
+  outline: none;
 }
 
 .tag-margin
 {
-margin-left:2px;
+  margin-left:2px;
 }
 
 .client-margin
 {
-margin-left:16px;
+  margin-left:16px;
 }
 
 .invite-btn
@@ -1156,20 +1153,145 @@ margin-left: 30px;
 
 .AM-Lead
 {
-padding-left: 180px;
+ margin-top:5px;
 }
 
 .close
 {
-margin-top:3px;
-margin-left: 10px;
+  margin-top:3px;
 }
 
 .tag
 {
-margin-left:34px;
-margin-bottom:50px;
+  margin-left:34px;
+  margin-top:2%;
 }
+
+.bootstrap-select.btn-group .dropdown-menu li
+{
+   border-bottom:1px solid #ccc !important;
+}
+
+.text-width
+{
+  width:100%;
+}
+
+.initialcolr
+{
+  background-color:$white;
+}
+.active1
+{
+  background-color:$marine-blue;
+}
+
+.click-color
+{
+  background-color:$white;
+}
+.business1{
+  color: #002954 ;
+  cursor: pointer;
+}
+.divide{
+  border-bottom: 1px solid #ebebeb ;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family:  OpensansRegular;
+
+}
+.dropdown-padding
+{
+  padding-top:6px;
+}
+
+.naturalButtonMedium1{
+  width: 150px;
+  height: 32px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  color: $blue-green;
+  border: solid 1px $white-three;
+  background-color: $white-two;
+  outline: none;
+}
+
+.btn-margin
+{
+  margin-left:-45px;
+}
+
+.margin
+{
+  margin-left:-45px;
+}
+.data-width
+{
+  width:143%;
+  margin-top:-1px;
+}
+.fileUpload {
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+}
+.fileUpload input.upload {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.tag-title {
+  width: 93%;
+  height: 44px;
+  font-size: 16px;
+  line-height: 1.22;
+  text-align: left;
+  color: #757575;
+  background-color: transparent;
+  border: 0px solid;
+  margin-left:21px;
+  margin-bottom: 18px;
+  outline: none;
+}
+
+.dropsown-margin
+{
+  margin-left:24px;
+}
+
+.popup-button
+{
+  width: 11%;
+  height: -1%;
+  margin-left: 8%;
+  margin-top: 6%;
+  margin-bottom: 3%;
+}
+
+.Add-Tag{
+  width: 27%;
+  height: 28px;
+  border-radius: 2px;
+  background-color: $white-two;
+  border: solid 2px #f3f3f3;
+  font-size: 12px;
+  text-align: left;
+  color: #00a890;
+  outline: none;
+  font-family: OpensansRegular;
+}
+
 
 
 //manager tab
