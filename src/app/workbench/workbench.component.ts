@@ -710,47 +710,44 @@ export class WorkbenchComponent implements OnInit {
 
     }
     
-    addLeads()
-    {
-    let leadconversation:any={
-        "ConversationType":this.conversationtype,
-        "content":this.conversation,
-        } 
+    // addLeads()
+    // {
+    //     console.log("test");
+    // let leadconversation:any={
+    //     "ConversationType":this.conversationtype,
+    //     "content":this.conversation,
+    //     } 
 
-     let addlead:any={
-        "Title":this.title,
-        "ClientID": this.ClientIdValue,
-        "ClientName":this.ClientNameValue,
-        "ClientContact":
-        this.contactlistvalues,
-        "UsersInfo":
-         this.temparray,
-        "EngagementType":this.engagementtype, 
-        "Tags":
-        [
-          this.leadtags
-        ],
-        "Events":
-        {
-        "Conversation":[
-        leadconversation
-        ],
-        "LeadStatusHistory":[
-        this.leadstatushistory  
-        ]
-        },
-        "LeadCurrentStatus":"Active"
-      }
-      console.log("title name",this.title);
-      console.log("conversation",this.conversation);
-      for(let i =0; i < this.files1.length; i++){
-        this.formData.append(this.files1[i]['name'],this.files1[i]);
-      }
-      this.formData.append(addlead);
-      this._clientservice.addLead(this.formData).subscribe((response) => { 
-        this.createleadarray=response;  
-      });   
-    }
+    //  let addlead:any={
+    //     "Title":this.title,
+    //     "ClientID": this.ClientIdValue,
+    //     "ClientName":this.ClientNameValue,
+    //     "ClientContact":
+    //     this.contactlistvalues,
+    //     "UsersInfo":
+    //      this.temparray,
+    //     "EngagementType":this.engagementtype, 
+    //     "Tags":
+    //     [
+    //       this.leadtags
+    //     ],
+    //     "Events":
+    //     {
+    //     "Conversation":[
+    //     leadconversation
+    //     ],
+    //     "LeadStatusHistory":[
+    //     this.leadstatushistory  
+    //     ]
+    //     },
+    //     "LeadCurrentStatus":"Active"
+    //   }
+    //   console.log("title name",this.title);
+    //   console.log("conversation",this.conversation);
+    //   this._clientservice.addLead(addlead).subscribe((response) => { 
+    //     this.createleadarray=response;  
+    //   });   
+    // }
 
     getSalesRepList()
     {
