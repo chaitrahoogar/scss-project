@@ -19,6 +19,10 @@ import 'rxjs/add/operator/toPromise';
      constructor(private _http:Http){
 
      }
+     ngOnInit() {
+        this.token=localStorage.getItem('token');
+    }
+  
     //  172.16.0.4:8082/lead
      value={
     "_id":"59abb3b9d963ea3e3385f734"
@@ -27,7 +31,7 @@ import 'rxjs/add/operator/toPromise';
        leadMethod(){
         let contentHeader = new Headers({
         "Content-Type": "application/json",
-         'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NjA0NjczLCJleHAiOjE1MDQ2OTEwNzN9.qa4MPpfkbbThQ6Devp67WysSwy7k_5pFc71FtXBcY6g"
+         'token':localStorage.getItem('token')
         });
         // let contentHeader = new Headers({
         //   "Content-Type": "application/json",
@@ -46,14 +50,14 @@ import 'rxjs/add/operator/toPromise';
             } 
             let contentHeader = new Headers({
                 "Content-Type": "application/json",
-                 'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NjA0NjczLCJleHAiOjE1MDQ2OTEwNzN9.qa4MPpfkbbThQ6Devp67WysSwy7k_5pFc71FtXBcY6g"
+                 'token':localStorage.getItem('token')
                 });
            return this._http.post(this._url1+'lead/getLeadDetails',leadReqdata,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
        requirementService(leadIdvalue){
         let contentHeader = new Headers({
             "Content-Type": "application/json",
-             'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NjA0NjczLCJleHAiOjE1MDQ2OTEwNzN9.qa4MPpfkbbThQ6Devp67WysSwy7k_5pFc71FtXBcY6g"
+             'token':localStorage.getItem('token')
             });
            return this._http.post(this._url1+'lead/createReq',leadIdvalue,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
@@ -63,7 +67,7 @@ import 'rxjs/add/operator/toPromise';
          
             let contentHeader = new Headers({
                 "Content-Type": "application/json",
-                 'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NjA0NjczLCJleHAiOjE1MDQ2OTEwNzN9.qa4MPpfkbbThQ6Devp67WysSwy7k_5pFc71FtXBcY6g"
+                 'token':localStorage.getItem('token')
                 });
            return this._http.post(this._url1+'lead/scheduleMeeting',ScheduleDate,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
@@ -74,7 +78,7 @@ import 'rxjs/add/operator/toPromise';
          
             let contentHeader = new Headers({
                 "Content-Type": "application/json",
-                 'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NjA0NjczLCJleHAiOjE1MDQ2OTEwNzN9.qa4MPpfkbbThQ6Devp67WysSwy7k_5pFc71FtXBcY6g"
+                 'token':localStorage.getItem('token')
                 });
            return this._http.put(this._url1+'lead/updateLeadTagCcRev',id,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
@@ -84,7 +88,7 @@ import 'rxjs/add/operator/toPromise';
          
             let contentHeader = new Headers({
                 "Content-Type": "application/json",
-                 'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NjA0NjczLCJleHAiOjE1MDQ2OTEwNzN9.qa4MPpfkbbThQ6Devp67WysSwy7k_5pFc71FtXBcY6g"
+                 'token':localStorage.getItem('token')
                 });
            return this._http.post(this._url1+'lead/addLeadTagCcRev',id,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
@@ -94,7 +98,7 @@ import 'rxjs/add/operator/toPromise';
          
         let contentHeader = new Headers({
             "Content-Type": "application/json",
-             'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NjA0NjczLCJleHAiOjE1MDQ2OTEwNzN9.qa4MPpfkbbThQ6Devp67WysSwy7k_5pFc71FtXBcY6g"
+             'token':localStorage.getItem('token')
             });
            return this._http.get(this._url2+'users/getUsers',{ headers: contentHeader }).map((response:Response) =>response.json());
        }
@@ -104,7 +108,7 @@ import 'rxjs/add/operator/toPromise';
          
         let contentHeader = new Headers({
             "Content-Type": "application/json",
-             'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NjA0NjczLCJleHAiOjE1MDQ2OTEwNzN9.qa4MPpfkbbThQ6Devp67WysSwy7k_5pFc71FtXBcY6g"
+             'token':localStorage.getItem('token')
             });
            return this._http.get(this._url2+'users/getSalesRep',{ headers: contentHeader }).map((response:Response) =>response.json());
        }
@@ -113,7 +117,7 @@ import 'rxjs/add/operator/toPromise';
        userSubscibed(value){
         let contentHeader = new Headers({
             "Content-Type": "application/json",
-             'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NjA0NjczLCJleHAiOjE1MDQ2OTEwNzN9.qa4MPpfkbbThQ6Devp67WysSwy7k_5pFc71FtXBcY6g"
+             'token':localStorage.getItem('token')
             });
            return this._http.post(this._url1+'lead/addSubscribedUsers',value,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
@@ -123,7 +127,7 @@ import 'rxjs/add/operator/toPromise';
         assignto(value){
             let contentHeader = new Headers({
                 "Content-Type": "application/json",
-                 'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NjA0NjczLCJleHAiOjE1MDQ2OTEwNzN9.qa4MPpfkbbThQ6Devp67WysSwy7k_5pFc71FtXBcY6g"
+                 'token':localStorage.getItem('token')
                 });
            return this._http.put(this._url1+'lead/updateLeadSFA',value,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
@@ -131,17 +135,14 @@ import 'rxjs/add/operator/toPromise';
        getClientContactsdata(clientid){
         let contentHeader = new Headers({
             "Content-Type": "application/json",
-             'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NjA0NjczLCJleHAiOjE1MDQ2OTEwNzN9.qa4MPpfkbbThQ6Devp67WysSwy7k_5pFc71FtXBcY6g"
+             'token':localStorage.getItem('token')
             });
         
         
         return this._http.post(this._url3+'clients/getClientContact',clientid,{ headers: contentHeader }).map(res =>res.json());
         }
 
-        ngOnInit() {
-            this.token=localStorage.getItem('token');
-        }
-      
+        
        
  }
 

@@ -47,7 +47,7 @@ export class LogInComponent implements OnInit {
               localStorage.setItem('shortname',response.ShortName);
 
               localStorage.setItem('Role',response.Role);
-           
+               localStorage.setItem('token',response.token);
                if(response.status=="fail"){
                     this.router.navigateByUrl('/login');
                }

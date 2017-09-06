@@ -41,6 +41,7 @@ export class WorkbenchComponent implements OnInit {
     reqDetail=[];
     clientid="";
     getContactListUpdate="";
+    ownervalue="";
     //code
      searchValue:string = '';
     reqStatus='';
@@ -267,22 +268,42 @@ export class WorkbenchComponent implements OnInit {
     var monthIndex = data.getMonth();
     var year = data.getFullYear();
     monthIndex=monthIndex+1;
-     console.log(year+"/"+monthIndex+"/"+day);
-     
+    var d = new Date(ScheduleTime +year+'-'+monthIndex+'-'+day)
+  
+  console.log(d);
+
+
       var scheduleData= {
       "_id": "59aa7733758a804138f2718d",
       "Meeting": {
          "MeetingVenue": ScheduleLocation,
-          "ScheduleDate": data,
+          "ScheduleDate": d,
           "ScheduleTime":ScheduleTime,
           }
      }
-    // console.log(scheduleData);
+     console.log(Scheduledate);
     this._leadService.ScheduleMeetingService(scheduleData).subscribe((response) => { 
                  console.log(response)
                  
          });
   }
+
+  dateAdd(date, interval, units) {
+  var ret = new Date(date); //don't change original date
+  var checkRollover = function() { if(ret.getDate() != date.getDate()) ret.setDate(0);};
+  switch(interval.toLowerCase()) {
+    case 'year'   :  ret.setFullYear(ret.getFullYear() + units); checkRollover();  break;
+    case 'quarter':  ret.setMonth(ret.getMonth() + 3*units); checkRollover();  break;
+    case 'month'  :  ret.setMonth(ret.getMonth() + units); checkRollover();  break;
+    case 'week'   :  ret.setDate(ret.getDate() + 7*units);  break;
+    case 'day'    :  ret.setDate(ret.getDate() + units);  break;
+    case 'hour'   :  ret.setTime(ret.getTime() + units*3600000);  break;
+    case 'minute' :  ret.setTime(ret.getTime() + units*60000);  break;
+    case 'second' :  ret.setTime(ret.getTime() + units*1000);  break;
+    default       :  ret = undefined;  break;
+  }
+  return ret;
+}
   
   deletetag(leadId,tagId){
       var deletedata={
@@ -600,7 +621,14 @@ export class WorkbenchComponent implements OnInit {
   tagcontactarray=[];
   contactlistvalues=[];
   newclientarray=[];
-  
+  addcontactdata={
+    "FirstName":'',
+    "LastName":'',
+    "Designation":'',
+    "Email":'',
+    "Phone":''
+  }  
+
   reqBusiness='Business Stream';
   changeBusiness(val,business){
  
@@ -677,10 +705,8 @@ export class WorkbenchComponent implements OnInit {
     "ContactEmail":"",
   }
 
-  leadtags:any={
-    "TagName":this.tagarray,
-    "TagCategory":"Budget"
-  }
+  
+
 
   leadstatushistory:any={
     "Status":"Active"
@@ -701,7 +727,7 @@ export class WorkbenchComponent implements OnInit {
     getManagers()
     {
       this._clientservice.getManagers().subscribe((response) => { 
-        this.managerarray=response;  
+        this.managerarray=response.managerList;  
         this.ownerdisplay=this.managerarray;
            }); 
     }
@@ -709,7 +735,7 @@ export class WorkbenchComponent implements OnInit {
     getUsers()
     {
       this._clientservice.getUsers().subscribe((response) => { 
-        this.userarray=response; 
+        this.userarray=response.userList; 
         this.persondisplay=this.userarray ;
     }); 
     }
@@ -747,68 +773,84 @@ export class WorkbenchComponent implements OnInit {
     {
       console.log(this.ClientIdValue);
       console.log("this.officeaddress",this.officeaddress);
-      let addcontactdata:any=
+      let addcontact:any=
       {
-        "ClientID":this.ClientIdValue,
+        "ClientID":"59aebaf324a83e7968fb6f5f",
         "ClientContact":[
-        this.contactdetails
-        ],
-         "OfficeAddress":[
-        this.officeaddress
-          ]
+            {      
+                "FirstName":this.addcontactdata.FirstName,
+                "LastName":this.addcontactdata.LastName,
+                "Designation":this.addcontactdata.Designation,
+                "Email":this.addcontactdata.Email,
+                "Phone":this.addcontactdata.Phone,
+                "OfficeAddress":[
+                this.officeaddress
+        ]
+       }]
       }
    
-      this._clientservice.addContact(addcontactdata).subscribe((response) => { 
+      this._clientservice.addContact(addcontact).subscribe((response) => { 
         this.addcontactarray=response;  
            }); 
       this.getAllClientContact();  
 
     }
     
-    // addLeads()
-    // {
-    //     console.log("test");
-    // let leadconversation:any={
-    //     "ConversationType":this.conversationtype,
-    //     "content":this.conversation,
-    //     } 
+    addLeads()
+    {
+        // console.log(this.leadtags);
+        this.temparray.push(this.ownervalue);
+        console.log("test");
+    let leadconversation:any={
+        "ConversationType":this.conversationtype,
+        "content":this.conversation,
+        } 
 
-    //  let addlead:any={
-    //     "Title":this.title,
-    //     "ClientID": this.ClientIdValue,
-    //     "ClientName":this.ClientNameValue,
-    //     "ClientContact":
-    //     this.contactlistvalues,
-    //     "UsersInfo":
-    //      this.temparray,
-    //     "EngagementType":this.engagementtype, 
-    //     "Tags":
-    //     [
-    //       this.leadtags
-    //     ],
-    //     "Events":
-    //     {
-    //     "Conversation":[
-    //     leadconversation
-    //     ],
-    //     "LeadStatusHistory":[
-    //     this.leadstatushistory  
-    //     ]
-    //     },
-    //     "LeadCurrentStatus":"Active"
-    //   }
-    //   console.log("title name",this.title);
-    //   console.log("conversation",this.conversation);
-    //   this._clientservice.addLead(addlead).subscribe((response) => { 
-    //     this.createleadarray=response;  
-    //   });   
-    // }
+        let addlead:any={
+          "Verified":this.verificationstatus,
+          "Title":this.title,
+          "ClientID": this.ClientIdValue,
+          "ClientName":this.ClientNameValue,
+          "ClientContact":
+          this.contactlistvalues,
+          "UsersInfo":
+           this.temparray,
+          "EngagementType":this.engagementtype, 
+          "Tags":
+          
+            this.tagarray
+          ,
+          "Events":
+          {
+          "Conversation":[
+          leadconversation
+          ],
+          "LeadStatusHistory":[
+          this.leadstatushistory  
+          ]
+          },
+          "LeadCurrentStatus":"Active"
+        }
+        console.log("this.files1.length",this.files1.length);
+       // this.files1.push(addlead);
+       for(let i =0; i < this.files1.length; i++){
+       this.formData.append('file',this.files1[i]);
+       }
+      //  console.log(addlead);
+      
+      //  console.log(addlead)
+       this.formData.append("file1",JSON.stringify(addlead));
+        //  JSON.stringify(addlead);
+        this._clientservice.addLead(this.formData).subscribe((response) => { 
+          this.createleadarray=response;  
+        });   
+    }
 
     getSalesRepList()
     {
       this._clientservice.getSalesRepList().subscribe((response) => { 
-      this.SalerepArray=response;  
-      this.salesdisplay=this.SalerepArray;
+          this.SalerepArray=response.salesRepList;  
+         this.salesdisplay=this.SalerepArray;
            }); 
     }
     
@@ -876,6 +918,8 @@ salesrepsearch(searchValue3)
 }
 
   putValue(serachData,value){
+    this.tagcontactarray=[];
+    this.getContactList="List"
     this.ClientIdValue=value.ClientID;
     this.ClientNameValue=value.ClientName;
     this.getClientList=serachData;
@@ -883,10 +927,12 @@ salesrepsearch(searchValue3)
   }
 
   contactsearch(serachData,value){
-    console.log("value for contact",value);
+
+    console.log(value);
     this.getContactList=serachData;
     this.tagcontactarray.push(value);
     let contactdetailslist:any={
+       "ContactId":value._id,
       "FirstName":value.FirstName,
       "LastName":value.LastName,
       "Designation":value.Designation,
@@ -899,30 +945,46 @@ salesrepsearch(searchValue3)
 
   invitesearch(serachData1,value1){
     this.peopleName=serachData1;
-    this.namearray.push(value1);
+    // var index = lead.Events.Meeting.findIndex(x => x._id.toString() === req.body.Meeting._id);
+    
     let peoplelist:any =
     {
+      "Userid":value1.Userid,
       "UFirstName":value1.UFirstName,
       "ULastName":value1.ULastName,
-      "URole":value1.Role,
+      "UEmail":value1.UEmail,
+      "Role":value1.Role,
       "Action" :"Subscribed"
     }
+console.log(this.temparray);
+console.log(peoplelist);
+console.log(value1);
+    var index = this.temparray.findIndex(x => x.Userid === peoplelist.Userid);
+    console.log(index);
+    if(index>-1){
+      this.temparray=this.temparray;
+      this.namearray=this.namearray;
+  } else {
+    
     this.temparray.push(peoplelist);
-    console.log("this.temparray",this.temparray);
+    this.namearray.push(value1);
+  }
+   
   }
 
   managersearch(serachData2,value2){
-    console.log(value2);
     this.managerlist=serachData2;
     let managerlist:any =
     {
+      "Userid":value2.Userid,
       "UFirstName":value2.UFirstName,
       "ULastName":value2.ULastName,
-      "URole":value2.Role,
-      "Action" :"Assigned"
+      "UEmail":value2.UEmail,
+      "Role":value2.Role,
+      "Action" :"Owner"
     }
-   this.temparray.push(managerlist);
-   console.log("this.temparray",this.temparray);
+    this.ownervalue=managerlist;
+   console.log("ownervalue",this.ownervalue);
   }
 
   salessearch(serachData3,value3){
@@ -930,17 +992,24 @@ salesrepsearch(searchValue3)
     this.saleslist=serachData3;
     let saleslist:any =
     {
+      "Userid":value3.Userid,
       "UFirstName":value3.UFirstName,
       "ULastName":value3.ULastName,
-      "URole":value3.Role,
-      "Action" :"Owner"
+      "UEmail":value3.UEmail,
+      "Role":value3.Role,
+      "Action" :"Assigned"
     }
     this.temparray.push(saleslist);
   }
 
   addTag(tagvalue)
   {
-    this.tagarray.push(tagvalue);
+    var testdata={
+      "TagName":tagvalue,
+      "TagCategory":"Budget"
+    }
+    this.tagarray.push(testdata);
+    console.log(this.tagarray);
   }
   
   //Attach files
@@ -985,6 +1054,23 @@ salesrepsearch(searchValue3)
     console.log(this.files1);
  }
 
+ deleteaddedtag(tagName){
+  for(var i = 0; i < this.tagarray.length; i++) {
+    if (this.tagarray[i]['TagName'] == tagName) {
+      this.tagarray.splice(i, 1);
+     }
+     console.log(this.tagarray.length);
+    }
+ }
+ deleteContact(Contact){
+  for(var i = 0; i < this.tagcontactarray.length; i++) {
+    if (this.tagcontactarray[i]['FirstName'] == Contact) {
+      this.tagcontactarray.splice(i, 1);
+     }
+     console.log(this.tagcontactarray.length);
+    }
+ }
+
   ngOnInit() {
     this.getlead();
     this.getSalesrep()
@@ -1000,11 +1086,13 @@ salesrepsearch(searchValue3)
     this.getContactList="List"
     this.peopleName="Invite People"
     this.managerlist="Request Owner"
-    this.saleslist="Sales Rep"
+    this.saleslist="Assigned To"
     this.getManagers();
     this.getUsers();
     this.getAllClients();
-    this.getClientContactsdata()
+    this.getClientContactsdata();
+    this.getSalesRepList();
+    console.log(this.role);
   }
 
   

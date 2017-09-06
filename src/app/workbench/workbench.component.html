@@ -57,267 +57,270 @@
   
   </div> 
   </div>
-  
+
+  <!--Add Lead pop up-->
+
   <div class="modal" id="myModal" role="dialog" tabindex="-1" data-focus-on="input:first">
-      <div class="popup-dialog">
+    <div class="popup-dialog">
+    
+     <!-- Modal content-->
+      <div class="modal-content">
+      <form (ngSubmit)="addLeads(addlead)">  
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <div class="row">
+          <div class="col-md-2">
+          <h4 class="modal-title Create-Lead ">Create Lead</h4>
+          </div>
+          <div class="col-md-4">
+              <div class="small-color initialcolr" (click)="changecolor()" [ngClass]="{'active1':this.checked}">
+                  AM
+              </div>
+          </div>
+                      <div class="col-md-3"> 
+                      <span class="col-sd-2" *ngFor="let name of this.namearray |slice:0:2">
+                        <div class="small-color">
+                          {{name.ShortName}}
+                        </div>
+                      </span>
+                        <span class="col-sd-3" *ngIf="this.namearray?.length > 2">  
+                        <div class="users">
+                            {{this.namearray.length-2}}
+                        </div>
+                      </span> 
+                      </div>
+                      <div class="col-md-2">     
+                      <span class="dropdown">
+                      <button class="btn btn-default naturalButtonMedium1 dropdown-toggle margin-left data-width" type="button" data-toggle="dropdown">{{this.peopleName}}
+                      </button>
+                      <ul class="dropdown-menu" style="width:255px">
+                      <li> <groome-search  (searchChange)="peopleSearch($event)"></groome-search> </li>
+                      <li *ngFor="let people of this.persondisplay" (click)="invitesearch(people.UFirstName,people)"><a >{{people.UFirstName}}</a></li>
+                      </ul>  
+                      </span> 
+          </div> 
+        </div>          
+        </div>
+        <div class="modal-body">
+    <div>
+          <input type="text" placeholder="Add title here" class="Add-title-here input" name="title" [(ngModel)]="title" autocomplete="off">
+    </div>
+          <div>
+                  <textarea class="textArea" placeholder="Add your conversation here" name="conversation" [(ngModel)]="conversation"></textarea>
+               </div>
+               <div class="row">
+                <div class="col-md-4">
+                  <div class="dropsown-margin">
+                    <span class="dropdown" *ngIf="this.role=='Sales_Rep'">
+                      <button class="btn btn-default naturalButtonMedium1 dropdown-toggle " type="button" data-toggle="dropdown">{{this.managerlist}}
+                      </button>
+                       <ul class="dropdown-menu" style="width:255px">
+                       <li> <groome-search  (searchChange)="ownersearch($event)"></groome-search> </li>
+                       <li *ngFor="let owner of this.ownerdisplay" (click)="managersearch(owner.UFirstName,owner)"><a >{{owner.UFirstName}}</a></li>
+                      </ul>  
+                       </span> 
+                       <span class="dropdown" *ngIf="this.role=='Manager'">
+                          <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.saleslist}}
+                          </button>
+                           <ul class="dropdown-menu" style="width:255px">
+                           <li> <groome-search  (searchChange)="salesrepsearch($event)"></groome-search> </li>
+                           <li *ngFor="let sales of this.salesdisplay" (click)="salessearch(sales.UFirstName,sales)"><a >{{sales.UFirstName}}</a></li>
+                           </ul>  
+                           </span>  
+                  </div> 
+                </div>  
+
+               <div class="col-md-3">  
+               <div class="dropdown">
+                  <div class="naturalButtonsmall dropdown-padding btn-margin" data-toggle="dropdown"><span class="iconBtnText">{{this.reqBusiness}}</span>
+                      </div>
+                          <ul class="dropdown-menu business_drop margin ">
+                              <li class="disabled" ><a style="cursor: default;">Business</a></li>
+                              <li class="divide" *ngFor="let business of this.Business.BusinessStreams"  (click)="changeBusiness(business.option,business)">{{business.option}}</li>
+                          </ul>
+                    </div> 
+               </div>
+                 <div class="col-md-2"> 
+                    <div class="dropdown">
+                        <div class="naturalButtonsmall dropdown-padding btn-margin" data-toggle="dropdown"><span class="iconBtnText">{{this.reqConversation}}</span>
+                            </div>
+                                <ul class="dropdown-menu business_drop margin">
+                                    <li class="disabled" ><a style="cursor: default;">Conversation Type</a></li>
+                                     <li class="divide" *ngFor="let conversation of this.Business.ConversationType"  (click)="changeconversation(conversation.option,conversation)">{{conversation.option}}</li>
+                                </ul>
+                          </div>  
+                 </div>  
+                <div class="col-md-2"> 
+                     <!--Attach file starts-->
+
+       <popover-content #attachFile 
+       placement="bottom"
+       [animation]="true" 
+       [closeOnClickOutside]="true" >
+       <div class="row" *ngFor='let filename of this.files'>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <p>{{filename}}</p>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" (click)="deleteFile(filename)">
+              <p><img src="/assets/images/rubbish-bin.png"></p>
+            </div>
+       </div>
+      
+<div class="fileUpload btn naturalButtonsmall">
+<span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
+       <g>
+         <g>
+           <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
+           <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
+         </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+       </g>
+       </svg></span>
+      <span class="iconBtnText">{{this.attfileTest}}</span> 
+<input class="upload" id="uploadBtn" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.png,.svg" multiple>
+
+</div>
+<!--<div><button (click)="upload()">upload</button></div>-->
+</popover-content>
+
+<button [popover]="attachFile" type="button" class="naturalButtonsmall">
+     <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
+       <g>
+         <g>
+           <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
+           <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
+         </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+       </g>
+       </svg></span>
+      <span class="iconBtnText">{{this.attfileTest}}</span> 
+   </button>
+                </div> 
+               </div>
+              <div>
+                 <p class="Add-Client">Add Client</p>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                    <div class="dropsown-margin">
+                     <span class="dropdown">
+                     <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.getClientList}}
+                     </button>
+                      <ul class="dropdown-menu" style="width:255px">
+                      <li> <groome-search  (searchChange)="searchChange($event)"></groome-search> </li>
+                      <li class="disabled" ><a style="cursor: default;">People</a></li>
+                      <li class="divide" *ngFor="let client of this.displayList" (click)="putValue(client.ClientName,client)"><a >{{client.ClientName}}</a></li>
+                      <li type="button" class="addbutton popup-button divide" value="Add" data-toggle="modal" data-target="#addClientModal"></li>
+                      </ul>  
+                      </span> 
+                    </div> 
+                    </div>
+                   </div>
+           
+      <div>
+     <p class="Add-Client">Client Contact</p>
+      </div>  
+      <div class="row">
+          <div class="col-md-3">
+              <div class="dropsown-margin">
+                <span class="dropdown">
+                  <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.getContactList}}
+                  </button>
+                   <ul class="dropdown-menu" style="width:255px">
+                   <li> <groome-search  (searchChange)="clientContactSearch($event)"></groome-search> </li>
+                   <li class="disabled" ><a style="cursor: default;">People</a></li>
+                   <li class="divide" *ngFor="let contact of this.contactdisplay" (click)="contactsearch(contact.FirstName,contact)"><a >{{contact.FirstName}}</a></li>
+                   <li type="button" class="addbutton popup-button divide" value="Add" data-toggle="modal" data-target="#addClientContactModal"></li>
+                   </ul>  
+                   </span> 
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                  <button class="Add-Tag tag tagadd" type="button" *ngFor="let contactarray of this.tagcontactarray">{{contactarray.FirstName}}
+                  <img class="fatime" src="/assets/images/delete.svg" (click)="deleteContact(contactarray.FirstName)">  
+                 </button>  
+                  </div>    
+      </div>
+      <div>
+     <p class="Add-Client">Tags</p>
+      </div>
+    <div class="row">  
+    <div class="col-md-3">
+    <form (ngSubmit)="addTag(tagtitle)" autocomplete="off">
+    <input type="text" placeholder="Add Tag" class="tag-title input" name="tagtitle" [(ngModel)]="tagtitle"></form>
+    </div>
+    <div class="col-md-8">
+    <button class="Add-Tag tag" type="button" *ngFor="let tag of this.tagarray">{{tag.TagName}}
+    <img class="fatime" src="/assets/images/delete.svg" (click)="deleteaddedtag(tag.TagName)">  
+    </button> 
+     </div>  
+    </div>                                
+        </div>
+        <div class="modal-footer">
+          <input type="submit" class="buttonMedium" value="create">
+        </div>
+      </form>
+      </div>  
+   </div>  
+  </div>
+ <!--pop up end-->
+
+ <!-- Add Client popup-->
+
+    <div class="modal" id="addClientModal" role="dialog" tabindex="-1" data-focus-on="input:first">
+      <div class="client-dialog">
       
        <!-- Modal content-->
         <div class="modal-content">
-        <form (ngSubmit)="addLeads(addlead)">  
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <div class="row">
-            <div class="col-md-2">
-            <h4 class="modal-title Create-Lead ">Create Lead</h4>
-            </div>
-            <div class="col-md-4">
-                <div class="small-color initialcolr" (click)="changecolor()" [ngClass]="{'active1':this.checked}">
-                    AM
-                </div>
-            </div>
-                        <div class="col-md-3"> 
-                        <span class="col-sd-2" *ngFor="let name of this.namearray |slice:0:2">
-                          <div class="small-color">
-                            {{name.ShortName}}
-                          </div>
-                        </span>
-                          <span class="col-sd-3" *ngIf="this.namearray?.length > 2">  
-                          <div class="users">
-                              {{this.namearray.length-2}}
-                          </div>
-                        </span> 
-                        </div>
-                        <div class="col-md-2">     
-                        <span class="dropdown">
-                        <button class="btn btn-default naturalButtonMedium1 dropdown-toggle margin-left data-width" type="button" data-toggle="dropdown">{{this.peopleName}}
-                        </button>
-                        <ul class="dropdown-menu" style="width:255px">
-                        <li> <groome-search  (searchChange)="peopleSearch($event)"></groome-search> </li>
-                        <li *ngFor="let people of this.persondisplay" (click)="invitesearch(people.UFirstName,people)"><a >{{people.UFirstName}}</a></li>
-                        </ul>  
-                        </span> 
-            </div> 
-          </div>          
+            <h4 class="modal-title">Add Client</h4>
           </div>
           <div class="modal-body">
-      <div>
-            <input type="text" placeholder="Add title here" class="Add-title-here input" name="title" [(ngModel)]="title" autocomplete="off">
-      </div>
-            <div>
-                    <textarea class="textArea" placeholder="Add your conversation here" name="conversation" [(ngModel)]="conversation"></textarea>
-                 </div>
-                 <div class="row">
-                  <div class="col-md-4">
-                    <div class="dropsown-margin">
-                      <span class="dropdown">
-                        <button class="btn btn-default naturalButtonMedium1 dropdown-toggle " type="button" data-toggle="dropdown">{{this.managerlist}}
-                        </button>
-                         <ul class="dropdown-menu" style="width:255px">
-                         <li> <groome-search  (searchChange)="ownersearch($event)"></groome-search> </li>
-                         <li *ngFor="let owner of this.ownerdisplay" (click)="managersearch(owner.UFirstName,owner)"><a >{{owner.UFirstName}}</a></li>
-                        </ul>  
-                         </span> 
-                         <!-- <span class="dropdown">
-                            <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.managerlist}}
-                            </button>
-                             <ul class="dropdown-menu" style="width:255px">
-                             <li> <groome-search  (searchChange)="salesrepsearch($event)"></groome-search> </li>
-                             <li *ngFor="let sales of this.salesdisplay" (click)="salessearch(sales.UserName,sales)"><a >{{sales.UserName}}</a></li>
-                             </ul>  
-                             </span>   -->
-                    </div> 
-                  </div> 
-                 <div class="col-md-3">  
-                 <div class="dropdown">
-                    <div class="naturalButtonsmall dropdown-padding btn-margin" data-toggle="dropdown"><span class="iconBtnText">{{this.reqBusiness}}</span>
-                        </div>
-                            <ul class="dropdown-menu business_drop margin ">
-                                <li class="disabled" ><a style="cursor: default;">Business</a></li>
-                                <li class="divide" *ngFor="let business of this.Business.BusinessStreams"  (click)="changeBusiness(business.option,business)">{{business.option}}</li>
-                            </ul>
-                      </div> 
-                 </div>
-                   <div class="col-md-2"> 
-                      <div class="dropdown">
-                          <div class="naturalButtonsmall dropdown-padding btn-margin" data-toggle="dropdown"><span class="iconBtnText">{{this.reqConversation}}</span>
-                              </div>
-                                  <ul class="dropdown-menu business_drop margin">
-                                      <li class="disabled" ><a style="cursor: default;">Conversation Type</a></li>
-                                       <li class="divide" *ngFor="let conversation of this.Business.ConversationType"  (click)="changeconversation(conversation.option,conversation)">{{conversation.option}}</li>
-                                  </ul>
-                            </div>  
-                   </div>  
-                  <div class="col-md-2"> 
-                       <!--Attach file starts-->
-  
-         <popover-content #attachFile 
-         placement="bottom"
-         [animation]="true" 
-         [closeOnClickOutside]="true" >
-         <div class="row" *ngFor='let filename of this.files'>
-              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                  <p>{{filename}}</p>
-              </div>
-              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" (click)="deleteFile(filename)">
-                <p><img src="/assets/images/rubbish-bin.png"></p>
-              </div>
-         </div>
-        
-  <div class="fileUpload btn naturalButtonsmall">
-  <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
-         <g>
-           <g>
-             <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
-             <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
-           </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
-         </g>
-         </svg></span>
-        <span class="iconBtnText">{{this.attfileTest}}</span> 
-  <input class="upload" id="uploadBtn" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.png,.svg" multiple>
-  
-  </div>
-  <!--<div><button (click)="upload()">upload</button></div>-->
-  </popover-content>
-  
-  <button [popover]="attachFile" type="button" class="naturalButtonsmall">
-       <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
-         <g>
-           <g>
-             <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
-             <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
-           </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
-         </g>
-         </svg></span>
-        <span class="iconBtnText">{{this.attfileTest}}</span> 
-     </button>
-                  </div> 
-                 </div>
-                <div>
-                   <p class="Add-Client">Add Client</p>
-                </div>
-                <div class="row">
-                  <div class="col-md-4">
-                      <div class="dropsown-margin">
-                       <span class="dropdown">
-                       <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.getClientList}}
-                       </button>
-                        <ul class="dropdown-menu" style="width:255px">
-                        <li> <groome-search  (searchChange)="searchChange($event)"></groome-search> </li>
-                        <li class="disabled" ><a style="cursor: default;">People</a></li>
-                        <li class="divide" *ngFor="let client of this.displayList" (click)="putValue(client.ClientName,client)"><a >{{client.ClientName}}</a></li>
-                        <li type="button" class="addbutton popup-button divide" value="Add" data-toggle="modal" data-target="#addClientModal"></li>
-                        </ul>  
-                        </span> 
-                      </div> 
-                      </div>
+            <p class="client-margin">Client Details</p>
+            <div class="container-fluid">
+            <form (ngSubmit)="createClient(addclientdata)">  
+            <div class="row"> 
+               <div class="col-md-5">
+                 <div class="value"> 
+                       <input type="text" [ngClass]="{'red-border-class':!ClientName.valid && !ClientName.pristine}" class="inputText text-width" id="ClientName" required name="ClientName" [(ngModel)] = "addclientdata.ClientName" #ClientName="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!ClientName.valid && !ClientName.pristine }">Client Name</span>
+                     <div [hidden]="ClientName.valid || ClientName.pristine" class="reqAlert">
+                           Name is required
                      </div>
-             
-        <div>
-       <p class="Add-Client">Client Contact</p>
-        </div>  
-        <div class="row">
-            <div class="col-md-3">
-                <div class="dropsown-margin">
-                  <span class="dropdown">
-                    <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.getContactList}}
-                    </button>
-                     <ul class="dropdown-menu" style="width:255px">
-                     <li> <groome-search  (searchChange)="clientContactSearch($event)"></groome-search> </li>
-                     <li class="disabled" ><a style="cursor: default;">People</a></li>
-                     <li class="divide" *ngFor="let contact of this.contactdisplay" (click)="contactsearch(contact.FirstName,contact)"><a >{{contact.FirstName}}</a></li>
-                     <li type="button" class="addbutton popup-button divide" value="Add" data-toggle="modal" data-target="#addClientContactModal"></li>
-                     </ul>  
-                     </span> 
+                 </div>
+                          </div> 
+                  </div>  
+                  <div class="row"> 
+                     <div class="col-md-5">   
+                      <div class="value">        
+                       <input type="text" [ngClass]="{'red-border-class':!IndustryType.valid && !IndustryType.pristine}" class="inputText text-width" id="IndustryType" required name="IndustryType" [(ngModel)] = "addclientdata.IndustryType" #IndustryType="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!IndustryType.valid && !IndustryType.pristine }">Industry Type</span>
+                     <div [hidden]="IndustryType.valid || IndustryType.pristine" class="reqAlert">
+                           IndustryType is required
+                     </div>  
+                      </div>                  
                     </div>
-                    </div>
-                    <div class="col-md-6">
-                    <button class="Add-Tag tag tagadd" type="button" *ngFor="let contactarray of this.tagcontactarray">{{contactarray.FirstName}}
-                    <img class="fatime" src="/assets/images/delete.svg">  
-                   </button>  
-                    </div>    
-        </div>
-        <div>
-       <p class="Add-Client">Tags</p>
-        </div>
-      <div class="row">  
-      <div class="col-md-3">
-      <form (ngSubmit)="addTag(tagtitle)" autocomplete="off">
-      <input type="text" placeholder="Add Tag" class="tag-title input" name="tagtitle" [(ngModel)]="tagtitle"></form>
-      </div>
-      <div class="col-md-8">
-      <button class="Add-Tag tag" type="button" *ngFor="let tag of this.tagarray">{{tag}}
-      <img class="fatime" src="/assets/images/delete.svg">  
-      </button> 
-       </div>  
-      </div>                                
-          </div>
-          <div class="modal-footer">
-            <input type="submit" class="buttonMedium" value="create">
-          </div>
-        </form>
-        </div>  
-     </div>
-      
-    </div>
-    
-
-    <div class="modal" id="addClientModal" role="dialog" tabindex="-1" data-focus-on="input:first">
-        <div class="client-dialog">
-        
-         <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Add Client</h4>
-            </div>
-            <div class="modal-body">
-              <p class="client-margin">Client Details</p>
-              <div class="container-fluid">
-              <form (ngSubmit)="createClient(addclientdata)">  
-              <div class="row"> 
-                 <div class="col-md-5">
-                   <div class="value"> 
-                         <input type="text" [ngClass]="{'red-border-class':!ClientName.valid && !ClientName.pristine}" class="inputText text-width" id="ClientName" required name="ClientName" [(ngModel)] = "addclientdata.ClientName" #ClientName="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!ClientName.valid && !ClientName.pristine }">Client Name</span>
-                       <div [hidden]="ClientName.valid || ClientName.pristine" class="reqAlert">
-                             Name is required
-                       </div>
-                   </div>
-                            </div> 
-                    </div>  
-                    <div class="row"> 
-                       <div class="col-md-5">   
-                        <div class="value">        
-                         <input type="text" [ngClass]="{'red-border-class':!IndustryType.valid && !IndustryType.pristine}" class="inputText text-width" id="IndustryType" required name="IndustryType" [(ngModel)] = "addclientdata.IndustryType" #IndustryType="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!IndustryType.valid && !IndustryType.pristine }">Industry Type</span>
-                       <div [hidden]="IndustryType.valid || IndustryType.pristine" class="reqAlert">
-                             IndustryType is required
-                       </div>  
-                        </div>                  
-                      </div>
-    
-                       <div class="col-md-5">  
-                         <div class="value">         
-                         <input type="text" [ngClass]="{'red-border-class':!BusinessVertical.valid && !BusinessVertical.pristine}" class="inputText text-width" id="BusinessVertical" required name="BusinessVertical" [(ngModel)] = "addclientdata.BusinessVertical" #BusinessVertical="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!BusinessVertical.valid && !BusinessVertical.pristine }">Business Type</span>
-                       <div [hidden]="BusinessVertical.valid ||BusinessVertical.pristine" class="reqAlert">
-                             BusinessVertical is required
-                       </div> 
-                         </div>                   
-                      </div>
-                    </div>
-            <div class="modal-footer">
-              <input type="submit" class="brandblue" value="Create Client">
-            </div>
-              </form>
-              </div>
-            </div>
-          </div>
-          </div>
-        </div>
-
- 
   
+                     <div class="col-md-5">  
+                       <div class="value">         
+                       <input type="text" [ngClass]="{'red-border-class':!BusinessVertical.valid && !BusinessVertical.pristine}" class="inputText text-width" id="BusinessVertical" required name="BusinessVertical" [(ngModel)] = "addclientdata.BusinessVertical" #BusinessVertical="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!BusinessVertical.valid && !BusinessVertical.pristine }">Business Type</span>
+                     <div [hidden]="BusinessVertical.valid ||BusinessVertical.pristine" class="reqAlert">
+                           BusinessVertical is required
+                     </div> 
+                       </div>                   
+                    </div>
+                  </div>
+          <div class="modal-footer">
+            <input type="submit" class="brandblue" value="Create Client">
+          </div>
+            </form>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+   <!--popup end-->
+
     <div *ngIf="this.role=='Sales_Rep' && this.resempdataLead.length>0">
   <!--<div>-->
   <div class="row main_container container-fluid tabs">
@@ -982,142 +985,145 @@
   </div>  
   <!--pop up ends-->
 
-     <div class="modal" id="addClientContactModal" role="dialog" tabindex="-1" data-focus-on="input:first">
-        <div class="client-dialog">
-        
-         <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Add Client Contact</h4>
-            </div>
-            <div class="modal-body">
-              <p class="client-margin">Personal Details</p>
-              <div class="container-fluid">
-              <form (ngSubmit)="createClientContact(addcontactdata)">    
-              <div class="row"> 
-                 <div class="col-md-5">
-                   <div class="value"> 
-                         <input type="text" [ngClass]="{'red-border-class':!FirstName.valid && !FirstName.pristine}" class="inputText text-width" id="FirstName" required name="FirstName" [(ngModel)] = "contactdetails.FirstName" #FirstName="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!FirstName.valid && !FirstName.pristine }">First Name</span>
-                       <div [hidden]="FirstName.valid || FirstName.pristine" class="reqAlert">
-                             First Name is required
-                       </div>
+   <!--for Client Contact Popup-->
+
+    <div class="modal" id="addClientContactModal" role="dialog" tabindex="-1" data-focus-on="input:first">
+      <div class="client-dialog">
+      
+       <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">Add Client Contact</h4>
+          </div>
+          <div class="modal-body">
+            <p class="client-margin">Personal Details</p>
+            <div class="container-fluid">
+            <form (ngSubmit)="createClientContact(addcontactdata)">    
+            <div class="row"> 
+               <div class="col-md-5">
+                 <div class="value"> 
+                       <input type="text" [ngClass]="{'red-border-class':!FirstName.valid && !FirstName.pristine}" class="inputText text-width" id="FirstName" required name="FirstName" [(ngModel)] = "addcontactdata.FirstName" #FirstName="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!FirstName.valid && !FirstName.pristine }">First Name</span>
+                     <div [hidden]="FirstName.valid || FirstName.pristine" class="reqAlert">
+                           First Name is required
+                     </div>
+                 </div>
+                          </div> 
+                  <div class="col-md-5">     
+                   <div class="value">      
+                       <input type="text" [ngClass]="{'red-border-class':!LastName.valid && !LastName.pristine}" class="inputText text-width" id="LastName" required name="LastName" [(ngModel)] = "addcontactdata.LastName" #LastName="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!LastName.valid && !LastName.pristine }">Last Name</span>
+                     <div [hidden]="LastName.valid || LastName.pristine" class="reqAlert">
+                           Last Name is required
+                     </div>  
                    </div>
-                            </div> 
-                    <div class="col-md-5">     
-                     <div class="value">      
-                         <input type="text" [ngClass]="{'red-border-class':!LastName.valid && !LastName.pristine}" class="inputText text-width" id="LastName" required name="LastName" [(ngModel)] = "contactdetails.LastName" #LastName="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!LastName.valid && !LastName.pristine }">Last Name</span>
-                       <div [hidden]="LastName.valid || LastName.pristine" class="reqAlert">
-                             Last Name is required
-                       </div>  
-                     </div>
-                    </div>
-              </div>
-                    <div class="row"> 
-                   <div class="col-md-5">     
-                     <div class="value">      
-                         <input type="text" [ngClass]="{'red-border-class':!Designation.valid && !Designation.pristine}" class="inputText text-width" id="Designation" required name="Designation" [(ngModel)] = "contactdetails.Designation" #Designation="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!Designation.valid && !Designation.pristine }">Designation</span>
-                       <div [hidden]="Designation.valid || Designation.pristine" class="reqAlert">
-                             Designation is required
-                       </div>  
-                     </div>
-                   </div>          
-                    <div class="col-md-5">   
-                        <div class="value">        
-                         <input type="text" [ngClass]="{'red-border-class':!Phone.valid && !Phone.pristine}" class="inputText text-width" id="Phone" required name="Phone" [(ngModel)] = "contactdetails.Phone" #Phone="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!Phone.valid && !Phone.pristine }">Phone Numbers</span>
-                       <div [hidden]="Phone.valid || Phone.pristine" class="reqAlert">
-                             Phone Number is required
-                       </div>  
-                        </div>                  
-                      </div>
-                    </div>
-                     <div class="row"> 
-                       <div class="col-md-5">  
-                         <div class="value">         
-                         <input type="text" [ngClass]="{'red-border-class':!Email.valid && !Email.pristine}" class="inputText text-width" id="Email" required name="Email" [(ngModel)] = "contactdetails.Email" #Email="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!Email.valid && !Email.pristine }">Email Id</span>
-                       <div [hidden]="Email.valid || Email.pristine" class="reqAlert">
-                             Email Id is required
-                       </div> 
-                         </div>                   
-                      </div>
-                     </div>
-                      <div class="row"> 
-                      <div class="col-md-5">     
-                        <div class="value">      
-                         <input type="text" [ngClass]="{'red-border-class':!OfficeAddress.valid && !OfficeAddress.pristine}" class="inputText text-width" id="OfficeAddress" required name="OfficeAddress" [(ngModel)] = "officeaddress.OfficeAddress" #OfficeAddress="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!OfficeAddress.valid && !OfficeAddress.pristine }">Office Address</span>
-                       <div [hidden]="OfficeAddress.valid || OfficeAddress.pristine" class="reqAlert">
-                             Office Address is required
-                       </div>   
-                        </div>                 
-                      </div>
-                          <div class="col-md-5">     
-                        <div class="value">      
-                         <input type="text" [ngClass]="{'red-border-class':!Country.valid && !Country.pristine}" class="inputText text-width" id="Country" required name="Country" [(ngModel)] = "officeaddress.Country" #Country="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!Country.valid && !Country.pristine }">Country</span>
-                       <div [hidden]="Country.valid || Country.pristine" class="reqAlert">
-                             Country is required
-                       </div>   
-                        </div>                 
-                      </div>
-                      </div>
-                    <div class="row"> 
-                      <div class="col-md-4">   
-                        <div class="value">        
-                         <input type="text" [ngClass]="{'red-border-class':!State.valid && !State.pristine}" class="inputText text-width" id="State" required name="State" [(ngModel)] = "officeaddress.State" #State="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!State.valid && !State.pristine }">State</span>
-                       <div [hidden]="State.valid || State.pristine" class="reqAlert">
-                             State is required
-                       </div>  
-                        </div>                  
-                      </div>
-                      <div class="col-md-4">  
-                      <div class="value">         
-                         <input type="text" [ngClass]="{'red-border-class':!Street.valid && !Street.pristine}" class="inputText text-width" id="Street" required name="Street" [(ngModel)] = "officeaddress.Street" #Street="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!Street.valid && !Street.pristine }">Street</span>
-                       <div [hidden]="Street.valid || Street.pristine" class="reqAlert">
-                             Street is required
-                       </div>   
-                      </div>                 
-                      </div>
-                      <div class="col-md-2"> 
-                        <div class="value Zip-width">          
-                         <input type="text" [ngClass]="{'red-border-class':!ZipCode.valid && !ZipCode.pristine}" class="inputText text-width" id="ZipCode" required name="ZipCode" [(ngModel)] = "officeaddress.ZipCode" #ZipCode="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!ZipCode.valid && !ZipCode.pristine }">ZipCode</span>
-                       <div [hidden]="ZipCode.valid || ZipCode.pristine" class="reqAlert">
-                             Zip Code is required
-                       </div>  
-                        </div>                  
-                      </div>
-                    </div>
-                      <!-- <p class="">Related Tags</p> 
-                    <div>      
-         <span class="text-input-wrapper">            
-         <input type="text" class="tagDefault Client-margin" placeholder="add tag">
-         <img class="fatime" src="/assets/images/delete.svg"></span>
-    
-         <span class="text-input-wrapper">
-        <input type="text" class="tagDefault" placeholder="add tag">
-         <img class="fatime" src="/assets/images/delete.svg">
-         </span>
-        <span class="text-input-wrapper"> 
-        <input type="text" class="tagDefault" placeholder="add tag" >
-        </span>                      
-              </div> -->
-            <div class="modal-footer">
-              <input type="submit" class="brandblue" value="Create Client">
+                  </div>
             </div>
-              </form>
-              </div>
+                  <div class="row"> 
+                 <div class="col-md-5">     
+                   <div class="value">      
+                       <input type="text" [ngClass]="{'red-border-class':!Designation.valid && !Designation.pristine}" class="inputText text-width" id="Designation" required name="Designation" [(ngModel)] = "addcontactdata.Designation" #Designation="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!Designation.valid && !Designation.pristine }">Designation</span>
+                     <div [hidden]="Designation.valid || Designation.pristine" class="reqAlert">
+                           Designation is required
+                     </div>  
+                   </div>
+                 </div>          
+                  <div class="col-md-5">   
+                      <div class="value">        
+                       <input type="text" [ngClass]="{'red-border-class':!Phone.valid && !Phone.pristine}" class="inputText text-width" id="Phone" required name="Phone" [(ngModel)] = "addcontactdata.Phone" #Phone="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!Phone.valid && !Phone.pristine }">Phone Numbers</span>
+                     <div [hidden]="Phone.valid || Phone.pristine" class="reqAlert">
+                           Phone Number is required
+                     </div>  
+                      </div>                  
+                    </div>
+                  </div>
+                   <div class="row"> 
+                     <div class="col-md-5">  
+                       <div class="value">         
+                       <input type="text" [ngClass]="{'red-border-class':!Email.valid && !Email.pristine}" class="inputText text-width" id="Email" required name="Email" [(ngModel)] = "addcontactdata.Email" #Email="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!Email.valid && !Email.pristine }">Email Id</span>
+                     <div [hidden]="Email.valid || Email.pristine" class="reqAlert">
+                           Email Id is required
+                     </div> 
+                       </div>                   
+                    </div>
+                   </div>
+                    <div class="row"> 
+                    <div class="col-md-5">     
+                      <div class="value">      
+                       <input type="text" [ngClass]="{'red-border-class':!OfficeAddress.valid && !OfficeAddress.pristine}" class="inputText text-width" id="OfficeAddress" required name="OfficeAddress" [(ngModel)] = "officeaddress.OfficeAddress" #OfficeAddress="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!OfficeAddress.valid && !OfficeAddress.pristine }">Office Address</span>
+                     <div [hidden]="OfficeAddress.valid || OfficeAddress.pristine" class="reqAlert">
+                           Office Address is required
+                     </div>   
+                      </div>                 
+                    </div>
+                        <div class="col-md-5">     
+                      <div class="value">      
+                       <input type="text" [ngClass]="{'red-border-class':!Country.valid && !Country.pristine}" class="inputText text-width" id="Country" required name="Country" [(ngModel)] = "officeaddress.Country" #Country="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!Country.valid && !Country.pristine }">Country</span>
+                     <div [hidden]="Country.valid || Country.pristine" class="reqAlert">
+                           Country is required
+                     </div>   
+                      </div>                 
+                    </div>
+                    </div>
+                  <div class="row"> 
+                    <div class="col-md-4">   
+                      <div class="value">        
+                       <input type="text" [ngClass]="{'red-border-class':!State.valid && !State.pristine}" class="inputText text-width" id="State" required name="State" [(ngModel)] = "officeaddress.State" #State="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!State.valid && !State.pristine }">State</span>
+                     <div [hidden]="State.valid || State.pristine" class="reqAlert">
+                           State is required
+                     </div>  
+                      </div>                  
+                    </div>
+                    <div class="col-md-4">  
+                    <div class="value">         
+                       <input type="text" [ngClass]="{'red-border-class':!Street.valid && !Street.pristine}" class="inputText text-width" id="Street" required name="Street" [(ngModel)] = "officeaddress.Street" #Street="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!Street.valid && !Street.pristine }">Street</span>
+                     <div [hidden]="Street.valid || Street.pristine" class="reqAlert">
+                           Street is required
+                     </div>   
+                    </div>                 
+                    </div>
+                    <div class="col-md-2"> 
+                      <div class="value Zip-width">          
+                       <input type="text" [ngClass]="{'red-border-class':!ZipCode.valid && !ZipCode.pristine}" class="inputText text-width" id="ZipCode" required name="ZipCode" [(ngModel)] = "officeaddress.ZipCode" #ZipCode="ngModel"/>
+                    <span class="floating-label" [ngClass]="{'red-class':!ZipCode.valid && !ZipCode.pristine }">ZipCode</span>
+                     <div [hidden]="ZipCode.valid || ZipCode.pristine" class="reqAlert">
+                           Zip Code is required
+                     </div>  
+                      </div>                  
+                    </div>
+                  </div>
+                    <!-- <p class="">Related Tags</p> 
+                  <div>      
+       <span class="text-input-wrapper">            
+       <input type="text" class="tagDefault Client-margin" placeholder="add tag">
+       <img class="fatime" src="/assets/images/delete.svg"></span>
+  
+       <span class="text-input-wrapper">
+      <input type="text" class="tagDefault" placeholder="add tag">
+       <img class="fatime" src="/assets/images/delete.svg">
+       </span>
+      <span class="text-input-wrapper"> 
+      <input type="text" class="tagDefault" placeholder="add tag" >
+      </span>                      
+            </div> -->
+          <div class="modal-footer">
+            <input type="submit" class="brandblue" value="Create Client">
           </div>
-          </div>
+            </form>
+            </div>
         </div>
         </div>
+      </div>
+      </div>
+  <!--pop up ends-->    
   
   <!--for manger tab-->
   <div>
