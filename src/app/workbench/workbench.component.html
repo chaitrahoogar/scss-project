@@ -1,29 +1,48 @@
 <div class="main_container">
-  <nav class="navbar navbar-default">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Groome</a>
-        </div>
-          <div class="collapse navbar-collapse " >
-              <ul class="nav navbar-nav navbar-left headerMargin collapse navbar-collapse">
-                <li><input class="search" placeholder="Search your lead here"  name="searchValue" [(ngModel)]="searchValue" required><span class="Clear" (click)="clearSearch()" title="Clear"><img src="/assets/images/error.svg"></span></li>
-                <li class="active workbench"><a  href="#" class="work">Workbench</a></li>
-                <li><a >Events</a></li>
-                <li><a >Clients</a></li>
-                <li><a >Dashbords</a></li>
-                <li class="dropdown-notification"> <a> <i class="fa fa-bell-o"></i></a>
-                  <div class="layer1">
-                      <p>2</p>
-                       </div>
-                       <li class="profile" (click)="logout()">
-                      <p>{{this.shornameinlead}}</p>
-                       </li>
-  
-                </ul>
-            </div>
-    </nav>
+<nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+    <div class="container main_header">
+      <p class="navbar-brand groome" >Groome</p>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="input-group navbar-form navbar-left searchbox">
+            <span class="text-input-wrapper"> <input class="search" placeholder="Search your lead here"  name="searchValue" [(ngModel)]="searchValue" required><span class="Clear" (click)="clearSearch()" title="Clear"><img src="/assets/images/error.svg"></span></span>
+          </div>
+          <ul class="nav navbar-nav header_content">
+          <li class="work">
+            <a  >Workbench</a>
+          </li>
+          <li>
+            <a class="header">Events</a>
+          </li>
+          <li>
+            <a class="header">Clients</a>
+          </li>
+          <li>
+            <a class="header">Dashbords</a>
+          </li>
+          <li class=" dropdown-notification ">
+            <a class="dropdown-toggle" href="" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true"> <i class="fa fa-bell-o"></i>
+            <span class="badge badge-default layer1"> 3 </span> </a>
+            <ul class="dropdown-menu">
+              <li class="external">
+                <h3 class="bold"> <span >3 pending</span> notifications</h3>
+              </li>
+            </ul>
+          </li>
+          <li class="profile_log">
+            <a href="#" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true" style="background-color:#ff4e4b ;">
+              <p class="hidden-xs">{{this.shornameinlead}}</p>
+            </a>
+            <ul class="dropdown-menu">
+              <li ><a (click)="logout()"><i class="fa fa-fw fa-power-off" ></i> Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   </div>
   <!-- <div>anushya</div> -->
-  <div class="" *ngIf="this.resempdata.length==0">
+  <div class="" *ngIf="this.resempdataLead.length==0 || this.resempdataLead.length=='undefined'">
     <div class="buttonclass">
   <p class="textfontcolor">
   
@@ -297,144 +316,9 @@
           </div>
         </div>
 
-    <div class="modal" id="addClientContactModal" role="dialog" tabindex="-1" data-focus-on="input:first">
-        <div class="client-dialog">
-        
-         <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h4 class="modal-title">Add Client Contact</h4>
-            </div>
-            <div class="modal-body">
-              <p class="client-margin">Personal Details</p>
-              <div class="container-fluid">
-              <form (ngSubmit)="createClientContact(addcontactdata)">    
-              <div class="row"> 
-                 <div class="col-md-5">
-                   <div class="value"> 
-                         <input type="text" [ngClass]="{'red-border-class':!FirstName.valid && !FirstName.pristine}" class="inputText text-width" id="FirstName" required name="FirstName" [(ngModel)] = "contactdetails.FirstName" #FirstName="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!FirstName.valid && !FirstName.pristine }">First Name</span>
-                       <div [hidden]="FirstName.valid || FirstName.pristine" class="reqAlert">
-                             First Name is required
-                       </div>
-                   </div>
-                            </div> 
-                    <div class="col-md-5">     
-                     <div class="value">      
-                         <input type="text" [ngClass]="{'red-border-class':!LastName.valid && !LastName.pristine}" class="inputText text-width" id="LastName" required name="LastName" [(ngModel)] = "contactdetails.LastName" #LastName="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!LastName.valid && !LastName.pristine }">Last Name</span>
-                       <div [hidden]="LastName.valid || LastName.pristine" class="reqAlert">
-                             Last Name is required
-                       </div>  
-                     </div>
-                    </div>
-              </div>
-                    <div class="row"> 
-                   <div class="col-md-5">     
-                     <div class="value">      
-                         <input type="text" [ngClass]="{'red-border-class':!Designation.valid && !Designation.pristine}" class="inputText text-width" id="Designation" required name="Designation" [(ngModel)] = "contactdetails.Designation" #Designation="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!Designation.valid && !Designation.pristine }">Designation</span>
-                       <div [hidden]="Designation.valid || Designation.pristine" class="reqAlert">
-                             Designation is required
-                       </div>  
-                     </div>
-                   </div>          
-                    <div class="col-md-5">   
-                        <div class="value">        
-                         <input type="text" [ngClass]="{'red-border-class':!Phone.valid && !Phone.pristine}" class="inputText text-width" id="Phone" required name="Phone" [(ngModel)] = "contactdetails.Phone" #Phone="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!Phone.valid && !Phone.pristine }">Phone Numbers</span>
-                       <div [hidden]="Phone.valid || Phone.pristine" class="reqAlert">
-                             Phone Number is required
-                       </div>  
-                        </div>                  
-                      </div>
-                    </div>
-                     <div class="row"> 
-                       <div class="col-md-5">  
-                         <div class="value">         
-                         <input type="text" [ngClass]="{'red-border-class':!Email.valid && !Email.pristine}" class="inputText text-width" id="Email" required name="Email" [(ngModel)] = "contactdetails.Email" #Email="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!Email.valid && !Email.pristine }">Email Id</span>
-                       <div [hidden]="Email.valid || Email.pristine" class="reqAlert">
-                             Email Id is required
-                       </div> 
-                         </div>                   
-                      </div>
-                     </div>
-                      <div class="row"> 
-                      <div class="col-md-5">     
-                        <div class="value">      
-                         <input type="text" [ngClass]="{'red-border-class':!OfficeAddress.valid && !OfficeAddress.pristine}" class="inputText text-width" id="OfficeAddress" required name="OfficeAddress" [(ngModel)] = "officeaddress.OfficeAddress" #OfficeAddress="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!OfficeAddress.valid && !OfficeAddress.pristine }">Office Address</span>
-                       <div [hidden]="OfficeAddress.valid || OfficeAddress.pristine" class="reqAlert">
-                             Office Address is required
-                       </div>   
-                        </div>                 
-                      </div>
-                          <div class="col-md-5">     
-                        <div class="value">      
-                         <input type="text" [ngClass]="{'red-border-class':!Country.valid && !Country.pristine}" class="inputText text-width" id="Country" required name="Country" [(ngModel)] = "officeaddress.Country" #Country="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!Country.valid && !Country.pristine }">Country</span>
-                       <div [hidden]="Country.valid || Country.pristine" class="reqAlert">
-                             Country is required
-                       </div>   
-                        </div>                 
-                      </div>
-                      </div>
-                    <div class="row"> 
-                      <div class="col-md-4">   
-                        <div class="value">        
-                         <input type="text" [ngClass]="{'red-border-class':!State.valid && !State.pristine}" class="inputText text-width" id="State" required name="State" [(ngModel)] = "officeaddress.State" #State="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!State.valid && !State.pristine }">State</span>
-                       <div [hidden]="State.valid || State.pristine" class="reqAlert">
-                             State is required
-                       </div>  
-                        </div>                  
-                      </div>
-                      <div class="col-md-4">  
-                      <div class="value">         
-                         <input type="text" [ngClass]="{'red-border-class':!Street.valid && !Street.pristine}" class="inputText text-width" id="Street" required name="Street" [(ngModel)] = "officeaddress.Street" #Street="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!Street.valid && !Street.pristine }">Street</span>
-                       <div [hidden]="Street.valid || Street.pristine" class="reqAlert">
-                             Street is required
-                       </div>   
-                      </div>                 
-                      </div>
-                      <div class="col-md-2"> 
-                        <div class="value Zip-width">          
-                         <input type="text" [ngClass]="{'red-border-class':!ZipCode.valid && !ZipCode.pristine}" class="inputText text-width" id="ZipCode" required name="ZipCode" [(ngModel)] = "officeaddress.ZipCode" #ZipCode="ngModel"/>
-                      <span class="floating-label" [ngClass]="{'red-class':!ZipCode.valid && !ZipCode.pristine }">ZipCode</span>
-                       <div [hidden]="ZipCode.valid || ZipCode.pristine" class="reqAlert">
-                             Zip Code is required
-                       </div>  
-                        </div>                  
-                      </div>
-                    </div>
-                      <!-- <p class="">Related Tags</p> 
-                    <div>      
-         <span class="text-input-wrapper">            
-         <input type="text" class="tagDefault Client-margin" placeholder="add tag">
-         <img class="fatime" src="/assets/images/delete.svg"></span>
-    
-         <span class="text-input-wrapper">
-        <input type="text" class="tagDefault" placeholder="add tag">
-         <img class="fatime" src="/assets/images/delete.svg">
-         </span>
-        <span class="text-input-wrapper"> 
-        <input type="text" class="tagDefault" placeholder="add tag" >
-        </span>                      
-              </div> -->
-            <div class="modal-footer">
-              <input type="submit" class="brandblue" value="Create Client">
-            </div>
-              </form>
-              </div>
-          </div>
-          </div>
-        </div>
-        </div>
+ 
   
-    <div *ngIf="this.role=='Sales_Rep'">
+    <div *ngIf="this.role=='Sales_Rep' && this.resempdataLead.length>0">
   <!--<div>-->
   <div class="row main_container container-fluid tabs">
      
@@ -494,71 +378,76 @@
             </div> 
               </div>
               <div id="menu2" class="tab-pane fade">
-                  <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-                      <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-                        <header class="header1">
-                          <div class="xSmall">
-                                     <p class="layer">2</p>
-                                      </div>
-                          <span class="status">{{this.viewleaddata.LeadID}}</span>
-                            <div class="status1"><p class="status2">Active</p></div>
-                              </header>
-                                <div class="project-content">
-                                  <p class="content"> Product design for dell enterprise Solution</p>
-                                 <span> <img class="signuser" src="/assets/images/images.png"></span>
+          <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
+              <div *ngIf="value.Action=='Assigned'">
+                {{this.resempdata.lead.Action}}
+              <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                <header class="header1">
+                  <div class="xSmall">
+                             <p class="layer">2</p>
+                              </div>
+                  <span class="status">{{value.LeadID}}</span>
+                    <div class="status1"><p class="status2">{{value.Status}}</p></div>
+                      </header>
+                        <div class="project-content">
+                          <p class="content"> {{value.Title}}</p>
+                         <span> <img class="signuser" src="/assets/images/images.png"></span>
+                        </div>
+                          <div class="footer1">
+                            <div class="row footer2">
+                              <div class="col-lg-4  col-md-4 col-sm-4">
+                                <p class="Assigned">Assigned by</p>
+                                    <img class="profileIcon" src="/assets/images/gk.png">
+                              </div>
+                                <div class="col-lg-4  col-md-4 col-sm-4">
+                                  <p class="client">Client</p>
+                                    <img  class="profileIcon1" src="/assets/images/dell.png">
                                 </div>
-                                  <div class="footer1">
-                                    <div class="row footer2">
-                                      <div class="col-lg-4  col-md-4 col-sm-4">
-                                        <p class="Assigned">Assigned by</p>
-                                            <img class="profileIcon" src="/assets/images/gk.png">
-                                      </div>
-                                        <div class="col-lg-4  col-md-4 col-sm-4">
-                                          <p class="client">Client</p>
-                                            <img  class="profileIcon1" src="/assets/images/dell.png">
-                                        </div>
-                                          <div class="col-lg-4  col-md-4 col-sm-4">
-                                            <p class="Enggagement">Next Enggagement</p>
-                                            <p class="date">27,Feb</p>
-                                          </div>
-                                    </div>
+                                  <div class="col-lg-4  col-md-4 col-sm-4">
+                                    <p class="Enggagement">Next Enggagement</p>
+                                    <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
                                   </div>
-                      </div>
-                    </div> 
+                            </div>
+                          </div>
+              </div>
+             </div>
+            </div> 
                   
               </div>
               <div id="menu3" class="tab-pane fade">
-                  <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-                      <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-                        <header class="header1">
-                          <div class="xSmall">
-                                     <p class="layer">2</p>
-                                      </div>
-                          <span class="status">Act1023</span>
-                            <div class="status1"><p class="status2">Active</p></div>
-                              </header>
-                                <div class="project-content">
-                                  <p class="content"> Product design for dell enterprise Solution</p>
-                                 <span> <img class="signuser" src="/assets/images/images.png"></span>
+      <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
+              <div *ngIf="value.Action=='Subscribed'">
+              <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                <header class="header1">
+                  <div class="xSmall">
+                             <p class="layer">2</p>
+                              </div>
+                  <span class="status">{{value.LeadID}}</span>
+                    <div class="status1"><p class="status2">{{value.Status}}</p></div>
+                      </header>
+                        <div class="project-content">
+                          <p class="content"> {{value.Title}}</p>
+                         <span> <img class="signuser" src="/assets/images/images.png"></span>
+                        </div>
+                          <div class="footer1">
+                            <div class="row footer2">
+                              <div class="col-lg-4  col-md-4 col-sm-4">
+                                <p class="Assigned">Assigned by</p>
+                                    <img class="profileIcon" src="/assets/images/gk.png">
+                              </div>
+                                <div class="col-lg-4  col-md-4 col-sm-4">
+                                  <p class="client">Client</p>
+                                    <img  class="profileIcon1" src="/assets/images/dell.png">
                                 </div>
-                                  <div class="footer1">
-                                    <div class="row footer2">
-                                      <div class="col-lg-4  col-md-4 col-sm-4">
-                                        <p class="Assigned">Assigned by</p>
-                                            <img class="profileIcon" src="/assets/images/gk.png">
-                                      </div>
-                                        <div class="col-lg-4  col-md-4 col-sm-4">
-                                          <p class="client">Client</p>
-                                            <img  class="profileIcon1" src="/assets/images/dell.png">
-                                        </div>
-                                          <div class="col-lg-4  col-md-4 col-sm-4">
-                                            <p class="Enggagement">Next Enggagement</p>
-                                            <p class="date">27,Feb</p>
-                                          </div>
-                                    </div>
+                                  <div class="col-lg-4  col-md-4 col-sm-4">
+                                    <p class="Enggagement">Next Enggagement</p>
+                                    <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
                                   </div>
-                      </div>
-                    </div>             
+                            </div>
+                          </div>
+              </div>
+              </div>
+            </div>              
               </div>
             </div>
           </div>
@@ -569,7 +458,7 @@
   
   <!--pop up strats-->
   
-  <div class="modal" id="exampleModal"  role="dialog">
+  <div class="modal" id="exampleModal"  role="dialog" tabindex="-1" data-focus-on="input:first">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -579,16 +468,20 @@
            
             </span>
           
-            <span style="float:right">
-                <span class="invite" *ngFor="let subdata of this.subscibe|slice:0:2">GK</span>
-                <span class="invite" *ngIf="this.subscibe.length>2">{{this.subscibe.length-2}}</span>
-                   <span class="dropdown"> 
-                      <button class="btn btn-default naturalButtonMedium dropdown-toggle" type="button" data-toggle="dropdown">
+           <span style="float:right">
+                <span class="invite" *ngFor="let subdata of this.subscibe|slice:0:2">{{subdata.ShortName}}</span>
+                <span class="inviteCount" *ngIf="this.subscibe.length>2">{{this.subscibe.length-2}}</span>
+                   <span class="dropdown Invite_people">
+                      <button class="btn btn-default naturalButtonMedium dropdown-toggle invite_button" type="button" data-toggle="dropdown">
                           Invite People
                     </button>
-                      <ul class="dropdown-menu" style="width:200px">
-                        <li> <groome-search  (searchChange)="peopleSearchValue($event)"></groome-search>      </li>
-                        <li *ngFor="let userValue of this.userList" (click)="invitesearchData(userValue.UFirstName,userValue,this.viewleaddata._id)"><a >{{userValue.UFirstName}}</a></li>
+                      <ul class="dropdown-menu InviteWidth">
+                        <li> <groome-search  (searchChange)="peopleSearchValue($event)"></groome-search></li>
+                        <li class="groomeSearch" *ngFor="let userValue of this.userList" (click)="invitesearchData(userValue.UFirstName,userValue,this.viewleaddata._id)">
+                            <span class="searchIcon" *ngFor="let subdata of this.subscibe|slice:0:1">
+                                SG
+                            </span>
+                          <a class="people" >{{userValue.UFirstName}}</a></li>
                       </ul>
                     </span>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -916,18 +809,22 @@
            </div>
            <!-- Manager -->
              <div *ngIf="this.role=='Manager'">
-             <div class="col-lg-6  col-md-6 col-sm-6">
-               <p class="AssignedBy">Assigned to</p>
-               <span href="#" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="true">
-                 <span class="hidden-xs profile">{{this.AssignedShortName}} </span>
-               <span   class="glyphicon glyphicon-chevron-down  groomlist1 "></span>
-             </span>
-               <ul class="dropdown-menu">
-                   <li class="groomlist"> <groome-search  (searchChange)="searchAssignTO($event)" ></groome-search> </li>
-                   <li class="groomlist" *ngFor="let assignvalue of this.SalesRepList" (click)="Assignto(assignvalue.ShortName,assignvalue,this.viewleaddata._id)"><a >{{assignvalue.UFirstName}}</a></li>
-               </ul>
-             </div>
-             </div>
+            <div class="col-lg-6  col-md-6 col-sm-6">
+              <p class="AssignedBy">Assigned to</p>
+              <span href="#" class="dropdown-toggle " data-toggle="dropdown" aria-expanded="true">
+                <span class="hidden-xs profile">{{this.AssignedShortName}} </span>
+              <span   class="glyphicon glyphicon-chevron-down  groomlist1 "></span>
+            </span>
+              <ul class="dropdown-menu InviteWidth" >
+                  <li > <groome-search  class="groomelist" (searchChange)="searchAssignTO($event)" ></groome-search> </li>
+                  <li class=" groomeSearch" *ngFor="let assignvalue of this.SalesRepList" (click)="Assignto(assignvalue.ShortName,assignvalue,this.viewleaddata._id)">
+                     <span class="searchIcon" *ngFor="let subdata of this.subscibe|slice:0:1">
+                         SG
+                     </span>
+                   <a  class="people">{{assignvalue.UFirstName}}</a></li>
+              </ul>
+            </div>
+            </div>
   
   <!-- 
                 <div class="col-lg-6  col-md-6 col-sm-6">
@@ -1039,16 +936,17 @@
                       </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
                       <h5>Client Contact</h5>
-                      <span class="dropdown"> 
-                      <button class="btn btn-default naturalButtonMedium dropdown-toggle" type="button" data-toggle="dropdown">
-                          Invite People
+                     <span class="dropdown">
+                    <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.getContactList}}
                     </button>
-                      <ul class="dropdown-menu" style="width:200px">
-                        <li> <groome-search  (searchChange)="peopleSearchValue($event)"></groome-search>      </li>
-                        <li *ngFor="let userValue of this.userList" (click)="invitesearchData(userValue.UFirstName,userValue,this.viewleaddata._id)"><a >{{userValue.UFirstName}}</a></li>
-                      </ul>
-                    </span>
-                       <button ngif="this.viewleaddata.ClientContact!=0" class="tagDefault" style="margin-left:17px" *ngFor="let clientcontanct of this.viewleaddata.ClientContact">{{clientcontanct.ContactName}}
+                     <ul class="dropdown-menu" style="width:255px">
+                     <li> <groome-search  (searchChange)="clientContactSearch($event)"></groome-search> </li>
+                     <li class="disabled" ><a style="cursor: default;">People</a></li>
+                     <li class="divide" *ngFor="let contact of this.contactdisplay" (click)="contactsearchInupdate(contact.FirstName,contact,this.viewleaddata._id)"><a >{{contact.FirstName}}</a></li>
+                     <li type="button" class="addbutton popup-button divide" value="Add" data-toggle="modal" data-target="#addClientContactModal"></li>
+                     </ul>  
+                     </span> 
+                       <button ngif="this.viewleaddata.ClientContact!=0" class="tagDefault" style="margin-left:17px" *ngFor="let clientcontanct of this.viewleaddata.ClientContact">{{clientcontanct.FirstName}}
                             
                                <img class="fatime" src="/assets/images/delete.svg" (click)="deleteclient(this.viewleaddata._id,clientcontanct._id)">
                           </button>
@@ -1068,13 +966,14 @@
                         </button> 
                          
                     </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
-                          <h5>Requirement Details</h5>
-                          <div class="devopsList" *ngFor="let reqDetail of this.reqDetail">
-                              <span class="devops1">{{reqDetail.Title}}</span>
-                              <span class="requirementid1">{{reqDetail.ReqCode}}</span>
-                         </div>
-                      </div>
+                       <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
+                            <h5 class="Add-Client1">Requirement Details</h5>
+                            <div class="requirement_list">
+                            <div class="devopsList" *ngFor="let reqDetail of this.reqDetail">
+                                <span class="devops1">{{reqDetail.Title}}</span>
+                                <span class="requirementid1">{{reqDetail.ReqCode}}</span>
+                           </div></div>
+                        </div>
                    </div>  
             </div> 
           </div>
@@ -1082,12 +981,149 @@
     </div>
   </div>  
   <!--pop up ends-->
+
+     <div class="modal" id="addClientContactModal" role="dialog" tabindex="-1" data-focus-on="input:first">
+        <div class="client-dialog">
+        
+         <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">Add Client Contact</h4>
+            </div>
+            <div class="modal-body">
+              <p class="client-margin">Personal Details</p>
+              <div class="container-fluid">
+              <form (ngSubmit)="createClientContact(addcontactdata)">    
+              <div class="row"> 
+                 <div class="col-md-5">
+                   <div class="value"> 
+                         <input type="text" [ngClass]="{'red-border-class':!FirstName.valid && !FirstName.pristine}" class="inputText text-width" id="FirstName" required name="FirstName" [(ngModel)] = "contactdetails.FirstName" #FirstName="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!FirstName.valid && !FirstName.pristine }">First Name</span>
+                       <div [hidden]="FirstName.valid || FirstName.pristine" class="reqAlert">
+                             First Name is required
+                       </div>
+                   </div>
+                            </div> 
+                    <div class="col-md-5">     
+                     <div class="value">      
+                         <input type="text" [ngClass]="{'red-border-class':!LastName.valid && !LastName.pristine}" class="inputText text-width" id="LastName" required name="LastName" [(ngModel)] = "contactdetails.LastName" #LastName="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!LastName.valid && !LastName.pristine }">Last Name</span>
+                       <div [hidden]="LastName.valid || LastName.pristine" class="reqAlert">
+                             Last Name is required
+                       </div>  
+                     </div>
+                    </div>
+              </div>
+                    <div class="row"> 
+                   <div class="col-md-5">     
+                     <div class="value">      
+                         <input type="text" [ngClass]="{'red-border-class':!Designation.valid && !Designation.pristine}" class="inputText text-width" id="Designation" required name="Designation" [(ngModel)] = "contactdetails.Designation" #Designation="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!Designation.valid && !Designation.pristine }">Designation</span>
+                       <div [hidden]="Designation.valid || Designation.pristine" class="reqAlert">
+                             Designation is required
+                       </div>  
+                     </div>
+                   </div>          
+                    <div class="col-md-5">   
+                        <div class="value">        
+                         <input type="text" [ngClass]="{'red-border-class':!Phone.valid && !Phone.pristine}" class="inputText text-width" id="Phone" required name="Phone" [(ngModel)] = "contactdetails.Phone" #Phone="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!Phone.valid && !Phone.pristine }">Phone Numbers</span>
+                       <div [hidden]="Phone.valid || Phone.pristine" class="reqAlert">
+                             Phone Number is required
+                       </div>  
+                        </div>                  
+                      </div>
+                    </div>
+                     <div class="row"> 
+                       <div class="col-md-5">  
+                         <div class="value">         
+                         <input type="text" [ngClass]="{'red-border-class':!Email.valid && !Email.pristine}" class="inputText text-width" id="Email" required name="Email" [(ngModel)] = "contactdetails.Email" #Email="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!Email.valid && !Email.pristine }">Email Id</span>
+                       <div [hidden]="Email.valid || Email.pristine" class="reqAlert">
+                             Email Id is required
+                       </div> 
+                         </div>                   
+                      </div>
+                     </div>
+                      <div class="row"> 
+                      <div class="col-md-5">     
+                        <div class="value">      
+                         <input type="text" [ngClass]="{'red-border-class':!OfficeAddress.valid && !OfficeAddress.pristine}" class="inputText text-width" id="OfficeAddress" required name="OfficeAddress" [(ngModel)] = "officeaddress.OfficeAddress" #OfficeAddress="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!OfficeAddress.valid && !OfficeAddress.pristine }">Office Address</span>
+                       <div [hidden]="OfficeAddress.valid || OfficeAddress.pristine" class="reqAlert">
+                             Office Address is required
+                       </div>   
+                        </div>                 
+                      </div>
+                          <div class="col-md-5">     
+                        <div class="value">      
+                         <input type="text" [ngClass]="{'red-border-class':!Country.valid && !Country.pristine}" class="inputText text-width" id="Country" required name="Country" [(ngModel)] = "officeaddress.Country" #Country="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!Country.valid && !Country.pristine }">Country</span>
+                       <div [hidden]="Country.valid || Country.pristine" class="reqAlert">
+                             Country is required
+                       </div>   
+                        </div>                 
+                      </div>
+                      </div>
+                    <div class="row"> 
+                      <div class="col-md-4">   
+                        <div class="value">        
+                         <input type="text" [ngClass]="{'red-border-class':!State.valid && !State.pristine}" class="inputText text-width" id="State" required name="State" [(ngModel)] = "officeaddress.State" #State="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!State.valid && !State.pristine }">State</span>
+                       <div [hidden]="State.valid || State.pristine" class="reqAlert">
+                             State is required
+                       </div>  
+                        </div>                  
+                      </div>
+                      <div class="col-md-4">  
+                      <div class="value">         
+                         <input type="text" [ngClass]="{'red-border-class':!Street.valid && !Street.pristine}" class="inputText text-width" id="Street" required name="Street" [(ngModel)] = "officeaddress.Street" #Street="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!Street.valid && !Street.pristine }">Street</span>
+                       <div [hidden]="Street.valid || Street.pristine" class="reqAlert">
+                             Street is required
+                       </div>   
+                      </div>                 
+                      </div>
+                      <div class="col-md-2"> 
+                        <div class="value Zip-width">          
+                         <input type="text" [ngClass]="{'red-border-class':!ZipCode.valid && !ZipCode.pristine}" class="inputText text-width" id="ZipCode" required name="ZipCode" [(ngModel)] = "officeaddress.ZipCode" #ZipCode="ngModel"/>
+                      <span class="floating-label" [ngClass]="{'red-class':!ZipCode.valid && !ZipCode.pristine }">ZipCode</span>
+                       <div [hidden]="ZipCode.valid || ZipCode.pristine" class="reqAlert">
+                             Zip Code is required
+                       </div>  
+                        </div>                  
+                      </div>
+                    </div>
+                      <!-- <p class="">Related Tags</p> 
+                    <div>      
+         <span class="text-input-wrapper">            
+         <input type="text" class="tagDefault Client-margin" placeholder="add tag">
+         <img class="fatime" src="/assets/images/delete.svg"></span>
+    
+         <span class="text-input-wrapper">
+        <input type="text" class="tagDefault" placeholder="add tag">
+         <img class="fatime" src="/assets/images/delete.svg">
+         </span>
+        <span class="text-input-wrapper"> 
+        <input type="text" class="tagDefault" placeholder="add tag" >
+        </span>                      
+              </div> -->
+            <div class="modal-footer">
+              <input type="submit" class="brandblue" value="Create Client">
+            </div>
+              </form>
+              </div>
+          </div>
+          </div>
+        </div>
+        </div>
   
   <!--for manger tab-->
   <div>
   <!--<div>-->
     <!-- Manager Role  tabs -->
-  <div *ngIf="this.role=='Manager'">
+  <div *ngIf="this.role=='Manager' && this.resempdataLead.length>0">
      <div class="row main_container container-fluid tabs">
          <span class="leadText">Lead</span>
         <span  class="workbenchTab">
@@ -1149,43 +1185,47 @@
   
               </div>
               <div id="Approved" class="tab-pane fade">
-                  <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-                      <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-                        <header class="header1">
-                          <div class="xSmall">
-                                     <p class="layer">2</p>
-                                      </div>
-                          <span class="status">{{this.viewleaddata.LeadID}}</span>
-                            <div class="status1"><p class="status2">Active</p></div>
-                              </header>
-                                <div class="project-content">
-                                  <p class="content"> Product design for dell enterprise Solution</p>
-                                 <span> <img class="signuser" src="/assets/images/images.png"></span>
+                
+            <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
+            
+              <div *ngIf="value.Action=='Owner' && value.RequstApproved=='Y'">
+              <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                <header class="header1">
+                  <div class="xSmall">
+                             <p class="layer">2</p>
+                              </div>
+                  <span class="status">{{value.LeadID}}</span>
+                    <div class="status1"><p class="status2">{{value.Status}}</p></div>
+                      </header>
+                        <div class="project-content">
+                          <p class="content"> {{value.Title}}</p>
+                         <span> <img class="signuser" src="/assets/images/images.png"></span>
+                        </div>
+                          <div class="footer1">
+                            <div class="row footer2">
+                              <div class="col-lg-4  col-md-4 col-sm-4">
+                                <p class="Assigned">Assigned by</p>
+                                    <img class="profileIcon" src="/assets/images/gk.png">
+                              </div>
+                                <div class="col-lg-4  col-md-4 col-sm-4">
+                                  <p class="client">Client</p>
+                                    <img  class="profileIcon1" src="/assets/images/dell.png">
                                 </div>
-                                  <div class="footer1">
-                                    <div class="row footer2">
-                                      <div class="col-lg-4  col-md-4 col-sm-4">
-                                        <p class="Assigned">Assigned by</p>
-                                            <img class="profileIcon" src="/assets/images/gk.png">
-                                      </div>
-                                        <div class="col-lg-4  col-md-4 col-sm-4">
-                                          <p class="client">Client</p>
-                                            <img  class="profileIcon1" src="/assets/images/dell.png">
-                                        </div>
-                                          <div class="col-lg-4  col-md-4 col-sm-4">
-                                            <p class="Enggagement">Next Enggagement</p>
-                                            <p class="date">27,Feb</p>
-                                          </div>
-                                    </div>
+                                  <div class="col-lg-4  col-md-4 col-sm-4">
+                                    <p class="Enggagement">Next Enggagement</p>
+                                    <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
                                   </div>
-                      </div>
-                    </div> 
+                            </div>
+                          </div>
+              </div>
+            </div>
+            </div> 
                
               </div>
               <div id="Pending" class="tab-pane fade">
                 
-                  <div class="col-lg-3 col-md-3 col-sm-3" type="button" (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()">
-  
+                  <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()">
+                <div *ngIf="value.Action=='Owner' && value.RequstApproved=='N'">
                       <div class="project project-default">
                         <!--overlay starts-->
                         <div class="overlay" *ngIf="this.overlayToggle">
@@ -1200,11 +1240,11 @@
                           <div class="xSmall">
                                      <p class="layer">2</p>
                                       </div>
-                          <span class="status">Act1023</span>
-                            <div class="status1"><p class="status2">Active</p></div>
+                          <span class="status">{{value.LeadID}}</span>
+                            <div class="status1"><p class="status2">{{value.Status}}</p></div>
                               </header>
                                 <div class="project-content">
-                                  <p class="content"> Product design for dell enterprise Solution</p>
+                                  <p class="content"> {{value.Title}}</p>
                                  <span> <img class="signuser" src="/assets/images/images.png"></span>
                                 </div>
                                   <div class="footer1">
@@ -1219,11 +1259,12 @@
                                         </div>
                                           <div class="col-lg-4  col-md-4 col-sm-4">
                                             <p class="Enggagement">Next Enggagement</p>
-                                            <p class="date">27,Feb</p>
+                                            <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
                                           </div>
                                     </div>
                                   </div>
                       </div>
+                  </div>
                     </div> 
    
   
@@ -1231,37 +1272,39 @@
               </div>
   
                <div id="Subscribed" class="tab-pane fade">
-                  <div class="col-lg-3 col-md-3 col-sm-3" type="button">
-                      <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
-                        <header class="header1">
-                          <div class="xSmall">
-                                     <p class="layer">2</p>
-                                      </div>
-                          <span class="status">Act1023</span>
-                            <div class="status1"><p class="status2">Active</p></div>
-                              </header>
-                                <div class="project-content">
-                                  <p class="content"> Product design for dell enterprise Solution</p>
-                                 <span> <img class="signuser" src="/assets/images/images.png"></span>
+                        <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
+              <div *ngIf="value.Action=='Subscribed'">
+              <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
+                <header class="header1">
+                  <div class="xSmall">
+                             <p class="layer">2</p>
+                              </div>
+                  <span class="status">{{value.LeadID}}</span>
+                    <div class="status1"><p class="status2">{{value.Status}}</p></div>
+                      </header>
+                        <div class="project-content">
+                          <p class="content"> {{value.Title}}</p>
+                         <span> <img class="signuser" src="/assets/images/images.png"></span>
+                        </div>
+                          <div class="footer1">
+                            <div class="row footer2">
+                              <div class="col-lg-4  col-md-4 col-sm-4">
+                                <p class="Assigned">Assigned by</p>
+                                    <img class="profileIcon" src="/assets/images/gk.png">
+                              </div>
+                                <div class="col-lg-4  col-md-4 col-sm-4">
+                                  <p class="client">Client</p>
+                                    <img  class="profileIcon1" src="/assets/images/dell.png">
                                 </div>
-                                  <div class="footer1">
-                                    <div class="row footer2">
-                                      <div class="col-lg-4  col-md-4 col-sm-4">
-                                        <p class="Assigned">Assigned by</p>
-                                            <img class="profileIcon" src="/assets/images/gk.png">
-                                      </div>
-                                        <div class="col-lg-4  col-md-4 col-sm-4">
-                                          <p class="client">Client</p>
-                                            <img  class="profileIcon1" src="/assets/images/dell.png">
-                                        </div>
-                                          <div class="col-lg-4  col-md-4 col-sm-4">
-                                            <p class="Enggagement">Next Enggagement</p>
-                                            <p class="date">27,Feb</p>
-                                          </div>
-                                    </div>
+                                  <div class="col-lg-4  col-md-4 col-sm-4">
+                                    <p class="Enggagement">Next Enggagement</p>
+                                    <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
                                   </div>
-                      </div>
-                    </div> 
+                            </div>
+                          </div>
+              </div>
+              </div>
+            </div> 
    
   
                               

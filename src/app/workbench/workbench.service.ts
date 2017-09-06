@@ -14,6 +14,7 @@ import 'rxjs/add/operator/toPromise';
      private _url1:string='http://172.16.0.4:8082/';
        private _url:string='http://172.16.0.38:8000/';
         private _url2:string='http://172.16.0.4:8081/';
+        private _url3:string='http://172.16.0.4:8083/';
      token="";
      constructor(private _http:Http){
 
@@ -127,16 +128,14 @@ import 'rxjs/add/operator/toPromise';
            return this._http.put(this._url1+'lead/updateLeadSFA',value,{ headers: contentHeader }).map((response:Response) =>response.json());
        }
 
-       getClientContacts(clientid){
+       getClientContactsdata(clientid){
         let contentHeader = new Headers({
             "Content-Type": "application/json",
              'token':"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWFhZDE3ODk3NTlhMWE0YzUwYWViNWQiLCJVRW1haWwiOiJwcmFuYXlzYWhhMDA3QGdtYWlsLmNvbSIsIlJvbGUiOiJNYW5hZ2VyIiwiVUZpcnN0TmFtZSI6IkdvcGkiLCJVTGFzdE5hbWUiOiJLcmlzaG5hIiwiaWF0IjoxNTA0NjA0NjczLCJleHAiOjE1MDQ2OTEwNzN9.qa4MPpfkbbThQ6Devp67WysSwy7k_5pFc71FtXBcY6g"
             });
         
-        var idvalue={
-            "_id":clientid
-        }
-        return this._http.post(this._url1+'clients/getClientContact',idvalue,{ headers: contentHeader }).map(res =>res.json());
+        
+        return this._http.post(this._url3+'clients/getClientContact',clientid,{ headers: contentHeader }).map(res =>res.json());
         }
 
         ngOnInit() {

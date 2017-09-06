@@ -427,14 +427,16 @@ input.search {
 
 //tag scss starts
 .tagDefault{
-  width: 97px;
+ width: 97px;
+  margin-right: 10px;
+  margin-top: 8px;
   height: 24px;
   border-radius: 2px;
   background-color: $white-two;
-  border: solid 1px #f3f3f3;
+  border: solid 1px #f3f3f3 ;
   font-size: 12px;
   text-align: left;
-  color: #00a890;
+  color: #00a890 ;
   outline: none;
   font-family: OpensansRegular;
 }

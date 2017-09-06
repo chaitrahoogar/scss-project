@@ -12,6 +12,7 @@ import { Http, Response } from '@angular/http';
 export class WorkbenchComponent implements OnInit {
     dumyValue="";
     resempdata=[];
+    resempdataLead=[];
     viewleaddata=[];
     lead:any={};
     overlayToggle=false;
@@ -38,7 +39,8 @@ export class WorkbenchComponent implements OnInit {
     SalesRepList=[];
     SalesReptestList=[];
     reqDetail=[];
-    clintID="";
+    clientid="";
+    getContactListUpdate="";
     //code
      searchValue:string = '';
     reqStatus='';
@@ -55,6 +57,7 @@ export class WorkbenchComponent implements OnInit {
                  this.reqRevenue=response.lead.LeadRevenue;
                  this.userinfo=response.lead.UsersInfo;
                  this.reqDetail=response.lead.ReqDetails;
+                 this.clientid=response.lead.ClientID;
              this.subscibe=[];
              this.Assigned=[];
              this.AssignedShortName="";
@@ -91,6 +94,7 @@ export class WorkbenchComponent implements OnInit {
                  this.reqRevenue=response.lead.LeadRevenue;
                  this.userinfo=response.lead.UsersInfo;
                  this.reqDetail=response.lead.ReqDetails;
+                 this.clientid=response.lead.ClientID;
              this.subscibe=[];
              this.Assigned=[];
              this.AssignedShortName="";
@@ -128,6 +132,7 @@ export class WorkbenchComponent implements OnInit {
                  this.reqRevenue=response.lead.LeadRevenue
                  this.userinfo=response.lead.UsersInfo;
                  this.reqDetail=response.lead.ReqDetails;
+                 this.clientid=response.lead.ClientID;
              this.subscibe=[];
              this.Assigned=[];
              this.owner=[];
@@ -162,6 +167,7 @@ export class WorkbenchComponent implements OnInit {
                  this.resempdata=response;
                 
              console.log(this.resempdata); 
+             this.resempdataLead=response.lead;
                
          });
   }
@@ -179,8 +185,8 @@ export class WorkbenchComponent implements OnInit {
                  this.reqRevenue=response.lead.LeadRevenue;
                  this.userinfo=response.lead.UsersInfo;
                  this.reqDetail=response.lead.ReqDetails;
-                 this.clintID=response.lead.ClientID
-             console.log(this.viewleaddata);
+                 this.clientid=response.lead.ClientID
+             
              this.subscibe=[];
              this.Assigned=[];
              this.AssignedShortName="";
@@ -198,7 +204,9 @@ export class WorkbenchComponent implements OnInit {
                      }
              }
            console.log(this.Assigned);
+            this.getClientContactsdata();
          });
+          
   }
   requirement(id){
       // console.log(this.model);
@@ -222,6 +230,7 @@ export class WorkbenchComponent implements OnInit {
                  this.reqRevenue=response.lead.LeadRevenue;
                  this.userinfo=response.lead.UsersInfo;
                  this.reqDetail=response.lead.ReqDetails;
+                 this.clientid=response.lead.ClientID;
              console.log(this.viewleaddata);
              this.subscibe=[];
              this.Assigned=[];
@@ -288,6 +297,7 @@ export class WorkbenchComponent implements OnInit {
                  this.reqRevenue=response.lead.LeadRevenue
                  this.userinfo=response.lead.UsersInfo;
                  this.reqDetail=response.lead.ReqDetails;
+                 this.clientid=response.lead.ClientID;
              this.subscibe=[];
              this.Assigned=[];
              this.AssignedShortName="";
@@ -322,6 +332,7 @@ export class WorkbenchComponent implements OnInit {
                  this.reqRevenue=response.lead.LeadRevenue
                 this.userinfo=response.lead.UsersInfo;
                  this.reqDetail=response.lead.ReqDetails;
+                 this.clientid=response.lead.ClientID;
              this.subscibe=[];
              this.Assigned=[];
              this.AssignedShortName="";
@@ -358,6 +369,7 @@ export class WorkbenchComponent implements OnInit {
                  this.reqRevenue=response.lead.LeadRevenue
                  this.userinfo=response.lead.UsersInfo;
                  this.reqDetail=response.lead.ReqDetails;
+                 this.clientid=response.lead.ClientID;
              this.subscibe=[];
              this.Assigned=[];
              this.AssignedShortName="";
@@ -429,6 +441,7 @@ export class WorkbenchComponent implements OnInit {
                  this.reqRevenue=response.lead.LeadRevenue
                 this.userinfo=response.lead.UsersInfo;
                  this.reqDetail=response.lead.ReqDetails;
+                 this.clientid=response.lead.ClientID;
              this.subscibe=[];
              this.Assigned=[];
              this.AssignedShortName="";
@@ -463,6 +476,7 @@ export class WorkbenchComponent implements OnInit {
                  this.reqRevenue=response.lead.LeadRevenue
                  this.userinfo=response.lead.UsersInfo;
                  this.reqDetail=response.lead.ReqDetails;
+                 this.clientid=response.lead.ClientID;
              this.subscibe=[];
              this.Assigned=[];
              this.AssignedShortName="";
@@ -483,7 +497,51 @@ export class WorkbenchComponent implements OnInit {
          });
     }
   
-    
+    getClientContactsdata(){
+      console.log(this.clientid);
+      var data={
+          "_id" :this.clientid
+      }
+     
+     this._leadService.getClientContactsdata(data).subscribe((response) => { 
+        this.contactlistarray=response.ClientContact;
+        this.contactdisplay=this.contactlistarray         
+        }); 
+
+    }
+    contactsearchInupdate(name,value,id){
+        var assigneddata={
+                  "_id" : id,
+            "ClientContact":value
+        }
+         this._leadService.updateLeadTagCcRev(assigneddata).subscribe((response) => { 
+                 this.viewleaddata=response.lead;
+                 this.reqFeel=response.lead.LeadFeel; 
+                 this.reqStatus=response.lead.LeadCurrentStatus;
+                 this.reqBusinessdata=response.lead.EngagementType;
+                 this.reqRevenue=response.lead.LeadRevenue
+                 this.userinfo=response.lead.UsersInfo;
+                 this.reqDetail=response.lead.ReqDetails;
+                 this.clientid=response.lead.ClientID;
+             this.subscibe=[];
+             this.Assigned=[];
+             this.AssignedShortName="";
+             this.owner=[];
+             for(var i=0;i< this.userinfo.length;i++){
+                     if(this.userinfo[i].Action=="Subscribed"){
+                         this.subscibe.push(this.userinfo[i]);
+                     }
+                     else if(this.userinfo[i].Action=="Assigned"){
+                            this.Assigned.push(this.userinfo[i]);
+                            this.AssignedShortName=this.userinfo[i].ShortName;
+                     }
+                     else if(this.userinfo[i].Action=="Owner"){
+                           this.owner.push(this.userinfo[i])
+                     }
+             }
+               
+         });
+    }
 
   //Add Lead
   clientname="";
@@ -545,7 +603,7 @@ export class WorkbenchComponent implements OnInit {
   
   reqBusiness='Business Stream';
   changeBusiness(val,business){
-    console.log("business",business);
+ 
     this.reqBusiness=val;
    this.engagementtype=business.option;
   }
@@ -553,10 +611,8 @@ export class WorkbenchComponent implements OnInit {
   reqConversation='Conversation Type';
   changeconversation(value,business)
   {
-    console.log("con===",business);
     this.reqConversation=value;
     this.conversationtype=business.option; 
-    console.log("this.conversationtype",this.conversationtype);   
   }
 
   addclientdata:any={
@@ -654,8 +710,7 @@ export class WorkbenchComponent implements OnInit {
     {
       this._clientservice.getUsers().subscribe((response) => { 
         this.userarray=response; 
-        this.persondisplay=this.userarray 
-        console.log("this.userarray",this.userarray);
+        this.persondisplay=this.userarray ;
     }); 
     }
     
@@ -949,6 +1004,7 @@ salesrepsearch(searchValue3)
     this.getManagers();
     this.getUsers();
     this.getAllClients();
+    this.getClientContactsdata()
   }
 
   
