@@ -527,9 +527,37 @@ export class WorkbenchComponent implements OnInit {
      this._leadService.getClientContactsdata(data).subscribe((response) => { 
         this.contactlistarray=response.ClientContact;
         this.contactdisplay=this.contactlistarray         
-        }); 
-
+        });
     }
+    createClientContactInupdate(id)
+    {
+      console.log(this.clientid);
+      let addcontact:any=
+      {
+        "ClientID":this.clientid,
+        "LeadID":id,
+        "ClientContact":[
+            {      
+                "FirstName":this.addcontactdata.FirstName,
+                "LastName":this.addcontactdata.LastName,
+                "Designation":this.addcontactdata.Designation,
+                "Email":this.addcontactdata.Email,
+                "Phone":this.addcontactdata.Phone,
+                "OfficeAddress":[
+                this.officeaddress
+        ]
+       }]
+      }
+  
+      this._clientservice.addContact(addcontact).subscribe((response) => {
+        this.addcontactarray=response;  
+        this.getClientContactsdata();
+           });
+          
+ 
+    }
+    
+
     contactsearchInupdate(name,value,id){
         var assigneddata={
                   "_id" : id,
@@ -705,9 +733,6 @@ export class WorkbenchComponent implements OnInit {
     "ContactEmail":"",
   }
 
-  
-
-
   leadstatushistory:any={
     "Status":"Active"
   }  
@@ -775,7 +800,7 @@ export class WorkbenchComponent implements OnInit {
       console.log("this.officeaddress",this.officeaddress);
       let addcontact:any=
       {
-        "ClientID":"59aebaf324a83e7968fb6f5f",
+        "ClientID":this.ClientIdValue,
         "ClientContact":[
             {      
                 "FirstName":this.addcontactdata.FirstName,
@@ -787,12 +812,12 @@ export class WorkbenchComponent implements OnInit {
                 this.officeaddress
         ]
        }]
-      }
-   
+      }   
       this._clientservice.addContact(addcontact).subscribe((response) => { 
         this.addcontactarray=response;  
+        this.getAllClientContact();  
            }); 
-      this.getAllClientContact();  
+      
 
     }
     
@@ -999,7 +1024,7 @@ console.log(value1);
       "Role":value3.Role,
       "Action" :"Assigned"
     }
-    this.temparray.push(saleslist);
+    this.ownervalue=saleslist;
   }
 
   addTag(tagvalue)
@@ -1095,6 +1120,7 @@ console.log(value1);
     console.log(this.role);
   }
 
+  
   
 }
 

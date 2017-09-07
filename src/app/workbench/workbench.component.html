@@ -999,7 +999,7 @@
           <div class="modal-body">
             <p class="client-margin">Personal Details</p>
             <div class="container-fluid">
-            <form (ngSubmit)="createClientContact(addcontactdata)">    
+            <form (ngSubmit)="createClientContact();createClientContactInupdate(this.viewleaddata._id)">    
             <div class="row"> 
                <div class="col-md-5">
                  <div class="value"> 

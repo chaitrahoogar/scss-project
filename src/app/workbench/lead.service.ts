@@ -11,7 +11,7 @@ import 'rxjs/add/operator/toPromise';
      private _url:string='http://localhost:8081/';
      private _url2:string='http://172.16.0.38:8082/';
      private _url3:string='http://localhost:8083/';
-     private _url4:string='http://172.16.0.38:8083/';
+     private _url4:string='http://172.16.0.4:8083/';
      private _url1:string='http://172.16.0.4:8082/';
      private _url5:string='http://172.16.0.4:8081/';
      token="";
@@ -49,7 +49,7 @@ import 'rxjs/add/operator/toPromise';
              'token':localStorage.getItem('token')
             });
         console.log("headers",contentHeader);
-        return this._http.get(this._url3+'clients/getClients',{ headers: contentHeader }).map((res:Response) =>res.json());
+        return this._http.get(this._url4+'clients/getClients',{ headers: contentHeader }).map((res:Response) =>res.json());
            }        
            
     getClientContacts(clientid){
@@ -61,7 +61,7 @@ import 'rxjs/add/operator/toPromise';
         let idvalue: any = '{'+
         '"_id": "'+ clientid +'"'+
         '}';
-        return this._http.post(this._url3+'clients/getClientContact',idvalue,{ headers: contentHeader }).map(res =>res.json());
+        return this._http.post(this._url4+'clients/getClientContact',idvalue,{ headers: contentHeader }).map(res =>res.json());
         } 
 
     addClient(addclientdata){
@@ -71,7 +71,7 @@ import 'rxjs/add/operator/toPromise';
             // 'Allow-Control-Allow-Origin' : '*',
              'token':localStorage.getItem('token')
             });
-        return this._http.post(this._url3+'clients/createClient', JSON.stringify(addclientdata),{ headers: contentHeader }).map((response:Response) =>response.json());
+        return this._http.post(this._url4+'clients/createClient', JSON.stringify(addclientdata),{ headers: contentHeader }).map((response:Response) =>response.json());
        }
        
     addContact(addcontactdata){
