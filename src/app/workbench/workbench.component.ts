@@ -41,7 +41,7 @@ export class WorkbenchComponent implements OnInit {
     reqDetail=[];
     clientid="";
     getContactListUpdate="";
-    ownervalue="";
+    ownervalue=[];
     //code
      searchValue:string = '';
     reqStatus='';
@@ -602,7 +602,7 @@ export class WorkbenchComponent implements OnInit {
   contactclientid="";
   tagtitle="";
   tagarray=[];
-  verificationstatus="";
+  verificationstatus="N";
   ClientIdValue="";
   ClientNameValue="";
   SalerepArray=[];
