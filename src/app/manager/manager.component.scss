@@ -1,32 +1,33 @@
 @import 'src/assets/scss/color.scss';
+
 @font-face 
-{ font-family: "HelveticaNeueMedium"; 
-src: url("/assets/fonts/HelveticaNeue Medium.ttf");
+{ font-family: "OpenSans-Semibold"; 
+src: url("/assets/fonts/OpenSans-Semibold.ttf");
 }
 .textfontColor{
-  font-size:36px; 
-  color:$marine-blue;  
-  font-family: HelveticaNeueMedium;
+ font-size:36px;
+ color:$marine-blue;  
+ font-family: OpenSans-Semibold;
 }
 .joinAsRole{
-  width: 856px;
-  height: 142px;
-  border-radius: 10px;
-  margin: 160px auto;
-  background-color: $white;
-  font-size: 36px;
-  font-weight: 500;
-  padding-top: 18px;
-  padding-left: 35px;
-  cursor: pointer;
+ width: 856px;
+ height: 142px;
+ border-radius: 10px;
+ margin: 160px auto;
+ background-color: $white;
+ font-size: 36px;
+ font-weight: 500;
+ padding-top: 18px;
+ padding-left: 35px;
+ cursor: pointer;
 }
 .join{
-   margin-left: 145px;
-   color: #4a4a4a;
-   font-family: HelveticaNeueMedium;
-  }
+  margin-left: 145px;
+  color: #4a4a4a ;
+  font-family: OpenSans-Semibold;
+ }
 
 .arrow{
-  width: 30%;
-  height: 22%;
+ width: 30%;
+ height: 22%;
 }

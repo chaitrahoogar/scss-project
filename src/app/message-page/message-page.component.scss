@@ -1,34 +1,31 @@
-
 @import 'src/assets/scss/color.scss';
+
+
 @font-face 
-{ font-family: "HelveticaNeueMedium"; 
-src: url("/assets/fonts/HelveticaNeue Medium.ttf");
-}
-@font-face 
-{ font-family: "HelveticaNeue"; 
-src: url("/assets/fonts/HelveticaNeueLt.ttf");
+{ font-family: "OpensansRegular"; 
+src: url("/assets/fonts/OpenSans-Regular.ttf");
 }
 
 
 .loginButton
 {
-    float:right;
-    margin-top:24px;
+   float:right;
+   margin-top:24px;
 }
 .groomeHeadLeft{
-    float:left;
+   float:left;
 }
 
 .messageText{
-   width: 71%;
-   margin: 0 auto;
-   font-size: 36px;
-   line-height: 1.22;
-   text-align: center;
-   color: #4a4a4a;
-   font-family: HelveticaNeue;
-   margin-top:60px;
+  width: 71%;
+  margin: 0 auto;
+  font-size: 36px;
+  line-height: 1.22;
+  text-align: center;
+  color: #4a4a4a ;
+  font-family: OpensansRegular;
+  margin-top:40px;
 }
 .coffeeText,.coffeeImg{
-   margin-top:20px;
+  margin-top:10px;
 }

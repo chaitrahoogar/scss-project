@@ -13,7 +13,6 @@ import 'rxjs/add/operator/toPromise';
  export class AppService{
      private _url:string='http://172.16.0.4:8081/';
      constructor(private _http:Http){
-
      }
        serviceMethod(login){
            console.log(login);

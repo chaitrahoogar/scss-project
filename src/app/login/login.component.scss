@@ -17,14 +17,7 @@ src: url("/assets/fonts/OpenSans-Semibold.ttf");
 { font-family: "OpensansLight"; 
 src: url("/assets/fonts/OpenSans-Light.ttf");
 }
-@font-face 
-{ font-family: "HelveticaNeue-Bold"; 
-src: url("/assets/fonts/helvetica-neue-bold.ttf");
-}
-@font-face 
-{ font-family: "HelveticaNeue"; 
-src: url("/assets/fonts/HelveticaNeueLt.ttf");
-}
+
 @font-face 
 { font-family: "OpenSans-Semibold"; 
 src: url("/assets/fonts/OpenSans-Semibold.ttf");
@@ -32,65 +25,65 @@ src: url("/assets/fonts/OpenSans-Semibold.ttf");
 
 .forgotPwd
 {
-    margin-top:15px;
+   margin-top:15px;
 }
 
 .textfontColor
 {
-   font-size:24px;   
-   color:#757575;
-   font-family: OpensansRegular;
+  font-size:36px;  
+  color:#757575 ;
+  font-family: OpensansRegular;
 }
 .textfontColor1
 {
-   font-size:24px;   
-   color:#002954;
-   font-family:HelveticaNeue;
+  font-size:36px;  
+  color:#002954 ;
+  font-family: OpensansRegular;
 }
 
 .datefontColor
 {
-    font-size:24px;
-    color:$blue-green;
-    font-family: OpensansRegular;
-    
+   font-size:36px;
+   color:$blue-green;
+   font-family: OpensansRegular;
+   
 }
 .datetextwidth
 {
-    margin: 99px auto;
-    width: 52%;
+   margin: 99px auto;
+   width: 80%;
 }
 
 .loginborderleft
 {
-    border-left:1px solid #e1e1e1;
+   border-left:1px solid #e1e1e1 ;
 }
 
 .loginpadding
 {
-    padding:18px;
+   padding:18px;
 }
 
 .logininputText,{
-   width: 370px;
+  width: 370px;
 //    padding-top: 15px;                                // add new
 //    font-family: OpenSans-Semibold;
-//    color: #757575;
-   font-size: 14px;
+//    color: #757575 ;
+  font-size: 14px;
 }
 .regbtn{                                            // add new
-    width: 370px;                            
-     font-family: OpenSans-Semibold;
-     color: #ffffff;
+   width: 370px;                            
+    font-family: OpenSans-Semibold;
+    color: #ffffff ;
 }
 .forgot{                                            // add new
-    width: 219px;
-    height: 22px;
-    font-family: HelveticaNeue;
-    font-size: 18px;
-    line-height: 1.2;
-    color: #008edc;
+   width: 219px;
+   height: 22px;
+   font-family: OpensansRegular;
+   font-size: 18px;
+   line-height: 1.2;
+   color: #008edc ;
 }
 .forgotPwd a:hover{
-    text-decoration: none;
+   text-decoration: none;
 }

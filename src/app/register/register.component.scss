@@ -1,46 +1,63 @@
 @import 'src/assets/scss/color.scss';
 
+
 @font-face 
-{ font-family: "HelveticaNeue"; 
-src: url("/assets/fonts/HelveticaNeueLt.ttf");
+{ font-family: "OpensansRegular"; 
+src: url("/assets/fonts/OpenSans-Regular.ttf");
 }
 .loginForm{
-    width:294px;
-    margin: 100px auto;  
+   width:294px;
+   margin: 100px auto;  
 }
 
 .loginButton
 {
-    float:right;
-    margin-top:24px;
+   float:right;
+   margin-top:24px;
 }
 .groomeHeadLeft{
-    float:left;
+   float:left;
 }
 
 .registertext{
-    font-size:24px;
-    color: #002954;                //add
-    font-family: HelveticaNeue;
+   font-size:36px;  
+   padding-left: 66px;            //add  new
+   color: #002954 ;                
+   font-family: OpensansRegular;
+  
 }
 
 .registerImage{
-   width: 100%;
+  width: 100%;
 }
 .createmargin{
-   margin-top:105px;
+  margin-top:105px;
 }
 
 .border-left{
-   border-left: 1px solid #ccc;
+  border-left: 1px solid #e1e1e1 ;
 }
 .formmarginLeft{
-     margin-left: 44px;
+    margin-left: 44px;
 }
 
 .registerinputText,.regbtn{
-   width: 370px;
+  width: 370px;
+ 
+
 }                                                 
 .buttonLarge:hover, .buttonMedium:hover {                      //add new
-     background-color:  #14a98d;
+    background-color:  #14a98d ;
 }
+//  add new
+.value{
+   padding-left: 66px;
+}
+.floating-label{
+   padding-left: 66px;
+}
+.groome_button{
+   padding-left: 66px;
+}
+
+//end

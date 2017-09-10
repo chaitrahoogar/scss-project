@@ -1,6 +1,6 @@
 <div class="main_container">
 <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
-    <div class="container main_header">
+    <div class="main_header">
       <p class="navbar-brand groome" >Groome</p>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <div class="input-group navbar-form navbar-left searchbox">
@@ -60,45 +60,49 @@
 
   <!--Add Lead pop up-->
 
-  <div class="modal" id="myModal" role="dialog" tabindex="-1" data-focus-on="input:first">
+  <div class="modal" id="myModal" role="dialog" tabindex="-1" data-focus-on="input:first" data-backdrop="static">
     <div class="popup-dialog">
-    
      <!-- Modal content-->
       <div class="modal-content">
       <form (ngSubmit)="addLeads(addlead)">  
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <div class="row">
-          <div class="col-md-2">
-          <h4 class="modal-title Create-Lead ">Create Lead</h4>
-          </div>
-          <div class="col-md-4">
-              <div class="small-color initialcolr" (click)="changecolor()" [ngClass]="{'active1':this.checked}">
-                  AM
-              </div>
-          </div>
-                      <div class="col-md-3"> 
-                      <span class="col-sd-2" *ngFor="let name of this.namearray |slice:0:2">
-                        <div class="small-color">
-                          {{name.ShortName}}
-                        </div>
-                      </span>
-                        <span class="col-sd-3" *ngIf="this.namearray?.length > 2">  
-                        <div class="users">
-                            {{this.namearray.length-2}}
-                        </div>
-                      </span> 
-                      </div>
-                      <div class="col-md-2">     
+            <div *ngIf="this.edited==true" class="alert alert-danger alert-dismissable alertdata">
+                {{this.errormessage}}
+                 <span class="close" data-dismiss="alert">&times;</span>
+            </div> 
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="addLeadClose">&times;</button>
+          <div class="">
+          
+          <span class="modal-title Create-Lead ">Create Lead</span>
+          
+         
+              <span class="small-color initialcolr" (click)="changecolor()" [ngClass]="{'active1':this.checked}">
+                <span class="glyphicon glyphicon-ok" style="color:#757575"></span>
+              </span>
+              <div class="verify"> Verify the client based on <br> MSA/NDA Documents  </div>
+           
+                       
+               <span style="float:right">     
+              <span class="small-color" *ngFor="let name of this.namearray |slice:0:2">
+                {{name.ShortName}}
+            </span>
+              <span class="users" *ngIf="this.namearray?.length > 2">  
+                  {{this.namearray.length-2}}
+            </span>
                       <span class="dropdown">
-                      <button class="btn btn-default naturalButtonMedium1 dropdown-toggle margin-left data-width" type="button" data-toggle="dropdown">{{this.peopleName}}
-                      </button>
-                      <ul class="dropdown-menu" style="width:255px">
-                      <li> <groome-search  (searchChange)="peopleSearch($event)"></groome-search> </li>
-                      <li *ngFor="let people of this.persondisplay" (click)="invitesearch(people.UFirstName,people)"><a >{{people.UFirstName}}</a></li>
-                      </ul>  
-                      </span> 
-          </div> 
+                        <button class="btn btn-default naturalButtonMedium dropdown-toggle invite_button" type="button" data-toggle="dropdown">
+                          Invite People
+                    </button>
+                      <ul class="dropdown-menu scrollable-menu InviteWidth">
+                       <li> <groome-search (searchChange)="peopleSearch($event)"></groome-search> </li>
+                       <li class="groomeSearch"  *ngFor="let people of this.persondisplay" (click)="invitesearch(people.UFirstName,people)">
+                           <span class="searchIcon">
+                               {{people.ShortName}}</span>
+                         
+                         <a class="people" >{{people.UFirstName}}</a></li>
+                       </ul>
+                      </span> </span>
+          
         </div>          
         </div>
         <div class="modal-body">
@@ -109,92 +113,98 @@
                   <textarea class="textArea" placeholder="Add your conversation here" name="conversation" [(ngModel)]="conversation"></textarea>
                </div>
                <div class="row">
-                <div class="col-md-4">
-                  <div class="dropsown-margin">
-                    <span class="dropdown" *ngIf="this.role=='Sales_Rep'">
-                      <button class="btn btn-default naturalButtonMedium1 dropdown-toggle " type="button" data-toggle="dropdown">{{this.managerlist}}
-                      </button>
-                       <ul class="dropdown-menu" style="width:255px">
-                       <li> <groome-search  (searchChange)="ownersearch($event)"></groome-search> </li>
-                       <li *ngFor="let owner of this.ownerdisplay" (click)="managersearch(owner.UFirstName,owner)"><a >{{owner.UFirstName}}</a></li>
-                      </ul>  
-                       </span> 
-                       <span class="dropdown" *ngIf="this.role=='Manager'">
-                          <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.saleslist}}
-                          </button>
-                           <ul class="dropdown-menu" style="width:255px">
-                           <li> <groome-search  (searchChange)="salesrepsearch($event)"></groome-search> </li>
-                           <li *ngFor="let sales of this.salesdisplay" (click)="salessearch(sales.UFirstName,sales)"><a >{{sales.UFirstName}}</a></li>
-                           </ul>  
-                           </span>  
-                  </div> 
-                </div>  
-
-               <div class="col-md-3">  
-               <div class="dropdown">
-                  <div class="naturalButtonsmall dropdown-padding btn-margin" data-toggle="dropdown"><span class="iconBtnText">{{this.reqBusiness}}</span>
-                      </div>
-                          <ul class="dropdown-menu business_drop margin ">
-                              <li class="disabled" ><a style="cursor: default;">Business</a></li>
-                              <li class="divide" *ngFor="let business of this.Business.BusinessStreams"  (click)="changeBusiness(business.option,business)">{{business.option}}</li>
+                  <div class="col-md-3">
+                    <div class="dropsown-margin">
+                      <span class="dropdown" *ngIf="this.role=='Sales_Rep'">
+                        <button class="btn btn-default naturalButtonMedium1 dropdown-toggle " type="button" data-toggle="dropdown">{{this.managerlist}}
+                        </button>
+                        <ul class="dropdown-menu scrollable-menu InviteWidth">
+                          <li> <groome-search (searchChange)="ownersearch($event)"></groome-search> </li>
+                          <li class="groomeSearch"  *ngFor="let owner of this.ownerdisplay" (click)="managersearch(owner.UFirstName,owner)">
+                              <span class="searchIcon">
+                                  {{owner.ShortName}}</span>
+                            <a class="people" >{{owner.UFirstName}}</a></li>
                           </ul>
+                         </span> 
+                         <span class="dropdown" *ngIf="this.role=='Manager'">
+                            <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.saleslist}}
+                            </button>
+                             <ul class="dropdown-menu scrollable-menu InviteWidth">
+                              <li> <groome-search (searchChange)="salesrepsearch($event)"></groome-search> </li>
+                              <li class="groomeSearch"  *ngFor="let sales of this.salesdisplay" (click)="salessearch(sales.UFirstName,sales)">
+                                  <span class="searchIcon">
+                                      {{sales.ShortName}}</span>
+                                <a class="people" >{{sales.UFirstName}}</a></li>
+                              </ul> 
+                             </span>  
                     </div> 
-               </div>
-                 <div class="col-md-2"> 
-                    <div class="dropdown">
-                        <div class="naturalButtonsmall dropdown-padding btn-margin" data-toggle="dropdown"><span class="iconBtnText">{{this.reqConversation}}</span>
-                            </div>
-                                <ul class="dropdown-menu business_drop margin">
-                                    <li class="disabled" ><a style="cursor: default;">Conversation Type</a></li>
-                                     <li class="divide" *ngFor="let conversation of this.Business.ConversationType"  (click)="changeconversation(conversation.option,conversation)">{{conversation.option}}</li>
-                                </ul>
-                          </div>  
-                 </div>  
-                <div class="col-md-2"> 
-                     <!--Attach file starts-->
-
-       <popover-content #attachFile 
-       placement="bottom"
-       [animation]="true" 
-       [closeOnClickOutside]="true" >
-       <div class="row" *ngFor='let filename of this.files'>
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <p>{{filename}}</p>
-            </div>
-            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" (click)="deleteFile(filename)">
-              <p><img src="/assets/images/rubbish-bin.png"></p>
-            </div>
-       </div>
-      
-<div class="fileUpload btn naturalButtonsmall">
-<span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
-       <g>
+                  </div>  
+  
+                 <div class="col-md-3">  
+                 <div class="dropdown">
+                    <div class="naturalButtonsmall dropdown-padding btn-margin" data-toggle="dropdown"><span class="iconBtnText">{{this.reqBusiness}}</span>
+                        </div>
+                            <ul class="dropdown-menu business_drop margin ">
+                                <li class="disabled" ><a style="cursor: default;">Business</a></li>
+                                <li class="divide" *ngFor="let business of this.Business.BusinessStreams"  (click)="changeBusiness(business.option,business)">{{business.option}}</li>
+                            </ul>
+                      </div> 
+                 </div>
+                   <div class="col-md-3"> 
+                      <div class="dropdown">
+                          <div class="naturalButtonsmall dropdown-padding btn-margin" data-toggle="dropdown"><span class="iconBtnText">{{this.reqConversation}}</span>
+                              </div>
+                                  <ul class="dropdown-menu business_drop margin">
+                                      <li class="disabled" ><a style="cursor: default;">Conversation Type</a></li>
+                                       <li class="divide" *ngFor="let conversation of this.Business.ConversationType"  (click)="changeconversation(conversation.option,conversation)">{{conversation.option}}</li>
+                                  </ul>
+                            </div>  
+                   </div>  
+                  <div class="col-md-3"> 
+                       <!--Attach file starts-->
+  
+         <popover-content #attachFile 
+         placement="bottom"
+         [animation]="true" 
+         [closeOnClickOutside]="true" >
+         <div class="row" *ngFor='let filename of this.files'>
+              <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                  <p>{{filename}}</p>
+              </div>
+              <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" (click)="deleteFile(filename)">
+                <p><img src="/assets/images/rubbish-bin.png"></p>
+              </div>
+         </div>
+        
+  <div class="fileUpload btn ">
+  <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
          <g>
-           <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
-           <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
-         </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
-       </g>
-       </svg></span>
-      <span class="iconBtnText">{{this.attfileTest}}</span> 
-<input class="upload" id="uploadBtn" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.png,.svg" multiple>
-
-</div>
-<!--<div><button (click)="upload()">upload</button></div>-->
-</popover-content>
-
-<button [popover]="attachFile" type="button" class="naturalButtonsmall">
-     <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
-       <g>
+           <g>
+             <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
+             <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
+           </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+         </g>
+         </svg></span>
+        <span class="iconBtnText">{{this.attfileTest}}</span> 
+  <input class="upload" id="uploadBtn" type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx,.png,.svg" multiple>
+  
+  </div>
+  <!--<div><button (click)="upload()">upload</button></div>-->
+  </popover-content>
+  
+  <button [popover]="attachFile" type="button" class="AttachButton">
+       <span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
          <g>
-           <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
-           <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
-         </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
-       </g>
-       </svg></span>
-      <span class="iconBtnText">{{this.attfileTest}}</span> 
-   </button>
-                </div> 
-               </div>
+           <g>
+             <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890"/>
+             <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890"/>
+           </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+         </g>
+         </svg></span>
+        <span class="iconBtnText">{{this.attfileTest}}</span> 
+     </button>
+                  </div> 
+                 </div>
               <div>
                  <p class="Add-Client">Add Client</p>
               </div>
@@ -202,14 +212,16 @@
                 <div class="col-md-4">
                     <div class="dropsown-margin">
                      <span class="dropdown">
-                     <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.getClientList}}
+                     <button class="btn btn-default addclientbutton dropdown-toggle" type="button" data-toggle="dropdown">{{this.getClientList}}
                      </button>
-                      <ul class="dropdown-menu" style="width:255px">
-                      <li> <groome-search  (searchChange)="searchChange($event)"></groome-search> </li>
-                      <li class="disabled" ><a style="cursor: default;">People</a></li>
-                      <li class="divide" *ngFor="let client of this.displayList" (click)="putValue(client.ClientName,client)"><a >{{client.ClientName}}</a></li>
-                      <li type="button" class="addbutton popup-button divide" value="Add" data-toggle="modal" data-target="#addClientModal"></li>
-                      </ul>  
+                      <ul class="dropdown-menu scrollable-menu InviteWidth">
+                        <li> <groome-search (searchChange)="searchChange($event)"></groome-search> </li>
+                        <li class="disabled" ><a style="cursor: default;padding-left:10px;">People</a></li>
+                        <li class="groomeSearch"  *ngFor="let client of this.displayList" (click)="putValue(client.ClientName,client)">
+                          <a class="people" >{{client.ClientName}}</a></li>
+                          <li type="button" class="divide" value="Add" data-toggle="modal" data-target="#addClientModal"> <span class="glyphicon glyphicon-plus plusIcon"></span><span style="margin-left:10px">Add Client</span></li>  
+                        </ul>
+
                       </span> 
                     </div> 
                     </div>
@@ -222,19 +234,20 @@
           <div class="col-md-3">
               <div class="dropsown-margin">
                 <span class="dropdown">
-                  <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.getContactList}}
+                  <button class="btn btn-default addclientbutton dropdown-toggle" type="button" data-toggle="dropdown">{{this.getContactList}}
                   </button>
-                   <ul class="dropdown-menu" style="width:255px">
-                   <li> <groome-search  (searchChange)="clientContactSearch($event)"></groome-search> </li>
-                   <li class="disabled" ><a style="cursor: default;">People</a></li>
-                   <li class="divide" *ngFor="let contact of this.contactdisplay" (click)="contactsearch(contact.FirstName,contact)"><a >{{contact.FirstName}}</a></li>
-                   <li type="button" class="addbutton popup-button divide" value="Add" data-toggle="modal" data-target="#addClientContactModal"></li>
-                   </ul>  
+                   <ul class="dropdown-menu scrollable-menu InviteWidth">
+                    <li> <groome-search  (searchChange)="clientContactSearch($event)"></groome-search> </li>
+                    <li class="disabled" ><a style="cursor: default;padding-left:10px">People</a></li>
+                    <li class="divide" *ngFor="let contact of this.contactdisplay" (click)="contactsearch(contact.FirstName,contact)">
+                     <a  class="people" >{{contact.FirstName}}</a></li>
+                    <li type="button" class="divide" value="Add" data-toggle="modal" data-target="#addClientContactModal"><span class="glyphicon glyphicon-plus plusIcon"></span><span style="margin-left:10px">Add Contact</span></li>
+                    </ul>
                    </span> 
                   </div>
                   </div>
                   <div class="col-md-6">
-                  <button class="Add-Tag tag tagadd" type="button" *ngFor="let contactarray of this.tagcontactarray">{{contactarray.FirstName}}
+                  <button class="tag" type="button" *ngFor="let contactarray of this.tagcontactarray">{{contactarray.FirstName}}
                   <img class="fatime" src="/assets/images/delete.svg" (click)="deleteContact(contactarray.FirstName)">  
                  </button>  
                   </div>    
@@ -242,16 +255,16 @@
       <div>
      <p class="Add-Client">Tags</p>
       </div>
-    <div class="row">  
+     <div class="row">  
     <div class="col-md-3">
-    <form (ngSubmit)="addTag(tagtitle)" autocomplete="off">
+     <form (ngSubmit)="addTag(tagtitle)" autocomplete="off">
     <input type="text" placeholder="Add Tag" class="tag-title input" name="tagtitle" [(ngModel)]="tagtitle"></form>
-    </div>
-    <div class="col-md-8">
-    <button class="Add-Tag tag" type="button" *ngFor="let tag of this.tagarray">{{tag.TagName}}
+    </div> 
+    <div class="col-md-8"> 
+    <button class="Add-Tag tagicon" type="button" *ngFor="let tag of this.tagarray">{{tag.TagName}}
     <img class="fatime" src="/assets/images/delete.svg" (click)="deleteaddedtag(tag.TagName)">  
     </button> 
-     </div>  
+   </div>   
     </div>                                
         </div>
         <div class="modal-footer">
@@ -265,19 +278,19 @@
 
  <!-- Add Client popup-->
 
-    <div class="modal" id="addClientModal" role="dialog" tabindex="-1" data-focus-on="input:first">
+    <div class="modal" id="addClientModal" role="dialog" tabindex="-1" data-focus-on="input:first" data-backdrop="static">
       <div class="client-dialog">
       
        <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="createClientCloseEvent">&times;</button>
             <h4 class="modal-title">Add Client</h4>
           </div>
           <div class="modal-body">
             <p class="client-margin">Client Details</p>
             <div class="container-fluid">
-            <form (ngSubmit)="createClient(addclientdata)">  
+            <form (ngSubmit)="createClient(addclientdata)" id="addContactRefresh">  
             <div class="row"> 
                <div class="col-md-5">
                  <div class="value"> 
@@ -381,8 +394,9 @@
             </div> 
               </div>
               <div id="menu2" class="tab-pane fade">
-          <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
-              <div *ngIf="value.Action=='Assigned'">
+                  <div *ngFor='let value of this.resempdata.lead; trackBy: index;'>
+          <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngIf="value.Action=='Assigned'"  (click)="viewLead(value.LeadID)">
+             
                 {{this.resempdata.lead.Action}}
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
@@ -418,8 +432,9 @@
                   
               </div>
               <div id="menu3" class="tab-pane fade">
-      <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
-              <div *ngIf="value.Action=='Subscribed'">
+                  <div *ngFor='let value of this.resempdata.lead; trackBy: index;'>
+      <div class="col-lg-3 col-md-3 col-sm-3" type="button" (click)="viewLead(value.LeadID)" *ngIf="value.Action=='Subscribed'">
+              
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
                   <div class="xSmall">
@@ -461,12 +476,12 @@
   
   <!--pop up strats-->
   
-  <div class="modal" id="exampleModal"  role="dialog" tabindex="-1" data-focus-on="input:first">
+  <div class="modal" id="exampleModal"  role="dialog" tabindex="-1" data-focus-on="input:first" data-backdrop="static">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
            <span class="status">{{this.viewleaddata.LeadID}}</span>
-           <span>  <img  class="profileIcon1" src="/assets/images/dell.png"></span>
+           <!-- <span>  <img  class="profileIcon1" src="/assets/images/dell.png"></span> -->
             <span>{{this.viewleaddata.ClientName}}
            
             </span>
@@ -478,12 +493,11 @@
                       <button class="btn btn-default naturalButtonMedium dropdown-toggle invite_button" type="button" data-toggle="dropdown">
                           Invite People
                     </button>
-                      <ul class="dropdown-menu InviteWidth">
+                      <ul class="dropdown-menu scrollable-menu InviteWidth">
                         <li> <groome-search  (searchChange)="peopleSearchValue($event)"></groome-search></li>
                         <li class="groomeSearch" *ngFor="let userValue of this.userList" (click)="invitesearchData(userValue.UFirstName,userValue,this.viewleaddata._id)">
-                            <span class="searchIcon" *ngFor="let subdata of this.subscibe|slice:0:1">
-                                SG
-                            </span>
+                          <span class="searchIcon">
+                            {{userValue.ShortName}}</span>
                           <a class="people" >{{userValue.UFirstName}}</a></li>
                       </ul>
                     </span>
@@ -499,97 +513,103 @@
                         <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#home1">Conversion</a></li>
                       
                         <li><a  class="btn btn-large subscribed" data-toggle="pill" href="#menu03">Requirement</a></li>
-                      
-                     
-                     
                     </ul>
                     
                     <div class="tab-content">
                       <div id="home1" class="tab-pane fade in active">
                           <ul class="chat">
-                              <li class="left clearfix"><span class="chat-img pull-left">
-                                  <span class="invite1">SG</span>
-    
-                              </span>
-                                  <div class="chat-body">
-                                      <div class="header">
-                                          
-                                      </div>
-                                      <p>
-                                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-                                          dolor, quis ullamcorper ligula sodales.
-                                      </p>
-                                  </div>
-                                </li>
-                                <li class="right clearfix"><span class="chat-img pull-right">
-                                    <span class="invite2">SH</span> 
-                                </span>
-                                    <div class="chat-body clearfix">
-                                        
+                              <li class="left clearfix" *ngFor="let dataconvo of this.conversartionResponse">
+                                  <div *ngIf="dataconvo.content !== undefined">
+                                  <span class="chat-img pull-left">
+                                    <span class="invite1">SG</span>
+                                  </span>
+                                    <div class="chat-body">
+                                        <div class="header">
+                                            
+                                        </div>
                                         <p>
-                                            Lorem ipsum dolor sit amet. Curabitur bibendum ornare
-                                           
+                                            {{dataconvo.content}}
                                         </p>
                                     </div>
-                                </li>
-                              <li class="left clearfix"><span class="chat-img pull-left">
-                                  <span class="invite2">SH</span> 
-                              </span>
-                                  <div class="chat-body clearfix">
-                                      <p>
-                                     consectetur adipiscing elit. Curabitur bibendum ornare
-                                          
-                                      </p>
-                                  </div>
-                              </li>
-                           
-                               <li class="right clearfix"><span class="chat-img pull-right">
-                                  <span class="invite2">SH</span> 
-                              </span>
-                                  <div class="meetingShedule">
-                                  
-                                    <div class="maindiv">
-                                      <div class="firstdiv">
-                                          <div class="date1">
-                                              14
-                                            </div>
-                                            <div class="month-time">
-                                            <div class="month">
-                                               August 2017
-                                              </div>
-                                              <div class="time">
-                                                 12 AM
-                                                 </div>
-                                            </div>
-                                      </div>
-                                       <div class="seconddiv">
-                                          <div class="company">
-                                             DEll EMC
-                                             </div>
-                                             <div class="place">
-                                               Kormanglla
-                                                </div>
-                                          
-                                        </div>
                                     </div>
-                                   
-                                    <div class="maindiv2" >
-                                        <div class="div11">
-                                          <div class="shedule">
-                                            Reshedule
-                                          </div>
+                                    <div *ngIf="dataconvo.Status !== undefined">
+                                  <span class="chat-img pull-left">
+                                    <span class="invite1">SG</span>
+                                  </span>
+                                    <div class="chat-body">
+                                        <div class="header">
+                                            
                                         </div>
-                                        <div class="div22">
-                                            <div class="cancel">
-                                              cancel
+                                        <p>
+                                            {{dataconvo.Status}}
+                                        </p>
+                                    </div>
+                                    </div>
+                                    <!--file attach-->
+                                    <div *ngIf="dataconvo.filename !== undefined">
+                                       <span class="chat-img pull-left">
+                                          <span class="invite1">SG</span>
+                                        </span>
+                                        <div class="chat-body">
+                                        <a (click)="FileDownload(this.viewleaddata._id,dataconvo)">{{dataconvo.filename}}</a>
+                                        </div>  
+                                    </div>
+  
+                                    <!--meeting-->
+                                  <div *ngIf="dataconvo.MeetingVenue !== undefined">
+  
+                                   <span class="chat-img pull-right">
+                                    
+                                    <span class="invite2">SH</span> 
+                                </span>
+                                    <div class="meetingShedule">
+                                    
+                                      <div class="maindiv">
+                                        <div class="firstdiv">
+                                            <div class="date1">
+                                                {{dataconvo.ScheduleDate|date:"dd"}}
+                                              </div>
+                                              <div class="month-time">
+                                              <div class="month">
+                                                 {{dataconvo.ScheduleDate|date:"MMMM y"}}
+                                                </div>
+                                                <div class="time">
+                                                  {{dataconvo.ScheduleTime}}
+                                                   </div>
+                                              </div>
+                                        </div>
+                                         <div class="seconddiv">
+                                            <div class="company">
+                                               {{dataconvo.MeetingVenue}}
+                                                  </div>
+                                            
+                                          </div>
+                                      </div>
+                                     
+                                      <div class="maindiv2" >
+                                          <div class="div11">
+                                            <div class="shedule">
+                                              Reshedule
                                             </div>
                                           </div>
-                                       
-                                        </div>
-                                  </div>
-                              </li>
+                                          <div class="div22">
+                                              <div class="cancel">
+                                                cancel
+                                              </div>
+                                            </div>
+                                         
+                                          </div>
+                                    </div>
+                                   </div>
+                                  </li>
+                                
+                            
+                               
+                                                
+                                          
+                                    
                           </ul>
-                          <div class="dropdown conversation_type">
+                          <div class="dropup conversation_type">
                               <div  data-toggle="dropdown" class="select">{{reqCOnversation}} 
                                 <span   class="glyphicon glyphicon-chevron-up  "></span>
                               </div>
@@ -598,19 +618,18 @@
                                       <li class="disabled" ><a style="cursor: default;">Conversation Type</a></li>
                                       <li class="divide" (click)="changeConversation('Telephonic')">Telephonic</li>
                                       <li class="divide"   (click)="changeConversation('Face to Face')">Face to Face </li>
-                                      <li class="divide"   (click)="changeConversation('Email')"> Email</li>
-                                      
+                                      <li class="divide"   (click)="changeConversation('Email')"> Email</li>       
                                     
                                   </ul>
                             </div> 
-                            <div class="sendicon">
-                                <span class="glyphicon glyphicon-send"></span> 
+                            <div class="sendicon" (click)="sendData(SendMessage,this.viewleaddata._id)">
+                                <span class="glyphicon glyphicon-send send"></span> 
                             </div>
                               <div class="send_message">
                                   <textarea id="btn-input" type="text" class="sendText" placeholder="Write a message..."></textarea>
                           </div>
                           <div class="calender">
-                            <span class="glyphicon glyphicon-paperclip" style="margin-right:10px"></span>
+                            <span class="glyphicon glyphicon-paperclip" style="margin-right:10px" [popover]="attachFile1"></span>
                             <span  style="margin-right:15px;cursor:pointer"><div class="glyphicon glyphicon-calendar calenderSchedule" [popover]="myPopover"></div></span>
                           </div>
                           <popover-content #myPopover 
@@ -620,126 +639,122 @@
                   <div class="marginBottm">               
                       <input type=text placeholder="location" class="locationinput" [(ngModel)] = "ScheduleLocation">  
                       <select class="selectTime" [(ngModel)] = "ScheduleTime">
-                            <option>12:00AM</option>
-                            <option>12:30AM</option>
-                            <option>1:00AM</option>
-                            <option>1:30AM</option>
-                            <option>2:00AM</option>
-                            <option>2:30AM</option>
-                            <option>12:00AM</option>
-                            <option>12:30AM</option>
-                            <option>1:00AM</option>
-                            <option>1:30AM</option>
-                            <option>2:00AM</option>
-                            <option>2:30AM</option>
-                            <!--<option>2</option>
-                            <option>2</option>
-                            <option>2</option>
-                            <option>2</option>-->
-                      </select>  
+                          <option>12:00 AM</option>
+                          <option>12:30 AM</option>
+                          <option>1:00 AM</option>
+                          <option>1:30 AM</option>
+                          <option>2:00 AM</option>
+                          <option>2:30 AM</option>
+                          <option>12:00 AM</option>
+                          <option>12:30 AM</option>
+                          <option>1:00 AM</option>
+                          <option>1:30 AM</option>
+                          <option>2:00 AM</option>
+                          <option>2:30 AM</option>
+                          <!--<option>2</option>
+                          <option>2</option>
+                          <option>2</option>
+                          <option>2</option>-->
+                    </select>
                   </div>           
                       <material-datepicker [(date)]="yourModelDate"></material-datepicker>
-                      <input type="button" class="brandblue scheduleBtn" value="Schedule" (click)="schedule(yourModelDate,ScheduleTime,ScheduleLocation)">
+                      <input type="button" class="brandblue scheduleBtn" value="Schedule" (click)="schedule(yourModelDate,ScheduleTime,ScheduleLocation,this.viewleaddata._id)">
                   </popover-content>
+
+                  <popover-content #attachFile1
+                  placement="top"
+                  [animation]="true"
+                  [closeOnClickOutside]="true" >
+                
+<div class="fileUpload btn AttachButton">
+<span><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 482.8 482.8" style="enable-background:new 0 0 482.8 482.8;" xml:space="preserve" width="16px" height="16px">
+  <g>
+    <g>
+      <path d="M255.2,209.3c-5.3,5.3-5.3,13.8,0,19.1c21.9,21.9,21.9,57.5,0,79.4l-115,115c-21.9,21.9-57.5,21.9-79.4,0l-17.3-17.3    c-21.9-21.9-21.9-57.5,0-79.4l115-115c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-115,115C8.7,322.7,0,343.6,0,365.8    c0,22.2,8.6,43.1,24.4,58.8l17.3,17.3c16.2,16.2,37.5,24.3,58.8,24.3s42.6-8.1,58.8-24.3l115-115c32.4-32.4,32.4-85.2,0-117.6    C269.1,204,260.5,204,255.2,209.3z" fill="#00a890 "/>
+      <path d="M458.5,58.2l-17.3-17.3c-32.4-32.4-85.2-32.4-117.6,0l-115,115c-32.4,32.4-32.4,85.2,0,117.6c5.3,5.3,13.8,5.3,19.1,0    s5.3-13.8,0-19.1c-21.9-21.9-21.9-57.5,0-79.4l115-115c21.9-21.9,57.5-21.9,79.4,0l17.3,17.3c21.9,21.9,21.9,57.5,0,79.4l-115,115    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4l115-115c15.7-15.7,24.4-36.6,24.4-58.8    C482.8,94.8,474.2,73.9,458.5,58.2z" fill="#00a890 "/>
+    </g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g>
+  </g>
+  </svg></span>
+  <span class="iconBtnText">{{this.attfileTest3}}</span>
+<input class="upload" id="uploadBtn" type="file" placeholder="Upload file" (change)="fileChange1($event)" accept=".pdf,.doc,.docx,.png" multiple>
+</div>
+
+<!--attchfile show-->
+<div class="row" *ngFor='let filename1 of this.files2'>
+  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+      <p>{{filename1}}</p>
+  </div>
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" (click)="deleteFile1(filename1)">
+    <p><img src="/assets/images/rubbish-bin.png"></p>
+  </div>
+</div>
+
+<!--Upload button-->
+<div>
+<input type="button" class="brandblue fileUpload" value="Button Brand" (click)="upload(this.viewleaddata._id)">
+      </div>
+
+  </popover-content>
                       </div>             
                   <div id="menu03" class="tab-pane fade">
   
-                      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" *ngFor="let reqDetail of this.reqDetail let i = index">
                           <div class="panel panel-default">
                             <div class="panel-heading" role="tab" id="headingOne">
                               <h4 class="panel-title">
                             
-                                  <a aria-controls="collapseOne" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#collapseOne" role="button" class="collapsed">
-                                      <span class="devops">DEVOPS</span>
-                                      <span class="requirementid">REQ00111</span>
+                                  <a aria-controls="collapseOne" aria-expanded="false" data-parent="#accordion" data-toggle="collapse" href="#data-{{i}}" role="button" class="collapsed">
+                                      <!-- <span class="devops">{{reqDetail.Title}}</span>
+                                      <span class="requirementid">{{reqDetail.ReqCode}}</span> -->
+                                      <div class="">
+                                        <div class="col-lg-4 devops">{{reqDetail.Title}}</div>
+                                        <div class="col-lg-6 requirementid">{{reqDetail.ReqCode}}</div>
+                                      </div>
                                   </a>    
                     
                             </h4>
                             </div>
-                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
+                            <div id="data-{{i}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
                               <div class="panel-body">
-                              
-                                  <div class="row">
-                                      <div class="col-md-6" >
-                                        <h5 class="positiontext">Position</h5>
-                                          <div class="value1"> 
-                                              <input type="text" class="inputText1" placeholder="input text" id="name" required name="name"/>
-                                                 
+                                  <input type="text" class="tittle" placeholder="Requirements title ?" id="title" required name="title" [(ngModel)] = "reqDetail.Title"/>
+                                  <div class="mainText">
+                                          <div class="row">
+                                          <div class="col-md-6" >
+                                            <h5 class="positiontext">Position</h5>
+                                              <div class="value1"> 
+                                                  <input type="text"  class="inputText1" placeholder="input text" id="Positions" required name="position" [(ngModel)] = "reqDetail.Positions" #Positions="ngModel"/>
+                                                     
+                                              </div>
                                           </div>
-                                      </div>
-                                      <div class="col-md-6">
-                                          <h5 class="timetext">Estimate time(in days)</h5>
-                                          <div class="value2">  
-                                              <input type="text1"   placeholder="input text" class="inputText1" id="text1" required name="text1" />
-                                            
+                                          <div class="col-md-6">
+                                              <h5 class="timetext">Estimate time</h5>
+                                              <div class="value2">  
+                                                  <input type="text"   placeholder="input text" class="inputText1" id="Estimatetime" required name="Estimatetime" [(ngModel)] = "reqDetail.EstimateTime" #EstimateTime="ngModel"/>
+                                                  
+                                              </div>
                                           </div>
-                                      </div>
-                                      </div>
-                                      <div class="row">
+                                          </div>
+                                          <div class="row">
                                           <div class="col-md-6" >
                                               <h5 class="positiontext">Skill</h5>
                                                 <div class="value1"> 
-                                                    <input type="text"   placeholder="input text" class="inputText1" id="text2" required name="text2"/>
-                                                    
+                                                    <input type="text"   placeholder="input text" class="inputText1" id="text2" required name="SkillsRequired" [(ngModel)] = "reqDetail.SkillsRequired[0]" #text2="ngModel"/>
+                                                        
                                                 </div>
                                             </div>
                        
                                             <div class="col-md-6" >
                                                 <h5 class="timetext">Budget</h5>
                                                   <div class="value2"> 
-                                                    <input type="text"  placeholder="input text" class="inputText1" id="text3" required name="text3" [(ngModel)] = "model.text3" #text3="ngModel"/>
-                                                       
+                                                    <input type="text"  placeholder="input text" class="inputText1" id="text3" required name="Budget" [(ngModel)] = "reqDetail.Budget" #text3="ngModel"/>
+                                                        
                                                   </div>
                                               </div>
+                                              <button  value=" Send" class="btn btn-success publish" type="submit"  id="submit">Edit</button>
                                           </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingTwo">
-                              <h4 class="panel-title">
-                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsed">
-                                  <span class="devops">DEVOPS</span>
-                                  <span class="requirementid">REQ00112</span>
-                              </a>
-                            </h4>
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo" aria-expanded="false">
-                              <div class="panel-body">
-                                  <div class="row">
-                                      <div class="col-md-6" >
-                                        <h5 class="positiontext">Position</h5>
-                                          <div class="value1"> 
-                                              <input type="text" class="inputText1" placeholder="input text" id="name" required name="name"/>
-                                                 
-                                          </div>
-                                      </div>
-                                      <div class="col-md-6">
-                                          <h5 class="timetext">Estimate time(in days)</h5>
-                                          <div class="value2">  
-                                              <input type="text1"   placeholder="input text" class="inputText1" id="text1" required name="text1" />
-                                            
-                                          </div>
-                                      </div>
-                                      </div>
-                  
-                                  <div class="row">
-                                      <div class="col-md-6" >
-                                          <h5 class="positiontext">Skill</h5>
-                                            <div class="value1"> 
-                                                <input type="text"   placeholder="input text" class="inputText1" id="text2" required name="text2"/>
-                                                
-                                            </div>
-                                        </div>
-                   
-                                        <div class="col-md-6" >
-                                            <h5 class="timetext">Budget</h5>
-                                              <div class="value2"> 
-                                                <input type="text"  placeholder="input text" class="inputText1" id="text3" required name="text3" [(ngModel)] = "model.text3" #text3="ngModel"/>
-                                                   
-                                              </div>
-                                          </div>
-                                      </div>	
+                                  </div>
+                              
+                                  
                               </div>
                             </div>
                           </div>
@@ -800,14 +815,16 @@
   
              <div class="col-lg-4 col-md-4 col-sm-4 content2"> 
                 <div class="project-content">
-                    <p class="productDesign">{{this.viewleaddata.Title}}</p>
+                    <span class="productDesign">{{this.viewleaddata.Title}}</span>
                    <span> <img class="signuserpopup" src="/assets/images/images.png"></span>
                   </div> 
              <!-- sales Repo -->
              <div *ngIf="this.role=='Sales_Rep'">
               <div class="col-lg-6  col-md-6 col-sm-6">
                <p class="AssignedBy">Assigned by</p>
-                   <img class="profileIcon" src="/assets/images/gk.png">
+               <span class="invite" >
+               {{this.AssignedShortName}}
+            </span>
              </div>
            </div>
            <!-- Manager -->
@@ -818,33 +835,18 @@
                 <span class="hidden-xs profile">{{this.AssignedShortName}} </span>
               <span   class="glyphicon glyphicon-chevron-down  groomlist1 "></span>
             </span>
-              <ul class="dropdown-menu InviteWidth" >
-                  <li > <groome-search  class="groomelist" (searchChange)="searchAssignTO($event)" ></groome-search> </li>
-                  <li class=" groomeSearch" *ngFor="let assignvalue of this.SalesRepList" (click)="Assignto(assignvalue.ShortName,assignvalue,this.viewleaddata._id)">
-                     <span class="searchIcon" *ngFor="let subdata of this.subscibe|slice:0:1">
-                         SG
-                     </span>
-                   <a  class="people">{{assignvalue.UFirstName}}</a></li>
-              </ul>
+            <ul class="dropdown-menu InviteWidth" >
+              <li > <groome-search  class="groomelist" (searchChange)="searchAssignTO($event)" ></groome-search> </li>
+              <li class="disabled" ><a style="cursor: default;padding-left:10px">People</a></li>
+              <li class=" groomeSearch" *ngFor="let assignvalue of this.SalesRepList" (click)="Assignto(assignvalue.ShortName,assignvalue,this.viewleaddata._id)">
+                 <span class="searchIcon">
+                      {{assignvalue.ShortName}}
+                 </span>
+               <a  class="people">{{assignvalue.UFirstName}}</a></li>
+          </ul>
             </div>
             </div>
-  
-  <!-- 
-                <div class="col-lg-6  col-md-6 col-sm-6">
-                    <p class="businessStream">Business Stream</p>
-                      <div class="dropdown business">
-                    <div class="business1" data-toggle="dropdown">{{this.viewleaddata.BusinessUnit}}
-                          <span   class="glyphicon glyphicon-chevron-down  "></span>
-                        </div>
-                            <ul class="dropdown-menu business_drop ">
-                                <li class="disabled" ><a style="cursor: default;">Business</a></li>
-                                <li class="divide"  (click)="changeBusiness('SOW')">SOW</li>
-                                <li class="divide"  (click)="changeBusiness('Staffing')">Staffing</li>
-                              <li class="divide1"  (click)="changeBusiness('Little Bharmha')">Little Bharmha</li>
-                            </ul>
-                      </div>                     
-                </div> -->
-                      
+                    
                  <!-- Manager Business Stream -->
                  <div *ngIf=" this.role=='Manager'">
                   <div class="col-lg-6  col-md-6 col-sm-6">
@@ -937,7 +939,7 @@
                               </span>
                       </div>
                       </div>
-                    <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
+                    <!-- <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
                       <h5>Client Contact</h5>
                      <span class="dropdown">
                     <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.getContactList}}
@@ -945,16 +947,34 @@
                      <ul class="dropdown-menu" style="width:255px">
                      <li> <groome-search  (searchChange)="clientContactSearch($event)"></groome-search> </li>
                      <li class="disabled" ><a style="cursor: default;">People</a></li>
-                     <li class="divide" *ngFor="let contact of this.contactdisplay" (click)="contactsearchInupdate(contact.FirstName,contact,this.viewleaddata._id)"><a >{{contact.FirstName}}</a></li>
+                     <li class="divide" *ngFor="let contact of this.contactdisplay" (click)="contactsearchInupdate(contact.FirstName,contact,this.viewleaddata._id)"><a class="people">{{contact.FirstName}}</a></li>
                      <li type="button" class="addbutton popup-button divide" value="Add" data-toggle="modal" data-target="#addClientContactModal"></li>
                      </ul>  
                      </span> 
-                       <button ngif="this.viewleaddata.ClientContact!=0" class="tagDefault" style="margin-left:17px" *ngFor="let clientcontanct of this.viewleaddata.ClientContact">{{clientcontanct.FirstName}}
-                            
+                      <button ngif="this.viewleaddata.ClientContact!=0" class="tagDefault"  *ngFor="let clientcontanct of this.viewleaddata.ClientContact">
+                         <!-- Add User icons -->
+                         <!-- <span class="glyphicon glyphicon-user" style="margin-right:3px;"></span> {{clientcontanct.FirstName}}  
+                         <img class="fatime" src="/assets/images/delete.svg" (click)="deleteclient(this.viewleaddata._id,clientcontanct._id)">
+                    </button>  
+                    </div> -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
+                      <h5>Client Contact</h5>
+                     <div class="dropdown">
+                    <button class="btn btn-default naturalButtonMedium1 dropdown-toggle" type="button" data-toggle="dropdown">{{this.getContactList}}
+                    </button>
+                     <ul class="dropdown-menu scrollable-menu" style="width:200px">
+                     <li> <groome-search  (searchChange)="updateContactSearch($event)"></groome-search> </li>
+                     <li class="disabled" ><a style="cursor: default;padding-left:10px">People</a></li>
+                     <li class="divide" *ngFor="let usercontact of this.updatecontactdisplay" (click)="contactsearchInupdate(usercontact.FirstName,usercontact,this.viewleaddata._id)">
+                      <a  class="people" >{{usercontact.FirstName}}</a></li>
+                     <li type="button" class="divide" value="Add" data-toggle="modal" data-target="#addClientContactModal"><span class="glyphicon glyphicon-plus plusIcon"></span><span style="margin-left:10px">Add Contact</span></li> 
+                     </ul>  
+                    </div>
+                       <button ngif="this.viewleaddata.ClientContact!=0" class="tagDefault"  *ngFor="let clientcontanct of this.viewleaddata.ClientContact">
+                         <!-- Add User icons -->
+                        <span class="glyphicon glyphicon-user" style="margin-right:3px;"></span> {{clientcontanct.FirstName}}  
                                <img class="fatime" src="/assets/images/delete.svg" (click)="deleteclient(this.viewleaddata._id,clientcontanct._id)">
-                          </button>
-                       
-                          
+                          </button>  
                     </div>
                        <div class="col-lg-12 col-md-12 col-sm-12 clientContact">
                         <h5>Tag</h5>
@@ -987,13 +1007,13 @@
 
    <!--for Client Contact Popup-->
 
-    <div class="modal" id="addClientContactModal" role="dialog" tabindex="-1" data-focus-on="input:first">
+    <div class="modal" id="addClientContactModal" role="dialog" tabindex="-1" data-focus-on="input:first" data-backdrop="static">
       <div class="client-dialog">
       
        <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="addClientContactClose">&times;</button>
             <h4 class="modal-title">Add Client Contact</h4>
           </div>
           <div class="modal-body">
@@ -1160,15 +1180,13 @@
             <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
-                  <div class="xSmall">
-                             <p class="layer">2</p>
-                              </div>
+                 
                   <span class="status">{{value.LeadID}}</span>
                     <div class="status1"><p class="status2">{{value.Status}}</p></div>
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
-                         <span> <img class="signuser" src="/assets/images/images.png"></span>
+                         <span *ngIf="value.RequstApproved=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
                           <div class="footer1">
                             <div class="row footer2">
@@ -1191,10 +1209,10 @@
   
               </div>
               <div id="Approved" class="tab-pane fade">
-                
-            <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
+                  <div *ngFor='let value of this.resempdata.lead; trackBy: index;'>
+            <div class="col-lg-3 col-md-3 col-sm-3" type="button" (click)="viewLead(value.LeadID)" *ngIf="value.Action=='Owner' && value.RequstApproved=='Y'" >
             
-              <div *ngIf="value.Action=='Owner' && value.RequstApproved=='Y'">
+             
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
                   <div class="xSmall">
@@ -1205,7 +1223,7 @@
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
-                         <span> <img class="signuser" src="/assets/images/images.png"></span>
+                         <span *ngIf="value.RequstApproved=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
                           <div class="footer1">
                             <div class="row footer2">
@@ -1229,9 +1247,9 @@
                
               </div>
               <div id="Pending" class="tab-pane fade">
+                  <div *ngFor='let value of this.resempdata.lead; trackBy: index;'>
+                  <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngIf="value.Action=='Owner' && value.RequstApproved=='N'" (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()">
                 
-                  <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()">
-                <div *ngIf="value.Action=='Owner' && value.RequstApproved=='N'">
                       <div class="project project-default">
                         <!--overlay starts-->
                         <div class="overlay" *ngIf="this.overlayToggle">
@@ -1251,7 +1269,7 @@
                               </header>
                                 <div class="project-content">
                                   <p class="content"> {{value.Title}}</p>
-                                 <span> <img class="signuser" src="/assets/images/images.png"></span>
+                                 <span *ngIf="value.RequstApproved=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                                 </div>
                                   <div class="footer1">
                                     <div class="row footer2">
@@ -1278,8 +1296,9 @@
               </div>
   
                <div id="Subscribed" class="tab-pane fade">
-                        <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
-              <div *ngIf="value.Action=='Subscribed'">
+                  <div *ngFor='let value of this.resempdata.lead; trackBy: index;' >
+                        <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngIf="value.Action=='Subscribed'" (click)="viewLead(value.LeadID)">
+             
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
                   <div class="xSmall">
@@ -1310,10 +1329,7 @@
                           </div>
               </div>
               </div>
-            </div> 
-   
-  
-                              
+            </div>                             
               </div>
             </div>
           </div>

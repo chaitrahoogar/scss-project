@@ -8,9 +8,8 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
  export class ClientService implements OnInit{
-     private _url:string='http://localhost:8081/';
-     private _url2:string='http://172.16.0.38:8082/';
-     private _url3:string='http://localhost:8083/';
+    //  private _url2:string='http://172.16.0.38:8082/';
+    
      private _url4:string='http://172.16.0.4:8083/';
      private _url1:string='http://172.16.0.4:8082/';
      private _url5:string='http://172.16.0.4:8081/';
@@ -71,7 +70,7 @@ import 'rxjs/add/operator/toPromise';
             // 'Allow-Control-Allow-Origin' : '*',
              'token':localStorage.getItem('token')
             });
-        return this._http.post(this._url4+'clients/createClient', JSON.stringify(addclientdata),{ headers: contentHeader }).map((response:Response) =>response.json());
+        return this._http.post(this._url4+'clients/createClient', JSON.stringify(addclientdata),{ headers: contentHeader }).map((response:Response) =>response.json()).catch(handleError);
        }
        
     addContact(addcontactdata){
@@ -81,7 +80,7 @@ import 'rxjs/add/operator/toPromise';
             // 'Allow-Control-Allow-Origin' : '*',
              'token':localStorage.getItem('token')
             });
-        return this._http.post(this._url4+'clients/addClientContact', JSON.stringify(addcontactdata),{ headers: contentHeader }).map((response:Response) =>response.json());
+        return this._http.post(this._url4+'clients/addClientContact', JSON.stringify(addcontactdata),{ headers: contentHeader }).map((response:Response) =>response.json()).catch(handleError);
        }
 
     addLead(formData){
@@ -90,7 +89,7 @@ import 'rxjs/add/operator/toPromise';
             // 'Allow-Control-Allow-Origin' : '*',
              'token':localStorage.getItem('token')
             });
-        return this._http.post(this._url1+'lead/createLead',formData,{ headers: contentHeader }).map((response:Response) =>response.json());
+        return this._http.post(this._url1+'lead/createLead',formData,{ headers: contentHeader }).map((response:Response) =>response.json()).catch(handleError);
       }
     
     getSalesRepList(){
@@ -111,13 +110,18 @@ import 'rxjs/add/operator/toPromise';
             // 'Allow-Control-Allow-Origin' : '*',
              'token':localStorage.getItem('token')
             });
-        return this._http.post(this._url2+'lead/addSubscribedUsers', JSON.stringify(addcontactdata),{ headers: contentHeader }).map((response:Response) =>response.json());
+        return this._http.post(this._url5+'lead/addSubscribedUsers', JSON.stringify(addcontactdata),{ headers: contentHeader }).map((response:Response) =>response.json());
        }   
        ngOnInit() {
         this.token=localStorage.getItem('token');
         console.log(this.token);
     }
 
+ }
+
+ function handleError(error:any){
+    let errorMessage = error.json();
+    return Observable.throw(errorMessage);
  }
 
  

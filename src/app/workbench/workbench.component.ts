@@ -42,9 +42,19 @@ export class WorkbenchComponent implements OnInit {
     clientid="";
     getContactListUpdate="";
     ownervalue=[];
-    //code
-     searchValue:string = '';
+    files1=[];
+    files2 = [];
+    attfileTest3="Attach file";
+    filesToUpload3=[];
+    formData3: any = new FormData();
+    FileList3=[];
+    files3=[];
+    getUpload=[];
+    download=[];
+    searchValue:string = '';
     reqStatus='';
+    conversartionResponse=[];
+
     changeStatus(val,id){
       var leadFeelchange={
           "_id":id,
@@ -206,6 +216,7 @@ export class WorkbenchComponent implements OnInit {
              }
            console.log(this.Assigned);
             this.getClientContactsdata();
+            this.getconversation(leadId);
          });
           
   }
@@ -261,7 +272,7 @@ export class WorkbenchComponent implements OnInit {
      this.overlayToggle=false;
   }
   
-  schedule(Scheduledate,ScheduleTime,ScheduleLocation){
+  schedule(Scheduledate,ScheduleTime,ScheduleLocation,id){
     var data=new Date(Scheduledate);
     
     var day = data.getDate();
@@ -274,7 +285,7 @@ export class WorkbenchComponent implements OnInit {
 
 
       var scheduleData= {
-      "_id": "59aa7733758a804138f2718d",
+      "_id": id,
       "Meeting": {
          "MeetingVenue": ScheduleLocation,
           "ScheduleDate": d,
@@ -284,7 +295,7 @@ export class WorkbenchComponent implements OnInit {
      console.log(Scheduledate);
     this._leadService.ScheduleMeetingService(scheduleData).subscribe((response) => { 
                  console.log(response)
-                 
+                 this.getconversation(id)
          });
   }
 
@@ -375,6 +386,7 @@ export class WorkbenchComponent implements OnInit {
   
   }
   addTagUpade(tag,id){
+    this.addtagtitle="";
        var addTagUpadedata={
       "_id":id,
        "Tags":{
@@ -430,7 +442,7 @@ export class WorkbenchComponent implements OnInit {
   peopleSearchValue(searchValue1){
     if(searchValue1.length>0){
       this.userList=this.usertestList.filter(val=>{    
-      return val.UFirstName.includes(searchValue1);
+      return val.UFirstName.toLowerCase().includes(searchValue1);
     })
   }
   else{
@@ -440,7 +452,7 @@ export class WorkbenchComponent implements OnInit {
   searchAssignTO(assignSearch){
       if(assignSearch.length>0){
       this.SalesRepList=this.SalesReptestList.filter(val=>{    
-      return val.UFirstName.includes(assignSearch);
+      return val.UFirstName.toLowerCase().includes(assignSearch);
     })
   }
   else{
@@ -517,6 +529,27 @@ export class WorkbenchComponent implements OnInit {
                
          });
     }
+
+    getconversation(lead){
+      this._leadService.getconversation(lead).subscribe((response) => {
+            this.conversartionResponse=response.Convo;
+            console.log(this.conversartionResponse.length);
+           
+         });
+     }
+
+    sendData(data,id){
+      var newdata={
+        "_id":id,
+             "Conversation": {
+            "content": data
+             }
+      }
+      this._leadService.sendData(newdata).subscribe((response) => {
+       this. getUpload=response;  
+       this.getconversation(id);
+     });
+}
   
     getClientContactsdata(){
       console.log(this.clientid);
@@ -525,10 +558,51 @@ export class WorkbenchComponent implements OnInit {
       }
      
      this._leadService.getClientContactsdata(data).subscribe((response) => { 
-        this.contactlistarray=response.ClientContact;
-        this.contactdisplay=this.contactlistarray         
+        this.updatecontactlistarray=response.ClientContact;
+        this.updatecontactdisplay=this.updatecontactlistarray         
         });
     }
+
+    FileDownload(id,data){
+      
+      var download={
+        _id:id,
+        file:
+          data 
+      }
+      
+   this._leadService.FileDownload(download).subscribe((response) => {
+     this.download=response;
+    
+     });
+  }
+
+  fileChange1(fileInput: any) {
+    this.filesToUpload3 = <Array<File>>fileInput.target.files;
+    this.FileList3= <Array<File>>this.filesToUpload3;
+    for(let i =0; i < this.FileList3.length; i++){
+        this.files3.push(this.FileList3[i]);
+    }
+     this.files2=[];
+    for(let i =0; i < this.files3.length; i++){
+         this.files2.push(this.files3[i]['name']);
+    }
+    this.attfileTest3=this.files3.length+" files attached"
+ }
+
+ deleteFile1(filename){
+  for(var i = 0; i < this.files3.length; i++) {
+     if (this.files3[i]['name'] == filename) {
+         this.files3.splice(i, 1);
+      }
+ }
+ this.files2=[];
+ for(let i =0; i < this.files3.length; i++){
+        this.files2.push(this.files3[i]['name']);
+      }
+      this.attfileTest3=this.files3.length+" files attached"
+ }
+
     createClientContactInupdate(id)
     {
       console.log(this.clientid);
@@ -552,10 +626,21 @@ export class WorkbenchComponent implements OnInit {
       this._clientservice.addContact(addcontact).subscribe((response) => {
         this.addcontactarray=response;  
         this.getClientContactsdata();
+        document.getElementById('addClientContactClose').click();
            });
-          
- 
     }
+
+    updateContactSearch(searchvalue)
+    {
+      if(this.searchValue.length>0){
+        this.updatecontactdisplay=this.updatecontactlistarray.filter(val=>{
+        return val.FirstName.toLowerCase().includes(this.searchValue);
+        })
+      }
+    else{
+      this.updatecontactdisplay=this.updatecontactlistarray;
+    }
+}
     
 
     contactsearchInupdate(name,value,id){
@@ -616,9 +701,11 @@ export class WorkbenchComponent implements OnInit {
   addcontactarray=[];
   createleadarray=[];
   contactlistarray=[];
+  updatecontactlistarray=[];
   contactItems: any[] = []; 
   displayList:any[];
   contactdisplay:any[];
+  updatecontactdisplay:any[];
   ownerdisplay:any[];
   searchText:string;
   getClientList="";
@@ -641,7 +728,6 @@ export class WorkbenchComponent implements OnInit {
   filesToUpload=[];
   formData: any = new FormData();
   FileList=[];
-  files1=[];
   engagementtype="";
   conversationtype="";
   conversation="";
@@ -649,6 +735,10 @@ export class WorkbenchComponent implements OnInit {
   tagcontactarray=[];
   contactlistvalues=[];
   newclientarray=[];
+  addtagtitle="";
+  errorMessage="";
+  errormessage="";
+  edited=false;
   addcontactdata={
     "FirstName":'',
     "LastName":'',
@@ -765,22 +855,29 @@ export class WorkbenchComponent implements OnInit {
     }); 
     }
     
-    createClient()
-    {
-      console.log("addclientdata",this.addclientdata);
+    createClient(){
       this._clientservice.addClient(this.addclientdata).subscribe((response) => { 
-        this.addclientarray=response; 
-        console.log("this.addclientarray",this.addclientarray); 
-             });
-      this.getAllClients();
+      this.addclientarray=response; 
+      if(response.status=="success")
+        {
+          this.getAllClients();
+          document.getElementById('createClientCloseEvent').click();
+          this.addclientdata={};
+        }
+        this.edited=false;
+          },
+          e=>{this.errorMessage = e;
+            console.log("e.message",e.message);
+            this.errormessage=e.message;
+            console.log("this.errormessage",this.errormessage);
+            this.edited=true;  
+           });
     }
 
     getAllClients()
     {
       this._clientservice.getClients().subscribe((response) => { 
       this.clientlistarray=response.client;
-      console.log("addclientarray==",this.addclientarray);
-      console.log("this.clientlistarray",this.clientlistarray);
       this.displayList=this.clientlistarray;
       
       });   
@@ -816,9 +913,8 @@ export class WorkbenchComponent implements OnInit {
       this._clientservice.addContact(addcontact).subscribe((response) => { 
         this.addcontactarray=response;  
         this.getAllClientContact();  
+        document.getElementById('addClientContactClose').click();
            }); 
-      
-
     }
     
     addLeads()
@@ -861,14 +957,20 @@ export class WorkbenchComponent implements OnInit {
        for(let i =0; i < this.files1.length; i++){
        this.formData.append('file',this.files1[i]);
        }
+      //  console.log(addlead);  
       //  console.log(addlead);
-      
-      //  console.log(addlead)
        this.formData.append("file1",JSON.stringify(addlead));
         //  JSON.stringify(addlead);
         this._clientservice.addLead(this.formData).subscribe((response) => { 
-          this.createleadarray=response;  
-        });   
+          this.createleadarray=response; 
+          this.getlead() 
+          document.getElementById('addLeadClose').click();
+          this.edited=false;
+        },
+        e=>{this.errorMessage = e;
+          this.errormessage=e.message;
+          this.edited=true;  
+         });   
     }
 
     getSalesRepList()
@@ -884,10 +986,12 @@ export class WorkbenchComponent implements OnInit {
     }
   
    searchChange(searchValue){
+    console.log(searchValue);
+    searchValue=searchValue.toLowerCase();
     if(searchValue.length>0){
       this.displayList=this.clientlistarray.filter(val=>{
            
-      return val.ClientName.includes(searchValue);
+      return val.ClientName.toLowerCase().includes(searchValue);
     })
   }
   else{
@@ -899,8 +1003,7 @@ export class WorkbenchComponent implements OnInit {
 clientContactSearch(searchValue){
   if(searchValue.length>0){
     this.contactdisplay=this.contactlistarray.filter(val=>{
-         
-    return val.FirstName.includes(searchValue);
+    return val.FirstName.toLowerCase().includes(searchValue);
   })
 }
 else{
@@ -911,7 +1014,7 @@ else{
 peopleSearch(searchValue1){
   if(searchValue1.length>0){
     this.persondisplay=this.userarray.filter(val=>{     
-    return val.UserName.includes(searchValue1);
+    return val.UFirstName.toLowerCase().includes(searchValue1);
   })
 }
 else{
@@ -922,7 +1025,7 @@ else{
 ownersearch(searchValue2){
   if(searchValue2.length>0){
     this.ownerdisplay=this.managerarray.filter(val1=>{
-    return val1.UserName.includes(searchValue2);
+    return val1.UFirstName.toLowerCase().includes(searchValue2);
   })
 }
 else{
@@ -934,7 +1037,7 @@ salesrepsearch(searchValue3)
 {
   if(searchValue3.length>0){
     this.salesdisplay=this.SalerepArray.filter(val1=>{
-    return val1.UserName.includes(searchValue3);
+    return val1.UFirstName.toLowerCase().includes(searchValue3);
   })
 }
   else{
@@ -1029,6 +1132,7 @@ console.log(value1);
 
   addTag(tagvalue)
   {
+    this.tagtitle="";
     var testdata={
       "TagName":tagvalue,
       "TagCategory":"Budget"
@@ -1038,15 +1142,20 @@ console.log(value1);
   }
   
   //Attach files
-  upload() {
-    console.log(this.files1.length);
-          for(let i =0; i < this.files1.length; i++){
-            this.formData.append(this.files1[i]['name'],this.files1[i]);
-          }
-          this._http.post('http://localhost:3003/upload', this.formData)
-          .map(files => files.json())
-          .subscribe(files => console.log('files', files))
-   }
+  upload(id) {
+    for(let i =0; i < this.files3.length; i++){
+      this.formData3.append("file",this.files3[i]);
+    }
+    var data={
+      _id:id
+    }
+    this.formData3.append("_id",id);
+    
+    this._leadService.uploadFile(this.formData3).subscribe((response) => {
+    this. getUpload=response;
+    this.getconversation(id);
+  });
+}
 
    fileChange(fileInput: any) {
     this.filesToUpload = <Array<File>>fileInput.target.files;
@@ -1062,7 +1171,7 @@ console.log(value1);
     }
     this.attfileTest=this.files1.length+" files attached"
  }
- 
+
  deleteFile(filename){
  console.log(filename);
   for(var i = 0; i < this.files1.length; i++) {
@@ -1107,8 +1216,8 @@ console.log(value1);
     this.dumyValue="A";
     //Add Lead function call
     this.attfileTest="Attach file"; 
-    this.getClientList="List"
-    this.getContactList="List"
+    this.getClientList="Add"
+    this.getContactList="Add"
     this.peopleName="Invite People"
     this.managerlist="Request Owner"
     this.saleslist="Assigned To"

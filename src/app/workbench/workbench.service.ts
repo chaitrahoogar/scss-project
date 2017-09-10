@@ -12,7 +12,7 @@ import 'rxjs/add/operator/toPromise';
 
  export class leadService implements OnInit{
      private _url1:string='http://172.16.0.4:8082/';
-       private _url:string='http://172.16.0.38:8000/';
+       private _url:string='http://localhost:8082/';
         private _url2:string='http://172.16.0.4:8081/';
         private _url3:string='http://172.16.0.4:8083/';
      token="";
@@ -142,7 +142,34 @@ import 'rxjs/add/operator/toPromise';
         return this._http.post(this._url3+'clients/getClientContact',clientid,{ headers: contentHeader }).map(res =>res.json());
         }
 
-        
-       
+
+ getconversation(id){
+        let contentHeader = new Headers({
+            "Content-Type": "application/json",
+             'token':localStorage.getItem('token')
+            });
+        var value={
+            "_id":id
+            }
+        return this._http.post(this._url1+'lead/getConversation',value,{ headers: contentHeader }).map(res =>res.json());
+    }
+    uploadFile(data){
+        let contentHeader = new Headers({
+             'token':localStorage.getItem('token')
+            });
+           return this._http.post(this._url1+'lead/uploadDoc',data,{ headers: contentHeader }).map((response:Response) =>response.json());
+    }
+    FileDownload(data){
+        let contentHeader = new Headers({
+             'token':localStorage.getItem('token')
+            });
+           return this._http.post(this._url1+'lead/downloadDoc',data,{ headers: contentHeader }).map((response:Response) =>response.json());
+    }
+    sendData(data){
+        let contentHeader = new Headers({
+             'token':localStorage.getItem('token')
+            });
+           return this._http.post(this._url1+'lead/addConversation',data,{ headers: contentHeader }).map((response:Response) =>response.json());
+    }
  }
 
