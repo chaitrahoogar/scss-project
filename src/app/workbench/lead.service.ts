@@ -10,9 +10,9 @@ import 'rxjs/add/operator/toPromise';
  export class ClientService implements OnInit{
     //  private _url2:string='http://172.16.0.38:8082/';
     
-     private _url4:string='http://172.16.0.4:8083/';
-     private _url1:string='http://172.16.0.4:8082/';
-     private _url5:string='http://172.16.0.4:8081/';
+     private _url4:string='http://139.59.43.188:8083/';
+     private _url1:string='http://139.59.43.188:8082/';
+     private _url5:string='http://139.59.43.188:8081/';
      token="";
      
      contentHeader:any

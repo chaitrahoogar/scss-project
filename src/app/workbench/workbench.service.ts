@@ -11,10 +11,10 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
  export class leadService implements OnInit{
-     private _url1:string='http://172.16.0.4:8082/';
-       private _url:string='http://localhost:8082/';
-        private _url2:string='http://172.16.0.4:8081/';
-        private _url3:string='http://172.16.0.4:8083/';
+     private _url1:string='http://139.59.43.188:8082/';
+       private _url:string='http://139.59.43.188:8082/';
+        private _url2:string='http://139.59.43.188:8081/';
+        private _url3:string='http://139.59.43.188:8083/';
      token="";
      constructor(private _http:Http){
 
@@ -80,7 +80,7 @@ import 'rxjs/add/operator/toPromise';
                 "Content-Type": "application/json",
                  'token':localStorage.getItem('token')
                 });
-           return this._http.put(this._url1+'lead/updateLeadTagCcRev',id,{ headers: contentHeader }).map((response:Response) =>response.json());
+           return this._http.put(this._url1+'lead/updateLeadTagCcRev',id,{ headers: contentHeader }).map((response:Response) =>response.json()).catch(handleError);
        }
         
      //172.16.0.4 localhost:8080/lead/addLeadTagCcRev
@@ -119,7 +119,7 @@ import 'rxjs/add/operator/toPromise';
             "Content-Type": "application/json",
              'token':localStorage.getItem('token')
             });
-           return this._http.post(this._url1+'lead/addSubscribedUsers',value,{ headers: contentHeader }).map((response:Response) =>response.json());
+           return this._http.post(this._url1+'lead/addSubscribedUsers',value,{ headers: contentHeader }).map((response:Response) =>response.json()).catch(handleError);
        }
 
        //assigned to
@@ -129,7 +129,7 @@ import 'rxjs/add/operator/toPromise';
                 "Content-Type": "application/json",
                  'token':localStorage.getItem('token')
                 });
-           return this._http.put(this._url1+'lead/updateLeadSFA',value,{ headers: contentHeader }).map((response:Response) =>response.json());
+           return this._http.put(this._url1+'lead/updateLeadSFA',value,{ headers: contentHeader }).map((response:Response) =>response.json()).catch(handleError);
        }
 
        getClientContactsdata(clientid){
@@ -171,5 +171,10 @@ import 'rxjs/add/operator/toPromise';
             });
            return this._http.post(this._url1+'lead/addConversation',data,{ headers: contentHeader }).map((response:Response) =>response.json());
     }
+ }
+
+ function handleError(error:any){
+    let errorMessage = error.json();
+    return Observable.throw(errorMessage);
  }
 

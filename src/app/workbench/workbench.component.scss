@@ -16,39 +16,7 @@ src: url("/assets/fonts/OpenSans-Semibold.ttf");
 { font-family: "OpensansLight"; 
 src: url("/assets/fonts/OpenSans-Light.ttf");
 }
-@font-face 
-{ font-family: "HelveticaNeue"; 
-src: url("/assets/fonts/HelveticaNeueLt.ttf");
-}
 
-@font-face 
-{ font-family: "Lato-Regular"; 
-src: url("/assets/fonts/Lato-Regular.ttf");
-}
-
-.main_page{
-  background-color:#f3f3f3;
-  height: 100%;
-}
-
-body{
-  background-color:#f3f3f3;
-}
-
-//header
-.search {
-  color: #757575;
-  padding-left: 30px;
-  width: 496px;
-  height: 36px;
-  font-size: 14px;
-  font-family:OpensansRegular;
-  border-radius: 4px;
-  background-color: #ffffff;
-  outline: none;
-  margin-left: 15px;
-  border: solid 1px #e1e1e1;
-}
 .searchbox{ 
    padding-top: 12px; 
    margin-right: 23px;  
@@ -62,12 +30,7 @@ margin: 20px 0 0 0;
   border-color: #fffdfd;
   border-bottom: 1px solid #f3f3f3;
 }
-.groome{
-  font-family: HelveticaNeue;
-  font-size: 24px;
-  font-weight: bold;
-  color: #00a890;
-}
+
 .header{
 font-family: OpensansRegular;
   font-size: 16px;
@@ -93,14 +56,10 @@ border-radius: 7px;
 background-color: #f3f3f3;
 }
 .navbar-brand{
-width: 93px;
-height: 28px;
 margin-left: 33px;
 margin-top: 12px;
-font-family: HelveticaNeue;
+font-family: OpensansBold;
 font-size: 24px;
-font-weight: bold;
-text-align: left;
 color: #00a890;
 }
 .navbar-inverse .navbar-nav>.open>a{
@@ -175,22 +134,42 @@ height: 83px;
 .allUser1{
   border-radius: 5px 0px 0px 5px;
   color: #666666;
-  font-family: Lato-Regular;
+  font-family:OpensansRegular;
+  background-color: #f3f3f3;
 }
+.card_profile{
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  height: 30px;
+  border-radius: 100px;
+  background-color: #b6da9c ;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 8px;
+  font-size: 10px;
+  color: #ffffff ;
+  font-family: OpensansRegul;
+ }
+ .card_client{
+  margin-left: 15px;
+ 
+ }
 .assigned{
 color: #655c5c;
 background-color: #f3f3f3;
 border: 1px solid #ebebeb;
 width: 156px;
 border-radius: unset;
-font-family: Lato-Regular;
+font-family:OpensansRegular;
 }
 .subscribed{
   color: #655c5c;
   background-color: #f3f3f3;
   border: 1px solid #ebebeb;
   width: 156px;
-  font-family: Lato-Regular;
+  font-family: OpensansRegular;
   border-radius: 0px 5px 5px 0px;
 }
 .workbenchTab{
@@ -340,12 +319,7 @@ height: 600px;
 }
 .content {
   padding:21px 10px 26px 18px;
-   width: 242px;
-height: 48px;
 font-family:OpensansRegular;
-font-size: 16px;
-font-weight: 600;
-line-height: 1.5;
 text-align: left;
 color: #000000;
 
@@ -642,7 +616,7 @@ color: #002954;
       font-size: 48px;
       font-weight: 500;
       padding-left: 30px;
-      font-family:LatoMeduim;
+      font-family:OpensansRegular;
       letter-spacing: 1.9px;
       display: inherit;
       color: #00a890;
@@ -652,7 +626,7 @@ color: #002954;
       margin:0 18px 0 18px;
       .month{
         height: 17px;
-        font-family:LatoMeduim;
+        font-family:OpensansRegular;
         font-size: 14px;
         font-weight: 500;
         letter-spacing: 0.6px;
@@ -666,7 +640,7 @@ color: #002954;
     padding: 0 10px 0 10px;
   }
   .company{
-    font-family: Lato-Regular;
+    font-family:OpensansRegular;
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.6px;
@@ -674,7 +648,7 @@ color: #002954;
     color: #002954;
   }
   .place{
-  font-family: Lato-Regular;
+  font-family:OpensansRegular;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.6px;
@@ -698,7 +672,7 @@ color: #002954;
   height: 50%;
   padding: 14px;
   .shedule{
-    font-family:LatoMeduim;
+    font-family:OpensansRegular;
     font-size: 14px;
     font-weight: 500;
     text-align: center;
@@ -1048,15 +1022,14 @@ color: #4a4a4a;
 // add lead
 
 .buttonclass{
-    width:400px;
-    margin: 140px auto; 
+    margin: 136px auto 45px; 
     text-align: center; 
 }
 
 .textfontcolor
 {
   font-family: OpenSonsRegular;
-    font-size:24px;
+    font-size:36px;
     color:#002954;
 
 }
@@ -1398,6 +1371,11 @@ margin-left: 30px;
   filter: alpha(opacity=0);
 }
 
+.contact-width
+{
+  width:134px;
+}
+
 .tag-title {
   width: 93%;
   height: 44px;
@@ -1586,7 +1564,7 @@ padding-left: 15px;
    color: #ffffff;
  }
  .people{
-   font-family: HelveticaNeue;
+   font-family: OpensansRegular;
    font-size: 12px;
    text-align: left;
    color: #4a4a4a;
@@ -1627,7 +1605,7 @@ padding-left: 15px;
   color: white;
   outline: none;
   font-size: 12px;
-  font-weight: 600;
+ 
 }
 .verify{
   display: inline-block;
@@ -1635,7 +1613,7 @@ padding-left: 15px;
   margin-left: 17px;
   font-family: OpenSansRegular;
   font-size: 12px;
-  font-weight: 600;
+
   text-align: left;
   color: #757575;
 }

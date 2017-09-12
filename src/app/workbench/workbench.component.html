@@ -17,16 +17,11 @@
             <a class="header">Clients</a>
           </li>
           <li>
-            <a class="header">Dashbords</a>
+            <a class="header">Dashboard</a>
           </li>
           <li class=" dropdown-notification ">
             <a class="dropdown-toggle" href="" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true"> <i class="fa fa-bell-o"></i>
-            <span class="badge badge-default layer1"> 3 </span> </a>
-            <ul class="dropdown-menu">
-              <li class="external">
-                <h3 class="bold"> <span >3 pending</span> notifications</h3>
-              </li>
-            </ul>
+            </a>
           </li>
           <li class="profile_log">
             <a href="#" class="dropdown-toggle profile" data-toggle="dropdown" aria-expanded="true" style="background-color:#ff4e4b ;">
@@ -70,6 +65,10 @@
                 {{this.errormessage}}
                  <span class="close" data-dismiss="alert">&times;</span>
             </div> 
+            <div *ngIf="this.leadsuccessmessage==false" class="alert alert-success alert-dismissable alertdata">
+                {{this.successmessage}}
+                 <span class="close" data-dismiss="alert">&times;</span>
+            </div>  
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="addLeadClose">&times;</button>
           <div class="">
           
@@ -268,7 +267,7 @@
     </div>                                
         </div>
         <div class="modal-footer">
-          <input type="submit" class="buttonMedium" value="create">
+          <input type="submit" class="buttonMedium" value="Create Lead">
         </div>
       </form>
       </div>  
@@ -284,16 +283,24 @@
        <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
+              <div *ngIf="this.clienterrormessage==true" class="alert alert-danger alert-dismissable alertdata">
+                  {{this.errormessage}}
+                   <span class="close" data-dismiss="alert">&times;</span>
+              </div>
+              <div *ngIf="this.clientsuccesmessage==false" class="alert alert-success alert-dismissable alertdata">
+                  {{this.successmessage}}
+                   <span class="close" data-dismiss="alert">&times;</span>
+              </div>   
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="createClientCloseEvent">&times;</button>
             <h4 class="modal-title">Add Client</h4>
           </div>
           <div class="modal-body">
             <p class="client-margin">Client Details</p>
             <div class="container-fluid">
-            <form (ngSubmit)="createClient(addclientdata)" id="addContactRefresh">  
+            <form  (ngSubmit)="createClient(addclientdata)" id="addContactRefresh">  
             <div class="row"> 
                <div class="col-md-5">
-                 <div class="value"> 
+                 <div class="value form-group"> 
                        <input type="text" [ngClass]="{'red-border-class':!ClientName.valid && !ClientName.pristine}" class="inputText text-width" id="ClientName" required name="ClientName" [(ngModel)] = "addclientdata.ClientName" #ClientName="ngModel"/>
                     <span class="floating-label" [ngClass]="{'red-class':!ClientName.valid && !ClientName.pristine }">Client Name</span>
                      <div [hidden]="ClientName.valid || ClientName.pristine" class="reqAlert">
@@ -364,9 +371,7 @@
             <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
-                  <div class="xSmall">
-                             <p class="layer">2</p>
-                              </div>
+                 
                   <span class="status">{{value.LeadID}}</span>
                     <div class="status1"><p class="status2">{{value.Status}}</p></div>
                       </header>
@@ -378,11 +383,15 @@
                             <div class="row footer2">
                               <div class="col-lg-4  col-md-4 col-sm-4">
                                 <p class="Assigned">Assigned by</p>
-                                    <img class="profileIcon" src="/assets/images/gk.png">
+                                <span class="card_profile">
+                                    {{value.Owner}}
+                                  </span>
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
                                   <p class="client">Client</p>
-                                    <img  class="profileIcon1" src="/assets/images/dell.png">
+                                  <span class="card_Client">
+                                      {{value.ClientName}}
+                                    </span>
                                 </div>
                                   <div class="col-lg-4  col-md-4 col-sm-4">
                                     <p class="Enggagement">Next Enggagement</p>
@@ -400,9 +409,7 @@
                 {{this.resempdata.lead.Action}}
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
-                  <div class="xSmall">
-                             <p class="layer">2</p>
-                              </div>
+                 
                   <span class="status">{{value.LeadID}}</span>
                     <div class="status1"><p class="status2">{{value.Status}}</p></div>
                       </header>
@@ -414,10 +421,14 @@
                             <div class="row footer2">
                               <div class="col-lg-4  col-md-4 col-sm-4">
                                 <p class="Assigned">Assigned by</p>
-                                    <img class="profileIcon" src="/assets/images/gk.png">
+                                <span class="card_profile">
+                                    {{value.Owner}}
+                                  </span>
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
-                                  <p class="client">Client</p>
+                                    <span class="card_Client">
+                                        {{value.ClientName}}
+                                      </span>
                                     <img  class="profileIcon1" src="/assets/images/dell.png">
                                 </div>
                                   <div class="col-lg-4  col-md-4 col-sm-4">
@@ -437,9 +448,7 @@
               
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
-                  <div class="xSmall">
-                             <p class="layer">2</p>
-                              </div>
+               
                   <span class="status">{{value.LeadID}}</span>
                     <div class="status1"><p class="status2">{{value.Status}}</p></div>
                       </header>
@@ -451,10 +460,14 @@
                             <div class="row footer2">
                               <div class="col-lg-4  col-md-4 col-sm-4">
                                 <p class="Assigned">Assigned by</p>
-                                    <img class="profileIcon" src="/assets/images/gk.png">
+                                <span class="card_profile">
+                                    {{value.Owner}}
+                                  </span>
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
-                                  <p class="client">Client</p>
+                                    <span class="card_Client">
+                                        {{value.ClientName}}
+                                      </span>
                                     <img  class="profileIcon1" src="/assets/images/dell.png">
                                 </div>
                                   <div class="col-lg-4  col-md-4 col-sm-4">
@@ -480,12 +493,14 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
+              <div *ngIf="this.viewerrormessage==true" class="alert alert-danger alert-dismissable alertdata">
+                  {{this.errormessage}}
+                   <span class="close" data-dismiss="alert">&times;</span>
+              </div> 
            <span class="status">{{this.viewleaddata.LeadID}}</span>
            <!-- <span>  <img  class="profileIcon1" src="/assets/images/dell.png"></span> -->
             <span>{{this.viewleaddata.ClientName}}
-           
             </span>
-          
            <span style="float:right">
                 <span class="invite" *ngFor="let subdata of this.subscibe|slice:0:2">{{subdata.ShortName}}</span>
                 <span class="inviteCount" *ngIf="this.subscibe.length>2">{{this.subscibe.length-2}}</span>
@@ -510,9 +525,9 @@
             <div class="col-lg-8 col-md-8 col-sm-8 content1">
                   
                     <ul class="nav nav-pills chatheader">
-                        <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#home1">Conversion</a></li>
+                        <li class="active allUser "><a class="allUser1"  data-toggle="pill" href="#home1">Conversation</a></li>
                       
-                        <li><a  class="btn btn-large subscribed" data-toggle="pill" href="#menu03">Requirement</a></li>
+                        <li><a  class="btn btn-large subscribed" data-toggle="pill" href="#menu03">Requirements</a></li>
                     </ul>
                     
                     <div class="tab-content">
@@ -727,7 +742,7 @@
                                               </div>
                                           </div>
                                           <div class="col-md-6">
-                                              <h5 class="timetext">Estimate time</h5>
+                                              <h5 class="timetext">Estimate time(in days)</h5>
                                               <div class="value2">  
                                                   <input type="text"   placeholder="input text" class="inputText1" id="Estimatetime" required name="Estimatetime" [(ngModel)] = "reqDetail.EstimateTime" #EstimateTime="ngModel"/>
                                                   
@@ -766,7 +781,7 @@
               <div class="mainText">
                       <div class="row">
                       <div class="col-md-6" >
-                        <h5 class="positiontext">position</h5>
+                        <h5 class="positiontext">Position</h5>
                           <div class="value1"> 
                               <input type="text" [ngClass]="{'red-border1-class':!Positions.valid && !Positions.pristine}" class="inputText1" placeholder="input text" id="Positions" required name="position" [(ngModel)] = "this.position" #Positions="ngModel"/>
                                  <div [hidden]="Positions.valid || Positions.pristine" class="reqAlert1">
@@ -775,7 +790,7 @@
                           </div>
                       </div>
                       <div class="col-md-6">
-                          <h5 class="timetext">Estimate time</h5>
+                          <h5 class="timetext">Estimate time(in days)</h5>
                           <div class="value2">  
                               <input type="text" [ngClass]="{'red-border1-class':!EstimateTime.valid && !EstimateTime.pristine}"  placeholder="input text" class="inputText1" id="Estimatetime" required name="Estimatetime" [(ngModel)] = "this.Estimatetime" #EstimateTime="ngModel"/>
                                <div [hidden]="EstimateTime.valid || EstimateTime.pristine" class="reqAlert1">
@@ -859,8 +874,8 @@
                             <ul class="dropdown-menu business_drop ">
                                 <li class="disabled" ><a style="cursor: default;">Business</a></li>
                                 <li class="divide"  (click)="changeBusinessdata('SOW')">SOW</li>
-                                <li class="divide"  (click)="changeBusinessdata('Staffing')">Staffing</li>
-                              <li class="divide1"  (click)="changeBusinessdata('Little Brahma')">Little Brahma</li>
+                                <li class="divide"  (click)="changeBusinessdata('STAFFING')">STAFFING</li>
+                              <li class="divide1"  (click)="changeBusinessdata('LITTLE BRAHMA')">LITTLE BRAHMA</li>
                             </ul>
                       </div>                      
                   </div>
@@ -1013,6 +1028,19 @@
        <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
+              <div *ngIf="this.contacterrormessage==true" class="alert alert-danger alert-dismissable alertdata">
+                  {{this.errormessage}}
+                   <span class="close" data-dismiss="alert">&times;</span>
+              </div> 
+              <div *ngIf="this.viewerrormessage==true" class="alert alert-danger alert-dismissable alertdata">
+                  {{this.errormessage}}
+                   <span class="close" data-dismiss="alert">&times;</span>
+              </div> 
+              <div *ngIf="this.contactsuccessmessage==false" class="alert alert-danger alert-dismissable alertdata">
+                  {{this.successmessage}}
+                   <span class="close" data-dismiss="alert">&times;</span>
+              </div> 
+                
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="addClientContactClose">&times;</button>
             <h4 class="modal-title">Add Client Contact</h4>
           </div>
@@ -1074,7 +1102,7 @@
                     <div class="row"> 
                     <div class="col-md-5">     
                       <div class="value">      
-                       <input type="text" [ngClass]="{'red-border-class':!OfficeAddress.valid && !OfficeAddress.pristine}" class="inputText text-width" id="OfficeAddress" required name="OfficeAddress" [(ngModel)] = "officeaddress.OfficeAddress" #OfficeAddress="ngModel"/>
+                       <input type="text" [ngClass]="{'red-border-class':!OfficeAddress.valid && !OfficeAddress.pristine}" class="inputText text-width" id="OfficeAddress" required name="OfficeAddress" [(ngModel)] = "officeaddress.Address" #OfficeAddress="ngModel"/>
                     <span class="floating-label" [ngClass]="{'red-class':!OfficeAddress.valid && !OfficeAddress.pristine }">Office Address</span>
                      <div [hidden]="OfficeAddress.valid || OfficeAddress.pristine" class="reqAlert">
                            Office Address is required
@@ -1135,7 +1163,7 @@
       </span>                      
             </div> -->
           <div class="modal-footer">
-            <input type="submit" class="brandblue" value="Create Client">
+            <input type="submit" class="brandblue contact-width" value="Create Client Contact">
           </div>
             </form>
             </div>
@@ -1191,12 +1219,16 @@
                           <div class="footer1">
                             <div class="row footer2">
                               <div class="col-lg-4  col-md-4 col-sm-4">
-                                <p class="Assigned">Assigned by</p>
-                                    <img class="profileIcon" src="/assets/images/gk.png">
+                                <p class="Assigned">Assigned TO</p>
+                                <span class="card_profile">
+                                    {{value.Assigned}}
+                                  </span>
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
                                   <p class="client">Client</p>
-                                    <img  class="profileIcon1" src="/assets/images/dell.png">
+                                  <span class="card_Client">
+                                      {{value.ClientName}}
+                                    </span>
                                 </div>
                                   <div class="col-lg-4  col-md-4 col-sm-4">
                                     <p class="Enggagement">Next Enggagement</p>
@@ -1215,25 +1247,27 @@
              
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
-                  <div class="xSmall">
-                             <p class="layer">2</p>
-                              </div>
+                 
                   <span class="status">{{value.LeadID}}</span>
                     <div class="status1"><p class="status2">{{value.Status}}</p></div>
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
-                         <span *ngIf="value.RequstApproved=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
+                         <span *ngIf="value.RequstVerified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
                           <div class="footer1">
                             <div class="row footer2">
                               <div class="col-lg-4  col-md-4 col-sm-4">
-                                <p class="Assigned">Assigned by</p>
-                                    <img class="profileIcon" src="/assets/images/gk.png">
+                                <p class="Assigned">Assigned To</p>
+                                <span class="card_profile">
+                                    {{value.Assigned}}
+                                  </span>
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
                                   <p class="client">Client</p>
-                                    <img  class="profileIcon1" src="/assets/images/dell.png">
+                                  <span class="card_Client">
+                                      {{value.ClientName}}
+                                    </span>
                                 </div>
                                   <div class="col-lg-4  col-md-4 col-sm-4">
                                     <p class="Enggagement">Next Enggagement</p>
@@ -1261,9 +1295,7 @@
                         </div>
                          <!--overlay ends-->
                         <header class="header1">
-                          <div class="xSmall">
-                                     <p class="layer">2</p>
-                                      </div>
+                         
                           <span class="status">{{value.LeadID}}</span>
                             <div class="status1"><p class="status2">{{value.Status}}</p></div>
                               </header>
@@ -1274,12 +1306,16 @@
                                   <div class="footer1">
                                     <div class="row footer2">
                                       <div class="col-lg-4  col-md-4 col-sm-4">
-                                        <p class="Assigned">Assigned by</p>
-                                            <img class="profileIcon" src="/assets/images/gk.png">
+                                        <p class="Assigned">Assigned To</p>
+                                        <span class="card_profile">
+                                            {{value.Assigned}}
+                                          </span>
                                       </div>
                                         <div class="col-lg-4  col-md-4 col-sm-4">
                                           <p class="client">Client</p>
-                                            <img  class="profileIcon1" src="/assets/images/dell.png">
+                                          <span class="card_Client">
+                                              {{value.ClientName}}
+                                            </span>
                                         </div>
                                           <div class="col-lg-4  col-md-4 col-sm-4">
                                             <p class="Enggagement">Next Enggagement</p>
@@ -1301,9 +1337,7 @@
              
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
-                  <div class="xSmall">
-                             <p class="layer">2</p>
-                              </div>
+                 
                   <span class="status">{{value.LeadID}}</span>
                     <div class="status1"><p class="status2">{{value.Status}}</p></div>
                       </header>
@@ -1314,12 +1348,16 @@
                           <div class="footer1">
                             <div class="row footer2">
                               <div class="col-lg-4  col-md-4 col-sm-4">
-                                <p class="Assigned">Assigned by</p>
-                                    <img class="profileIcon" src="/assets/images/gk.png">
+                                <p class="Assigned">Assigned To</p>
+                                <span class="card_profile">
+                                    {{value.Assigned}}
+                                  </span>
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
                                   <p class="client">Client</p>
-                                    <img  class="profileIcon1" src="/assets/images/dell.png">
+                                  <span class="card_Client">
+                                      {{value.ClientName}}
+                                    </span>
                                 </div>
                                   <div class="col-lg-4  col-md-4 col-sm-4">
                                     <p class="Enggagement">Next Enggagement</p>

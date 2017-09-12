@@ -54,7 +54,8 @@ export class WorkbenchComponent implements OnInit {
     searchValue:string = '';
     reqStatus='';
     conversartionResponse=[];
-
+    viewerrormessage=false;
+  
     changeStatus(val,id){
       var leadFeelchange={
           "_id":id,
@@ -62,6 +63,8 @@ export class WorkbenchComponent implements OnInit {
       }
        this._leadService.assignto(leadFeelchange).subscribe((response) => { 
                  this.viewleaddata=response.lead;
+                 if(response.status==true)
+                  {
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -85,9 +88,17 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-               
+            }
+           this.viewerrormessage=false;     
+         },
+         e=>{this.errorMessage = e;
+          console.log("e.message",e.message);
+          this.errormessage=e.message;
+          console.log("this.errormessage",this.errormessage);
+          this.viewerrormessage=true;  
          });
     }
+
     reqRevenue='JP';
     changeRevenue(val,id){
       this.reqRevenue=val;
@@ -97,9 +108,10 @@ export class WorkbenchComponent implements OnInit {
     }
      this._leadService.updateLeadTagCcRev(updateREvenueData).subscribe((response) => { 
                 //  this.updateTagResponse=response;
-                
-              this.viewleaddata=response.lead;
-                  this.reqFeel=response.lead.LeadFeel; 
+                 this.viewleaddata=response.lead;
+                 if(response.status==true)
+                  {
+                 this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
                  this.reqRevenue=response.lead.LeadRevenue;
@@ -122,9 +134,17 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-               
+            }  
+            this.viewerrormessage=false;     
+         },
+         e=>{this.errorMessage = e;
+          console.log("e.message",e.message);
+          this.errormessage=e.message;
+          console.log("this.errormessage",this.errormessage);
+          this.viewerrormessage=true;  
          });
     }
+
     reqBusinessdata='Staffing';
     changeBusinessdata(val){
       this.reqBusinessdata=val;
@@ -137,6 +157,8 @@ export class WorkbenchComponent implements OnInit {
       }
        this._leadService.assignto(leadFeelchange).subscribe((response) => { 
                  this.viewleaddata=response.lead;
+                 if(response.status==true)
+                  {
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -159,7 +181,14 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-               
+            } 
+            this.viewerrormessage=false;     
+         },
+         e=>{this.errorMessage = e;
+          console.log("e.message",e.message);
+          this.errormessage=e.message;
+          console.log("this.errormessage",this.errormessage);
+          this.viewerrormessage=true;  
          });
     }
     reqCOnversation='Conversation Type';
@@ -185,6 +214,7 @@ export class WorkbenchComponent implements OnInit {
   logout(){
            this.router.navigateByUrl('/login');
           //  localStorage.removeItem('Role');
+          localStorage.removeItem('token');
   }
   viewLead(leadId){
     console.log(leadId);
@@ -323,6 +353,8 @@ export class WorkbenchComponent implements OnInit {
      }
      this._leadService.updateLeadTagCcRev(deletedata).subscribe((response) => { 
                   this.viewleaddata=response.lead;
+                  if(response.status==true)
+                  {
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -346,7 +378,14 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-               
+            }
+            this.viewerrormessage=false;  
+         },
+         e=>{this.errorMessage = e;
+          console.log("e.message",e.message);
+          this.errormessage=e.message;
+          console.log("this.errormessage",this.errormessage);
+          this.viewerrormessage=true;  
          });
   
   }
@@ -358,6 +397,8 @@ export class WorkbenchComponent implements OnInit {
      }
      this._leadService.updateLeadTagCcRev(deletedata).subscribe((response) => { 
                    this.viewleaddata=response.lead;
+                   if(response.status==true)
+                    {
                   this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -381,7 +422,14 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-               
+            }
+            this.viewerrormessage=false;   
+         },
+         e=>{this.errorMessage = e;
+          console.log("e.message",e.message);
+          this.errormessage=e.message;
+          console.log("this.errormessage",this.errormessage);
+          this.viewerrormessage=true;  
          });
   
   }
@@ -396,6 +444,8 @@ export class WorkbenchComponent implements OnInit {
       }
      this._leadService.addTagCcRev(addTagUpadedata).subscribe((response) => { 
                  this.viewleaddata=response.lead;
+                 if(response.status==true)
+                  {
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -419,7 +469,14 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-               
+            }
+            this.viewerrormessage=false;   
+         },
+         e=>{this.errorMessage = e;
+          console.log("e.message",e.message);
+          this.errormessage=e.message;
+          console.log("this.errormessage",this.errormessage);
+          this.viewerrormessage=true;  
          });
   }
   
@@ -468,6 +525,8 @@ export class WorkbenchComponent implements OnInit {
         }
         this._leadService.userSubscibed(subscribeData).subscribe((response) => { 
                  this.viewleaddata=response.lead;
+                 if(response.status==true)
+                  {
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -492,7 +551,14 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-               
+            }
+              this.viewerrormessage=false; 
+         },
+         e=>{this.errorMessage = e;
+          console.log("e.message",e.message);
+          this.errormessage=e.message;
+          console.log("this.errormessage",this.errormessage);
+          this.viewerrormessage=true;  
          });
   }
   Assignto(name,value,id){
@@ -503,6 +569,8 @@ export class WorkbenchComponent implements OnInit {
         }
          this._leadService.assignto(assigneddata).subscribe((response) => { 
                  this.viewleaddata=response.lead;
+                 if(response.status==true)
+                  {
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -526,8 +594,15 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-               
-         });
+            }  
+            this.viewerrormessage=false     
+         },
+           e=>{this.errorMessage = e;
+          console.log("e.message",e.message);
+          this.errormessage=e.message;
+          console.log("this.errormessage",this.errormessage);
+          this.viewerrormessage=true;  
+         } );
     }
 
     getconversation(lead){
@@ -739,6 +814,12 @@ export class WorkbenchComponent implements OnInit {
   errorMessage="";
   errormessage="";
   edited=false;
+  clienterrormessage=false;
+  clientsuccesmessage=true;
+  contacterrormessage=false;
+  successmessage=false;
+  leadsuccessmessage=true;
+  contactsuccessmessage=true;
   addcontactdata={
     "FirstName":'',
     "LastName":'',
@@ -796,7 +877,7 @@ export class WorkbenchComponent implements OnInit {
         "_id": "001"
       },
       {
-        "option": "LittleBrahma",
+        "option": "Little Brahma",
         "_id": "002"
       }
     ],
@@ -806,7 +887,7 @@ export class WorkbenchComponent implements OnInit {
        "_id": "100",
      },
     {
-      "option": "FaceToFace",
+      "option": "Face to Face",
       "_id": "102"
     },
     {
@@ -860,17 +941,19 @@ export class WorkbenchComponent implements OnInit {
       this.addclientarray=response; 
       if(response.status=="success")
         {
+          this.successmessage=response.message;
+          this.clientsuccesmessage=false;
           this.getAllClients();
           document.getElementById('createClientCloseEvent').click();
           this.addclientdata={};
         }
-        this.edited=false;
+        this.clientsuccesmessage=false;
           },
           e=>{this.errorMessage = e;
             console.log("e.message",e.message);
             this.errormessage=e.message;
             console.log("this.errormessage",this.errormessage);
-            this.edited=true;  
+            this.clienterrormessage=true;  
            });
     }
 
@@ -912,16 +995,27 @@ export class WorkbenchComponent implements OnInit {
       }   
       this._clientservice.addContact(addcontact).subscribe((response) => { 
         this.addcontactarray=response;  
-        this.getAllClientContact();  
+        if(response.status=="success")
+          {
+            this.successmessage=response.message;
+            this.contactsuccessmessage=false;
+            this.getAllClientContact();  
         document.getElementById('addClientContactClose').click();
+          }
+           },
+           e=>{this.errorMessage = e;
+            console.log("e.message",e.message);
+            this.errormessage=e.message;
+            console.log("this.errormessage",this.errormessage);
+            this.contacterrormessage=true;  
            }); 
     }
     
     addLeads()
     {
-        // console.log(this.leadtags);
+      if(this.ownervalue!=null){
         this.temparray.push(this.ownervalue);
-        console.log("test");
+        }
     let leadconversation:any={
         "ConversationType":this.conversationtype,
         "content":this.conversation,
@@ -961,11 +1055,12 @@ export class WorkbenchComponent implements OnInit {
       //  console.log(addlead);
        this.formData.append("file1",JSON.stringify(addlead));
         //  JSON.stringify(addlead);
-        this._clientservice.addLead(this.formData).subscribe((response) => { 
+          this._clientservice.addLead(this.formData).subscribe((response) => { 
           this.createleadarray=response; 
-          this.getlead() 
+          this.successmessage = response.message;
+          this.leadsuccessmessage=false;
+          this.getlead();
           document.getElementById('addLeadClose').click();
-          this.edited=false;
         },
         e=>{this.errorMessage = e;
           this.errormessage=e.message;
@@ -1101,7 +1196,7 @@ console.log(value1);
   }
 
   managersearch(serachData2,value2){
-    this.managerlist=serachData2;
+   
     let managerlist:any =
     {
       "Userid":value2.Userid,
@@ -1111,13 +1206,18 @@ console.log(value1);
       "Role":value2.Role,
       "Action" :"Owner"
     }
-    this.ownervalue=managerlist;
-   console.log("ownervalue",this.ownervalue);
+    var index1 = this.temparray.findIndex(x => x.Userid === managerlist.Userid);
+    if(index1>-1){
+        
+   }
+   else{
+       this.ownervalue=managerlist;
+      this.managerlist=serachData2;
+   }
   }
 
   salessearch(serachData3,value3){
-    console.log(value3);
-    this.saleslist=serachData3;
+   
     let saleslist:any =
     {
       "Userid":value3.Userid,
@@ -1127,7 +1227,14 @@ console.log(value1);
       "Role":value3.Role,
       "Action" :"Assigned"
     }
-    this.ownervalue=saleslist;
+    var index1 = this.temparray.findIndex(x => x.Userid === saleslist.Userid);
+    if(index1>-1){
+         
+    }
+    else{
+        this.ownervalue=saleslist;
+       this.saleslist=serachData3;
+    }
   }
 
   addTag(tagvalue)
@@ -1205,7 +1312,17 @@ console.log(value1);
     }
  }
 
+ dat(){
+  if(localStorage.getItem('token')==undefined){
+        this.router.navigateByUrl('/login');
+  }
+  else{
+       this.router.navigateByUrl('/workbench');
+  }
+}
+
   ngOnInit() {
+    this.dat();
     this.getlead();
     this.getSalesrep()
     this.shornameinlead=localStorage.getItem('shortname');

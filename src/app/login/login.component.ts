@@ -74,6 +74,7 @@ export class LogInComponent implements OnInit {
 
   constructor(private router:Router,private _appservice:AppService) { }
   ngOnInit() {
+  localStorage.removeItem('token');  
   var thehours = new Date().getHours();
 	var themessage;
 	var morning = ('Good morning');
