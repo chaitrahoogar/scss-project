@@ -233,7 +233,7 @@
           <div class="col-md-3">
               <div class="dropsown-margin">
                 <span class="dropdown">
-                  <button class="btn btn-default addclientbutton dropdown-toggle" type="button" data-toggle="dropdown">{{this.getContactList}}
+                  <button [disabled]="nextLibAvailable" class="btn btn-default addclientbutton dropdown-toggle" type="button" data-toggle="dropdown">{{this.getContactList}}
                   </button>
                    <ul class="dropdown-menu scrollable-menu InviteWidth">
                     <li> <groome-search  (searchChange)="clientContactSearch($event)"></groome-search> </li>
@@ -297,6 +297,7 @@
           <div class="modal-body">
             <p class="client-margin">Client Details</p>
             <div class="container-fluid">
+
             <form  (ngSubmit)="createClient(addclientdata)" id="addContactRefresh">  
             <div class="row"> 
                <div class="col-md-5">
@@ -377,8 +378,8 @@
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
-                         <span> <img class="signuser" src="/assets/images/images.png"></span>
-                        </div>
+                         <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
+                        </div> 
                           <div class="footer1">
                             <div class="row footer2">
                               <div class="col-lg-4  col-md-4 col-sm-4">
@@ -415,7 +416,7 @@
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
-                         <span> <img class="signuser" src="/assets/images/images.png"></span>
+                         <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
                           <div class="footer1">
                             <div class="row footer2">
@@ -454,7 +455,7 @@
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
-                         <span> <img class="signuser" src="/assets/images/images.png"></span>
+                         <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
                           <div class="footer1">
                             <div class="row footer2">
@@ -483,8 +484,6 @@
             </div>
           </div>
   
-          
-  
   </div>
   
   <!--pop up strats-->
@@ -495,7 +494,11 @@
           <div class="modal-header">
               <div *ngIf="this.viewerrormessage==true" class="alert alert-danger alert-dismissable alertdata">
                   {{this.errormessage}}
+<<<<<<< HEAD
+                   <!-- <span class="close" data-dismiss="alert">&times;</span> -->
+=======
                    <span class="close" data-dismiss="alert">&times;</span>
+>>>>>>> 3fed2aee75798515199bb8268907e8cf30ee59d0
               </div> 
            <span class="status">{{this.viewleaddata.LeadID}}</span>
            <!-- <span>  <img  class="profileIcon1" src="/assets/images/dell.png"></span> -->
@@ -641,7 +644,7 @@
                                 <span class="glyphicon glyphicon-send send"></span> 
                             </div>
                               <div class="send_message">
-                                  <textarea id="btn-input" type="text" class="sendText" placeholder="Write a message..."></textarea>
+                                  <textarea id="btn-input" type="text" class="sendText" placeholder="Write a message..." [(ngModel)]="SendMessage"></textarea>
                           </div>
                           <div class="calender">
                             <span class="glyphicon glyphicon-paperclip" style="margin-right:10px" [popover]="attachFile1"></span>
@@ -831,7 +834,7 @@
              <div class="col-lg-4 col-md-4 col-sm-4 content2"> 
                 <div class="project-content">
                     <span class="productDesign">{{this.viewleaddata.Title}}</span>
-                   <span> <img class="signuserpopup" src="/assets/images/images.png"></span>
+                   <span *ngIf="this.viewleaddata.Verified=='Y'"> <img class="signuserpopup" src="/assets/images/images.png"></span>
                   </div> 
              <!-- sales Repo -->
              <div *ngIf="this.role=='Sales_Rep'">
@@ -896,20 +899,20 @@
                       <div class="col-lg-12 col-md-12 col-sm-12 side1">
                             <div class="btn-pref btn-group btn-group-justified btn-group-lg activity" role="group" >
                          
-                          <span class="btn-group " role="group" style="padding:10px">
-                            <div class="feel">Feel</div>
-                            <div class="dropdown">
-                                <div  data-toggle="dropdown" style="cursor:pointer" [ngClass]="{'hot': reqFeel=='Hot', 'warm': reqFeel=='Warm', 'cold': reqFeel=='Cold'}">{{reqFeel}}
-                                  
-                                </div>
-                                    <ul class="dropdown-menu business_drop ">
-                                        <li class="disabled" ><a style="cursor: default;">Status</a></li>
-                                        <li class="divide "(click)="changeFeel('Hot',this.viewleaddata._id)"> <div class="hot"><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Hot</span></div> </li>
-                                        <li class="divide " (click)="changeFeel('Warm',this.viewleaddata._id)"><div class="warm"><span class="glyphicon glyphicon-adjust feelicon "></span><span class="feeltext" >Warm</span></div></li>       
-                                      <li class="divide1 "(click)="changeFeel('Cold',this.viewleaddata._id)"><div class="cold" ><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Cold</span></div></li>
-                                    </ul>
-                              </div> 
-                          </span>
+                              <span class="btn-group " role="group" style="padding:10px">
+                                <div class="feel">Feel</div>
+                                <div class="dropdown">
+                                    <div  data-toggle="dropdown" style="cursor:pointer" [ngClass]="{'hot': reqFeel=='Hot', 'warm': reqFeel=='Warm', 'cold': reqFeel=='Cold'}">{{reqFeel}}
+                                      
+                                    </div>
+                                        <ul class="dropdown-menu business_drop ">
+                                            <li class="disabled" ><a style="cursor: default;">Status</a></li>
+                                            <li class="divide "(click)="changeFeel('Hot',this.viewleaddata._id)"> <div class="hot"><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Hot</span></div> </li>
+                                            <li class="divide " (click)="changeFeel('Warm',this.viewleaddata._id)"><div class="warm"><span class="glyphicon glyphicon-adjust feelicon "></span><span class="feeltext" >Warm</span></div></li>      
+                                          <li class="divide1 "(click)="changeFeel('Cold',this.viewleaddata._id)"><div class="cold" ><span class="glyphicon glyphicon-adjust feelicon"></span><span class="feeltext" >Cold</span></div></li>
+                                        </ul>
+                                  </div>
+                              </span>
                           <span class="btn-group activity" role="group">
                               <div class="feel">Status</div>
                         
@@ -1214,7 +1217,7 @@
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
-                         <span *ngIf="value.RequstApproved=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
+                         <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
                           <div class="footer1">
                             <div class="row footer2">
@@ -1253,7 +1256,7 @@
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
-                         <span *ngIf="value.RequstVerified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
+                         <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
                           <div class="footer1">
                             <div class="row footer2">
@@ -1301,7 +1304,7 @@
                               </header>
                                 <div class="project-content">
                                   <p class="content"> {{value.Title}}</p>
-                                 <span *ngIf="value.RequstApproved=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
+                                 <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                                 </div>
                                   <div class="footer1">
                                     <div class="row footer2">
@@ -1343,7 +1346,7 @@
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
-                         <span> <img class="signuser" src="/assets/images/images.png"></span>
+                         <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
                           <div class="footer1">
                             <div class="row footer2">

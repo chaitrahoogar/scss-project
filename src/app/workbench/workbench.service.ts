@@ -11,10 +11,10 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
  export class leadService implements OnInit{
-     private _url1:string='http://139.59.43.188:8082/';
-       private _url:string='http://139.59.43.188:8082/';
-        private _url2:string='http://139.59.43.188:8081/';
-        private _url3:string='http://139.59.43.188:8083/';
+     private _url1:string='http://172.16.0.4:8082/';
+       private _url:string='http://172.16.0.4:8082/';
+        private _url2:string='http://172.16.0.4:8081/';
+        private _url3:string='http://172.16.0.4:8083/';
      token="";
      constructor(private _http:Http){
 

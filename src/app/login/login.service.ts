@@ -11,7 +11,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
  export class AppService{
-     private _url:string='http://139.59.43.188:8081/';
+     private _url:string='http://172.16.0.4:8081/';
      constructor(private _http:Http){
      }
        serviceMethod(login){
@@ -20,9 +20,7 @@ import 'rxjs/add/operator/toPromise';
         "Content-Type": "application/json"
         });
            return this._http.post(this._url+'users/Login', JSON.stringify(login),{ headers: contentHeader }).map((response:Response) =>response.json()).catch(handleError);
-       }
-       
-       
+       }     
  }
 
  function handleError(error:any){

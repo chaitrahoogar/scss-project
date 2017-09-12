@@ -61,11 +61,9 @@ export class WorkbenchComponent implements OnInit {
           "_id":id,
           "LeadCurrentStatus":val
       }
-       this._leadService.assignto(leadFeelchange).subscribe((response) => { 
+       this._leadService.assignto(leadFeelchange).subscribe((response) => {
                  this.viewleaddata=response.lead;
-                 if(response.status==true)
-                  {
-                 this.reqFeel=response.lead.LeadFeel; 
+                 this.reqFeel=response.lead.LeadFeel;
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
                  this.reqRevenue=response.lead.LeadRevenue;
@@ -88,14 +86,7 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-            }
-           this.viewerrormessage=false;     
-         },
-         e=>{this.errorMessage = e;
-          console.log("e.message",e.message);
-          this.errormessage=e.message;
-          console.log("this.errormessage",this.errormessage);
-          this.viewerrormessage=true;  
+              
          });
     }
 
@@ -109,8 +100,6 @@ export class WorkbenchComponent implements OnInit {
      this._leadService.updateLeadTagCcRev(updateREvenueData).subscribe((response) => { 
                 //  this.updateTagResponse=response;
                  this.viewleaddata=response.lead;
-                 if(response.status==true)
-                  {
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -133,15 +122,7 @@ export class WorkbenchComponent implements OnInit {
                      else if(this.userinfo[i].Action=="Owner"){
                            this.owner.push(this.userinfo[i])
                      }
-             }
-            }  
-            this.viewerrormessage=false;     
-         },
-         e=>{this.errorMessage = e;
-          console.log("e.message",e.message);
-          this.errormessage=e.message;
-          console.log("this.errormessage",this.errormessage);
-          this.viewerrormessage=true;  
+             }  
          });
     }
 
@@ -151,46 +132,37 @@ export class WorkbenchComponent implements OnInit {
     }
     reqFeel='';
     changeFeel(val,id){
-       var leadFeelchange={
-          "_id":id,
-          "LeadFeel":val
-      }
-       this._leadService.assignto(leadFeelchange).subscribe((response) => { 
-                 this.viewleaddata=response.lead;
-                 if(response.status==true)
-                  {
-                 this.reqFeel=response.lead.LeadFeel; 
-                 this.reqStatus=response.lead.LeadCurrentStatus;
-                 this.reqBusinessdata=response.lead.EngagementType;
-                 this.reqRevenue=response.lead.LeadRevenue
-                 this.userinfo=response.lead.UsersInfo;
-                 this.reqDetail=response.lead.ReqDetails;
-                 this.clientid=response.lead.ClientID;
-             this.subscibe=[];
-             this.Assigned=[];
-             this.owner=[];
-             for(var i=0;i< this.userinfo.length;i++){
-                     if(this.userinfo[i].Action=="Subscribed"){
-                         this.subscibe.push(this.userinfo[i]);
-                     }
-                     else if(this.userinfo[i].Action=="Assigned"){
-                            this.Assigned.push(this.userinfo[i]);
-                            this.AssignedShortName=this.userinfo[i].ShortName;
-                     }
-                     else if(this.userinfo[i].Action=="Owner"){
-                           this.owner.push(this.userinfo[i])
-                     }
-             }
-            } 
-            this.viewerrormessage=false;     
-         },
-         e=>{this.errorMessage = e;
-          console.log("e.message",e.message);
-          this.errormessage=e.message;
-          console.log("this.errormessage",this.errormessage);
-          this.viewerrormessage=true;  
-         });
-    }
+      var leadFeelchange={
+         "_id":id,
+         "LeadFeel":val
+     }
+      this._leadService.assignto(leadFeelchange).subscribe((response) => {
+                this.viewleaddata=response.lead;
+                this.reqFeel=response.lead.LeadFeel;
+                this.reqStatus=response.lead.LeadCurrentStatus;
+                this.reqBusinessdata=response.lead.EngagementType;
+                this.reqRevenue=response.lead.LeadRevenue
+                this.userinfo=response.lead.UsersInfo;
+                this.reqDetail=response.lead.ReqDetails;
+                this.clientid=response.lead.ClientID;
+            this.subscibe=[];
+            this.Assigned=[];
+            this.owner=[];
+            for(var i=0;i< this.userinfo.length;i++){
+                    if(this.userinfo[i].Action=="Subscribed"){
+                        this.subscibe.push(this.userinfo[i]);
+                    }
+                    else if(this.userinfo[i].Action=="Assigned"){
+                           this.Assigned.push(this.userinfo[i]);
+                           this.AssignedShortName=this.userinfo[i].ShortName;
+                    }
+                    else if(this.userinfo[i].Action=="Owner"){
+                          this.owner.push(this.userinfo[i])
+                    }
+            }
+             
+        });
+   }
     reqCOnversation='Conversation Type';
     changeConversation(val){
       this.reqCOnversation=val;
@@ -353,8 +325,6 @@ export class WorkbenchComponent implements OnInit {
      }
      this._leadService.updateLeadTagCcRev(deletedata).subscribe((response) => { 
                   this.viewleaddata=response.lead;
-                  if(response.status==true)
-                  {
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -378,14 +348,6 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-            }
-            this.viewerrormessage=false;  
-         },
-         e=>{this.errorMessage = e;
-          console.log("e.message",e.message);
-          this.errormessage=e.message;
-          console.log("this.errormessage",this.errormessage);
-          this.viewerrormessage=true;  
          });
   
   }
@@ -397,8 +359,6 @@ export class WorkbenchComponent implements OnInit {
      }
      this._leadService.updateLeadTagCcRev(deletedata).subscribe((response) => { 
                    this.viewleaddata=response.lead;
-                   if(response.status==true)
-                    {
                   this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -422,14 +382,7 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-            }
-            this.viewerrormessage=false;   
-         },
-         e=>{this.errorMessage = e;
-          console.log("e.message",e.message);
-          this.errormessage=e.message;
-          console.log("this.errormessage",this.errormessage);
-          this.viewerrormessage=true;  
+            
          });
   
   }
@@ -444,8 +397,6 @@ export class WorkbenchComponent implements OnInit {
       }
      this._leadService.addTagCcRev(addTagUpadedata).subscribe((response) => { 
                  this.viewleaddata=response.lead;
-                 if(response.status==true)
-                  {
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -469,14 +420,6 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-            }
-            this.viewerrormessage=false;   
-         },
-         e=>{this.errorMessage = e;
-          console.log("e.message",e.message);
-          this.errormessage=e.message;
-          console.log("this.errormessage",this.errormessage);
-          this.viewerrormessage=true;  
          });
   }
   
@@ -525,8 +468,6 @@ export class WorkbenchComponent implements OnInit {
         }
         this._leadService.userSubscibed(subscribeData).subscribe((response) => { 
                  this.viewleaddata=response.lead;
-                 if(response.status==true)
-                  {
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -551,14 +492,7 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-            }
-              this.viewerrormessage=false; 
-         },
-         e=>{this.errorMessage = e;
-          console.log("e.message",e.message);
-          this.errormessage=e.message;
-          console.log("this.errormessage",this.errormessage);
-          this.viewerrormessage=true;  
+            
          });
   }
   Assignto(name,value,id){
@@ -569,8 +503,6 @@ export class WorkbenchComponent implements OnInit {
         }
          this._leadService.assignto(assigneddata).subscribe((response) => { 
                  this.viewleaddata=response.lead;
-                 if(response.status==true)
-                  {
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
@@ -594,14 +526,7 @@ export class WorkbenchComponent implements OnInit {
                            this.owner.push(this.userinfo[i])
                      }
              }
-            }  
-            this.viewerrormessage=false     
-         },
-           e=>{this.errorMessage = e;
-          console.log("e.message",e.message);
-          this.errormessage=e.message;
-          console.log("this.errormessage",this.errormessage);
-          this.viewerrormessage=true;  
+   
          } );
     }
 
@@ -820,6 +745,7 @@ export class WorkbenchComponent implements OnInit {
   successmessage=false;
   leadsuccessmessage=true;
   contactsuccessmessage=true;
+  nextLibAvailable=true;
   addcontactdata={
     "FirstName":'',
     "LastName":'',
@@ -1142,7 +1068,7 @@ salesrepsearch(searchValue3)
 
   putValue(serachData,value){
     this.tagcontactarray=[];
-    this.getContactList="List"
+    this.nextLibAvailable=false;
     this.ClientIdValue=value.ClientID;
     this.ClientNameValue=value.ClientName;
     this.getClientList=serachData;
@@ -1151,8 +1077,7 @@ salesrepsearch(searchValue3)
 
   contactsearch(serachData,value){
 
-    console.log(value);
-    this.getContactList=serachData;
+   
     this.tagcontactarray.push(value);
     let contactdetailslist:any={
        "ContactId":value._id,
