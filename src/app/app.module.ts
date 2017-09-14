@@ -21,7 +21,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PopoverModule } from 'ng2-popover';
 import {SearchPeopleComponent} from './component-repository/searchPeople/search-people.component';
 import {SearchComponent} from './component-repository/search/search.component';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import { ToastrModule } from 'toastr-ng2';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -49,7 +50,8 @@ import {ToastModule} from 'ng2-toastr/ng2-toastr';
     DatepickerModule,
     BrowserAnimationsModule,
     PopoverModule,
-    ToastModule.forRoot()
+    CommonModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

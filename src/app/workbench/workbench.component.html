@@ -4,7 +4,7 @@
       <p class="navbar-brand groome" >Groome</p>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <div class="input-group navbar-form navbar-left searchbox">
-            <span class="text-input-wrapper"> <input class="search" placeholder="Search your lead here"  name="searchValue" [(ngModel)]="searchValue" required><span class="Clear" (click)="clearSearch()" title="Clear"><img src="/assets/images/error.svg"></span></span>
+            <span class="text-input-wrapper"> <input [disabled]="true" class="search" placeholder="Search your lead here"  name="searchValue" [(ngModel)]="searchValue" required><span class="Clear" (click)="clearSearch()" title="Clear"><img src="/assets/images/error.svg"></span></span>
           </div>
           <ul class="nav navbar-nav header_content">
           <li class="work">
@@ -59,16 +59,8 @@
     <div class="popup-dialog">
      <!-- Modal content-->
       <div class="modal-content">
-      <form (ngSubmit)="addLeads(addlead)">  
-        <div class="modal-header">
-            <div *ngIf="this.edited==true" class="alert alert-danger alert-dismissable alertdata">
-                {{this.errormessage}}
-                 <span class="close" data-dismiss="alert">&times;</span>
-            </div> 
-            <div *ngIf="this.leadsuccessmessage==false" class="alert alert-success alert-dismissable alertdata">
-                {{this.successmessage}}
-                 <span class="close" data-dismiss="alert">&times;</span>
-            </div>  
+      <form (ngSubmit)="addLeads(leadkey)" #leadkey="ngForm">  
+        <div class="modal-header"> 
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="addLeadClose">&times;</button>
           <div class="">
           
@@ -106,7 +98,7 @@
         </div>
         <div class="modal-body">
     <div>
-          <input type="text" placeholder="Add title here" class="Add-title-here input" name="title" [(ngModel)]="title" autocomplete="off">
+          <input type="text" placeholder="Add title here" class="Add-title-here input" name="titlename" [(ngModel)]="titlename" [maxlength]="10" autocomplete="off">
     </div>
           <div>
                   <textarea class="textArea" placeholder="Add your conversation here" name="conversation" [(ngModel)]="conversation"></textarea>
@@ -246,7 +238,7 @@
                   </div>
                   </div>
                   <div class="col-md-6">
-                  <button class="tag" type="button" *ngFor="let contactarray of this.tagcontactarray">{{contactarray.FirstName}}
+                  <button class="tag delete-margin" type="button" *ngFor="let contactarray of this.tagcontactarray">{{contactarray.FirstName}}
                   <img class="fatime" src="/assets/images/delete.svg" (click)="deleteContact(contactarray.FirstName)">  
                  </button>  
                   </div>    
@@ -257,11 +249,11 @@
      <div class="row">  
     <div class="col-md-3">
      <form (ngSubmit)="addTag(tagtitle)" autocomplete="off">
-    <input type="text" placeholder="Add Tag" class="tag-title input" name="tagtitle" [(ngModel)]="tagtitle"></form>
+    <input type="text" placeholder="Add Tag" class="tag-title input" name="tagtitle" [(ngModel)]="tagtitle" [maxlength]="25"></form>
     </div> 
     <div class="col-md-8"> 
-    <button class="Add-Tag tagicon" type="button" *ngFor="let tag of this.tagarray">{{tag.TagName}}
-    <img class="fatime" src="/assets/images/delete.svg" (click)="deleteaddedtag(tag.TagName)">  
+    <button class="Add-Tag tagicon tags-margin" type="button" *ngFor="let tag of this.tagarray">{{tag.TagName}}
+    <img class="fatime tags-margin" src="/assets/images/delete.svg" (click)="deleteaddedtag(tag.TagName)">  
     </button> 
    </div>   
     </div>                                
@@ -283,14 +275,6 @@
        <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
-              <div *ngIf="this.clienterrormessage==true" class="alert alert-danger alert-dismissable alertdata">
-                  {{this.errormessage}}
-                   <span class="close" data-dismiss="alert">&times;</span>
-              </div>
-              <div *ngIf="this.clientsuccesmessage==false" class="alert alert-success alert-dismissable alertdata">
-                  {{this.successmessage}}
-                   <span class="close" data-dismiss="alert">&times;</span>
-              </div>   
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="createClientCloseEvent">&times;</button>
             <h4 class="modal-title">Add Client</h4>
           </div>
@@ -298,7 +282,7 @@
             <p class="client-margin">Client Details</p>
             <div class="container-fluid">
 
-            <form  (ngSubmit)="createClient(addclientdata)" id="addContactRefresh">  
+            <form  (ngSubmit)="createClient(formkey)" id="addContactRefresh" #formkey="ngForm">  
             <div class="row"> 
                <div class="col-md-5">
                  <div class="value form-group"> 
@@ -361,7 +345,7 @@
             <div class="tab-content"> 
               <div id="menu1" class="tab-pane fade in active">
   
-         <div class="col-lg-3 col-md-3 col-sm-3" >
+         <div class="col-lg-3 col-md-4 col-sm-6" >
           <div class="project1 project-default" type="button">
             <div>
             <img class="addlead" src="/assets/images/addlead.png"/></div>
@@ -373,70 +357,73 @@
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
                  
-                  <span class="status">{{value.LeadID}}</span>
+                  <span class="status">{{value.LeadCode}}</span>
                     <div class="status1"><p class="status2">{{value.Status}}</p></div>
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
                          <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div> 
+                        <div class="feelColor" [ngClass]="{'feelHot':value.LeadFeel=='Hot','feelwarm':value.LeadFeel=='Warm','feelcold':value.LeadFeel=='Cold'}"></div>
                           <div class="footer1">
-                            <div class="row footer2">
+                           
                               <div class="col-lg-4  col-md-4 col-sm-4">
                                 <p class="Assigned">Assigned by</p>
-                                <span class="card_profile">
+                                <div class="card_profile">
                                     {{value.Owner}}
-                                  </span>
+                                </div>
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
                                   <p class="client">Client</p>
-                                  <span class="card_Client">
+                                  <div class="card_Client">
                                       {{value.ClientName}}
-                                    </span>
+                                  </div>
                                 </div>
                                   <div class="col-lg-4  col-md-4 col-sm-4">
                                     <p class="Enggagement">Next Enggagement</p>
-                                    <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                                    <div class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</div>
                                   </div>
-                            </div>
+                           
                           </div>
               </div>
             </div> 
               </div>
               <div id="menu2" class="tab-pane fade">
                   <div *ngFor='let value of this.resempdata.lead; trackBy: index;'>
-          <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngIf="value.Action=='Assigned'"  (click)="viewLead(value.LeadID)">
+          <div class="col-lg-3 col-md-4 col-sm-6" type="button" *ngIf="value.Action=='Assigned'"  (click)="viewLead(value.LeadID)">
              
                 {{this.resempdata.lead.Action}}
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
                  
-                  <span class="status">{{value.LeadID}}</span>
+                  <span class="status">{{value.LeadCode}}</span>
                     <div class="status1"><p class="status2">{{value.Status}}</p></div>
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
                          <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
+                        <div class="feelColor" [ngClass]="{'feelHot':value.LeadFeel=='Hot','feelwarm':value.LeadFeel=='Warm','feelcold':value.LeadFeel=='Cold'}"></div>
                           <div class="footer1">
-                            <div class="row footer2">
+                
                               <div class="col-lg-4  col-md-4 col-sm-4">
                                 <p class="Assigned">Assigned by</p>
-                                <span class="card_profile">
+                                <div class="card_profile">
                                     {{value.Owner}}
-                                  </span>
+                                </div>
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
-                                    <span class="card_Client">
+                                  <p class="client">Client</p>
+                                    <div class="card_Client">
                                         {{value.ClientName}}
-                                      </span>
-                                    <img  class="profileIcon1" src="/assets/images/dell.png">
+                                    </div>
+                                   
                                 </div>
                                   <div class="col-lg-4  col-md-4 col-sm-4">
                                     <p class="Enggagement">Next Enggagement</p>
-                                    <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                                    <div class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</div>
                                   </div>
-                            </div>
+                            
                           </div>
               </div>
              </div>
@@ -445,37 +432,39 @@
               </div>
               <div id="menu3" class="tab-pane fade">
                   <div *ngFor='let value of this.resempdata.lead; trackBy: index;'>
-      <div class="col-lg-3 col-md-3 col-sm-3" type="button" (click)="viewLead(value.LeadID)" *ngIf="value.Action=='Subscribed'">
+      <div class="col-lg-3 col-md-4 col-sm-6" type="button" (click)="viewLead(value.LeadID)" *ngIf="value.Action=='Subscribed'">
               
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
                
-                  <span class="status">{{value.LeadID}}</span>
+                  <span class="status">{{value.LeadCode}}</span>
                     <div class="status1"><p class="status2">{{value.Status}}</p></div>
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
                          <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
+                        <div class="feelColor" [ngClass]="{'feelHot':value.LeadFeel=='Hot','feelwarm':value.LeadFeel=='Warm','feelcold':value.LeadFeel=='Cold'}"></div>
                           <div class="footer1">
-                            <div class="row footer2">
+                          
                               <div class="col-lg-4  col-md-4 col-sm-4">
                                 <p class="Assigned">Assigned by</p>
-                                <span class="card_profile">
+                                <div class="card_profile">
                                     {{value.Owner}}
-                                  </span>
+                                </div>
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
-                                    <span class="card_Client">
+                                    <p class="client">Client</p>
+                                    <div class="card_Client">
                                         {{value.ClientName}}
-                                      </span>
-                                    <img  class="profileIcon1" src="/assets/images/dell.png">
+                                    </div>
+                                  
                                 </div>
                                   <div class="col-lg-4  col-md-4 col-sm-4">
                                     <p class="Enggagement">Next Enggagement</p>
-                                    <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                                    <div class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</div>
                                   </div>
-                            </div>
+                            
                           </div>
               </div>
               </div>
@@ -494,15 +483,11 @@
           <div class="modal-header">
               <div *ngIf="this.viewerrormessage==true" class="alert alert-danger alert-dismissable alertdata">
                   {{this.errormessage}}
-<<<<<<< HEAD
                    <!-- <span class="close" data-dismiss="alert">&times;</span> -->
-=======
-                   <span class="close" data-dismiss="alert">&times;</span>
->>>>>>> 3fed2aee75798515199bb8268907e8cf30ee59d0
               </div> 
-           <span class="status">{{this.viewleaddata.LeadID}}</span>
+           <span class="status">{{this.viewleaddata.LeadCode}}</span>
            <!-- <span>  <img  class="profileIcon1" src="/assets/images/dell.png"></span> -->
-            <span>{{this.viewleaddata.ClientName}}
+            <span class="Client_name">{{this.viewleaddata.ClientName}}
             </span>
            <span style="float:right">
                 <span class="invite" *ngFor="let subdata of this.subscibe|slice:0:2">{{subdata.ShortName}}</span>
@@ -535,11 +520,11 @@
                     
                     <div class="tab-content">
                       <div id="home1" class="tab-pane fade in active">
-                          <ul class="chat">
+                          <ul class="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
                               <li class="left clearfix" *ngFor="let dataconvo of this.conversartionResponse">
                                   <div *ngIf="dataconvo.content !== undefined">
                                   <span class="chat-img pull-left">
-                                    <span class="invite1">SG</span>
+                                    <span class="invite1">{{dataconvo.shortname}}</span>
                                   </span>
                                     <div class="chat-body">
                                         <div class="header">
@@ -550,26 +535,26 @@
                                         </p>
                                     </div>
                                     </div>
-                                    <div *ngIf="dataconvo.Status !== undefined">
+                                    <div *ngIf="dataconvo.Status !== undefined" class="statusBackGround">
                                   <span class="chat-img pull-left">
-                                    <span class="invite1">SG</span>
+                                    <!-- <span class="invite1">SG</span> -->
                                   </span>
                                     <div class="chat-body">
                                         <div class="header">
                                             
                                         </div>
                                         <p>
-                                            {{dataconvo.Status}}
+                                          Updated status to {{dataconvo.Status}}
                                         </p>
                                     </div>
                                     </div>
                                     <!--file attach-->
                                     <div *ngIf="dataconvo.filename !== undefined">
-                                       <span class="chat-img pull-left">
-                                          <span class="invite1">SG</span>
-                                        </span>
+                                        <span class="chat-img pull-left">
+                                            <span class="invite1">{{dataconvo.shortname}}</span>
+                                          </span>
                                         <div class="chat-body">
-                                        <a (click)="FileDownload(this.viewleaddata._id,dataconvo)">{{dataconvo.filename}}</a>
+                                        <a (click)="FileDownload($event,this.viewleaddata._id,dataconvo)" class="cursor">{{dataconvo.filename}}</a>
                                         </div>  
                                     </div>
   
@@ -578,7 +563,7 @@
   
                                    <span class="chat-img pull-right">
                                     
-                                    <span class="invite2">SH</span> 
+                                    <!-- <span class="invite2">SH</span>  -->
                                 </span>
                                     <div class="meetingShedule">
                                     
@@ -640,11 +625,15 @@
                                     
                                   </ul>
                             </div> 
-                            <div class="sendicon" (click)="sendData(SendMessage,this.viewleaddata._id)">
+                            <div class="sendicon" (click)="sendData(SendMessage,this.viewleaddata._id,reqCOnversation)">
                                 <span class="glyphicon glyphicon-send send"></span> 
                             </div>
-                              <div class="send_message">
-                                  <textarea id="btn-input" type="text" class="sendText" placeholder="Write a message..." [(ngModel)]="SendMessage"></textarea>
+                            <div class="send_message">
+                              <!--<form (ngSubmit)="sendData(SendMessage,this.viewleaddata._id)">
+                                  <textarea id="btn-input" type="text" class="sendText" placeholder="Write a message..." name="SendMessage" [(ngModel)]="SendMessage"></textarea>
+                          </form>-->
+                           <form (ngSubmit)="sendData(SendMessage,this.viewleaddata._id,reqCOnversation)" autocomplete="off">
+                           <input id="btn-input" type="text" class="sendText" name="SendMessage" placeholder="Write a message..." [(ngModel)]="SendMessage"></form>
                           </div>
                           <div class="calender">
                             <span class="glyphicon glyphicon-paperclip" style="margin-right:10px" [popover]="attachFile1"></span>
@@ -657,8 +646,8 @@
                   <div class="marginBottm">               
                       <input type=text placeholder="location" class="locationinput" [(ngModel)] = "ScheduleLocation">  
                       <select class="selectTime" [(ngModel)] = "ScheduleTime">
-                          <option>12:00 AM</option>
-                          <option>12:30 AM</option>
+                          <option class="scrollable-menu" *ngFor="let timedata of this.selectTime.selectTimeData">{{timedata.time}}</option>
+                          <!-- <option>12:30 AM</option>
                           <option>1:00 AM</option>
                           <option>1:30 AM</option>
                           <option>2:00 AM</option>
@@ -672,7 +661,7 @@
                           <!--<option>2</option>
                           <option>2</option>
                           <option>2</option>
-                          <option>2</option>-->
+                          <option>2</option>--> -->
                     </select>
                   </div>           
                       <material-datepicker [(date)]="yourModelDate"></material-datepicker>
@@ -709,7 +698,7 @@
 
 <!--Upload button-->
 <div>
-<input type="button" class="brandblue fileUpload" value="Button Brand" (click)="upload(this.viewleaddata._id)">
+<input type="button" class="brandblue fileUpload" value="Upload File" (click)="upload(this.viewleaddata._id)">
       </div>
 
   </popover-content>
@@ -725,8 +714,8 @@
                                       <!-- <span class="devops">{{reqDetail.Title}}</span>
                                       <span class="requirementid">{{reqDetail.ReqCode}}</span> -->
                                       <div class="">
-                                        <div class="col-lg-4 devops">{{reqDetail.Title}}</div>
-                                        <div class="col-lg-6 requirementid">{{reqDetail.ReqCode}}</div>
+                                        <div class="col-lg-7 devops">{{reqDetail.Title}}</div>
+                                        <div class="col-lg-4 requirementid"><p style="float:right">{{reqDetail.ReqCode}}</p></div>
                                       </div>
                                   </a>    
                     
@@ -734,20 +723,19 @@
                             </div>
                             <div id="data-{{i}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne" aria-expanded="false">
                               <div class="panel-body">
-                                  <input type="text" class="tittle" placeholder="Requirements title ?" id="title" required name="title" [(ngModel)] = "reqDetail.Title"/>
+                                  <input type="text" class="tittle" placeholder="Requirement title ?" id="title" required name="title" [(ngModel)] = "reqDetail.Title" autocomplete="off"/>
                                   <div class="mainText">
                                           <div class="row">
                                           <div class="col-md-6" >
-                                            <h5 class="positiontext">Position</h5>
+                                            <h5 class="positiontext">Positions</h5>
                                               <div class="value1"> 
-                                                  <input type="text"  class="inputText1" placeholder="input text" id="Positions" required name="position" [(ngModel)] = "reqDetail.Positions" #Positions="ngModel"/>
-                                                     
+                                                  <input type="text"  class="inputText1" id="Positions" required name="position" [(ngModel)] = "reqDetail.Positions" #Positions="ngModel" [maxlength]="2" autocomplete="off"/>
                                               </div>
                                           </div>
                                           <div class="col-md-6">
                                               <h5 class="timetext">Estimate time(in days)</h5>
                                               <div class="value2">  
-                                                  <input type="text"   placeholder="input text" class="inputText1" id="Estimatetime" required name="Estimatetime" [(ngModel)] = "reqDetail.EstimateTime" #EstimateTime="ngModel"/>
+                                                  <input type="text"  class="inputText1" id="Estimatetime" required name="Estimatetime" [(ngModel)] = "reqDetail.EstimateTime" #EstimateTime="ngModel" autocomplete="off"/>
                                                   
                                               </div>
                                           </div>
@@ -756,7 +744,7 @@
                                           <div class="col-md-6" >
                                               <h5 class="positiontext">Skill</h5>
                                                 <div class="value1"> 
-                                                    <input type="text"   placeholder="input text" class="inputText1" id="text2" required name="SkillsRequired" [(ngModel)] = "reqDetail.SkillsRequired[0]" #text2="ngModel"/>
+                                                    <input type="text" class="inputText1" id="text2" required name="SkillsRequired" [(ngModel)] = "reqDetail.SkillsRequired[0]" #text2="ngModel" autocomplete="off"/>
                                                         
                                                 </div>
                                             </div>
@@ -764,11 +752,11 @@
                                             <div class="col-md-6" >
                                                 <h5 class="timetext">Budget</h5>
                                                   <div class="value2"> 
-                                                    <input type="text"  placeholder="input text" class="inputText1" id="text3" required name="Budget" [(ngModel)] = "reqDetail.Budget" #text3="ngModel"/>
+                                                    <input type="text" class="inputText1" id="text3" required name="Budget" [(ngModel)] = "reqDetail.Budget" #text3="ngModel" autocomplete="off"/>
                                                         
                                                   </div>
                                               </div>
-                                              <button  value=" Send" class="btn btn-success publish" type="submit"  id="submit">Edit</button>
+                                              <button  [disabled]="true" value=" Send" class="btn btn-success publish" type="submit"  id="submit">Edit</button>
                                           </div>
                                   </div>
                               
@@ -779,14 +767,14 @@
                         </div>  
                               
                           
-        <form (ngSubmit)="requirement(this.viewleaddata._id)" #f="ngForm" novalidate> 
-                      <input type="text" class="tittle" placeholder="Requirements title ?" id="title" required name="title" [(ngModel)] = "this.title"/>
+        <form (ngSubmit)="requirement(this.viewleaddata._id,f)" #f="ngForm" novalidate> 
+                      <input type="text" class="tittle" placeholder="Requirement title ?" id="title" required name="title" [(ngModel)] = "this.title"/>
               <div class="mainText">
                       <div class="row">
                       <div class="col-md-6" >
-                        <h5 class="positiontext">Position</h5>
+                        <h5 class="positiontext">Positions</h5>
                           <div class="value1"> 
-                              <input type="text" [ngClass]="{'red-border1-class':!Positions.valid && !Positions.pristine}" class="inputText1" placeholder="input text" id="Positions" required name="position" [(ngModel)] = "this.position" #Positions="ngModel"/>
+                              <input type="text" [ngClass]="{'red-border1-class':!Positions.valid && !Positions.pristine}" class="inputText1"  id="Positions" required name="position" [(ngModel)] = "this.position" #Positions="ngModel" [maxlength]="2" autocomplete="off"/>
                                  <div [hidden]="Positions.valid || Positions.pristine" class="reqAlert1">
                                   input required
                                 </div>
@@ -795,7 +783,7 @@
                       <div class="col-md-6">
                           <h5 class="timetext">Estimate time(in days)</h5>
                           <div class="value2">  
-                              <input type="text" [ngClass]="{'red-border1-class':!EstimateTime.valid && !EstimateTime.pristine}"  placeholder="input text" class="inputText1" id="Estimatetime" required name="Estimatetime" [(ngModel)] = "this.Estimatetime" #EstimateTime="ngModel"/>
+                              <input type="text" [ngClass]="{'red-border1-class':!EstimateTime.valid && !EstimateTime.pristine}"   class="inputText1" id="Estimatetime" required name="Estimatetime" [(ngModel)] = "this.Estimatetime" #EstimateTime="ngModel" autocomplete="off"/>
                                <div [hidden]="EstimateTime.valid || EstimateTime.pristine" class="reqAlert1">
                                   input required
                               </div>
@@ -806,7 +794,7 @@
                       <div class="col-md-6" >
                           <h5 class="positiontext">Skill</h5>
                             <div class="value1"> 
-                                <input type="text" [ngClass]="{'red-border1-class':!text2.valid && !text2.pristine}"  placeholder="input text" class="inputText1" id="text2" required name="SkillsRequired" [(ngModel)] = "this.SkillsRequired" #text2="ngModel"/>
+                                <input type="text" [ngClass]="{'red-border1-class':!text2.valid && !text2.pristine}"  class="inputText1" id="text2" required name="SkillsRequired" [(ngModel)] = "this.SkillsRequired" #text2="ngModel" autocomplete="off"/>
                                   <div [hidden]="text2.valid || text2.pristine" class="reqAlert1">
                                      input required
                                   </div>  
@@ -816,7 +804,7 @@
                         <div class="col-md-6" >
                             <h5 class="timetext">Budget</h5>
                               <div class="value2"> 
-                                <input type="text" [ngClass]="{'red-border1-class':!text3.valid && !text3.pristine}" placeholder="input text" class="inputText1" id="text3" required name="Budget" [(ngModel)] = "this.Budget" #text3="ngModel"/>
+                                <input type="text" [ngClass]="{'red-border1-class':!text3.valid && !text3.pristine}"  class="inputText1" id="text3" required name="Budget" [(ngModel)] = "this.Budget" #text3="ngModel" autocomplete="off"/>
                                     <div [hidden]="text3.valid || text3.pristine" class="reqAlert1">
                                      input required
                                    </div>  
@@ -841,7 +829,7 @@
               <div class="col-lg-6  col-md-6 col-sm-6">
                <p class="AssignedBy">Assigned by</p>
                <span class="invite" >
-               {{this.AssignedShortName}}
+               {{this.OwnerShortName}}
             </span>
              </div>
            </div>
@@ -866,7 +854,7 @@
             </div>
                     
                  <!-- Manager Business Stream -->
-                 <div *ngIf=" this.role=='Manager'">
+                 <!-- <div *ngIf=" this.role=='Manager'">
                   <div class="col-lg-6  col-md-6 col-sm-6">
                     <p class="businessStream">Business Stream</p>
   
@@ -882,9 +870,9 @@
                             </ul>
                       </div>                      
                   </div>
-                </div>
+                </div> -->
      <!--SalesRepo   Business Stream-->
-                    <div *ngIf="this.role=='Sales_Rep'">
+                    <div>
                        <div class="col-lg-6  col-md-6 col-sm-6">
                         <p class="businessStream">Business Stream</p>
                          <div class="dropdown business">
@@ -1030,27 +1018,14 @@
       
        <!-- Modal content-->
         <div class="modal-content">
-          <div class="modal-header">
-              <div *ngIf="this.contacterrormessage==true" class="alert alert-danger alert-dismissable alertdata">
-                  {{this.errormessage}}
-                   <span class="close" data-dismiss="alert">&times;</span>
-              </div> 
-              <div *ngIf="this.viewerrormessage==true" class="alert alert-danger alert-dismissable alertdata">
-                  {{this.errormessage}}
-                   <span class="close" data-dismiss="alert">&times;</span>
-              </div> 
-              <div *ngIf="this.contactsuccessmessage==false" class="alert alert-danger alert-dismissable alertdata">
-                  {{this.successmessage}}
-                   <span class="close" data-dismiss="alert">&times;</span>
-              </div> 
-                
+          <div class="modal-header">   
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="addClientContactClose">&times;</button>
             <h4 class="modal-title">Add Client Contact</h4>
           </div>
           <div class="modal-body">
             <p class="client-margin">Personal Details</p>
             <div class="container-fluid">
-            <form (ngSubmit)="createClientContact();createClientContactInupdate(this.viewleaddata._id)">    
+            <form (ngSubmit)="createClientContact(contactkey);createClientContactInupdate(this.viewleaddata._id,contactkey)" #contactkey="ngForm">    
             <div class="row"> 
                <div class="col-md-5">
                  <div class="value"> 
@@ -1083,10 +1058,10 @@
                  </div>          
                   <div class="col-md-5">   
                       <div class="value">        
-                       <input type="text" [ngClass]="{'red-border-class':!Phone.valid && !Phone.pristine}" class="inputText text-width" id="Phone" required name="Phone" [(ngModel)] = "addcontactdata.Phone" #Phone="ngModel"/>
+                       <input type="text" [ngClass]="{'red-border-class':!Phone.valid && !Phone.pristine}" class="inputText text-width" id="Phone" required name="Phone" [(ngModel)] = "addcontactdata.Phone" #Phone="ngModel" pattern="[0-9]{10}"/>
                     <span class="floating-label" [ngClass]="{'red-class':!Phone.valid && !Phone.pristine }">Phone Numbers</span>
                      <div [hidden]="Phone.valid || Phone.pristine" class="reqAlert">
-                           Phone Number is required
+                           Enter Valid Phone Number
                      </div>  
                       </div>                  
                     </div>
@@ -1094,10 +1069,10 @@
                    <div class="row"> 
                      <div class="col-md-5">  
                        <div class="value">         
-                       <input type="text" [ngClass]="{'red-border-class':!Email.valid && !Email.pristine}" class="inputText text-width" id="Email" required name="Email" [(ngModel)] = "addcontactdata.Email" #Email="ngModel"/>
+                       <input type="text" [ngClass]="{'red-border-class':!Email.valid && !Email.pristine}" class="inputText text-width" id="Email" required name="Email" [(ngModel)] = "addcontactdata.Email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" #Email="ngModel" />
                     <span class="floating-label" [ngClass]="{'red-class':!Email.valid && !Email.pristine }">Email Id</span>
                      <div [hidden]="Email.valid || Email.pristine" class="reqAlert">
-                           Email Id is required
+                           Enter Valid Email Id
                      </div> 
                        </div>                   
                     </div>
@@ -1198,7 +1173,7 @@
             <div class="tab-content"> 
               <div id="All" class="tab-pane fade in active">
   
-         <div class="col-lg-3 col-md-3 col-sm-3" >
+         <div class="col-lg-3 col-md-4 col-sm-6" >
           <div class="project1 project-default" type="button">
             <div>
             <img class="addlead" src="/assets/images/addlead.png"/></div>
@@ -1208,121 +1183,123 @@
   
   
   
-            <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
+            <div class="col-lg-3 col-md-4 col-sm-6" type="button" *ngFor='let value of this.resempdata.lead; trackBy: index;' (click)="viewLead(value.LeadID)">
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
                  
-                  <span class="status">{{value.LeadID}}</span>
+                  <span class="status">{{value.LeadCode}}</span>
                     <div class="status1"><p class="status2">{{value.Status}}</p></div>
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
                          <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
+                        <div class="feelColor" [ngClass]="{'feelHot':value.LeadFeel=='Hot','feelwarm':value.LeadFeel=='Warm','feelcold':value.LeadFeel=='Cold'}"></div>
                           <div class="footer1">
-                            <div class="row footer2">
+                           
                               <div class="col-lg-4  col-md-4 col-sm-4">
-                                <p class="Assigned">Assigned TO</p>
-                                <span class="card_profile">
+                                <p class="Assigned">Assigned To</p>
+                                <div class="card_profile">
                                     {{value.Assigned}}
-                                  </span>
+                                </div>
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
                                   <p class="client">Client</p>
-                                  <span class="card_Client">
+                                  <div class="card_Client">
                                       {{value.ClientName}}
-                                    </span>
+                                  </div>
                                 </div>
                                   <div class="col-lg-4  col-md-4 col-sm-4">
                                     <p class="Enggagement">Next Enggagement</p>
-                                    <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                                    <div class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</div>
                                   </div>
                             </div>
-                          </div>
               </div>
             </div> 
   
               </div>
               <div id="Approved" class="tab-pane fade">
                   <div *ngFor='let value of this.resempdata.lead; trackBy: index;'>
-            <div class="col-lg-3 col-md-3 col-sm-3" type="button" (click)="viewLead(value.LeadID)" *ngIf="value.Action=='Owner' && value.RequstApproved=='Y'" >
+            <div class="col-lg-3 col-md-4 col-sm-6" type="button" (click)="viewLead(value.LeadID)" *ngIf="value.Action=='Owner' && value.RequstApproved=='Y'" >
             
              
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
                  
-                  <span class="status">{{value.LeadID}}</span>
+                  <span class="status">{{value.LeadCode}}</span>
                     <div class="status1"><p class="status2">{{value.Status}}</p></div>
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
                          <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
+                        <div class="feelColor" [ngClass]="{'feelHot':value.LeadFeel=='Hot','feelwarm':value.LeadFeel=='Warm','feelcold':value.LeadFeel=='Cold'}"></div>
                           <div class="footer1">
-                            <div class="row footer2">
+                            
                               <div class="col-lg-4  col-md-4 col-sm-4">
                                 <p class="Assigned">Assigned To</p>
-                                <span class="card_profile">
+                                <div class="card_profile">
                                     {{value.Assigned}}
-                                  </span>
+                                </div>
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
                                   <p class="client">Client</p>
-                                  <span class="card_Client">
+                                  <div class="card_Client">
                                       {{value.ClientName}}
-                                    </span>
+                                  </div>
                                 </div>
                                   <div class="col-lg-4  col-md-4 col-sm-4">
                                     <p class="Enggagement">Next Enggagement</p>
-                                    <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                                    <div class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</div>
                                   </div>
                             </div>
                           </div>
               </div>
             </div>
-            </div> 
+     
                
               </div>
               <div id="Pending" class="tab-pane fade">
                   <div *ngFor='let value of this.resempdata.lead; trackBy: index;'>
-                  <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngIf="value.Action=='Owner' && value.RequstApproved=='N'" (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()">
+                  <div class="col-lg-3 col-md-4 col-sm-6" type="button" *ngIf="value.Action=='Owner' && value.RequstApproved=='N'" (mouseenter) ="mouseEnter() "  (mouseleave) ="mouseLeave()">
                 
                       <div class="project project-default">
                         <!--overlay starts-->
                         <div class="overlay" *ngIf="this.overlayToggle">
                           <div class="modelBtns">
                             <button  class="modelBtn" data-toggle="modal" data-target="#exampleModal">View</button>
-                            <button class="modelBtn assignTo">AssignTo</button>
+                            <button class="modelBtn assignTo">Assign To</button>
                             <input type="button" class="brandblue assignTo" value="Button Brand">
                           </div>
                         </div>
                          <!--overlay ends-->
                         <header class="header1">
                          
-                          <span class="status">{{value.LeadID}}</span>
+                          <span class="status">{{value.LeadCode}}</span>
                             <div class="status1"><p class="status2">{{value.Status}}</p></div>
                               </header>
                                 <div class="project-content">
                                   <p class="content"> {{value.Title}}</p>
                                  <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                                 </div>
+                                <div class="feelColor" [ngClass]="{'feelHot':value.LeadFeel=='Hot','feelwarm':value.LeadFeel=='Warm','feelcold':value.LeadFeel=='Cold'}"></div>
                                   <div class="footer1">
                                     <div class="row footer2">
                                       <div class="col-lg-4  col-md-4 col-sm-4">
                                         <p class="Assigned">Assigned To</p>
-                                        <span class="card_profile">
+                                        <div class="card_profile">
                                             {{value.Assigned}}
-                                          </span>
+                                        </div>
                                       </div>
                                         <div class="col-lg-4  col-md-4 col-sm-4">
                                           <p class="client">Client</p>
-                                          <span class="card_Client">
+                                          <div class="card_Client">
                                               {{value.ClientName}}
-                                            </span>
+                                          </div>
                                         </div>
                                           <div class="col-lg-4  col-md-4 col-sm-4">
                                             <p class="Enggagement">Next Enggagement</p>
-                                            <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                                            <div class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</div>
                                           </div>
                                     </div>
                                   </div>
@@ -1336,35 +1313,36 @@
   
                <div id="Subscribed" class="tab-pane fade">
                   <div *ngFor='let value of this.resempdata.lead; trackBy: index;' >
-                        <div class="col-lg-3 col-md-3 col-sm-3" type="button" *ngIf="value.Action=='Subscribed'" (click)="viewLead(value.LeadID)">
+                        <div class="col-lg-3 col-md-4 col-sm-6" type="button" *ngIf="value.Action=='Subscribed'" (click)="viewLead(value.LeadID)">
              
               <div class="project project-default" type="button"  data-toggle="modal" data-target="#exampleModal">
                 <header class="header1">
                  
-                  <span class="status">{{value.LeadID}}</span>
+                  <span class="status">{{value.LeadCode}}</span>
                     <div class="status1"><p class="status2">{{value.Status}}</p></div>
                       </header>
                         <div class="project-content">
                           <p class="content"> {{value.Title}}</p>
                          <span *ngIf="value.Verified=='Y'"> <img class="signuser" src="/assets/images/images.png"></span>
                         </div>
+                        <div class="feelColor" [ngClass]="{'feelHot':value.LeadFeel=='Hot','feelwarm':value.LeadFeel=='Warm','feelcold':value.LeadFeel=='Cold'}"></div>
                           <div class="footer1">
-                            <div class="row footer2">
+                           
                               <div class="col-lg-4  col-md-4 col-sm-4">
                                 <p class="Assigned">Assigned To</p>
-                                <span class="card_profile">
+                                <div class="card_profile">
                                     {{value.Assigned}}
-                                  </span>
+                                </div>
                               </div>
                                 <div class="col-lg-4  col-md-4 col-sm-4">
                                   <p class="client">Client</p>
-                                  <span class="card_Client">
+                                  <div class="card_Client">
                                       {{value.ClientName}}
-                                    </span>
+                                  </div>
                                 </div>
                                   <div class="col-lg-4  col-md-4 col-sm-4">
                                     <p class="Enggagement">Next Enggagement</p>
-                                    <p class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</p>
+                                    <div class="date">{{value.NextEngagementDate | date:'dd,MMM'}}</div>
                                   </div>
                             </div>
                           </div>
@@ -1373,7 +1351,7 @@
             </div>                             
               </div>
             </div>
-          </div>
+    
   
           <!--popup -->
   </div>

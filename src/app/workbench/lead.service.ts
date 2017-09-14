@@ -10,9 +10,9 @@ import 'rxjs/add/operator/toPromise';
  export class ClientService implements OnInit{
     //  private _url2:string='http://172.16.0.38:8082/';
     
-     private _url4:string='http://172.16.0.4:8083/';
-     private _url1:string='http://172.16.0.4:8082/';
-     private _url5:string='http://172.16.0.4:8081/';
+     private _url4:string='http://139.59.43.188:8083/';
+     private _url1:string='http://139.59.43.188:8082/';
+     private _url5:string='http://139.59.43.188:8081/';
      token="";
      
      contentHeader:any
@@ -28,7 +28,7 @@ import 'rxjs/add/operator/toPromise';
              'token':localStorage.getItem('token')
             });
         console.log("headers",contentHeader);
-        return this._http.get(this._url5+'users/getManagers',{ headers: contentHeader }).map((response:Response) =>response.json());
+        return this._http.get(this._url5+'users/getManagers',{ headers: contentHeader }).map((response:Response) =>response.json()).catch(handleError);
        }
 
     getUsers(){
@@ -38,7 +38,7 @@ import 'rxjs/add/operator/toPromise';
              'token':localStorage.getItem('token')
             });
         return this._http.get(this._url5+'users/getUsers',{headers: contentHeader }).map(res =>
-        res.json());
+        res.json()).catch(handleError);
            }
 
     getClients(){
@@ -100,18 +100,9 @@ import 'rxjs/add/operator/toPromise';
             });
             
         console.log("headers",contentHeader);
-        return this._http.get(this._url5+'users/getSalesRep',{ headers: contentHeader }).map((response:Response) =>response.json());
+        return this._http.get(this._url5+'users/getSalesRep',{ headers: contentHeader }).map((response:Response) =>response.json()).catch(handleError);
        }  
-     
-       invitePeopleService(addcontactdata){
-        console.log(addcontactdata);
-        let contentHeader = new Headers({
-            "Content-Type": "application/json",
-            // 'Allow-Control-Allow-Origin' : '*',
-             'token':localStorage.getItem('token')
-            });
-        return this._http.post(this._url5+'lead/addSubscribedUsers', JSON.stringify(addcontactdata),{ headers: contentHeader }).map((response:Response) =>response.json());
-       }   
+        
        ngOnInit() {
         this.token=localStorage.getItem('token');
         console.log(this.token);

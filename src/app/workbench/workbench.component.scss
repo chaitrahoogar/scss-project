@@ -140,8 +140,6 @@ height: 83px;
 .card_profile{
   width: 30px;
   height: 30px;
-  margin-left: 10px;
-  height: 30px;
   border-radius: 100px;
   background-color: #b6da9c ;
   text-align: center;
@@ -152,8 +150,8 @@ height: 83px;
   color: #ffffff ;
   font-family: OpensansRegul;
  }
- .card_client{
-  margin-left: 15px;
+ .card_Client{
+  margin-top: 25px;
  
  }
 .assigned{
@@ -390,11 +388,8 @@ color: #00a890;
 }
 
 .Assigned{
-width: 62px;
-height: 14px;
 font-family: OpensansRegular;
 font-size: 11px;
-line-height: 1.23;
 text-align: left;
 color: #002954;
 
@@ -467,7 +462,6 @@ margin-top: 4px;
 margin-left: 5px;
 }
 .client{
- margin-left: 13px;
 font-family:OpensansRegular;
 font-size: 11px;
 line-height: 1.23;
@@ -476,11 +470,8 @@ color: #002954;
 
 }
 .Enggagement{
-width: 98px;
-height: 14px;
 font-family:OpensansRegular;
 font-size: 11px;
-line-height: 1.23;
 text-align: left;
 color: #002954;
 
@@ -575,10 +566,10 @@ color: #002954;
 .chat li .chat-body p
 {
     margin: 0;
-    font-family: OpenSonsRegular;
+    font-family: OpenSansRegular;
     color: #4a4a4a;
     padding: 12px;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .panel .slidedown .glyphicon, .chat .glyphicon
@@ -712,7 +703,7 @@ display: flex;
   right: 85px;
   bottom: 95px;
   border: 1px solid gray;
-  width: 212px;
+  width: 152px;
   height: 36px;
   border: solid 1px #f3f3f3;
 }
@@ -726,7 +717,7 @@ display: flex;
 }
 .sendicon{
   position: absolute;
-  right: 23px;
+  right: 36px;
   bottom: 90px;
   padding: 11px;
   width: 45px;
@@ -737,6 +728,10 @@ display: flex;
 .send{
   color: #ffffff;
   padding: 3px;
+}
+.Client_name{
+  border-left: solid 1px #f3f3f3;
+  padding-left: 10px;
 }
 
 
@@ -1000,14 +995,14 @@ left: 165px;
 .requirementid{
 
 font-family: OpenSansRegular;
-font-size:26px;
+font-size:20px;
 line-height: 1.18;
 color: #00a890;
-padding-left: 155px;
+
 }
 .devops{
 font-family: OpenSansRegular;
-font-size: 19px;
+font-size:20px;
 line-height: 1.18;
 color: #4a4a4a;
 }
@@ -1028,7 +1023,7 @@ color: #4a4a4a;
 
 .textfontcolor
 {
-  font-family: OpenSonsRegular;
+  font-family: OpenSansRegular;
     font-size:36px;
     color:#002954;
 
@@ -1409,7 +1404,6 @@ margin-left: 30px;
  margin-bottom: 3%;
 }
 .Add-Tag{
-  width: 27%;
   height: 28px;
   border-radius: 2px;
   background-color: $white-two;
@@ -1421,16 +1415,12 @@ margin-left: 30px;
   margin-top:6px;
 }
 
-
-
 //manager tab
 
 .managertablist{
     margin: 0 auto;
     width: 621px;
 }
-
-
 
 // overlay starts
 
@@ -1631,4 +1621,50 @@ padding-left: 15px;
 
 .panel-heading{
   height: 50px;
+ }
+
+ .modal { 
+   overflow: auto !important; 
+  }
+
+.tags-margin
+{
+  margin-right:10px;
+  margin-left:6px;
+}
+
+.delete-margin
+{
+  margin-left:6px;
+}
+
+.cursor
+{
+  cursor: pointer;
+  padding:8px;
+}
+
+
+.statusBackGround{
+  background-color: #d1f1f1 ;
+}
+
+.feelColor{
+  width: 65px;
+  height: 7px;
+  border-radius: 9px;
+  background-color: #1fadc5 ;
+  position: relative;
+  top: -3px;
+  float: right;
+ }
+ 
+ .feelHot{
+    background-color: #fd4b65 ;
+ }
+ .feelwarm{
+    background-color: #fc6600 ;
+ }
+ .feelcold{
+    background-color: #1fadc5 ;
  }

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { leadService} from './workbench.service';
 import { Router } from '@angular/router';
 import { ClientService} from './lead.service';
 import { Http, Response } from '@angular/http';
+import { NgForm } from '@angular/forms';
+import { ToastrService } from 'toastr-ng2';
+
 @Component({
   selector: 'app-workbench',
   templateUrl: './workbench.component.html',
@@ -10,6 +13,7 @@ import { Http, Response } from '@angular/http';
   providers:[leadService,ClientService]
 })
 export class WorkbenchComponent implements OnInit {
+  
     dumyValue="";
     resempdata=[];
     resempdataLead=[];
@@ -55,6 +59,8 @@ export class WorkbenchComponent implements OnInit {
     reqStatus='';
     conversartionResponse=[];
     viewerrormessage=false;
+    OwnerShortName="";
+    SendMessage="";
   
     changeStatus(val,id){
       var leadFeelchange={
@@ -62,6 +68,7 @@ export class WorkbenchComponent implements OnInit {
           "LeadCurrentStatus":val
       }
        this._leadService.assignto(leadFeelchange).subscribe((response) => {
+                 this.toastrService.success(response.message);
                  this.viewleaddata=response.lead;
                  this.reqFeel=response.lead.LeadFeel;
                  this.reqStatus=response.lead.LeadCurrentStatus;
@@ -74,6 +81,7 @@ export class WorkbenchComponent implements OnInit {
              this.Assigned=[];
              this.AssignedShortName="";
              this.owner=[];
+             this.OwnerShortName="";
              for(var i=0;i< this.userinfo.length;i++){
                      if(this.userinfo[i].Action=="Subscribed"){
                          this.subscibe.push(this.userinfo[i]);
@@ -83,10 +91,16 @@ export class WorkbenchComponent implements OnInit {
                             this.AssignedShortName=this.userinfo[i].ShortName;
                      }
                      else if(this.userinfo[i].Action=="Owner"){
-                           this.owner.push(this.userinfo[i])
+                           this.owner.push(this.userinfo[i]);
+                           this.OwnerShortName=this.userinfo[i].ShortName;
                      }
              }
+
+             this.getlead()
               
+         },
+         e=>{
+          this.toastrService.error(e.message);
          });
     }
 
@@ -99,6 +113,7 @@ export class WorkbenchComponent implements OnInit {
     }
      this._leadService.updateLeadTagCcRev(updateREvenueData).subscribe((response) => { 
                 //  this.updateTagResponse=response;
+                this.toastrService.success(response.message);
                  this.viewleaddata=response.lead;
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
@@ -111,6 +126,7 @@ export class WorkbenchComponent implements OnInit {
              this.Assigned=[];
              this.AssignedShortName="";
              this.owner=[];
+             this.OwnerShortName="";
              for(var i=0;i< this.userinfo.length;i++){
                      if(this.userinfo[i].Action=="Subscribed"){
                          this.subscibe.push(this.userinfo[i]);
@@ -120,9 +136,13 @@ export class WorkbenchComponent implements OnInit {
                             this.AssignedShortName=this.userinfo[i].ShortName;
                      }
                      else if(this.userinfo[i].Action=="Owner"){
-                           this.owner.push(this.userinfo[i])
+                           this.owner.push(this.userinfo[i]);
+                           this.OwnerShortName=this.userinfo[i].ShortName;
                      }
              }  
+         },
+         e=>{
+          this.toastrService.error(e.message);
          });
     }
 
@@ -137,6 +157,7 @@ export class WorkbenchComponent implements OnInit {
          "LeadFeel":val
      }
       this._leadService.assignto(leadFeelchange).subscribe((response) => {
+                this.toastrService.success(response.message);   
                 this.viewleaddata=response.lead;
                 this.reqFeel=response.lead.LeadFeel;
                 this.reqStatus=response.lead.LeadCurrentStatus;
@@ -148,6 +169,8 @@ export class WorkbenchComponent implements OnInit {
             this.subscibe=[];
             this.Assigned=[];
             this.owner=[];
+            this.OwnerShortName="";
+            this.AssignedShortName="";
             for(var i=0;i< this.userinfo.length;i++){
                     if(this.userinfo[i].Action=="Subscribed"){
                         this.subscibe.push(this.userinfo[i]);
@@ -157,11 +180,15 @@ export class WorkbenchComponent implements OnInit {
                            this.AssignedShortName=this.userinfo[i].ShortName;
                     }
                     else if(this.userinfo[i].Action=="Owner"){
-                          this.owner.push(this.userinfo[i])
+                          this.owner.push(this.userinfo[i]);
+                          this.OwnerShortName=this.userinfo[i].ShortName;
                     }
             }
+            this.getlead();
              
-        });
+        },e=>{
+          this.toastrService.error(e.message);
+         });
    }
     reqCOnversation='Conversation Type';
     changeConversation(val){
@@ -173,7 +200,7 @@ export class WorkbenchComponent implements OnInit {
       this.show=!this.show
     }
    
-    constructor(private _leadService:leadService,private router:Router,private _clientservice:ClientService,private _http:Http) { }
+    constructor(private _leadService:leadService,private router:Router,private _clientservice:ClientService,private _http:Http,private toastrService: ToastrService) { }
      getlead(){
       this._leadService.leadMethod().subscribe((response) => { 
                  this.resempdata=response;
@@ -189,8 +216,10 @@ export class WorkbenchComponent implements OnInit {
           localStorage.removeItem('token');
   }
   viewLead(leadId){
+
     console.log(leadId);
         this._leadService.leadViewMethod(leadId).subscribe((response) => { 
+                 this.reqCOnversation="Conversation Type";
                  this.viewleaddata=response.lead;
                   this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
@@ -204,6 +233,7 @@ export class WorkbenchComponent implements OnInit {
              this.Assigned=[];
              this.AssignedShortName="";
              this.owner=[];
+             this.OwnerShortName="";
              for(var i=0;i< this.userinfo.length;i++){
                      if(this.userinfo[i].Action=="Subscribed"){
                          this.subscibe.push(this.userinfo[i]);
@@ -213,7 +243,8 @@ export class WorkbenchComponent implements OnInit {
                             this.AssignedShortName=this.userinfo[i].ShortName;
                      }
                      else if(this.userinfo[i].Action=="Owner"){
-                           this.owner.push(this.userinfo[i])
+                           this.owner.push(this.userinfo[i]);
+                           this.OwnerShortName=this.userinfo[i].ShortName;
                      }
              }
            console.log(this.Assigned);
@@ -222,7 +253,7 @@ export class WorkbenchComponent implements OnInit {
          });
           
   }
-  requirement(id){
+  requirement(id,f:NgForm){
       // console.log(this.model);
      let value= {
       "_id":id,
@@ -236,9 +267,10 @@ export class WorkbenchComponent implements OnInit {
                   ]
               }
       }
-   this._leadService.requirementService(value).subscribe((response) => { 
+   this._leadService.requirementService(value).subscribe((response) => {
+                 this.toastrService.success(response.message);
                  this.viewleaddata=response.lead;
-                  this.reqFeel=response.lead.LeadFeel; 
+                 this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
                  this.reqBusinessdata=response.lead.EngagementType;
                  this.reqRevenue=response.lead.LeadRevenue;
@@ -250,6 +282,7 @@ export class WorkbenchComponent implements OnInit {
              this.Assigned=[];
              this.owner=[];
              this.AssignedShortName="";
+             this.OwnerShortName="";
              for(var i=0;i< this.userinfo.length;i++){
                      if(this.userinfo[i].Action=="Subscribed"){
                          this.subscibe.push(this.userinfo[i]);
@@ -259,10 +292,14 @@ export class WorkbenchComponent implements OnInit {
                             this.AssignedShortName=this.userinfo[i].ShortName;
                      }
                      else if(this.userinfo[i].Action=="Owner"){
-                           this.owner.push(this.userinfo[i])
+                           this.owner.push(this.userinfo[i]);
+                           this.OwnerShortName=this.userinfo[i].ShortName;
                      }
              }
-                 
+             f.reset();    
+         },
+         e=>{
+          this.toastrService.error(e.message);
          });
   }
   
@@ -282,6 +319,15 @@ export class WorkbenchComponent implements OnInit {
     var year = data.getFullYear();
     monthIndex=monthIndex+1;
     var d = new Date(ScheduleTime +year+'-'+monthIndex+'-'+day)
+    var currentOffset = d.getTimezoneOffset();
+    debugger;
+    
+    var ISTOffset = 330;   // IST offset UTC +5:30 
+    
+    var ISTTime = new Date(d.getTime() + (ISTOffset + currentOffset)*60000);
+    
+    // ISTTime now represents the time in IST coordinates
+    
   
   console.log(d);
 
@@ -290,7 +336,7 @@ export class WorkbenchComponent implements OnInit {
       "_id": id,
       "Meeting": {
          "MeetingVenue": ScheduleLocation,
-          "ScheduleDate": d,
+          "ScheduleDate": d.toString(),
           "ScheduleTime":ScheduleTime,
           }
      }
@@ -323,79 +369,8 @@ export class WorkbenchComponent implements OnInit {
       "_id":leadId,
       "TagId":tagId
      }
-     this._leadService.updateLeadTagCcRev(deletedata).subscribe((response) => { 
-                  this.viewleaddata=response.lead;
-                 this.reqFeel=response.lead.LeadFeel; 
-                 this.reqStatus=response.lead.LeadCurrentStatus;
-                 this.reqBusinessdata=response.lead.EngagementType;
-                 this.reqRevenue=response.lead.LeadRevenue
-                 this.userinfo=response.lead.UsersInfo;
-                 this.reqDetail=response.lead.ReqDetails;
-                 this.clientid=response.lead.ClientID;
-             this.subscibe=[];
-             this.Assigned=[];
-             this.AssignedShortName="";
-             this.owner=[];
-             for(var i=0;i< this.userinfo.length;i++){
-                     if(this.userinfo[i].Action=="Subscribed"){
-                         this.subscibe.push(this.userinfo[i]);
-                     }
-                     else if(this.userinfo[i].Action=="Assigned"){
-                            this.Assigned.push(this.userinfo[i]);
-                            this.AssignedShortName=this.userinfo[i].ShortName;
-                     }
-                     else if(this.userinfo[i].Action=="Owner"){
-                           this.owner.push(this.userinfo[i])
-                     }
-             }
-         });
-  
-  }
-  
-  deleteclient(leadId,clientId){
-      var deletedata={
-      "_id":leadId,
-      "ClientContactId":clientId
-     }
-     this._leadService.updateLeadTagCcRev(deletedata).subscribe((response) => { 
-                   this.viewleaddata=response.lead;
-                  this.reqFeel=response.lead.LeadFeel; 
-                 this.reqStatus=response.lead.LeadCurrentStatus;
-                 this.reqBusinessdata=response.lead.EngagementType;
-                 this.reqRevenue=response.lead.LeadRevenue
-                this.userinfo=response.lead.UsersInfo;
-                 this.reqDetail=response.lead.ReqDetails;
-                 this.clientid=response.lead.ClientID;
-             this.subscibe=[];
-             this.Assigned=[];
-             this.AssignedShortName="";
-             this.owner=[];
-             for(var i=0;i< this.userinfo.length;i++){
-                     if(this.userinfo[i].Action=="Subscribed"){
-                         this.subscibe.push(this.userinfo[i]);
-                     }
-                     else if(this.userinfo[i].Action=="Assigned"){
-                            this.Assigned.push(this.userinfo[i]);
-                            this.AssignedShortName=this.userinfo[i].ShortName;
-                     }
-                     else if(this.userinfo[i].Action=="Owner"){
-                           this.owner.push(this.userinfo[i])
-                     }
-             }
-            
-         });
-  
-  }
-  addTagUpade(tag,id){
-    this.addtagtitle="";
-       var addTagUpadedata={
-      "_id":id,
-       "Tags":{
-                  "TagName": tag,
-                  "TagCategory": "Budget"
-              }
-      }
-     this._leadService.addTagCcRev(addTagUpadedata).subscribe((response) => { 
+     this._leadService.updateLeadTagCcRev(deletedata).subscribe((response) => {
+                 this.toastrService.success(response.message);   
                  this.viewleaddata=response.lead;
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
@@ -408,6 +383,7 @@ export class WorkbenchComponent implements OnInit {
              this.Assigned=[];
              this.AssignedShortName="";
              this.owner=[];
+             this.OwnerShortName="";
              for(var i=0;i< this.userinfo.length;i++){
                      if(this.userinfo[i].Action=="Subscribed"){
                          this.subscibe.push(this.userinfo[i]);
@@ -417,9 +393,97 @@ export class WorkbenchComponent implements OnInit {
                             this.AssignedShortName=this.userinfo[i].ShortName;
                      }
                      else if(this.userinfo[i].Action=="Owner"){
-                           this.owner.push(this.userinfo[i])
+                           this.owner.push(this.userinfo[i]);
+                           this.OwnerShortName=this.userinfo[i].ShortName;
                      }
              }
+         },
+         e=>{
+          this.toastrService.error(e.message);
+         });
+  
+  }
+  
+  deleteclient(leadId,clientId){
+      var deletedata={
+      "_id":leadId,
+      "ClientContactId":clientId
+     }
+     this._leadService.updateLeadTagCcRev(deletedata).subscribe((response) => { 
+                  this.toastrService.success(response.message);
+                  this.viewleaddata=response.lead;
+                  this.reqFeel=response.lead.LeadFeel; 
+                  this.reqStatus=response.lead.LeadCurrentStatus;
+                  this.reqBusinessdata=response.lead.EngagementType;
+                  this.reqRevenue=response.lead.LeadRevenue
+                  this.userinfo=response.lead.UsersInfo;
+                  this.reqDetail=response.lead.ReqDetails;
+                  this.clientid=response.lead.ClientID;
+             this.subscibe=[];
+             this.Assigned=[];
+             this.AssignedShortName="";
+             this.owner=[];
+             this.OwnerShortName="";
+             for(var i=0;i< this.userinfo.length;i++){
+                     if(this.userinfo[i].Action=="Subscribed"){
+                         this.subscibe.push(this.userinfo[i]);
+                     }
+                     else if(this.userinfo[i].Action=="Assigned"){
+                            this.Assigned.push(this.userinfo[i]);
+                            this.AssignedShortName=this.userinfo[i].ShortName;
+                     }
+                     else if(this.userinfo[i].Action=="Owner"){
+                           this.owner.push(this.userinfo[i]);
+                           this.OwnerShortName=this.userinfo[i].ShortName;
+                     }
+             }
+            
+         },
+         e=>{
+          this.toastrService.error(e.message);
+         });
+  
+  }
+  addTagUpade(tag,id){
+    this.addtagtitle="";
+       var addTagUpadedata={
+      "_id":id,
+       "Tags":{
+                  "TagName": tag,
+                  "TagCategory": "Budget"
+              }
+      }
+     this._leadService.addTagCcRev(addTagUpadedata).subscribe((response) => {
+                 this.toastrService.success(response.message);
+                 this.viewleaddata=response.lead;
+                 this.reqFeel=response.lead.LeadFeel; 
+                 this.reqStatus=response.lead.LeadCurrentStatus;
+                 this.reqBusinessdata=response.lead.EngagementType;
+                 this.reqRevenue=response.lead.LeadRevenue
+                 this.userinfo=response.lead.UsersInfo;
+                 this.reqDetail=response.lead.ReqDetails;
+                 this.clientid=response.lead.ClientID;
+             this.subscibe=[];
+             this.Assigned=[];
+             this.AssignedShortName="";
+             this.owner=[];
+             this.OwnerShortName="";
+             for(var i=0;i< this.userinfo.length;i++){
+                     if(this.userinfo[i].Action=="Subscribed"){
+                         this.subscibe.push(this.userinfo[i]);
+                     }
+                     else if(this.userinfo[i].Action=="Assigned"){
+                            this.Assigned.push(this.userinfo[i]);
+                            this.AssignedShortName=this.userinfo[i].ShortName;
+                     }
+                     else if(this.userinfo[i].Action=="Owner"){
+                           this.owner.push(this.userinfo[i]);
+                           this.OwnerShortName=this.userinfo[i].ShortName;
+                     }
+             }
+         },
+         e=>{
+          this.toastrService.error(e.message);
          });
   }
   
@@ -467,41 +531,7 @@ export class WorkbenchComponent implements OnInit {
             "UserInfo":value
         }
         this._leadService.userSubscibed(subscribeData).subscribe((response) => { 
-                 this.viewleaddata=response.lead;
-                 this.reqFeel=response.lead.LeadFeel; 
-                 this.reqStatus=response.lead.LeadCurrentStatus;
-                 this.reqBusinessdata=response.lead.EngagementType;
-                 this.reqRevenue=response.lead.LeadRevenue
-                this.userinfo=response.lead.UsersInfo;
-                 this.reqDetail=response.lead.ReqDetails;
-                 this.clientid=response.lead.ClientID;
-             this.subscibe=[];
-             this.Assigned=[];
-             this.AssignedShortName="";
-             this.owner=[];
-             for(var i=0;i< this.userinfo.length;i++){
-                     if(this.userinfo[i].Action=="Subscribed"){
-                         this.subscibe.push(this.userinfo[i]);
-                     }
-                     else if(this.userinfo[i].Action=="Assigned"){
-                            this.Assigned.push(this.userinfo[i]);
-                            this.AssignedShortName=this.userinfo[i].ShortName;
-                            
-                     }
-                     else if(this.userinfo[i].Action=="Owner"){
-                           this.owner.push(this.userinfo[i])
-                     }
-             }
-            
-         });
-  }
-  Assignto(name,value,id){
-      value.Action="Assigned";
-        var assigneddata={
-                  "_id" : id,
-            "UserInfo":value
-        }
-         this._leadService.assignto(assigneddata).subscribe((response) => { 
+                 this.toastrService.success(response.message);
                  this.viewleaddata=response.lead;
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
@@ -514,6 +544,48 @@ export class WorkbenchComponent implements OnInit {
              this.Assigned=[];
              this.AssignedShortName="";
              this.owner=[];
+             this.OwnerShortName="";
+             for(var i=0;i< this.userinfo.length;i++){
+                     if(this.userinfo[i].Action=="Subscribed"){
+                         this.subscibe.push(this.userinfo[i]);
+                     }
+                     else if(this.userinfo[i].Action=="Assigned"){
+                            this.Assigned.push(this.userinfo[i]);
+                            this.AssignedShortName=this.userinfo[i].ShortName;
+                            
+                     }
+                     else if(this.userinfo[i].Action=="Owner"){
+                           this.owner.push(this.userinfo[i]);
+                           this.OwnerShortName=this.userinfo[i].ShortName;
+                     }
+             }
+            
+         },
+         e=>{
+          this.toastrService.error(e.message);
+         });
+  }
+  Assignto(name,value,id){
+      value.Action="Assigned";
+        var assigneddata={
+                  "_id" : id,
+            "UserInfo":value
+        }
+         this._leadService.assignto(assigneddata).subscribe((response) => {
+                 this.toastrService.success(response.message);    
+                 this.viewleaddata=response.lead;
+                 this.reqFeel=response.lead.LeadFeel; 
+                 this.reqStatus=response.lead.LeadCurrentStatus;
+                 this.reqBusinessdata=response.lead.EngagementType;
+                 this.reqRevenue=response.lead.LeadRevenue
+                 this.userinfo=response.lead.UsersInfo;
+                 this.reqDetail=response.lead.ReqDetails;
+                 this.clientid=response.lead.ClientID;
+             this.subscibe=[];
+             this.Assigned=[];
+             this.AssignedShortName="";
+             this.owner=[];
+             this.OwnerShortName="";
              for(var i=0;i< this.userinfo.length;i++){
                      if(this.userinfo[i].Action=="Subscribed"){
                          this.subscibe.push(this.userinfo[i]);
@@ -523,33 +595,47 @@ export class WorkbenchComponent implements OnInit {
                             this.AssignedShortName=this.userinfo[i].ShortName;
                      }
                      else if(this.userinfo[i].Action=="Owner"){
-                           this.owner.push(this.userinfo[i])
+                           this.owner.push(this.userinfo[i]);
+                           this.OwnerShortName=this.userinfo[i].ShortName;
                      }
              }
    
+         },
+         e=>{
+          this.toastrService.error(e.message);
          } );
     }
 
     getconversation(lead){
       this._leadService.getconversation(lead).subscribe((response) => {
+      
             this.conversartionResponse=response.Convo;
+         
             console.log(this.conversartionResponse.length);
            
          });
      }
 
-    sendData(data,id){
-      var newdata={
-        "_id":id,
-             "Conversation": {
-            "content": data
-             }
-      }
-      this._leadService.sendData(newdata).subscribe((response) => {
-       this. getUpload=response;  
-       this.getconversation(id);
-     });
-}
+     sendData(data,id,conversationType){
+       if(conversationType=="Conversation Type"){
+        conversationType="";
+       }
+      console.log(conversationType);
+      this.SendMessage="";
+      console.log(conversationType);
+       var newdata={
+         "_id":id,
+              "Conversation": {
+             "content": data,
+              "ConversationType": conversationType
+              }
+       }
+       this._leadService.sendData(newdata).subscribe((response) => {
+        this. getUpload=response;  
+        this.getconversation(id);
+         
+      });
+  }
   
     getClientContactsdata(){
       console.log(this.clientid);
@@ -563,19 +649,29 @@ export class WorkbenchComponent implements OnInit {
         });
     }
 
-    FileDownload(id,data){
+  //   FileDownload(id,data){
       
-      var download={
-        _id:id,
-        file:
-          data 
-      }
+  //     var download={
+  //       _id:id,
+  //       file:
+  //         data 
+  //     }
       
-   this._leadService.FileDownload(download).subscribe((response) => {
-     this.download=response;
+  //  this._leadService.FileDownload(download).subscribe((response) => {
+  //    this.download=response;
     
-     });
-  }
+  //    });
+  // }
+
+  FileDownload(event,id,data){
+          event.stopPropagation();
+
+         let v='http://172.16.0.4:8082/lead/downloadDoc?_id='+id+'&fileId='+data.fileId
+    
+         if (typeof window !== 'undefined') {
+               window.open(v);
+         }
+     }
 
   fileChange1(fileInput: any) {
     this.filesToUpload3 = <Array<File>>fileInput.target.files;
@@ -587,7 +683,7 @@ export class WorkbenchComponent implements OnInit {
     for(let i =0; i < this.files3.length; i++){
          this.files2.push(this.files3[i]['name']);
     }
-    this.attfileTest3=this.files3.length+" files attached"
+    this.attfileTest3=this.files3.length+" files"
  }
 
  deleteFile1(filename){
@@ -600,10 +696,10 @@ export class WorkbenchComponent implements OnInit {
  for(let i =0; i < this.files3.length; i++){
         this.files2.push(this.files3[i]['name']);
       }
-      this.attfileTest3=this.files3.length+" files attached"
+      this.attfileTest3=this.files3.length+" files"
  }
 
-    createClientContactInupdate(id)
+    createClientContactInupdate(id,form:NgForm)
     {
       console.log(this.clientid);
       let addcontact:any=
@@ -627,6 +723,8 @@ export class WorkbenchComponent implements OnInit {
         this.addcontactarray=response;  
         this.getClientContactsdata();
         document.getElementById('addClientContactClose').click();
+         addcontact={};
+         form.reset();
            });
     }
 
@@ -649,6 +747,7 @@ export class WorkbenchComponent implements OnInit {
             "ClientContact":value
         }
          this._leadService.updateLeadTagCcRev(assigneddata).subscribe((response) => { 
+                 this.toastrService.success(response.message);
                  this.viewleaddata=response.lead;
                  this.reqFeel=response.lead.LeadFeel; 
                  this.reqStatus=response.lead.LeadCurrentStatus;
@@ -661,6 +760,7 @@ export class WorkbenchComponent implements OnInit {
              this.Assigned=[];
              this.AssignedShortName="";
              this.owner=[];
+             this.OwnerShortName="";
              for(var i=0;i< this.userinfo.length;i++){
                      if(this.userinfo[i].Action=="Subscribed"){
                          this.subscibe.push(this.userinfo[i]);
@@ -670,10 +770,14 @@ export class WorkbenchComponent implements OnInit {
                             this.AssignedShortName=this.userinfo[i].ShortName;
                      }
                      else if(this.userinfo[i].Action=="Owner"){
-                           this.owner.push(this.userinfo[i])
+                           this.owner.push(this.userinfo[i]);
+                           this.OwnerShortName=this.userinfo[i].ShortName;
                      }
              }
                
+         },
+         e=>{
+          this.toastrService.error(e.message);
          });
     }
 
@@ -736,16 +840,8 @@ export class WorkbenchComponent implements OnInit {
   contactlistvalues=[];
   newclientarray=[];
   addtagtitle="";
-  errorMessage="";
-  errormessage="";
-  edited=false;
-  clienterrormessage=false;
-  clientsuccesmessage=true;
-  contacterrormessage=false;
-  successmessage=false;
-  leadsuccessmessage=true;
-  contactsuccessmessage=true;
   nextLibAvailable=true;
+  titlename="";
   addcontactdata={
     "FirstName":'',
     "LastName":'',
@@ -771,7 +867,7 @@ export class WorkbenchComponent implements OnInit {
   addclientdata:any={
     "ClientName":this.clientname,
     "IndustryType":this.industryType,
-    "BusinessVertical":this.businessType
+    "BusinessType":this.businessType
   };
  
   officeaddress:any={
@@ -862,24 +958,18 @@ export class WorkbenchComponent implements OnInit {
     }); 
     }
     
-    createClient(){
-      this._clientservice.addClient(this.addclientdata).subscribe((response) => { 
-      this.addclientarray=response; 
-      if(response.status=="success")
-        {
-          this.successmessage=response.message;
-          this.clientsuccesmessage=false;
+    createClient(f:NgForm){
+
+      this._clientservice.addClient(this.addclientdata).subscribe((response) => {
+          this.toastrService.success(response.message);    
+          this.addclientarray=response;
           this.getAllClients();
           document.getElementById('createClientCloseEvent').click();
           this.addclientdata={};
-        }
-        this.clientsuccesmessage=false;
+          f.reset();
           },
-          e=>{this.errorMessage = e;
-            console.log("e.message",e.message);
-            this.errormessage=e.message;
-            console.log("this.errormessage",this.errormessage);
-            this.clienterrormessage=true;  
+          e=>{
+            this.toastrService.error(e.message);
            });
     }
 
@@ -900,8 +990,10 @@ export class WorkbenchComponent implements OnInit {
         });   
     }
 
-    createClientContact()
+    createClientContact(f:NgForm)
     {
+
+      
       console.log(this.ClientIdValue);
       console.log("this.officeaddress",this.officeaddress);
       let addcontact:any=
@@ -920,28 +1012,24 @@ export class WorkbenchComponent implements OnInit {
        }]
       }   
       this._clientservice.addContact(addcontact).subscribe((response) => { 
-        this.addcontactarray=response;  
-        if(response.status=="success")
-          {
-            this.successmessage=response.message;
-            this.contactsuccessmessage=false;
+            this.toastrService.success(response.message);  
+            this.addcontactarray=response;  
             this.getAllClientContact();  
-        document.getElementById('addClientContactClose').click();
-          }
+            document.getElementById('addClientContactClose').click();
+            addcontact={};
+            f.reset();
            },
-           e=>{this.errorMessage = e;
-            console.log("e.message",e.message);
-            this.errormessage=e.message;
-            console.log("this.errormessage",this.errormessage);
-            this.contacterrormessage=true;  
+           e=>{
+            this.toastrService.error(e.message);
            }); 
     }
     
-    addLeads()
+    addLeads(f:NgForm)
     {
-      if(this.ownervalue!=null){
+      // if(this.ownervalue!=null){
         this.temparray.push(this.ownervalue);
-        }
+      //   }
+        console.log(this.temparray);
     let leadconversation:any={
         "ConversationType":this.conversationtype,
         "content":this.conversation,
@@ -949,7 +1037,7 @@ export class WorkbenchComponent implements OnInit {
 
         let addlead:any={
           "Verified":this.verificationstatus,
-          "Title":this.title,
+          "Title":this.titlename,
           "ClientID": this.ClientIdValue,
           "ClientName":this.ClientNameValue,
           "ClientContact":
@@ -980,17 +1068,40 @@ export class WorkbenchComponent implements OnInit {
       //  console.log(addlead);  
       //  console.log(addlead);
        this.formData.append("file1",JSON.stringify(addlead));
-        //  JSON.stringify(addlead);
-          this._clientservice.addLead(this.formData).subscribe((response) => { 
+          this._clientservice.addLead(this.formData).subscribe((response) => {
+          this.toastrService.success(response.message);       
           this.createleadarray=response; 
-          this.successmessage = response.message;
-          this.leadsuccessmessage=false;
           this.getlead();
           document.getElementById('addLeadClose').click();
+          this.checked=false;
+          this.titlename="";
+          this.ClientIdValue="";
+          this.ClientNameValue="";
+          this.contactlistvalues=[];
+          this.temparray=[];
+          this.engagementtype="";
+          this.tagarray=[];
+          leadconversation=[];
+          this.leadstatushistory=[];
+          this.tagcontactarray=[];
+          this.persondisplay=[];
+          this.ownerdisplay=[];
+          this.salesdisplay=[];
+          this.contactdisplay=[];
+          this.namearray=[];
+          this.displayList=[];
+          this.managerlist="Request Owner"
+          this.saleslist="Assigned To"
+          this.attfileTest="Attach file";
+          this.reqBusiness='Business Stream';
+          this.reqConversation='Conversation Type';
+          this.getClientList="Add";
+          this.nextLibAvailable=true;
+          this.formData={};
+          f.reset();
         },
-        e=>{this.errorMessage = e;
-          this.errormessage=e.message;
-          this.edited=true;  
+        e=>{
+          this.toastrService.error(e.message);
          });   
     }
 
@@ -1076,8 +1187,6 @@ salesrepsearch(searchValue3)
   }
 
   contactsearch(serachData,value){
-
-   
     this.tagcontactarray.push(value);
     let contactdetailslist:any={
        "ContactId":value._id,
@@ -1094,7 +1203,7 @@ salesrepsearch(searchValue3)
   invitesearch(serachData1,value1){
     this.peopleName=serachData1;
     // var index = lead.Events.Meeting.findIndex(x => x._id.toString() === req.body.Meeting._id);
-    
+  console.log("value1",value1);
     let peoplelist:any =
     {
       "Userid":value1.Userid,
@@ -1104,20 +1213,26 @@ salesrepsearch(searchValue3)
       "Role":value1.Role,
       "Action" :"Subscribed"
     }
-console.log(this.temparray);
-console.log(peoplelist);
-console.log(value1);
+ 
     var index = this.temparray.findIndex(x => x.Userid === peoplelist.Userid);
-    console.log(index);
-    if(index>-1){
+    console.log("this.ownervalue",this.ownervalue);
+     if(this.ownervalue!=null){
+         var data=this.ownervalue;
+         console.log("data",data);
+         var indexdata =(peoplelist.Userid === data['Userid']);
+        // console.log(indexdata);
+     }
+    if(index>-1 || indexdata){
       this.temparray=this.temparray;
       this.namearray=this.namearray;
+      this.toastrService.error('You have selected Assigned/Owner');
   } else {
-    
     this.temparray.push(peoplelist);
+    console.log("this.temparray",this.temparray);
     this.namearray.push(value1);
+    console.log("this.namearray",this.namearray);
   }
-   
+  
   }
 
   managersearch(serachData2,value2){
@@ -1133,11 +1248,13 @@ console.log(value1);
     }
     var index1 = this.temparray.findIndex(x => x.Userid === managerlist.Userid);
     if(index1>-1){
-        
+        this.toastrService.error('You have selected Subscribed user');
    }
    else{
        this.ownervalue=managerlist;
+       console.log("request ownervalue",this.ownervalue);
       this.managerlist=serachData2;
+      console.log("this.managerlist",this.managerlist);
    }
   }
 
@@ -1154,11 +1271,13 @@ console.log(value1);
     }
     var index1 = this.temparray.findIndex(x => x.Userid === saleslist.Userid);
     if(index1>-1){
-         
+        this.toastrService.error('You have selected Subscribed user');
     }
     else{
-        this.ownervalue=saleslist;
+       this.ownervalue=saleslist;
+       console.log("assigned ownervalue",this.ownervalue);
        this.saleslist=serachData3;
+       console.log("this.saleslist",this.saleslist);
     }
   }
 
@@ -1184,9 +1303,17 @@ console.log(value1);
     this.formData3.append("_id",id);
     
     this._leadService.uploadFile(this.formData3).subscribe((response) => {
+    this.toastrService.success(response.message);  
     this. getUpload=response;
     this.getconversation(id);
-  });
+    this.attfileTest3="Attach file";
+    this.files3=[];
+    this.formData3 = new FormData();
+    this.files2=[];
+  },
+  e=>{
+    this.toastrService.error(e.message);
+   });
 }
 
    fileChange(fileInput: any) {
@@ -1201,7 +1328,7 @@ console.log(value1);
     for(let i =0; i < this.files1.length; i++){
          this.files.push(this.files1[i]['name']);
     }
-    this.attfileTest=this.files1.length+" files attached"
+    this.attfileTest=this.files1.length+" files"
  }
 
  deleteFile(filename){
@@ -1216,7 +1343,7 @@ console.log(value1);
  for(let i =0; i < this.files1.length; i++){
         this.files.push(this.files1[i]['name']);
       }
-      this.attfileTest=this.files1.length+" files attached"
+      this.attfileTest=this.files1.length+" files"
     console.log(this.files1);
  }
 
@@ -1246,13 +1373,159 @@ console.log(value1);
   }
 }
 
+
+selectTime = {
+  "selectTimeData":[
+    {
+      "time": "12:00 AM"
+    },
+    {
+      "time": "12:30 AM"
+    },
+    {
+      "time": "1:00 AM"
+    },
+    {
+      "time": "1:30 AM"
+    },
+    {
+      "time": "2:00 AM"
+    },
+    {
+      "time": "2:30 AM"
+    },
+    {
+      "time": "3:00 AM"
+    },
+    {
+      "time": "3:30 AM"
+    },
+    {
+      "time": "4:00 AM"
+    },
+    {
+      "time": "4:30 AM"
+    },
+    {
+      "time": "5:00 AM"
+    },
+    {
+      "time": "5:30 AM"
+    },
+    {
+      "time": "6:00 AM"
+    },
+    {
+      "time": "6:30 AM"
+    },
+    {
+      "time": "7:00 AM"
+    },
+    {
+      "time": "7:30 AM"
+    },
+    {
+      "time": "8:00 AM"
+    },
+    {
+      "time": "8:30 AM"
+    },
+    {
+      "time": "9:00 AM"
+    },
+    {
+      "time": "9:30 AM"
+    },
+    {
+      "time": "10:00 AM"
+    },
+    {
+      "time": "10:30 AM"
+    },
+    {
+      "time": "11:00 AM"
+    },
+    {
+      "time": "11:30 AM"
+    },
+    {
+      "time": "12:30 PM"
+    },
+    {
+      "time": "12:30 PM"
+    },
+    {
+      "time": "1:00 PM"
+    },
+    {
+      "time": "2:00 PM"
+    },
+    {
+      "time": "2:30 PM"
+    },
+    {
+      "time": "3:00 PM"
+    },
+    {
+      "time": "3:30 PM"
+    },
+    {
+      "time": "4:00 PM"
+    },
+    {
+      "time": "4:30 PM"
+    },
+    {
+      "time": "5:00 PM"
+    },
+    {
+      "time": "5:30 PM"
+    },
+    {
+      "time": "6:00 PM"
+    },
+    {
+      "time": "6:30 PM"
+    },
+    {
+      "time": "7:00 PM"
+    },
+    {
+      "time": "7:30 PM"
+    },
+    {
+      "time": "8:00 PM"
+    },
+    {
+      "time": "8:30 PM"
+    },
+    {
+      "time": "9:00 PM"
+    },{
+      "time": "9:30 PM"
+    },
+    {
+      "time": "10:00 PM"
+    },
+    {
+      "time": "10:30 PM"
+    },
+    {
+      "time": "11:00 PM"
+    },
+    {
+      "time": "11:30 PM"
+    }
+  ]
+}
   ngOnInit() {
+   
+    
     this.dat();
     this.getlead();
     this.getSalesrep()
     this.shornameinlead=localStorage.getItem('shortname');
     this.role=localStorage.getItem('Role');
-    console.log(this.role);
     this.token=localStorage.getItem('token');
     this.getUserData();
     this.dumyValue="A";
@@ -1268,7 +1541,6 @@ console.log(value1);
     this.getAllClients();
     this.getClientContactsdata();
     this.getSalesRepList();
-    console.log(this.role);
   }
 
   

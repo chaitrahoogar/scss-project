@@ -11,10 +11,10 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 
  export class leadService implements OnInit{
-     private _url1:string='http://172.16.0.4:8082/';
-       private _url:string='http://172.16.0.4:8082/';
-        private _url2:string='http://172.16.0.4:8081/';
-        private _url3:string='http://172.16.0.4:8083/';
+     private _url1:string='http://139.59.43.188:8082/';
+       private _url:string='http://139.59.43.188:8082/';
+        private _url2:string='http://139.59.43.188:8081/';
+        private _url3:string='http://139.59.43.188:8083/';
      token="";
      constructor(private _http:Http){
 
@@ -64,7 +64,7 @@ import 'rxjs/add/operator/toPromise';
 
        /// ScheduleMeetingService  
          ScheduleMeetingService(ScheduleDate){
-         
+         debugger;
             let contentHeader = new Headers({
                 "Content-Type": "application/json",
                  'token':localStorage.getItem('token')
@@ -90,7 +90,7 @@ import 'rxjs/add/operator/toPromise';
                 "Content-Type": "application/json",
                  'token':localStorage.getItem('token')
                 });
-           return this._http.post(this._url1+'lead/addLeadTagCcRev',id,{ headers: contentHeader }).map((response:Response) =>response.json());
+           return this._http.post(this._url1+'lead/addLeadTagCcRev',id,{ headers: contentHeader }).map((response:Response) =>response.json()).catch(handleError);
        }
 
        //get user data
